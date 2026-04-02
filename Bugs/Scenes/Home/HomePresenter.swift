@@ -27,6 +27,13 @@ final class HomePresenter: HomePresentationLogic {
                 badgeAssetName: item.badgeAssetName
             )
         }
+        let articles = response.articles.map { item in
+            Home.ArticleCellViewModel(
+                title: L10n.string(item.titleLocalizationKey),
+                subtitle: L10n.string(item.subtitleLocalizationKey),
+                imageAssetName: item.imageAssetName
+            )
+        }
         let viewModel = Home.Load.ViewModel(
             title: L10n.string("home.title"),
             searchPlaceholder: L10n.string("home.search.placeholder"),
@@ -34,7 +41,9 @@ final class HomePresenter: HomePresentationLogic {
             bannerButtonTitle: L10n.string("home.ai_banner.button"),
             categories: categories,
             popularSectionTitle: L10n.string("home.popular_this_week"),
-            popularInsects: popularInsects
+            popularInsects: popularInsects,
+            articlesSectionTitle: L10n.string("home.articles_section_title"),
+            articles: articles
         )
         viewController?.displayLoad(viewModel: viewModel)
     }

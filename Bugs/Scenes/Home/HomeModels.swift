@@ -12,6 +12,7 @@ enum Home {
         struct Response {
             let categories: [CategoryItemResponse]
             let popularInsects: [PopularInsectItemResponse]
+            let articles: [ArticleItemResponse]
         }
         struct ViewModel {
             let title: String
@@ -21,6 +22,8 @@ enum Home {
             let categories: [CategoryCellViewModel]
             let popularSectionTitle: String
             let popularInsects: [PopularInsectCellViewModel]
+            let articlesSectionTitle: String
+            let articles: [ArticleCellViewModel]
         }
     }
 
@@ -44,5 +47,17 @@ enum Home {
         let title: String
         let imageAssetName: String
         let badgeAssetName: String
+    }
+
+    struct ArticleItemResponse {
+        let titleLocalizationKey: String
+        let subtitleLocalizationKey: String
+        let imageAssetName: String
+    }
+
+    struct ArticleCellViewModel {
+        let title: String
+        let subtitle: String
+        let imageAssetName: String
     }
 }

@@ -16,3 +16,12 @@
 "home.popular.mantis" = "Mantis";
 "home.popular.ant" = "Ant";
 "home.popular.beetle" = "Beetle";
+
+/* Home — articles */
+"home.articles_section_title" = "Useful articles";
+"home.article.identify.title" = "How do we identify insects?";
+"home.article.identify.subtitle" = "Basic signs and tools that help tell species apart in the field or from a photo.";
+"home.article.habitats.title" = "Where insects live";
+"home.article.habitats.subtitle" = "From soil and leaf litter to flowers and water — typical habitats you can explore safely.";
+"home.article.photography.title" = "Macro photos without stress";
+"home.article.photography.subtitle" = "Light, distance, and patience: short tips for clearer pictures of small subjects.";

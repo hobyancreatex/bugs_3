@@ -15,6 +15,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 
     private var categories: [Home.CategoryCellViewModel] = []
     private var popularInsects: [Home.PopularInsectCellViewModel] = []
+    private var articles: [Home.ArticleCellViewModel] = []
 
     private let navBarContainer: UIView = {
         let v = UIView()
@@ -174,6 +175,42 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return cv
     }()
 
+    private let articlesSectionContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let articlesSectionTitleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appSectionTitle
+        l.numberOfLines = 1
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private lazy var articlesCollectionLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .horizontal
+        l.itemSize = CGSize(width: 300, height: 139)
+        l.minimumLineSpacing = 12
+        l.minimumInteritemSpacing = 12
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
+    private lazy var articlesCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: articlesCollectionLayout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        cv.dataSource = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(HomeArticleCell.self, forCellWithReuseIdentifier: HomeArticleCell.reuseIdentifier)
+        return cv
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -230,6 +267,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         scrollContentView.addSubview(popularSectionContainer)
         popularSectionContainer.addSubview(popularSectionTitleLabel)
         popularSectionContainer.addSubview(popularCollectionView)
+
+        scrollContentView.addSubview(articlesSectionContainer)
+        articlesSectionContainer.addSubview(articlesSectionTitleLabel)
+        articlesSectionContainer.addSubview(articlesCollectionView)
     }
 
     private func layoutConstraints() {
@@ -294,7 +335,12 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             popularSectionContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
             popularSectionContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
             popularSectionContainer.heightAnchor.constraint(equalToConstant: 181),
-            popularSectionContainer.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -24),
+
+            articlesSectionContainer.topAnchor.constraint(equalTo: popularSectionContainer.bottomAnchor, constant: 20),
+            articlesSectionContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
+            articlesSectionContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
+            articlesSectionContainer.heightAnchor.constraint(equalToConstant: 170),
+            articlesSectionContainer.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -24),
 
             popularSectionTitleLabel.topAnchor.constraint(equalTo: popularSectionContainer.topAnchor, constant: 6),
             popularSectionTitleLabel.leadingAnchor.constraint(equalTo: popularSectionContainer.leadingAnchor, constant: 16),
@@ -306,6 +352,17 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             popularCollectionView.bottomAnchor.constraint(equalTo: popularSectionContainer.bottomAnchor),
 
             popularSectionTitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: popularCollectionView.topAnchor, constant: -4),
+
+            articlesSectionTitleLabel.topAnchor.constraint(equalTo: articlesSectionContainer.topAnchor, constant: 6),
+            articlesSectionTitleLabel.leadingAnchor.constraint(equalTo: articlesSectionContainer.leadingAnchor, constant: 16),
+            articlesSectionTitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: articlesSectionContainer.trailingAnchor, constant: -16),
+
+            articlesCollectionView.topAnchor.constraint(equalTo: articlesSectionContainer.topAnchor, constant: 31),
+            articlesCollectionView.leadingAnchor.constraint(equalTo: articlesSectionContainer.leadingAnchor),
+            articlesCollectionView.trailingAnchor.constraint(equalTo: articlesSectionContainer.trailingAnchor),
+            articlesCollectionView.bottomAnchor.constraint(equalTo: articlesSectionContainer.bottomAnchor),
+
+            articlesSectionTitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: articlesCollectionView.topAnchor, constant: -4),
 
             aiBannerImageView.topAnchor.constraint(equalTo: aiBannerContainer.topAnchor),
             aiBannerImageView.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor),
@@ -337,14 +394,20 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         categories = viewModel.categories
         popularInsects = viewModel.popularInsects
         popularSectionTitleLabel.text = viewModel.popularSectionTitle
+        articles = viewModel.articles
+        articlesSectionTitleLabel.text = viewModel.articlesSectionTitle
         categoriesCollectionView.reloadData()
         popularCollectionView.reloadData()
+        articlesCollectionView.reloadData()
     }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView === articlesCollectionView {
+            return articles.count
+        }
         if collectionView === popularCollectionView {
             return popularInsects.count
         }
@@ -352,6 +415,16 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView === articlesCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: HomeArticleCell.reuseIdentifier,
+                for: indexPath
+            ) as? HomeArticleCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(with: articles[indexPath.item])
+            return cell
+        }
         if collectionView === popularCollectionView {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: HomePopularInsectCell.reuseIdentifier,

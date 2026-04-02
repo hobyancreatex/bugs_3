@@ -16,3 +16,12 @@
 "home.popular.mantis" = "Богомол";
 "home.popular.ant" = "Муравей";
 "home.popular.beetle" = "Жук";
+
+/* Home — articles */
+"home.articles_section_title" = "Полезные статьи";
+"home.article.identify.title" = "Как мы определяем насекомых?";
+"home.article.identify.subtitle" = "Основные признаки и инструменты, которые помогают отличить виды в поле или по фото.";
+"home.article.habitats.title" = "Где живут насекомые";
+"home.article.habitats.subtitle" = "От почвы и опавших листьев до цветов и воды — типичные места, которые можно изучать аккуратно.";
+"home.article.photography.title" = "Макросъёмка без стресса";
+"home.article.photography.subtitle" = "Свет, дистанция и терпение: короткие советы для более чётких снимков мелких объектов.";
