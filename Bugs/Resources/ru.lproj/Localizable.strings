@@ -1,0 +1,11 @@
+/* Home */
+"home.title" = "Главная";
+"home.search.placeholder" = "Поиск";
+"home.ai_banner.title" = "Спросите ИИ о любом найденном насекомом";
+"home.ai_banner.button" = "Задать вопрос";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Scorpiones";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";

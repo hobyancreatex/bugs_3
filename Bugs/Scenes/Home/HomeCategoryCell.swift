@@ -1,0 +1,73 @@
+//
+//  HomeCategoryCell.swift
+//  Bugs
+//
+
+import UIKit
+
+final class HomeCategoryCell: UICollectionViewCell {
+
+    static let reuseIdentifier = "HomeCategoryCell"
+
+    private let circleView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .appCategoryCircle
+        v.layer.cornerRadius = 28
+        v.clipsToBounds = true
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let iconView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+
+    private let titleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 14, weight: .semibold)
+        l.textColor = .appTextPrimary
+        l.textAlignment = .center
+        l.numberOfLines = 1
+        l.adjustsFontSizeToFitWidth = true
+        l.minimumScaleFactor = 0.85
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.addSubview(circleView)
+        circleView.addSubview(iconView)
+        contentView.addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            circleView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            circleView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            circleView.widthAnchor.constraint(equalToConstant: 56),
+            circleView.heightAnchor.constraint(equalToConstant: 56),
+
+            iconView.topAnchor.constraint(equalTo: circleView.topAnchor),
+            iconView.leadingAnchor.constraint(equalTo: circleView.leadingAnchor),
+            iconView.trailingAnchor.constraint(equalTo: circleView.trailingAnchor),
+            iconView.bottomAnchor.constraint(equalTo: circleView.bottomAnchor),
+
+            titleLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 4),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    func configure(with viewModel: Home.CategoryCellViewModel) {
+        titleLabel.text = viewModel.title
+        iconView.image = UIImage(named: viewModel.imageAssetName)
+    }
+}

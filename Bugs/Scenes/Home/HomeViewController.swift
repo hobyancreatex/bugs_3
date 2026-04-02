@@ -1,0 +1,301 @@
+//
+//  HomeViewController.swift
+//  Bugs
+//
+
+import UIKit
+
+protocol HomeDisplayLogic: AnyObject {
+    func displayLoad(viewModel: Home.Load.ViewModel)
+}
+
+final class HomeViewController: UIViewController, HomeDisplayLogic {
+
+    var interactor: HomeBusinessLogic?
+
+    private var categories: [Home.CategoryCellViewModel] = []
+
+    private let navBarContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let titleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 24, weight: .bold)
+        l.textColor = .appTextPrimary
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let settingsButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(UIImage(named: "home_nav_settings"), for: .normal)
+        b.imageView?.contentMode = .scaleAspectFit
+        return b
+    }()
+
+    private let premiumButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(UIImage(named: "home_nav_premium"), for: .normal)
+        b.imageView?.contentMode = .scaleAspectFit
+        return b
+    }()
+
+    private let scrollView: UIScrollView = {
+        let s = UIScrollView()
+        s.alwaysBounceVertical = true
+        s.showsVerticalScrollIndicator = false
+        s.translatesAutoresizingMaskIntoConstraints = false
+        return s
+    }()
+
+    private let scrollContentView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let searchContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .white
+        v.layer.cornerRadius = 22
+        v.clipsToBounds = true
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let searchIconView: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "home_search_icon"))
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+
+    private let searchTextField: UITextField = {
+        let t = UITextField()
+        t.borderStyle = .none
+        t.font = .preferredFont(forTextStyle: .body)
+        t.textColor = .appTextPrimary
+        t.returnKeyType = .search
+        t.isUserInteractionEnabled = false
+        t.translatesAutoresizingMaskIntoConstraints = false
+        return t
+    }()
+
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .horizontal
+        l.itemSize = CGSize(width: 100, height: 77)
+        l.minimumLineSpacing = 4
+        l.minimumInteritemSpacing = 4
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
+    private lazy var categoriesCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        cv.dataSource = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(HomeCategoryCell.self, forCellWithReuseIdentifier: HomeCategoryCell.reuseIdentifier)
+        return cv
+    }()
+
+    private let aiBannerContainer: UIView = {
+        let v = UIView()
+        v.layer.cornerRadius = 28
+        v.clipsToBounds = true
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let aiBannerImageView: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "home_ai_banner_background"))
+        iv.contentMode = .scaleAspectFill
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+
+    private let aiBannerTitleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appTextPrimary
+        l.numberOfLines = 0
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let aiAskButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        return b
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .appBackground
+        configureAskButtonAppearance()
+        buildHierarchy()
+        layoutConstraints()
+        setupSearchContainerTap()
+        interactor?.load(request: Home.Load.Request())
+    }
+
+    private func setupSearchContainerTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleSearchContainerTap))
+        searchContainer.addGestureRecognizer(tap)
+        searchContainer.isUserInteractionEnabled = true
+    }
+
+    @objc
+    private func handleSearchContainerTap() {
+    }
+
+    private func configureAskButtonAppearance() {
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.background.backgroundColor = .appTextPrimary
+        config.background.cornerRadius = 16
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            return out
+        }
+        aiAskButton.configuration = config
+    }
+
+    private func buildHierarchy() {
+        view.addSubview(navBarContainer)
+        navBarContainer.addSubview(titleLabel)
+        navBarContainer.addSubview(settingsButton)
+        navBarContainer.addSubview(premiumButton)
+
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContentView)
+
+        scrollContentView.addSubview(searchContainer)
+        searchContainer.addSubview(searchIconView)
+        searchContainer.addSubview(searchTextField)
+
+        scrollContentView.addSubview(categoriesCollectionView)
+        scrollContentView.addSubview(aiBannerContainer)
+        aiBannerContainer.addSubview(aiBannerImageView)
+        aiBannerContainer.addSubview(aiBannerTitleLabel)
+        aiBannerContainer.addSubview(aiAskButton)
+    }
+
+    private func layoutConstraints() {
+        let safe = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            navBarContainer.topAnchor.constraint(equalTo: safe.topAnchor),
+            navBarContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navBarContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navBarContainer.heightAnchor.constraint(equalToConstant: 40),
+
+            titleLabel.leadingAnchor.constraint(equalTo: navBarContainer.leadingAnchor, constant: 16),
+            titleLabel.centerYAnchor.constraint(equalTo: navBarContainer.centerYAnchor),
+
+            premiumButton.trailingAnchor.constraint(equalTo: navBarContainer.trailingAnchor, constant: -16),
+            premiumButton.centerYAnchor.constraint(equalTo: navBarContainer.centerYAnchor),
+            premiumButton.widthAnchor.constraint(equalToConstant: 28),
+            premiumButton.heightAnchor.constraint(equalToConstant: 28),
+
+            settingsButton.trailingAnchor.constraint(equalTo: premiumButton.leadingAnchor, constant: -16),
+            settingsButton.centerYAnchor.constraint(equalTo: navBarContainer.centerYAnchor),
+            settingsButton.widthAnchor.constraint(equalToConstant: 28),
+            settingsButton.heightAnchor.constraint(equalToConstant: 28),
+
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: settingsButton.leadingAnchor, constant: -8),
+
+            scrollView.topAnchor.constraint(equalTo: navBarContainer.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+
+            scrollContentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            scrollContentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            scrollContentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            scrollContentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+
+            searchContainer.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 16),
+            searchContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
+            searchContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
+            searchContainer.heightAnchor.constraint(equalToConstant: 44),
+
+            searchIconView.leadingAnchor.constraint(equalTo: searchContainer.leadingAnchor, constant: 16),
+            searchIconView.centerYAnchor.constraint(equalTo: searchContainer.centerYAnchor),
+            searchIconView.widthAnchor.constraint(equalToConstant: 16),
+            searchIconView.heightAnchor.constraint(equalToConstant: 16),
+
+            searchTextField.leadingAnchor.constraint(equalTo: searchIconView.trailingAnchor, constant: 8),
+            searchTextField.trailingAnchor.constraint(equalTo: searchContainer.trailingAnchor, constant: -16),
+            searchTextField.centerYAnchor.constraint(equalTo: searchContainer.centerYAnchor),
+
+            categoriesCollectionView.topAnchor.constraint(equalTo: searchContainer.bottomAnchor, constant: 20),
+            categoriesCollectionView.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
+            categoriesCollectionView.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
+            categoriesCollectionView.heightAnchor.constraint(equalToConstant: 77),
+
+            aiBannerContainer.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: 20),
+            aiBannerContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
+            aiBannerContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
+            aiBannerContainer.heightAnchor.constraint(equalToConstant: 126),
+            aiBannerContainer.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -24),
+
+            aiBannerImageView.topAnchor.constraint(equalTo: aiBannerContainer.topAnchor),
+            aiBannerImageView.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor),
+            aiBannerImageView.trailingAnchor.constraint(equalTo: aiBannerContainer.trailingAnchor),
+            aiBannerImageView.bottomAnchor.constraint(equalTo: aiBannerContainer.bottomAnchor),
+
+            aiBannerTitleLabel.topAnchor.constraint(equalTo: aiBannerContainer.topAnchor, constant: 20),
+            aiBannerTitleLabel.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor, constant: 20),
+            aiBannerTitleLabel.trailingAnchor.constraint(equalTo: aiBannerContainer.trailingAnchor, constant: -20),
+
+            aiAskButton.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor, constant: 20),
+            aiAskButton.bottomAnchor.constraint(equalTo: aiBannerContainer.bottomAnchor, constant: -20),
+            aiAskButton.heightAnchor.constraint(equalToConstant: 50),
+            aiAskButton.topAnchor.constraint(greaterThanOrEqualTo: aiBannerTitleLabel.bottomAnchor, constant: 12)
+        ])
+    }
+
+    func displayLoad(viewModel: Home.Load.ViewModel) {
+        titleLabel.text = viewModel.title
+        searchTextField.attributedPlaceholder = NSAttributedString(
+            string: viewModel.searchPlaceholder,
+            attributes: [.foregroundColor: UIColor.placeholderText]
+        )
+        aiBannerTitleLabel.text = viewModel.bannerTitle
+        if var config = aiAskButton.configuration {
+            config.title = viewModel.bannerButtonTitle
+            aiAskButton.configuration = config
+        }
+        categories = viewModel.categories
+        categoriesCollectionView.reloadData()
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        categories.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: HomeCategoryCell.reuseIdentifier,
+            for: indexPath
+        ) as? HomeCategoryCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(with: categories[indexPath.item])
+        return cell
+    }
+}
