@@ -9,3 +9,10 @@
 "home.category.scorpiones" = "Scorpiones";
 "home.category.hymenoptera" = "Hymenoptera";
 "home.category.araneae" = "Araneae";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Популярное за неделю";
+"home.popular.butterfly" = "Бабочка";
+"home.popular.mantis" = "Богомол";
+"home.popular.ant" = "Муравей";
+"home.popular.beetle" = "Жук";

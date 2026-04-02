@@ -20,7 +20,13 @@ final class HomeInteractor: HomeBusinessLogic {
             Home.CategoryItemResponse(titleLocalizationKey: "home.category.hymenoptera", imageAssetName: "home_category_thumbnail"),
             Home.CategoryItemResponse(titleLocalizationKey: "home.category.araneae", imageAssetName: "home_category_thumbnail")
         ]
-        let response = Home.Load.Response(categories: categories)
+        let popularInsects: [Home.PopularInsectItemResponse] = [
+            Home.PopularInsectItemResponse(titleLocalizationKey: "home.popular.butterfly", imageAssetName: "home_popular_insect", badgeAssetName: "home_popular_badge"),
+            Home.PopularInsectItemResponse(titleLocalizationKey: "home.popular.mantis", imageAssetName: "home_popular_insect", badgeAssetName: "home_popular_badge"),
+            Home.PopularInsectItemResponse(titleLocalizationKey: "home.popular.ant", imageAssetName: "home_popular_insect", badgeAssetName: "home_popular_badge"),
+            Home.PopularInsectItemResponse(titleLocalizationKey: "home.popular.beetle", imageAssetName: "home_popular_insect", badgeAssetName: "home_popular_badge")
+        ]
+        let response = Home.Load.Response(categories: categories, popularInsects: popularInsects)
         presenter?.presentLoad(response: response)
     }
 }

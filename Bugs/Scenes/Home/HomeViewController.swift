@@ -14,6 +14,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
 
     private var categories: [Home.CategoryCellViewModel] = []
+    private var popularInsects: [Home.PopularInsectCellViewModel] = []
 
     private let navBarContainer: UIView = {
         let v = UIView()
@@ -137,6 +138,42 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return b
     }()
 
+    private let popularSectionContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let popularSectionTitleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appSectionTitle
+        l.numberOfLines = 1
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private lazy var popularCollectionLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .horizontal
+        l.itemSize = CGSize(width: 125, height: 150)
+        l.minimumLineSpacing = 12
+        l.minimumInteritemSpacing = 12
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
+    private lazy var popularCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: popularCollectionLayout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        cv.dataSource = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(HomePopularInsectCell.self, forCellWithReuseIdentifier: HomePopularInsectCell.reuseIdentifier)
+        return cv
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -189,6 +226,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         aiBannerContainer.addSubview(aiBannerImageView)
         aiBannerContainer.addSubview(aiBannerTitleLabel)
         aiBannerContainer.addSubview(aiAskButton)
+
+        scrollContentView.addSubview(popularSectionContainer)
+        popularSectionContainer.addSubview(popularSectionTitleLabel)
+        popularSectionContainer.addSubview(popularCollectionView)
     }
 
     private func layoutConstraints() {
@@ -248,7 +289,23 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             aiBannerContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
             aiBannerContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
             aiBannerContainer.heightAnchor.constraint(equalToConstant: 126),
-            aiBannerContainer.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -24),
+
+            popularSectionContainer.topAnchor.constraint(equalTo: aiBannerContainer.bottomAnchor, constant: 20),
+            popularSectionContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
+            popularSectionContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
+            popularSectionContainer.heightAnchor.constraint(equalToConstant: 181),
+            popularSectionContainer.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -24),
+
+            popularSectionTitleLabel.topAnchor.constraint(equalTo: popularSectionContainer.topAnchor, constant: 6),
+            popularSectionTitleLabel.leadingAnchor.constraint(equalTo: popularSectionContainer.leadingAnchor, constant: 16),
+            popularSectionTitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: popularSectionContainer.trailingAnchor, constant: -16),
+
+            popularCollectionView.topAnchor.constraint(equalTo: popularSectionContainer.topAnchor, constant: 31),
+            popularCollectionView.leadingAnchor.constraint(equalTo: popularSectionContainer.leadingAnchor),
+            popularCollectionView.trailingAnchor.constraint(equalTo: popularSectionContainer.trailingAnchor),
+            popularCollectionView.bottomAnchor.constraint(equalTo: popularSectionContainer.bottomAnchor),
+
+            popularSectionTitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: popularCollectionView.topAnchor, constant: -4),
 
             aiBannerImageView.topAnchor.constraint(equalTo: aiBannerContainer.topAnchor),
             aiBannerImageView.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor),
@@ -278,17 +335,33 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             aiAskButton.configuration = config
         }
         categories = viewModel.categories
+        popularInsects = viewModel.popularInsects
+        popularSectionTitleLabel.text = viewModel.popularSectionTitle
         categoriesCollectionView.reloadData()
+        popularCollectionView.reloadData()
     }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        categories.count
+        if collectionView === popularCollectionView {
+            return popularInsects.count
+        }
+        return categories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView === popularCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: HomePopularInsectCell.reuseIdentifier,
+                for: indexPath
+            ) as? HomePopularInsectCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(with: popularInsects[indexPath.item])
+            return cell
+        }
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HomeCategoryCell.reuseIdentifier,
             for: indexPath
