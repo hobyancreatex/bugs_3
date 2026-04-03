@@ -192,3 +192,13 @@ extension CategoryInsectsViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: w, height: 104)
     }
 }
+
+extension CategoryInsectsViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let asset = rows[indexPath.item].imageAssetName
+        let detail = InsectDetailConfigurator.assemble(heroImageAssetName: asset)
+        navigationController?.pushViewController(detail, animated: true)
+    }
+}
