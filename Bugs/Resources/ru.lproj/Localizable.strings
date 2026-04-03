@@ -19,6 +19,26 @@
 
 /* Library */
 "library.title" = "Библиотека";
+"list.search_empty.title" = "Ничего не найдено…";
+"list.search_empty.subtitle" = "Попробуйте ещё раз";
+
+/* Category insect list */
+"insect.hym.1.title" = "Западная медоносная пчела";
+"insect.hym.1.subtitle" = "Обычные вредители в саду";
+"insect.hym.2.title" = "Бумажная оса";
+"insect.hym.2.subtitle" = "Часто у заборов и карнизов";
+"insect.hym.3.title" = "Шмель земляной";
+"insect.hym.3.subtitle" = "Ранний опылитель";
+"insect.hym.4.title" = "Пчела-плотник";
+"insect.hym.4.subtitle" = "Одиночное гнездо в полостях";
+"insect.hym.5.title" = "Ихневмонида";
+"insect.hym.5.subtitle" = "Паразитоид гусениц";
+"insect.default.1.title" = "Пример насекомого A";
+"insect.default.1.subtitle" = "Заглушка для этой категории";
+"insect.default.2.title" = "Пример насекомого B";
+"insect.default.2.subtitle" = "Позже заменить данными с API";
+"insect.default.3.title" = "Пример насекомого C";
+"insect.default.3.subtitle" = "Заглушка для этой категории";
 
 /* Home — popular this week */
 "home.popular_this_week" = "Популярное за неделю";

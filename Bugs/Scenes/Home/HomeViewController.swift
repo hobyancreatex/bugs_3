@@ -79,6 +79,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
+        cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(HomeCategoryCell.self, forCellWithReuseIdentifier: HomeCategoryCell.reuseIdentifier)
         return cv
@@ -417,5 +418,16 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         cell.configure(with: categories[indexPath.item])
         return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView === categoriesCollectionView else { return }
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let key = categories[indexPath.item].categoryLocalizationKey
+        let insectsList = CategoryInsectsConfigurator.assemble(categoryLocalizationKey: key)
+        navigationController?.pushViewController(insectsList, animated: true)
     }
 }

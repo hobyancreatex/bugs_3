@@ -1,20 +1,22 @@
 //
-//  LibraryModels.swift
+//  CategoryInsectsModels.swift
 //  Bugs
 //
 
 import Foundation
 
-enum Library {
+enum CategoryInsects {
 
-    struct CategoryDefinition {
+    struct InsectDefinition {
         let titleLocalizationKey: String
+        let subtitleLocalizationKey: String
         let imageAssetName: String
     }
 
-    enum CellItem: Equatable {
-        case category(title: String, titleLocalizationKey: String, imageAssetName: String)
-        case spacer
+    struct InsectCellViewModel {
+        let title: String
+        let subtitle: String
+        let imageAssetName: String
     }
 
     enum Present {
@@ -22,11 +24,11 @@ enum Library {
             let searchQuery: String
         }
         struct Response {
-            let definitions: [CategoryDefinition]
+            let insects: [InsectDefinition]
             let searchQuery: String
         }
         struct ViewModel {
-            let cellItems: [CellItem]
+            let rows: [InsectCellViewModel]
             let showsEmptySearchState: Bool
         }
     }

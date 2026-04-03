@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "arrow-ios-back-outline.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

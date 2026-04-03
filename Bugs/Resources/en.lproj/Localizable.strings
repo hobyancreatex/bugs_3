@@ -19,6 +19,26 @@
 
 /* Library */
 "library.title" = "Library";
+"list.search_empty.title" = "No results…";
+"list.search_empty.subtitle" = "Please try again";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western Honey Bee";
+"insect.hym.1.subtitle" = "Common gardening pests";
+"insect.hym.2.title" = "European Paper Wasp";
+"insect.hym.2.subtitle" = "Often seen on fences and eaves";
+"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.subtitle" = "Early spring pollinator";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Solitary cavity nester";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "Parasitoid of caterpillars";
+"insect.default.1.title" = "Sample insect A";
+"insect.default.1.subtitle" = "Placeholder row for this category";
+"insect.default.2.title" = "Sample insect B";
+"insect.default.2.subtitle" = "Replace with API data later";
+"insect.default.3.title" = "Sample insect C";
+"insect.default.3.subtitle" = "Placeholder row for this category";
 
 /* Home — popular this week */
 "home.popular_this_week" = "Popular this week";

@@ -1,19 +1,21 @@
 //
-//  LibraryViewController.swift
+//  CategoryInsectsViewController.swift
 //  Bugs
 //
 
 import UIKit
 
-protocol LibraryDisplayLogic: AnyObject {
-    func displayCategories(viewModel: Library.Present.ViewModel)
+protocol CategoryInsectsDisplayLogic: AnyObject {
+    func displayInsects(viewModel: CategoryInsects.Present.ViewModel)
 }
 
-final class LibraryViewController: UIViewController, LibraryDisplayLogic {
+final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisplayLogic {
 
-    var interactor: LibraryBusinessLogic?
+    var interactor: CategoryInsectsBusinessLogic?
 
-    private var cellItems: [Library.CellItem] = []
+    let categoryLocalizationKey: String
+
+    private var rows: [CategoryInsects.InsectCellViewModel] = []
     private var lastCollectionWidthForLayout: CGFloat = 0
 
     private let insetSearchField = InsetSearchFieldView()
@@ -25,22 +27,39 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         return v
     }()
 
+    private lazy var listLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .vertical
+        l.minimumLineSpacing = 12
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
     private lazy var collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: LibraryCompositionalLayoutBuilder.makeLayout())
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: listLayout)
         cv.backgroundColor = .clear
         cv.alwaysBounceVertical = true
         cv.dataSource = self
+        cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.contentInsetAdjustmentBehavior = .always
-        cv.register(HomeCategoryCell.self, forCellWithReuseIdentifier: HomeCategoryCell.reuseIdentifier)
-        cv.delegate = self
+        cv.register(CategoryInsectsCell.self, forCellWithReuseIdentifier: CategoryInsectsCell.reuseIdentifier)
         return cv
     }()
+
+    init(categoryLocalizationKey: String) {
+        self.categoryLocalizationKey = categoryLocalizationKey
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
-        navigationItem.title = L10n.string("library.title")
+        navigationItem.title = L10n.string(categoryLocalizationKey)
         configureNavigationBar()
         configureBackButton()
         configureSearchField()
@@ -55,7 +74,7 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
                 attributes: [.foregroundColor: UIColor.placeholderText]
             )
         )
-        interactor?.presentCategories(request: Library.Present.Request(searchQuery: ""))
+        interactor?.presentInsects(request: CategoryInsects.Present.Request(searchQuery: ""))
     }
 
     private func configureNavigationBar() {
@@ -113,11 +132,11 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
     @objc
     private func searchTextChanged() {
         let q = insetSearchField.textField.text ?? ""
-        interactor?.presentCategories(request: Library.Present.Request(searchQuery: q))
+        interactor?.presentInsects(request: CategoryInsects.Present.Request(searchQuery: q))
     }
 
-    func displayCategories(viewModel: Library.Present.ViewModel) {
-        cellItems = viewModel.cellItems
+    func displayInsects(viewModel: CategoryInsects.Present.ViewModel) {
+        rows = viewModel.rows
         emptySearchStateView.isHidden = !viewModel.showsEmptySearchState
         collectionView.isHidden = viewModel.showsEmptySearchState
         collectionView.reloadData()
@@ -135,7 +154,7 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
     }
 }
 
-extension LibraryViewController: UITextFieldDelegate {
+extension CategoryInsectsViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -143,39 +162,33 @@ extension LibraryViewController: UITextFieldDelegate {
     }
 }
 
-extension LibraryViewController: UICollectionViewDataSource {
+extension CategoryInsectsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cellItems.count
+        rows.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: HomeCategoryCell.reuseIdentifier,
+            withReuseIdentifier: CategoryInsectsCell.reuseIdentifier,
             for: indexPath
-        ) as? HomeCategoryCell else {
+        ) as? CategoryInsectsCell else {
             return UICollectionViewCell()
         }
-        switch cellItems[indexPath.item] {
-        case let .category(title, titleLocalizationKey, imageAssetName):
-            cell.configure(with: Home.CategoryCellViewModel(
-                title: title,
-                categoryLocalizationKey: titleLocalizationKey,
-                imageAssetName: imageAssetName
-            ))
-        case .spacer:
-            cell.configureAsSpacer()
-        }
+        cell.configure(with: rows[indexPath.item])
         return cell
     }
 }
 
-extension LibraryViewController: UICollectionViewDelegate {
+extension CategoryInsectsViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        guard case let .category(_, titleLocalizationKey, _) = cellItems[indexPath.item] else { return }
-        let insectsList = CategoryInsectsConfigurator.assemble(categoryLocalizationKey: titleLocalizationKey)
-        navigationController?.pushViewController(insectsList, animated: true)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let horizontalInset: CGFloat = 32
+        let w = max(0, collectionView.bounds.width - horizontalInset)
+        return CGSize(width: w, height: 104)
     }
 }

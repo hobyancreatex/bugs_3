@@ -34,7 +34,7 @@ final class LibraryInteractor: LibraryBusinessLogic {
                 L10n.string($0.titleLocalizationKey).lowercased().contains(query)
             }
         }
-        let response = Library.Present.Response(definitions: matches)
+        let response = Library.Present.Response(definitions: matches, searchQuery: request.searchQuery)
         presenter?.presentCategories(response: response)
     }
 }

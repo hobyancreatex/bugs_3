@@ -34,6 +34,7 @@ enum Home {
 
     struct CategoryCellViewModel {
         let title: String
+        let categoryLocalizationKey: String
         let imageAssetName: String
     }
 

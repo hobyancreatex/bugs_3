@@ -17,6 +17,7 @@ final class HomePresenter: HomePresentationLogic {
         let categories = response.categories.map { item in
             Home.CategoryCellViewModel(
                 title: L10n.string(item.titleLocalizationKey),
+                categoryLocalizationKey: item.titleLocalizationKey,
                 imageAssetName: item.imageAssetName
             )
         }
