@@ -34,6 +34,8 @@ final class HomeCategoryCell: UICollectionViewCell {
         l.numberOfLines = 1
         l.adjustsFontSizeToFitWidth = true
         l.minimumScaleFactor = 0.85
+        l.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        l.setContentHuggingPriority(.defaultLow, for: .horizontal)
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
@@ -67,7 +69,25 @@ final class HomeCategoryCell: UICollectionViewCell {
     }
 
     func configure(with viewModel: Home.CategoryCellViewModel) {
+        contentView.alpha = 1
+        isUserInteractionEnabled = true
         titleLabel.text = viewModel.title
         iconView.image = UIImage(named: viewModel.imageAssetName)
+    }
+
+    /// Invisible cell that keeps grid slot (Library incomplete rows).
+    func configureAsSpacer() {
+        contentView.alpha = 0
+        isUserInteractionEnabled = false
+        titleLabel.text = nil
+        iconView.image = nil
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contentView.alpha = 1
+        isUserInteractionEnabled = true
+        titleLabel.text = nil
+        iconView.image = nil
     }
 }

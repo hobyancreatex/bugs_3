@@ -1,3 +1,6 @@
+/* Common */
+"common.done" = "Готово";
+
 /* Home */
 "home.title" = "Главная";
 "home.search.placeholder" = "Поиск";
@@ -9,6 +12,13 @@
 "home.category.scorpiones" = "Scorpiones";
 "home.category.hymenoptera" = "Hymenoptera";
 "home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Library */
+"library.title" = "Библиотека";
 
 /* Home — popular this week */
 "home.popular_this_week" = "Популярное за неделю";

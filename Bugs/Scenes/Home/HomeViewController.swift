@@ -62,32 +62,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return v
     }()
 
-    private let searchContainer: UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
-        v.layer.cornerRadius = 22
-        v.clipsToBounds = true
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }()
-
-    private let searchIconView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "home_search_icon"))
-        iv.contentMode = .scaleAspectFit
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
-
-    private let searchTextField: UITextField = {
-        let t = UITextField()
-        t.borderStyle = .none
-        t.font = .preferredFont(forTextStyle: .body)
-        t.textColor = .appTextPrimary
-        t.returnKeyType = .search
-        t.isUserInteractionEnabled = false
-        t.translatesAutoresizingMaskIntoConstraints = false
-        return t
-    }()
+    private let insetSearchField = InsetSearchFieldView()
 
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let l = UICollectionViewFlowLayout()
@@ -217,18 +192,27 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         configureAskButtonAppearance()
         buildHierarchy()
         layoutConstraints()
-        setupSearchContainerTap()
+        configureHomeSearchField()
         interactor?.load(request: Home.Load.Request())
     }
 
-    private func setupSearchContainerTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleSearchContainerTap))
-        searchContainer.addGestureRecognizer(tap)
-        searchContainer.isUserInteractionEnabled = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    @objc
-    private func handleSearchContainerTap() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent || isBeingDismissed { return }
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    private func configureHomeSearchField() {
+        insetSearchField.setTextInputEnabled(false)
+        insetSearchField.onContainerTapWhenTextInputDisabled = { [weak self] in
+            guard let self else { return }
+            self.navigationController?.pushViewController(LibraryConfigurator.assemble(), animated: true)
+        }
     }
 
     private func configureAskButtonAppearance() {
@@ -254,9 +238,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         view.addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
 
-        scrollContentView.addSubview(searchContainer)
-        searchContainer.addSubview(searchIconView)
-        searchContainer.addSubview(searchTextField)
+        scrollContentView.addSubview(insetSearchField)
 
         scrollContentView.addSubview(categoriesCollectionView)
         scrollContentView.addSubview(aiBannerContainer)
@@ -307,21 +289,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             scrollContentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 
-            searchContainer.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 16),
-            searchContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
-            searchContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
-            searchContainer.heightAnchor.constraint(equalToConstant: 44),
+            insetSearchField.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 16),
+            insetSearchField.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
+            insetSearchField.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
 
-            searchIconView.leadingAnchor.constraint(equalTo: searchContainer.leadingAnchor, constant: 16),
-            searchIconView.centerYAnchor.constraint(equalTo: searchContainer.centerYAnchor),
-            searchIconView.widthAnchor.constraint(equalToConstant: 16),
-            searchIconView.heightAnchor.constraint(equalToConstant: 16),
-
-            searchTextField.leadingAnchor.constraint(equalTo: searchIconView.trailingAnchor, constant: 8),
-            searchTextField.trailingAnchor.constraint(equalTo: searchContainer.trailingAnchor, constant: -16),
-            searchTextField.centerYAnchor.constraint(equalTo: searchContainer.centerYAnchor),
-
-            categoriesCollectionView.topAnchor.constraint(equalTo: searchContainer.bottomAnchor, constant: 20),
+            categoriesCollectionView.topAnchor.constraint(equalTo: insetSearchField.bottomAnchor, constant: 20),
             categoriesCollectionView.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
             categoriesCollectionView.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
             categoriesCollectionView.heightAnchor.constraint(equalToConstant: 77),
@@ -382,9 +354,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 
     func displayLoad(viewModel: Home.Load.ViewModel) {
         titleLabel.text = viewModel.title
-        searchTextField.attributedPlaceholder = NSAttributedString(
-            string: viewModel.searchPlaceholder,
-            attributes: [.foregroundColor: UIColor.placeholderText]
+        insetSearchField.setAttributedPlaceholder(
+            NSAttributedString(
+                string: viewModel.searchPlaceholder,
+                attributes: [.foregroundColor: UIColor.placeholderText]
+            )
         )
         aiBannerTitleLabel.text = viewModel.bannerTitle
         if var config = aiAskButton.configuration {
