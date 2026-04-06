@@ -191,6 +191,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
         configureAskButtonAppearance()
+        aiAskButton.addTarget(self, action: #selector(aiAskTapped), for: .touchUpInside)
         buildHierarchy()
         layoutConstraints()
         configureHomeSearchField()
@@ -214,6 +215,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             guard let self else { return }
             self.navigationController?.pushViewController(LibraryConfigurator.assemble(), animated: true)
         }
+    }
+
+    @objc
+    private func aiAskTapped() {
+        navigationController?.pushViewController(AIConsultantChatViewController(), animated: true)
     }
 
     private func configureAskButtonAppearance() {

@@ -7,6 +7,12 @@
 "home.ai_banner.title" = "Ask AI about any insect you find";
 "home.ai_banner.button" = "Ask a question";
 
+/* AI chat */
+"ai_chat.title" = "AI consultant";
+"ai_chat.input.placeholder" = "Ask me something…";
+"ai_chat.stub.ai" = "I know all about insects, you can consult me.";
+"ai_chat.stub.user" = "Tell me about the bees";
+
 /* Home — categories */
 "home.category.coleoptera" = "Coleoptera";
 "home.category.scorpiones" = "Scorpiones";

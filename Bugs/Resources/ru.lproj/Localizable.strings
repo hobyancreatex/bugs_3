@@ -7,6 +7,12 @@
 "home.ai_banner.title" = "Спросите ИИ о любом найденном насекомом";
 "home.ai_banner.button" = "Задать вопрос";
 
+/* AI chat */
+"ai_chat.title" = "ИИ-консультант";
+"ai_chat.input.placeholder" = "Спросите что-нибудь…";
+"ai_chat.stub.ai" = "Я знаю всё о насекомых — можете меня проконсультировать.";
+"ai_chat.stub.user" = "Расскажи про пчёл";
+
 /* Home — categories */
 "home.category.coleoptera" = "Coleoptera";
 "home.category.scorpiones" = "Scorpiones";
