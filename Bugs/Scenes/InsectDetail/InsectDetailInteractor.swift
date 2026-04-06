@@ -31,6 +31,15 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             .init(titleKey: "insect.detail.char.habitat.title", valueKey: "insect.detail.char.habitat.value"),
             .init(titleKey: "insect.detail.char.diet.title", valueKey: "insect.detail.char.diet.value")
         ]
+        let classificationRows: [InsectDetail.CharacteristicLocalizationPair] = [
+            .init(titleKey: "insect.detail.class.genus.title", valueKey: "insect.detail.class.genus.value"),
+            .init(titleKey: "insect.detail.class.family.title", valueKey: "insect.detail.class.family.value"),
+            .init(titleKey: "insect.detail.class.order.title", valueKey: "insect.detail.class.order.value"),
+            .init(titleKey: "insect.detail.class.class.title", valueKey: "insect.detail.class.class.value"),
+            .init(titleKey: "insect.detail.class.phylum.title", valueKey: "insect.detail.class.phylum.value"),
+            .init(titleKey: "insect.detail.class.kingdom.title", valueKey: "insect.detail.class.kingdom.value"),
+            .init(titleKey: "insect.detail.class.domain.title", valueKey: "insect.detail.class.domain.value")
+        ]
         presenter?.presentDetail(
             response: InsectDetail.Load.Response(
                 heroImageAssetName: heroImageAssetName,
@@ -44,7 +53,10 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                 descriptionBodyKey: "insect.detail.mock.description",
                 readMoreKey: "insect.detail.read_more",
                 characteristicsSectionKey: "insect.detail.section.characteristics",
-                characteristicRows: characteristicRows
+                characteristicRows: characteristicRows,
+                classificationSectionKey: "insect.detail.section.classification",
+                classificationRows: classificationRows,
+                bitesSectionKey: "insect.detail.section.bites"
             )
         )
     }

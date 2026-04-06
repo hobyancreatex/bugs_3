@@ -17,6 +17,9 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
         let rows = response.characteristicRows.map {
             (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
         }
+        let classificationRows = response.classificationRows.map {
+            (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
+        }
         viewController?.displayDetail(
             viewModel: InsectDetail.Load.ViewModel(
                 heroImageAssetName: response.heroImageAssetName,
@@ -31,7 +34,10 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
                 descriptionBody: L10n.string(response.descriptionBodyKey),
                 readMoreTitle: L10n.string(response.readMoreKey),
                 characteristicsSectionTitle: L10n.string(response.characteristicsSectionKey),
-                characteristicRows: rows
+                characteristicRows: rows,
+                classificationSectionTitle: L10n.string(response.classificationSectionKey),
+                classificationRows: classificationRows,
+                bitesSectionTitle: L10n.string(response.bitesSectionKey)
             )
         )
     }

@@ -20,6 +20,8 @@ extension UIColor {
     static let appSectionPlaqueTeal = UIColor(red: 86 / 255, green: 142 / 255, blue: 119 / 255, alpha: 1)
     static let appDescriptionBody = UIColor(red: 39 / 255, green: 39 / 255, blue: 52 / 255, alpha: 1)
     static let appReadMore = UIColor(red: 58 / 255, green: 161 / 255, blue: 118 / 255, alpha: 1)
+    /// Правый цвет градиента кнопки «В коллекцию».
+    static let appCollectionCtaGradientEnd = UIColor(red: 97 / 255, green: 175 / 255, blue: 48 / 255, alpha: 1)
     /// Чередующийся фон строки «характеристики» (вторая строка — прозрачная).
     static let appCharacteristicsRowAlternate = UIColor(red: 243 / 255, green: 245 / 255, blue: 232 / 255, alpha: 1)
     static let appCharacteristicTitle = UIColor(red: 155 / 255, green: 152 / 255, blue: 148 / 255, alpha: 1)

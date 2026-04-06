@@ -51,6 +51,9 @@ enum InsectDetail {
             let readMoreKey: String
             let characteristicsSectionKey: String
             let characteristicRows: [CharacteristicLocalizationPair]
+            let classificationSectionKey: String
+            let classificationRows: [CharacteristicLocalizationPair]
+            let bitesSectionKey: String
         }
         struct ViewModel {
             let heroImageAssetName: String
@@ -66,6 +69,9 @@ enum InsectDetail {
             let readMoreTitle: String
             let characteristicsSectionTitle: String
             let characteristicRows: [(title: String, value: String)]
+            let classificationSectionTitle: String
+            let classificationRows: [(title: String, value: String)]
+            let bitesSectionTitle: String
         }
     }
 }

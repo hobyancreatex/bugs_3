@@ -13,7 +13,22 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     var interactor: InsectDetailBusinessLogic?
 
+    /// Если true — в «Моей коллекции»: показываем удаление сверху справа. Иначе — градиент «В коллекцию» снизу.
+    var isInCollection = false
+
     private var galleryAssetNames: [String] = []
+
+    private let deleteFromCollectionButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(.insectDetailDeleteFromCollection(), for: .normal)
+        b.tintColor = .appTextPrimary
+        b.adjustsImageWhenHighlighted = true
+        b.accessibilityLabel = L10n.string("insect.detail.remove_from_collection.accessibility")
+        return b
+    }()
+
+    private let addToCollectionControl = GradientRoundedCTAControl()
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
@@ -174,12 +189,50 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var characteristicsRows: [(title: String, value: String)] = []
     private var lastCharacteristicsLayoutWidth: CGFloat = 0
 
+    private let classificationPlaque = InsectSectionHeaderPlaqueView()
+
+    private lazy var classificationTableView: UITableView = {
+        let t = UITableView(frame: .zero, style: .plain)
+        t.separatorStyle = .none
+        t.isScrollEnabled = false
+        t.backgroundColor = .clear
+        t.dataSource = self
+        t.delegate = self
+        t.estimatedRowHeight = 49
+        t.rowHeight = UITableView.automaticDimension
+        t.translatesAutoresizingMaskIntoConstraints = false
+        t.register(InsectDetailCharacteristicCell.self, forCellReuseIdentifier: InsectDetailCharacteristicCell.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            t.sectionHeaderTopPadding = 0
+        }
+        return t
+    }()
+
+    private var classificationTableHeightConstraint: NSLayoutConstraint!
+    private var classificationRows: [(title: String, value: String)] = []
+    private var lastClassificationLayoutWidth: CGFloat = 0
+
+    private let bitesPlaque = InsectSectionHeaderPlaqueView()
+
+    private let bitesPlaceholderView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .clear
+        return v
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
         scrollView.backgroundColor = .appBackground
         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        deleteFromCollectionButton.addTarget(self, action: #selector(deleteFromCollectionTapped), for: .touchUpInside)
+        addToCollectionControl.addTarget(self, action: #selector(addToCollectionTapped), for: .touchUpInside)
+        let addTitle = L10n.string("insect.detail.add_to_collection")
+        addToCollectionControl.setTitle(addTitle, for: .normal)
+        addToCollectionControl.accessibilityLabel = addTitle
         buildLayout()
+        applyCollectionChrome()
         interactor?.loadDetail(request: InsectDetail.Load.Request())
     }
 
@@ -204,15 +257,25 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
                 applyDescriptionLayout(width: w)
             }
         }
-        guard !characteristicsRows.isEmpty else { return }
-        let cw = characteristicsTableView.bounds.width
-        guard cw > 0 else { return }
-        if abs(cw - lastCharacteristicsLayoutWidth) > 0.5 {
-            lastCharacteristicsLayoutWidth = cw
-            characteristicsTableView.reloadData()
-            characteristicsTableView.layoutIfNeeded()
-            updateCharacteristicsTableHeight()
+        if !characteristicsRows.isEmpty {
+            let cw = characteristicsTableView.bounds.width
+            if cw > 0, abs(cw - lastCharacteristicsLayoutWidth) > 0.5 {
+                lastCharacteristicsLayoutWidth = cw
+                characteristicsTableView.reloadData()
+                characteristicsTableView.layoutIfNeeded()
+                updateCharacteristicsTableHeight()
+            }
         }
+        if !classificationRows.isEmpty {
+            let clw = classificationTableView.bounds.width
+            if clw > 0, abs(clw - lastClassificationLayoutWidth) > 0.5 {
+                lastClassificationLayoutWidth = clw
+                classificationTableView.reloadData()
+                classificationTableView.layoutIfNeeded()
+                updateClassificationTableHeight()
+            }
+        }
+        updateScrollInsetForAddToCollectionButton()
     }
 
     private func buildLayout() {
@@ -227,7 +290,13 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         contentView.addSubview(descriptionTextView)
         contentView.addSubview(characteristicsPlaque)
         contentView.addSubview(characteristicsTableView)
+        contentView.addSubview(bitesPlaque)
+        contentView.addSubview(bitesPlaceholderView)
+        contentView.addSubview(classificationPlaque)
+        contentView.addSubview(classificationTableView)
         view.addSubview(backButton)
+        view.addSubview(deleteFromCollectionButton)
+        view.addSubview(addToCollectionControl)
 
         NSLayoutConstraint.activate([
             leftStatusIconView.widthAnchor.constraint(equalToConstant: 20),
@@ -301,12 +370,46 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             characteristicsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             characteristicsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            contentView.bottomAnchor.constraint(equalTo: characteristicsTableView.bottomAnchor, constant: 24)
+            bitesPlaque.topAnchor.constraint(equalTo: characteristicsTableView.bottomAnchor, constant: 20),
+            bitesPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            bitesPlaceholderView.topAnchor.constraint(equalTo: bitesPlaque.bottomAnchor, constant: 12),
+            bitesPlaceholderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bitesPlaceholderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bitesPlaceholderView.heightAnchor.constraint(equalToConstant: 200),
+
+            classificationPlaque.topAnchor.constraint(equalTo: bitesPlaceholderView.bottomAnchor, constant: 20),
+            classificationPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            classificationTableView.topAnchor.constraint(equalTo: classificationPlaque.bottomAnchor, constant: 12),
+            classificationTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            classificationTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+            contentView.bottomAnchor.constraint(equalTo: classificationTableView.bottomAnchor, constant: 24)
         ])
+
+        NSLayoutConstraint.activate([
+            deleteFromCollectionButton.widthAnchor.constraint(equalToConstant: 32),
+            deleteFromCollectionButton.heightAnchor.constraint(equalToConstant: 32),
+            deleteFromCollectionButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            deleteFromCollectionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
+            addToCollectionControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 46),
+            addToCollectionControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -46),
+            addToCollectionControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            addToCollectionControl.heightAnchor.constraint(equalToConstant: 56)
+        ])
+
+        view.bringSubviewToFront(backButton)
+        view.bringSubviewToFront(deleteFromCollectionButton)
+        view.bringSubviewToFront(addToCollectionControl)
+
         descriptionHeightConstraint = descriptionTextView.heightAnchor.constraint(equalToConstant: 1)
         descriptionHeightConstraint.isActive = true
         characteristicsTableHeightConstraint = characteristicsTableView.heightAnchor.constraint(equalToConstant: 1)
         characteristicsTableHeightConstraint.isActive = true
+        classificationTableHeightConstraint = classificationTableView.heightAnchor.constraint(equalToConstant: 1)
+        classificationTableHeightConstraint.isActive = true
     }
 
     private static func statusIconView(named: String) -> UIImageView {
@@ -324,6 +427,39 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func backTapped() {
         navigationController?.popViewController(animated: true)
     }
+
+    private func applyCollectionChrome() {
+        if isInCollection {
+            deleteFromCollectionButton.isHidden = false
+            addToCollectionControl.isHidden = true
+        } else {
+            deleteFromCollectionButton.isHidden = true
+            addToCollectionControl.isHidden = false
+        }
+        updateScrollInsetForAddToCollectionButton()
+    }
+
+    /// Скролл на весь экран; кнопка поверх. Нижний inset, чтобы последний контент можно было прокрутить выше кнопки.
+    private func updateScrollInsetForAddToCollectionButton() {
+        guard !isInCollection, !addToCollectionControl.isHidden else {
+            scrollView.contentInset.bottom = 0
+            scrollView.verticalScrollIndicatorInsets.bottom = 0
+            return
+        }
+        let visibleBottom = scrollView.frame.maxY
+        let buttonTop = addToCollectionControl.frame.minY
+        let overlap = max(0, visibleBottom - buttonTop)
+        let breathingRoom: CGFloat = 20
+        let inset = overlap + breathingRoom
+        scrollView.contentInset.bottom = inset
+        scrollView.verticalScrollIndicatorInsets.bottom = inset
+    }
+
+    @objc
+    private func deleteFromCollectionTapped() {}
+
+    @objc
+    private func addToCollectionTapped() {}
 
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
         heroImageView.image = UIImage(named: viewModel.heroImageAssetName)
@@ -343,6 +479,11 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         characteristicsPlaque.setTitle(viewModel.characteristicsSectionTitle)
         lastCharacteristicsLayoutWidth = 0
         characteristicsTableView.reloadData()
+        classificationRows = viewModel.classificationRows
+        classificationPlaque.setTitle(viewModel.classificationSectionTitle)
+        lastClassificationLayoutWidth = 0
+        classificationTableView.reloadData()
+        bitesPlaque.setTitle(viewModel.bitesSectionTitle)
         view.setNeedsLayout()
     }
 
@@ -354,6 +495,16 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         characteristicsTableView.layoutIfNeeded()
         let h = characteristicsTableView.contentSize.height
         characteristicsTableHeightConstraint.constant = max(1, ceil(h))
+    }
+
+    private func updateClassificationTableHeight() {
+        guard !classificationRows.isEmpty else {
+            classificationTableHeightConstraint.constant = 0
+            return
+        }
+        classificationTableView.layoutIfNeeded()
+        let h = classificationTableView.contentSize.height
+        classificationTableHeightConstraint.constant = max(1, ceil(h))
     }
 
     private func applyDescriptionLayout(width: CGFloat) {
@@ -427,7 +578,13 @@ extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {}
 extension InsectDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        characteristicsRows.count
+        if tableView === characteristicsTableView {
+            return characteristicsRows.count
+        }
+        if tableView === classificationTableView {
+            return classificationRows.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -437,7 +594,14 @@ extension InsectDetailViewController: UITableViewDataSource {
         ) as? InsectDetailCharacteristicCell else {
             return UITableViewCell()
         }
-        let row = characteristicsRows[indexPath.row]
+        let row: (title: String, value: String)
+        if tableView === characteristicsTableView {
+            row = characteristicsRows[indexPath.row]
+        } else if tableView === classificationTableView {
+            row = classificationRows[indexPath.row]
+        } else {
+            return UITableViewCell()
+        }
         cell.configure(title: row.title, value: row.value, rowIndex: indexPath.row)
         return cell
     }
