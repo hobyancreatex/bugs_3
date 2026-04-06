@@ -41,7 +41,8 @@ final class MainTabBarController: UIViewController {
     private var tabBarHeightConstraint: NSLayoutConstraint!
     private var tabItems: [MainTabItemControl] = []
     private var navigationStacks: [UINavigationController] = []
-    private var selectedIndex: Int = 0
+    /// Тег выбранной вкладки контента: 0 / 1 / 3 (чат с тегом 2 не хранится — модалка).
+    private var selectedContentTabTag: Int = 0
     private weak var visibleNavigation: UINavigationController?
 
     override func viewDidLoad() {
@@ -50,7 +51,7 @@ final class MainTabBarController: UIViewController {
         centerSlot.translatesAutoresizingMaskIntoConstraints = false
         buildNavigationStacks()
         buildChrome()
-        selectTab(at: 0)
+        switchToContentTab(tag: 0)
     }
 
     override func viewSafeAreaInsetsDidChange() {
@@ -61,9 +62,8 @@ final class MainTabBarController: UIViewController {
     private func buildNavigationStacks() {
         let homeNav = UINavigationController(rootViewController: HomeConfigurator.assemble())
         let libraryNav = UINavigationController(rootViewController: LibraryConfigurator.assemble())
-        let chatNav = UINavigationController(rootViewController: AIConsultantChatViewController())
         let profileNav = UINavigationController(rootViewController: ProfileViewController())
-        navigationStacks = [homeNav, libraryNav, chatNav, profileNav]
+        navigationStacks = [homeNav, libraryNav, profileNav]
         for nav in navigationStacks {
             AppNavigationBarAppearance.apply(to: nav.navigationBar)
         }
@@ -163,17 +163,32 @@ final class MainTabBarController: UIViewController {
 
     @objc
     private func tabTapped(_ sender: MainTabItemControl) {
-        selectTab(at: sender.tag)
+        let tag = sender.tag
+        if tag == Metrics.chatTabTag {
+            presentChatModallyFromCurrentScreen()
+            return
+        }
+        switchToContentTab(tag: tag)
     }
 
-    private func selectTab(at index: Int) {
-        guard index >= 0, index < navigationStacks.count else { return }
-        selectedIndex = index
-        for (i, item) in tabItems.enumerated() {
-            item.setSelected(i == index)
+    /// Индекс стека для вкладок 0 — главная, 1 — библиотека, 3 — профиль.
+    private func contentStackIndex(forTabTag tag: Int) -> Int? {
+        switch tag {
+        case 0: return 0
+        case 1: return 1
+        case 3: return 2
+        default: return nil
+        }
+    }
+
+    private func switchToContentTab(tag: Int) {
+        guard let stackIndex = contentStackIndex(forTabTag: tag) else { return }
+        selectedContentTabTag = tag
+        for item in tabItems {
+            item.setSelected(item.tag == tag)
         }
 
-        let next = navigationStacks[index]
+        let next = navigationStacks[stackIndex]
         guard visibleNavigation !== next else { return }
 
         if let old = visibleNavigation {
@@ -195,6 +210,46 @@ final class MainTabBarController: UIViewController {
         visibleNavigation = next
     }
 
+    private func presenterForChatModal() -> UIViewController {
+        guard let nav = visibleNavigation else { return self }
+        return topPresenterForModal(from: nav.visibleViewController ?? nav)
+    }
+
+    private func topPresenterForModal(from vc: UIViewController) -> UIViewController {
+        guard let presented = vc.presentedViewController else { return vc }
+        if let pNav = presented as? UINavigationController {
+            return topPresenterForModal(from: pNav.visibleViewController ?? pNav)
+        }
+        return topPresenterForModal(from: presented)
+    }
+
+    private func isAIChatModalPresented() -> Bool {
+        guard let nav = visibleNavigation else { return false }
+        var walker: UIViewController? = nav.visibleViewController ?? nav
+        while let w = walker {
+            if let presented = w.presentedViewController {
+                if let pNav = presented as? UINavigationController,
+                   pNav.viewControllers.first is AIConsultantChatViewController {
+                    return true
+                }
+                walker = presented
+            } else {
+                break
+            }
+        }
+        return false
+    }
+
+    private func presentChatModallyFromCurrentScreen() {
+        guard !isAIChatModalPresented() else { return }
+        let chat = AIConsultantChatViewController()
+        chat.presentsAsModalFromTabBar = true
+        let nav = UINavigationController(rootViewController: chat)
+        AppNavigationBarAppearance.apply(to: nav.navigationBar)
+        nav.modalPresentationStyle = .fullScreen
+        presenterForChatModal().present(nav, animated: true)
+    }
+
     @objc
     private func centerScanTapped() {
         let picker = UIImagePickerController()
@@ -209,6 +264,8 @@ final class MainTabBarController: UIViewController {
     }
 
     private enum Metrics {
+        /// Индекс иконки «чат» в таббаре (модалка, не отдельный стек).
+        static let chatTabTag: Int = 2
         static let barTopCornerRadius: CGFloat = 32
         static let tabBarContentHeight: CGFloat = 62
         static let tabRowHeight: CGFloat = 44

@@ -96,6 +96,9 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     private static let avatarHeaderHeight: CGFloat = 128
 
+    /// Открытие с таббара модально: «Назад» закрывает экран через `dismiss`, а не `pop`.
+    var presentsAsModalFromTabBar: Bool = false
+
     private let aiSender = ChatSender(senderId: "ai.consultant", displayName: "AI")
     private let userSender = ChatSender(senderId: "user", displayName: "Me")
 
@@ -106,7 +109,9 @@ final class AIConsultantChatViewController: MessagesViewController {
         view.backgroundColor = .appBackground
         navigationItem.title = L10n.string("ai_chat.title")
         configureNavigationBar()
-        if navigationController?.viewControllers.first === self {
+        if presentsAsModalFromTabBar {
+            configureModalDismissBackButton()
+        } else if navigationController?.viewControllers.first === self {
             navigationItem.leftBarButtonItem = nil
         } else {
             configureBackButton()
@@ -131,21 +136,34 @@ final class AIConsultantChatViewController: MessagesViewController {
     }
 
     private func configureBackButton() {
+        navigationItem.leftBarButtonItem = makeCircleBackBarButton(action: #selector(backTapped))
+    }
+
+    private func configureModalDismissBackButton() {
+        navigationItem.leftBarButtonItem = makeCircleBackBarButton(action: #selector(modalDismissTapped))
+    }
+
+    private func makeCircleBackBarButton(action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "library_nav_back"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        button.addTarget(self, action: action, for: .touchUpInside)
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalToConstant: 32),
             button.heightAnchor.constraint(equalToConstant: 32),
         ])
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+        return UIBarButtonItem(customView: button)
     }
 
     @objc
     private func backTapped() {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc
+    private func modalDismissTapped() {
+        navigationController?.dismiss(animated: true)
     }
 
     private func seedStarterMessages() {
