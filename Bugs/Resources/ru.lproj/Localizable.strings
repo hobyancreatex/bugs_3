@@ -40,6 +40,31 @@
 "insect.default.3.title" = "Пример насекомого C";
 "insect.default.3.subtitle" = "Заглушка для этой категории";
 
+/* Insect detail */
+"insect.detail.status.harmless" = "Безопасен";
+"insect.detail.status.poisonous" = "Ядовитый";
+"insect.detail.status.toxic" = "Токсичный";
+"insect.detail.status.widespread" = "Распространён";
+"insect.detail.also_known_prefix" = "Также известен как: ";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Европейская медоносная пчела, западная медоносная пчела, медоносная пчела";
+"insect.detail.section.description" = "Описание";
+"insect.detail.read_more" = "Подробнее";
+"insect.detail.mock.description" = "Западная медоносная пчела (Apis mellifera) — один из главных управляемых опылителей в сельском хозяйстве и диких экосистемах. Родом из Европы, Западной Азии и Африки, она расселена по всему миру пчеловодами ради мёда и опыления культур.\n\nКолония ведёт себя как сверхорганизм: одна плодная матка откладывает яйца, а тысячи рабочих особей собирают нектар и пыльцу, ухаживают за расплодом, строят соты и защищают гнездо. Трутни появляются сезонно и спариваются с матками чужих семей. Рабочие передают направление и расстояние до кормовых участков с помощью танца и обмениваются сигналами на ощупь и феромонами.\n\nСобирательницы посещают множество растений, перенося пыльцу. Это поддерживает биоразнообразие и урожаи — от садов и ягод до масличных и бахчевых. Пчеловоды ведут ульи, балансируя отбор мёда и здоровье семьи, следя за вредителями, болезнями и питанием.\n\nНа цветках пчёлы обычно спокойны, но защищают улей при угрозе; понимание их поведения снижает риск ужалений. Потеря местообитаний, пестициды, патогены и климатические изменения бьют и по диким, и по хозяйственным популяциям. Сохранение цветущих угодий и бережное ведение пчеловодства помогает этим удивительным насекомым и в будущих сезонах.";
+"insect.detail.section.characteristics" = "Характеристики";
+"insect.detail.char.adult_size.title" = "Размер взрослой особи";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 см";
+"insect.detail.char.forms.title" = "Формы существования";
+"insect.detail.char.forms.value" = "Яйцо, личинка, куколка, имаго";
+"insect.detail.char.colors.title" = "Окраска";
+"insect.detail.char.colors.value" = "Золотисто-коричневая с чёрными полосами";
+"insect.detail.char.population.title" = "Популяция";
+"insect.detail.char.population.value" = "Широко распространена и одомашнена";
+"insect.detail.char.habitat.title" = "Среда обитания";
+"insect.detail.char.habitat.value" = "Луга, сады, леса, сельхозугодья";
+"insect.detail.char.diet.title" = "Питание";
+"insect.detail.char.diet.value" = "Нектар и пыльца цветущих растений";
+
 /* Home — popular this week */
 "home.popular_this_week" = "Популярное за неделю";
 "home.popular.butterfly" = "Бабочка";

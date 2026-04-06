@@ -40,6 +40,31 @@
 "insect.default.3.title" = "Sample insect C";
 "insect.default.3.subtitle" = "Placeholder row for this category";
 
+/* Insect detail */
+"insect.detail.status.harmless" = "Harmless";
+"insect.detail.status.poisonous" = "Poisonous";
+"insect.detail.status.toxic" = "Toxic";
+"insect.detail.status.widespread" = "Widespread";
+"insect.detail.also_known_prefix" = "Also known as: ";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.section.description" = "Description";
+"insect.detail.read_more" = "Read More";
+"insect.detail.mock.description" = "The western honey bee (Apis mellifera) is among the most important managed pollinators in agriculture and wild ecosystems. Native to Europe, western Asia, and Africa, it has been spread worldwide by beekeepers for honey production and crop pollination.\n\nA colony is a superorganism: a single fertile queen lays eggs, while thousands of female workers forage, nurse larvae, build comb, and defend the nest. Male drones appear seasonally and mate with queens from other colonies. Workers communicate the direction and distance to rich food sources through the waggle dance and share information by touch and pheromones.\n\nForagers visit many plant species, transferring pollen as they move. This behavior supports biodiversity and food crops—from orchards and berries to oilseeds and melons. Beekeepers manage hives to balance honey harvest with colony health, monitoring for pests, diseases, and nutritional stress.\n\nAlthough generally docile on flowers, honey bees defend their hive if they perceive a threat; understanding their cues reduces stings. Habitat loss, pesticides, pathogens, and climate shifts challenge both wild and managed populations. Protecting floral resources and adopting careful management helps sustain these remarkable insects for future seasons.";
+"insect.detail.section.characteristics" = "Characteristics";
+"insect.detail.char.adult_size.title" = "Adult Size";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 cm";
+"insect.detail.char.forms.title" = "Existence Forms";
+"insect.detail.char.forms.value" = "Egg, Larva, Pupa, Adult";
+"insect.detail.char.colors.title" = "Colors";
+"insect.detail.char.colors.value" = "Golden-brown with black stripes";
+"insect.detail.char.population.title" = "Population";
+"insect.detail.char.population.value" = "Highly widespread and domesticated";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Meadows, gardens, forests, agricultural areas";
+"insect.detail.char.diet.title" = "Diet";
+"insect.detail.char.diet.value" = "Nectar and pollen from flowering plants";
+
 /* Home — popular this week */
 "home.popular_this_week" = "Popular this week";
 "home.popular.butterfly" = "Butterfly";

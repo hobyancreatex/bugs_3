@@ -7,9 +7,12 @@ import UIKit
 
 enum InsectDetailConfigurator {
 
-    static func assemble(heroImageAssetName: String) -> UIViewController {
+    static func assemble(
+        heroImageAssetName: String,
+        leftHazardStatus: InsectDetail.LeftHazardStatus = .harmless
+    ) -> UIViewController {
         let viewController = InsectDetailViewController()
-        let interactor = InsectDetailInteractor(heroImageAssetName: heroImageAssetName)
+        let interactor = InsectDetailInteractor(heroImageAssetName: heroImageAssetName, leftHazardStatus: leftHazardStatus)
         let presenter = InsectDetailPresenter()
 
         viewController.interactor = interactor

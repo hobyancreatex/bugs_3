@@ -17,7 +17,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
-        s.alwaysBounceVertical = true
+        s.bounces = false
+        s.alwaysBounceVertical = false
         s.showsVerticalScrollIndicator = true
         s.contentInsetAdjustmentBehavior = .never
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +71,109 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         return b
     }()
 
+    private let titleLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 24, weight: .bold)
+        l.textColor = .appTextPrimary
+        l.numberOfLines = 0
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let leftStatusIconView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+
+    private let leftStatusLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appTextPrimary
+        l.numberOfLines = 1
+        l.adjustsFontSizeToFitWidth = true
+        l.minimumScaleFactor = 0.75
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let widespreadLabel: UILabel = {
+        let l = UILabel()
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appTextPrimary
+        l.numberOfLines = 1
+        l.adjustsFontSizeToFitWidth = true
+        l.minimumScaleFactor = 0.75
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let statusRowStack: UIStackView = {
+        let s = UIStackView()
+        s.axis = .horizontal
+        s.alignment = .center
+        s.spacing = 18
+        s.distribution = .fill
+        s.translatesAutoresizingMaskIntoConstraints = false
+        s.clipsToBounds = true
+        return s
+    }()
+
+    private let aliasesLabel: UILabel = {
+        let l = UILabel()
+        l.numberOfLines = 0
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+
+    private let descriptionPlaque = InsectSectionHeaderPlaqueView()
+
+    private let descriptionTextView: UITextView = {
+        let tv = UITextView()
+        tv.isEditable = false
+        tv.isScrollEnabled = false
+        tv.isSelectable = true
+        tv.backgroundColor = .clear
+        tv.textContainerInset = .zero
+        tv.textContainer.lineFragmentPadding = 0
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.linkTextAttributes = [
+            .foregroundColor: UIColor.appReadMore,
+            .font: UIFont.systemFont(ofSize: 16, weight: .semibold)
+        ]
+        return tv
+    }()
+
+    private var descriptionHeightConstraint: NSLayoutConstraint!
+    private var descriptionBodyText = ""
+    private var descriptionReadMoreTitle = ""
+    private var isDescriptionExpanded = false
+    private var lastDescriptionLayoutWidth: CGFloat = 0
+
+    private let characteristicsPlaque = InsectSectionHeaderPlaqueView()
+
+    private lazy var characteristicsTableView: UITableView = {
+        let t = UITableView(frame: .zero, style: .plain)
+        t.separatorStyle = .none
+        t.isScrollEnabled = false
+        t.backgroundColor = .clear
+        t.dataSource = self
+        t.delegate = self
+        t.estimatedRowHeight = 49
+        t.rowHeight = UITableView.automaticDimension
+        t.translatesAutoresizingMaskIntoConstraints = false
+        t.register(InsectDetailCharacteristicCell.self, forCellReuseIdentifier: InsectDetailCharacteristicCell.reuseIdentifier)
+        if #available(iOS 15.0, *) {
+            t.sectionHeaderTopPadding = 0
+        }
+        return t
+    }()
+
+    private var characteristicsTableHeightConstraint: NSLayoutConstraint!
+    private var characteristicsRows: [(title: String, value: String)] = []
+    private var lastCharacteristicsLayoutWidth: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -91,12 +195,57 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !descriptionBodyText.isEmpty {
+            let w = descriptionTextView.bounds.width
+            if w > 0, abs(w - lastDescriptionLayoutWidth) > 0.5 || lastDescriptionLayoutWidth == 0 {
+                lastDescriptionLayoutWidth = w
+                applyDescriptionLayout(width: w)
+            }
+        }
+        guard !characteristicsRows.isEmpty else { return }
+        let cw = characteristicsTableView.bounds.width
+        guard cw > 0 else { return }
+        if abs(cw - lastCharacteristicsLayoutWidth) > 0.5 {
+            lastCharacteristicsLayoutWidth = cw
+            characteristicsTableView.reloadData()
+            characteristicsTableView.layoutIfNeeded()
+            updateCharacteristicsTableHeight()
+        }
+    }
+
     private func buildLayout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(heroImageView)
         contentView.addSubview(galleryCollectionView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(statusRowStack)
+        contentView.addSubview(aliasesLabel)
+        contentView.addSubview(descriptionPlaque)
+        contentView.addSubview(descriptionTextView)
+        contentView.addSubview(characteristicsPlaque)
+        contentView.addSubview(characteristicsTableView)
         view.addSubview(backButton)
+
+        NSLayoutConstraint.activate([
+            leftStatusIconView.widthAnchor.constraint(equalToConstant: 20),
+            leftStatusIconView.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        let widespreadIcon = InsectDetailViewController.statusIconView(named: "insect_detail_status_widespread")
+        let leftStatusInner = UIStackView(arrangedSubviews: [leftStatusIconView, leftStatusLabel])
+        leftStatusInner.axis = .horizontal
+        leftStatusInner.alignment = .center
+        leftStatusInner.spacing = 4
+        leftStatusInner.translatesAutoresizingMaskIntoConstraints = false
+        let widespreadInner = UIStackView(arrangedSubviews: [widespreadIcon, widespreadLabel])
+        widespreadInner.axis = .horizontal
+        widespreadInner.alignment = .center
+        widespreadInner.spacing = 4
+        widespreadInner.translatesAutoresizingMaskIntoConstraints = false
+        statusRowStack.addArrangedSubview(leftStatusInner)
+        statusRowStack.addArrangedSubview(widespreadInner)
 
         NSLayoutConstraint.activate([
             backButton.widthAnchor.constraint(equalToConstant: 32),
@@ -124,8 +273,51 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             galleryCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             galleryCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             galleryCollectionView.heightAnchor.constraint(equalToConstant: 128),
-            galleryCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+
+            titleLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            statusRowStack.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            statusRowStack.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            statusRowStack.trailingAnchor.constraint(lessThanOrEqualTo: titleLabel.trailingAnchor),
+            statusRowStack.heightAnchor.constraint(equalToConstant: 20),
+
+            aliasesLabel.topAnchor.constraint(equalTo: statusRowStack.bottomAnchor, constant: 12),
+            aliasesLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            aliasesLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+
+            descriptionPlaque.topAnchor.constraint(equalTo: aliasesLabel.bottomAnchor, constant: 20),
+            descriptionPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            descriptionTextView.topAnchor.constraint(equalTo: descriptionPlaque.bottomAnchor, constant: 12),
+            descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+
+            characteristicsPlaque.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 20),
+            characteristicsPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            characteristicsTableView.topAnchor.constraint(equalTo: characteristicsPlaque.bottomAnchor, constant: 12),
+            characteristicsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            characteristicsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+            contentView.bottomAnchor.constraint(equalTo: characteristicsTableView.bottomAnchor, constant: 24)
         ])
+        descriptionHeightConstraint = descriptionTextView.heightAnchor.constraint(equalToConstant: 1)
+        descriptionHeightConstraint.isActive = true
+        characteristicsTableHeightConstraint = characteristicsTableView.heightAnchor.constraint(equalToConstant: 1)
+        characteristicsTableHeightConstraint.isActive = true
+    }
+
+    private static func statusIconView(named: String) -> UIImageView {
+        let iv = UIImageView(image: UIImage(named: named))
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            iv.widthAnchor.constraint(equalToConstant: 20),
+            iv.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        return iv
     }
 
     @objc
@@ -137,6 +329,78 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         heroImageView.image = UIImage(named: viewModel.heroImageAssetName)
         galleryAssetNames = viewModel.galleryImageAssetNames
         galleryCollectionView.reloadData()
+        titleLabel.text = viewModel.scientificTitle
+        applyLeftHazardStatus(viewModel.leftHazardStatus, text: viewModel.leftStatusText)
+        widespreadLabel.text = viewModel.widespreadStatusText
+        applyAliases(prefix: viewModel.alsoKnownPrefix, names: viewModel.alsoKnownNames)
+        descriptionBodyText = viewModel.descriptionBody
+        descriptionReadMoreTitle = viewModel.readMoreTitle
+        isDescriptionExpanded = false
+        lastDescriptionLayoutWidth = 0
+        descriptionPlaque.setTitle(viewModel.descriptionSectionTitle)
+        descriptionTextView.delegate = self
+        characteristicsRows = viewModel.characteristicRows
+        characteristicsPlaque.setTitle(viewModel.characteristicsSectionTitle)
+        lastCharacteristicsLayoutWidth = 0
+        characteristicsTableView.reloadData()
+        view.setNeedsLayout()
+    }
+
+    private func updateCharacteristicsTableHeight() {
+        guard !characteristicsRows.isEmpty else {
+            characteristicsTableHeightConstraint.constant = 0
+            return
+        }
+        characteristicsTableView.layoutIfNeeded()
+        let h = characteristicsTableView.contentSize.height
+        characteristicsTableHeightConstraint.constant = max(1, ceil(h))
+    }
+
+    private func applyDescriptionLayout(width: CGFloat) {
+        guard width > 0 else { return }
+        if isDescriptionExpanded {
+            descriptionTextView.attributedText = InsectDetailDescriptionComposer.expandedAttributed(fullText: descriptionBodyText)
+        } else {
+            descriptionTextView.attributedText = InsectDetailDescriptionComposer.collapsedAttributed(
+                fullText: descriptionBodyText,
+                width: width,
+                readMoreTitle: descriptionReadMoreTitle
+            )
+        }
+        let size = descriptionTextView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        descriptionHeightConstraint.constant = max(1, ceil(size.height))
+    }
+
+    private func applyLeftHazardStatus(_ status: InsectDetail.LeftHazardStatus, text: String) {
+        leftStatusIconView.image = UIImage(named: status.imageAssetName)
+        leftStatusLabel.text = text
+        switch status {
+        case .harmless:
+            leftStatusLabel.textColor = .appHarmlessGreen
+        case .poisonous:
+            leftStatusLabel.textColor = .appPoisonousRed
+        case .toxic:
+            leftStatusLabel.textColor = .appToxicOrange
+        }
+    }
+
+    private func applyAliases(prefix: String, names: String) {
+        let m = NSMutableAttributedString()
+        m.append(NSAttributedString(
+            string: prefix,
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                .foregroundColor: UIColor.appTextSecondary
+            ]
+        ))
+        m.append(NSAttributedString(
+            string: names,
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                .foregroundColor: UIColor.appTextPrimary
+            ]
+        ))
+        aliasesLabel.attributedText = m
     }
 }
 
@@ -159,3 +423,40 @@ extension InsectDetailViewController: UICollectionViewDataSource {
 }
 
 extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {}
+
+extension InsectDetailViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        characteristicsRows.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: InsectDetailCharacteristicCell.reuseIdentifier,
+            for: indexPath
+        ) as? InsectDetailCharacteristicCell else {
+            return UITableViewCell()
+        }
+        let row = characteristicsRows[indexPath.row]
+        cell.configure(title: row.title, value: row.value, rowIndex: indexPath.row)
+        return cell
+    }
+}
+
+extension InsectDetailViewController: UITableViewDelegate {}
+
+extension InsectDetailViewController: UITextViewDelegate {
+
+    func textView(
+        _ textView: UITextView,
+        shouldInteractWith URL: URL,
+        in characterRange: NSRange,
+        interaction: UITextItemInteraction
+    ) -> Bool {
+        guard URL == InsectDetailDescriptionComposer.readMoreURL else { return true }
+        isDescriptionExpanded = true
+        let w = lastDescriptionLayoutWidth > 0 ? lastDescriptionLayoutWidth : textView.bounds.width
+        applyDescriptionLayout(width: w)
+        return false
+    }
+}

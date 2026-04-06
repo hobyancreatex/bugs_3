@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "insect_detail_status_toxic.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
