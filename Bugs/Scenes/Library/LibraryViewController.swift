@@ -42,7 +42,11 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         view.backgroundColor = .appBackground
         navigationItem.title = L10n.string("library.title")
         configureNavigationBar()
-        configureBackButton()
+        if navigationController?.viewControllers.first === self {
+            navigationItem.leftBarButtonItem = nil
+        } else {
+            configureBackButton()
+        }
         configureSearchField()
         buildLayout()
         emptySearchStateView.configure(

@@ -23,6 +23,14 @@
 "home.category.blattodea" = "Blattodea";
 "home.category.hemiptera" = "Hemiptera";
 
+/* Main tab bar */
+"profile.title" = "Profile";
+"tab.home.accessibility" = "Home";
+"tab.library.accessibility" = "Library";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profile";
+"tab.scan.accessibility" = "Scan insect";
+
 /* Library */
 "library.title" = "Library";
 "list.search_empty.title" = "No results…";

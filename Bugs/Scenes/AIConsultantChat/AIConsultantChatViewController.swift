@@ -106,7 +106,11 @@ final class AIConsultantChatViewController: MessagesViewController {
         view.backgroundColor = .appBackground
         navigationItem.title = L10n.string("ai_chat.title")
         configureNavigationBar()
-        configureBackButton()
+        if navigationController?.viewControllers.first === self {
+            navigationItem.leftBarButtonItem = nil
+        } else {
+            configureBackButton()
+        }
         seedStarterMessages()
         registerHeader()
         configureMessageCollectionView()
