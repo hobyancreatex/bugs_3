@@ -8,20 +8,24 @@
 
 import UIKit
 
-/// Подсказки по съёмке для сканера: sheet со скроллом, пара «плохо / хорошо» на каждый пункт.
+/// Подсказки по съёмке для сканера: sheet со скроллом, пара иллюстраций на каждый пункт (маркеры только в ассетах).
 final class ScannerTipsViewController: UIViewController {
 
     private enum Metrics {
         static let horizontalInset: CGFloat = 20
-        static let topInset: CGFloat = 8
+        /// Отступ кнопки закрытия от верха контента скролла.
+        static let closeTopInset: CGFloat = 25
+        /// Отступ вводного текста от нижнего края кнопки закрытия.
+        static let introOffsetFromClose: CGFloat = 20
         static let titleCloseSpacing: CGFloat = 12
-        static let introBottomSpacing: CGFloat = 8
         static let sectionSpacing: CGFloat = 28
         static let pairSpacing: CGFloat = 12
         static let imageCornerRadius: CGFloat = 16
         static let closeButtonSide: CGFloat = 32
-        static let badgeSize: CGFloat = 24
-        static let badgeInset: CGFloat = 8
+        static let fontSize: CGFloat = 16
+        /// #272734
+        static let screenTitleColor = UIColor(red: 39 / 255, green: 39 / 255, blue: 52 / 255, alpha: 1)
+        static let bodyTextColor = UIColor.black
     }
 
     private struct TipSpec {
@@ -61,12 +65,7 @@ final class ScannerTipsViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentStack)
 
-        let header = makeHeaderRow()
-        let intro = makeIntroLabel()
-
-        contentStack.addArrangedSubview(header)
-        contentStack.setCustomSpacing(Metrics.introBottomSpacing, after: header)
-        contentStack.addArrangedSubview(intro)
+        contentStack.addArrangedSubview(makeTopSection())
 
         for spec in Self.tips {
             contentStack.addArrangedSubview(makeTipSection(spec: spec))
@@ -78,7 +77,7 @@ final class ScannerTipsViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            contentStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: Metrics.topInset),
+            contentStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentStack.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: Metrics.horizontalInset),
             contentStack.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -Metrics.horizontalInset),
             contentStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -24),
@@ -86,15 +85,16 @@ final class ScannerTipsViewController: UIViewController {
         ])
     }
 
-    private func makeHeaderRow() -> UIView {
-        let row = UIView()
-        row.translatesAutoresizingMaskIntoConstraints = false
+    private func makeTopSection() -> UIView {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
 
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.text = L10n.string("scanner.tips.title")
-        title.font = .systemFont(ofSize: 28, weight: .bold)
-        title.textColor = UIColor.appSectionTitle
+        let titleMetrics = UIFontMetrics(forTextStyle: .body)
+        title.font = titleMetrics.scaledFont(for: UIFont.systemFont(ofSize: Metrics.fontSize, weight: .bold))
+        title.textColor = Metrics.screenTitleColor
         title.adjustsFontForContentSizeCategory = true
         title.numberOfLines = 0
 
@@ -104,32 +104,35 @@ final class ScannerTipsViewController: UIViewController {
         close.accessibilityLabel = L10n.string("scanner.close.accessibility")
         close.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
 
-        row.addSubview(title)
-        row.addSubview(close)
+        let intro = UILabel()
+        intro.translatesAutoresizingMaskIntoConstraints = false
+        intro.text = L10n.string("scanner.tips.intro")
+        let introMetrics = UIFontMetrics(forTextStyle: .body)
+        intro.font = introMetrics.scaledFont(for: UIFont.systemFont(ofSize: Metrics.fontSize, weight: .regular))
+        intro.textColor = Metrics.bodyTextColor
+        intro.numberOfLines = 0
+        intro.adjustsFontForContentSizeCategory = true
+
+        container.addSubview(title)
+        container.addSubview(close)
+        container.addSubview(intro)
 
         NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: row.leadingAnchor),
-            title.topAnchor.constraint(equalTo: row.topAnchor),
-            title.bottomAnchor.constraint(equalTo: row.bottomAnchor),
-            title.trailingAnchor.constraint(lessThanOrEqualTo: close.leadingAnchor, constant: -Metrics.titleCloseSpacing),
-
-            close.trailingAnchor.constraint(equalTo: row.trailingAnchor),
-            close.centerYAnchor.constraint(equalTo: title.centerYAnchor),
+            close.topAnchor.constraint(equalTo: container.topAnchor, constant: Metrics.closeTopInset),
+            close.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             close.widthAnchor.constraint(equalToConstant: Metrics.closeButtonSide),
             close.heightAnchor.constraint(equalToConstant: Metrics.closeButtonSide),
-        ])
-        return row
-    }
 
-    private func makeIntroLabel() -> UILabel {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.text = L10n.string("scanner.tips.intro")
-        l.font = .preferredFont(forTextStyle: .body)
-        l.textColor = UIColor.appTextPrimary
-        l.numberOfLines = 0
-        l.adjustsFontForContentSizeCategory = true
-        return l
+            title.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            title.centerYAnchor.constraint(equalTo: close.centerYAnchor),
+            title.trailingAnchor.constraint(lessThanOrEqualTo: close.leadingAnchor, constant: -Metrics.titleCloseSpacing),
+
+            intro.topAnchor.constraint(equalTo: close.bottomAnchor, constant: Metrics.introOffsetFromClose),
+            intro.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            intro.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            intro.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+        ])
+        return container
     }
 
     private func makeTipSection(spec: TipSpec) -> UIView {
@@ -139,9 +142,9 @@ final class ScannerTipsViewController: UIViewController {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.text = L10n.string(spec.titleKey)
-        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
-        title.font = bodyMetrics.scaledFont(for: UIFont.systemFont(ofSize: 17, weight: .semibold))
-        title.textColor = UIColor.appTextPrimary
+        let tipMetrics = UIFontMetrics(forTextStyle: .body)
+        title.font = tipMetrics.scaledFont(for: UIFont.systemFont(ofSize: Metrics.fontSize, weight: .regular))
+        title.textColor = Metrics.bodyTextColor
         title.numberOfLines = 0
         title.adjustsFontForContentSizeCategory = true
 
@@ -152,8 +155,8 @@ final class ScannerTipsViewController: UIViewController {
         pairRow.distribution = .fillEqually
         pairRow.alignment = .fill
 
-        pairRow.addArrangedSubview(comparisonCell(assetName: spec.wrongAsset, isPositive: false))
-        pairRow.addArrangedSubview(comparisonCell(assetName: spec.rightAsset, isPositive: true))
+        pairRow.addArrangedSubview(comparisonCell(assetName: spec.wrongAsset))
+        pairRow.addArrangedSubview(comparisonCell(assetName: spec.rightAsset))
 
         block.addSubview(title)
         block.addSubview(pairRow)
@@ -171,7 +174,7 @@ final class ScannerTipsViewController: UIViewController {
         return block
     }
 
-    private func comparisonCell(assetName: String, isPositive: Bool) -> UIView {
+    private func comparisonCell(assetName: String) -> UIView {
         let wrap = UIView()
         wrap.translatesAutoresizingMaskIntoConstraints = false
         wrap.backgroundColor = UIColor(white: 0.94, alpha: 1)
@@ -189,9 +192,6 @@ final class ScannerTipsViewController: UIViewController {
 
         wrap.addSubview(iv)
 
-        let badge = badgeView(isPositive: isPositive)
-        wrap.addSubview(badge)
-
         NSLayoutConstraint.activate([
             iv.topAnchor.constraint(equalTo: wrap.topAnchor),
             iv.leadingAnchor.constraint(equalTo: wrap.leadingAnchor),
@@ -199,36 +199,8 @@ final class ScannerTipsViewController: UIViewController {
             iv.bottomAnchor.constraint(equalTo: wrap.bottomAnchor),
 
             wrap.heightAnchor.constraint(equalTo: wrap.widthAnchor),
-
-            badge.trailingAnchor.constraint(equalTo: wrap.trailingAnchor, constant: -Metrics.badgeInset),
-            badge.bottomAnchor.constraint(equalTo: wrap.bottomAnchor, constant: -Metrics.badgeInset),
-            badge.widthAnchor.constraint(equalToConstant: Metrics.badgeSize),
-            badge.heightAnchor.constraint(equalToConstant: Metrics.badgeSize),
         ])
         return wrap
-    }
-
-    private func badgeView(isPositive: Bool) -> UIView {
-        let v = UIView()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = isPositive ? UIColor.appHarmlessGreen : UIColor.appPoisonousRed
-        v.layer.cornerRadius = Metrics.badgeSize / 2
-
-        let symbolName = isPositive ? "checkmark" : "xmark"
-        let cfg = UIImage.SymbolConfiguration(pointSize: 11, weight: .bold)
-        let iv = UIImageView(image: UIImage(systemName: symbolName, withConfiguration: cfg))
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.tintColor = .white
-        iv.contentMode = .scaleAspectFit
-
-        v.addSubview(iv)
-        NSLayoutConstraint.activate([
-            iv.centerXAnchor.constraint(equalTo: v.centerXAnchor),
-            iv.centerYAnchor.constraint(equalTo: v.centerYAnchor),
-            iv.widthAnchor.constraint(equalToConstant: 14),
-            iv.heightAnchor.constraint(equalToConstant: 14),
-        ])
-        return v
     }
 
     @objc
