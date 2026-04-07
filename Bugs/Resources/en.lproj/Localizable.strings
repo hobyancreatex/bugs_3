@@ -25,6 +25,9 @@
 
 /* Main tab bar */
 "profile.title" = "Profile";
+"profile.segment.collection" = "My collection";
+"profile.segment.achievements" = "My achievements";
+"profile.achievements.placeholder" = "Achievements will appear here.";
 "tab.home.accessibility" = "Home";
 "tab.library.accessibility" = "Library";
 "tab.chat.accessibility" = "AI chat";

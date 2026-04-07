@@ -39,6 +39,12 @@ final class MainTabBarController: UIViewController {
     private let centerActionButton = CenterScanFloatingButton()
 
     private var tabBarHeightConstraint: NSLayoutConstraint!
+    /// Контент заканчивается у верхнего края таббара (корень стека).
+    private var childContainerBottomToTabBarConstraint: NSLayoutConstraint!
+    /// Контент на весь низ экрана (пуш с корневого экрана — таббар скрыт).
+    private var childContainerBottomToViewConstraint: NSLayoutConstraint!
+    private var tabBarHiddenForNavigationDepth = false
+
     private var tabItems: [MainTabItemControl] = []
     private var navigationStacks: [UINavigationController] = []
     /// Тег выбранной вкладки контента: 0 / 1 / 3 (чат с тегом 2 не хранится — модалка).
@@ -66,6 +72,7 @@ final class MainTabBarController: UIViewController {
         navigationStacks = [homeNav, libraryNav, profileNav]
         for nav in navigationStacks {
             AppNavigationBarAppearance.apply(to: nav.navigationBar)
+            nav.delegate = self
         }
     }
 
@@ -128,11 +135,15 @@ final class MainTabBarController: UIViewController {
             equalToConstant: Metrics.tabBarContentHeight + view.safeAreaInsets.bottom
         )
 
+        childContainerBottomToTabBarConstraint = childContainer.bottomAnchor.constraint(equalTo: tabBarContainer.topAnchor)
+        childContainerBottomToViewConstraint = childContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        childContainerBottomToViewConstraint.isActive = false
+
         NSLayoutConstraint.activate([
             childContainer.topAnchor.constraint(equalTo: view.topAnchor),
             childContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             childContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            childContainer.bottomAnchor.constraint(equalTo: tabBarContainer.topAnchor),
+            childContainerBottomToTabBarConstraint,
 
             tabBarContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tabBarContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -208,6 +219,35 @@ final class MainTabBarController: UIViewController {
         ])
         next.didMove(toParent: self)
         visibleNavigation = next
+        updateTabBarVisibilityForCurrentNavigation(animated: false)
+    }
+
+    private func updateTabBarVisibilityForCurrentNavigation(animated: Bool) {
+        guard let nav = visibleNavigation else { return }
+        let shouldHide = nav.viewControllers.count > 1
+        setTabBarHiddenForPush(shouldHide, animated: animated)
+    }
+
+    private func setTabBarHiddenForPush(_ hidden: Bool, animated: Bool) {
+        guard tabBarHiddenForNavigationDepth != hidden else { return }
+        tabBarHiddenForNavigationDepth = hidden
+
+        let apply = {
+            self.applyTabBarHiddenConstraints(hidden)
+            self.view.layoutIfNeeded()
+        }
+        if animated {
+            UIView.animate(withDuration: 0.28, delay: 0, options: [.curveEaseInOut], animations: apply)
+        } else {
+            apply()
+        }
+    }
+
+    private func applyTabBarHiddenConstraints(_ hidden: Bool) {
+        childContainerBottomToTabBarConstraint.isActive = !hidden
+        childContainerBottomToViewConstraint.isActive = hidden
+        tabBarContainer.isHidden = hidden
+        tabBarContainer.isUserInteractionEnabled = !hidden
     }
 
     private func presenterForChatModal() -> UIViewController {
@@ -271,6 +311,18 @@ final class MainTabBarController: UIViewController {
         static let tabsRowHorizontalInset: CGFloat = 28
         /// Смещение центра кнопки камеры вниз от верхнего края панели (pt).
         static let cameraButtonCenterYOffset: CGFloat = 18
+    }
+}
+
+extension MainTabBarController: UINavigationControllerDelegate {
+
+    func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        guard navigationController === visibleNavigation else { return }
+        updateTabBarVisibilityForCurrentNavigation(animated: animated)
     }
 }
 

@@ -25,6 +25,9 @@
 
 /* Main tab bar */
 "profile.title" = "Профиль";
+"profile.segment.collection" = "Моя коллекция";
+"profile.segment.achievements" = "Мои достижения";
+"profile.achievements.placeholder" = "Здесь появятся достижения.";
 "tab.home.accessibility" = "Главная";
 "tab.library.accessibility" = "Библиотека";
 "tab.chat.accessibility" = "ИИ-чат";
