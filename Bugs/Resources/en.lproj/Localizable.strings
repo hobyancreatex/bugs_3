@@ -33,6 +33,12 @@
 
 /* Scanner */
 "scanner.close.accessibility" = "Close";
+"scanner.tips.title" = "Tips";
+"scanner.tips.intro" = "A clear photo improves recognition accuracy. Follow these tips for best results:";
+"scanner.tips.1.title" = "1. Keep the insect in sharp focus";
+"scanner.tips.2.title" = "2. Center the insect in the frame. Make sure it's clearly visible";
+"scanner.tips.3.title" = "3. Capture only one species at a time — multiple insects reduce accuracy";
+"scanner.tips.4.title" = "4. Use good lighting";
 
 /* Library */
 "library.title" = "Library";

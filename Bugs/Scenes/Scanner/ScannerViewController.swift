@@ -239,7 +239,14 @@ final class ScannerViewController: UIViewController {
 
     @objc
     private func infoTapped() {
-        // Заглушка: позже — подсказка по сканеру.
+        let tips = ScannerTipsViewController()
+        tips.modalPresentationStyle = .pageSheet
+        if let sheet = tips.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        present(tips, animated: true)
     }
 
     @objc
