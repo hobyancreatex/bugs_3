@@ -252,15 +252,9 @@ final class MainTabBarController: UIViewController {
 
     @objc
     private func centerScanTapped() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.modalPresentationStyle = .fullScreen
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.sourceType = .camera
-        } else {
-            picker.sourceType = .photoLibrary
-        }
-        present(picker, animated: true)
+        let scanner = ScannerViewController()
+        scanner.modalPresentationStyle = .fullScreen
+        present(scanner, animated: true)
     }
 
     private enum Metrics {
@@ -277,24 +271,6 @@ final class MainTabBarController: UIViewController {
         static let tabsRowHorizontalInset: CGFloat = 28
         /// Смещение центра кнопки камеры вниз от верхнего края панели (pt).
         static let cameraButtonCenterYOffset: CGFloat = 18
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate
-
-extension MainTabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
-    }
-
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
-        picker.dismiss(animated: true)
-        // Заглушка: позже — распознавание насекомого.
-        _ = info[.originalImage] as? UIImage
     }
 }
 
