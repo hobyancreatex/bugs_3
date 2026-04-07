@@ -31,6 +31,12 @@ final class ScannerViewController: UIViewController {
         return b
     }()
 
+    private let closeButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        return b
+    }()
+
     private let galleryButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +77,7 @@ final class ScannerViewController: UIViewController {
         view.addSubview(dimOverlay)
         view.addSubview(dashBorder)
         view.addSubview(infoButton)
+        view.addSubview(closeButton)
         view.addSubview(galleryButton)
         view.addSubview(shutterButton)
         view.addSubview(flashButton)
@@ -91,7 +98,12 @@ final class ScannerViewController: UIViewController {
             dashBorder.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             dashBorder.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalToConstant: 32),
+
+            infoButton.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             infoButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             infoButton.widthAnchor.constraint(equalToConstant: 24),
             infoButton.heightAnchor.constraint(equalToConstant: 24),
@@ -116,7 +128,9 @@ final class ScannerViewController: UIViewController {
         previewBox.layer.addSublayer(previewLayer)
 
         configureButtonImages()
+        closeButton.accessibilityLabel = L10n.string("scanner.close.accessibility")
         infoButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         galleryButton.addTarget(self, action: #selector(galleryTapped), for: .touchUpInside)
         shutterButton.addTarget(self, action: #selector(shutterTapped), for: .touchUpInside)
         flashButton.addTarget(self, action: #selector(flashTapped), for: .touchUpInside)
@@ -196,6 +210,7 @@ final class ScannerViewController: UIViewController {
     }
 
     private func configureButtonImages() {
+        closeButton.setImage(Self.scaledAssetImage(named: "scanner_close", side: 32, template: false), for: .normal)
         infoButton.setImage(Self.scaledAssetImage(named: "scanner_info", side: 24, template: false), for: .normal)
         galleryButton.setImage(Self.scaledAssetImage(named: "scanner_gallery", side: 56, template: false), for: .normal)
         shutterButton.setImage(Self.scaledAssetImage(named: "scanner_shutter", side: 62, template: false), for: .normal)
@@ -225,6 +240,11 @@ final class ScannerViewController: UIViewController {
     @objc
     private func infoTapped() {
         // Заглушка: позже — подсказка по сканеру.
+    }
+
+    @objc
+    private func closeTapped() {
+        dismiss(animated: true)
     }
 
     @objc
@@ -266,6 +286,8 @@ final class ScannerViewController: UIViewController {
             spinner.centerYAnchor.constraint(equalTo: host.centerYAnchor),
         ])
         view.bringSubviewToFront(host)
+        view.bringSubviewToFront(closeButton)
+        view.bringSubviewToFront(infoButton)
         galleryLoaderHost = host
     }
 

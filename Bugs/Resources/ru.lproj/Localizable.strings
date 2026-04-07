@@ -31,6 +31,9 @@
 "tab.profile.accessibility" = "Профиль";
 "tab.scan.accessibility" = "Сканировать насекомое";
 
+/* Scanner */
+"scanner.close.accessibility" = "Закрыть";
+
 /* Library */
 "library.title" = "Библиотека";
 "list.search_empty.title" = "Ничего не найдено…";

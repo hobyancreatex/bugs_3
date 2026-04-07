@@ -31,6 +31,9 @@
 "tab.profile.accessibility" = "Profile";
 "tab.scan.accessibility" = "Scan insect";
 
+/* Scanner */
+"scanner.close.accessibility" = "Close";
+
 /* Library */
 "library.title" = "Library";
 "list.search_empty.title" = "No results…";
