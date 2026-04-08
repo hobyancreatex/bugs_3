@@ -147,6 +147,7 @@ final class ScannerViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         sessionQueue.async { [weak self] in
             self?.session.startRunning()
         }
@@ -333,7 +334,17 @@ extension ScannerViewController: AVCapturePhotoCaptureDelegate {
         didFinishProcessingPhoto photo: AVCapturePhoto,
         error: Error?
     ) {
-        _ = photo.fileDataRepresentation()
+        guard error == nil,
+              let data = photo.fileDataRepresentation(),
+              let image = UIImage(data: data)
+        else {
+            return
+        }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            let progress = RecognitionProgressViewController(backgroundImage: image)
+            self.navigationController?.pushViewController(progress, animated: true)
+        }
     }
 }
 
@@ -347,7 +358,11 @@ extension ScannerViewController: UIImagePickerControllerDelegate, UINavigationCo
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        picker.dismiss(animated: true)
-        _ = info[.originalImage] as? UIImage
+        let picked = info[.originalImage] as? UIImage
+        picker.dismiss(animated: true) { [weak self] in
+            guard let self, let picked else { return }
+            let progress = RecognitionProgressViewController(backgroundImage: picked)
+            self.navigationController?.pushViewController(progress, animated: true)
+        }
     }
 }

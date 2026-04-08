@@ -192,6 +192,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         view.backgroundColor = .appBackground
         configureAskButtonAppearance()
         aiAskButton.addTarget(self, action: #selector(aiAskTapped), for: .touchUpInside)
+        let aiBannerTap = UITapGestureRecognizer(target: self, action: #selector(aiAskTapped))
+        aiBannerTap.delegate = self
+        aiBannerTap.cancelsTouchesInView = false
+        aiBannerContainer.addGestureRecognizer(aiBannerTap)
         buildHierarchy()
         layoutConstraints()
         configureHomeSearchField()
@@ -424,6 +428,15 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         cell.configure(with: categories[indexPath.item])
         return cell
+    }
+}
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard gestureRecognizer.view === aiBannerContainer else { return true }
+        let point = touch.location(in: aiBannerContainer)
+        return !aiAskButton.frame.contains(point)
     }
 }
 

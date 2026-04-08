@@ -293,8 +293,11 @@ final class MainTabBarController: UIViewController {
     @objc
     private func centerScanTapped() {
         let scanner = ScannerViewController()
-        scanner.modalPresentationStyle = .fullScreen
-        present(scanner, animated: true)
+        let nav = UINavigationController(rootViewController: scanner)
+        AppNavigationBarAppearance.apply(to: nav.navigationBar)
+        nav.setNavigationBarHidden(true, animated: false)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
 
     private enum Metrics {

@@ -38,6 +38,7 @@
 
 /* Scanner */
 "scanner.close.accessibility" = "Закрыть";
+"scanner.recognition_progress.message" = "Подождите, идёт загрузка данных…";
 "scanner.tips.title" = "Подсказки";
 "scanner.tips.intro" = "Чёткое фото повышает точность распознавания. Следуйте этим советам:";
 "scanner.tips.1.title" = "1. Снимайте насекомое в чётком фокусе";
