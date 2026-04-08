@@ -39,6 +39,9 @@
 /* Scanner */
 "scanner.close.accessibility" = "Закрыть";
 "scanner.recognition_progress.message" = "Подождите, идёт загрузка данных…";
+"scanner.recognition_no_match.title" = "Совпадений не найдено";
+"scanner.recognition_no_match.subtitle" = "Не удалось определить насекомое на этом фото";
+"scanner.recognition_no_match.try_again" = "Попробовать снова";
 "scanner.tips.title" = "Подсказки";
 "scanner.tips.intro" = "Чёткое фото повышает точность распознавания. Следуйте этим советам:";
 "scanner.tips.1.title" = "1. Снимайте насекомое в чётком фокусе";

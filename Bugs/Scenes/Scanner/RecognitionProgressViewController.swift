@@ -11,6 +11,9 @@ final class RecognitionProgressViewController: UIViewController {
     private let backgroundImage: UIImage
     private let iconAssetName: String
 
+    private var pendingSimulatedLoadWork: DispatchWorkItem?
+    private var simulatedLoadFinished = false
+
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +118,30 @@ final class RecognitionProgressViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scheduleSimulatedRecognitionIfNeeded()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pendingSimulatedLoadWork?.cancel()
+        pendingSimulatedLoadWork = nil
+    }
+
+    private func scheduleSimulatedRecognitionIfNeeded() {
+        guard !simulatedLoadFinished, pendingSimulatedLoadWork == nil else { return }
+        let work = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            self.pendingSimulatedLoadWork = nil
+            self.simulatedLoadFinished = true
+            guard let nav = self.navigationController, nav.topViewController === self else { return }
+            nav.pushViewController(RecognitionNoMatchViewController(), animated: true)
+        }
+        pendingSimulatedLoadWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: work)
     }
 
     @objc

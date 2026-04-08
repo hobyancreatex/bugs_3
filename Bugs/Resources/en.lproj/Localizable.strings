@@ -39,6 +39,9 @@
 /* Scanner */
 "scanner.close.accessibility" = "Close";
 "scanner.recognition_progress.message" = "Please wait while the data is loading…";
+"scanner.recognition_no_match.title" = "No match found";
+"scanner.recognition_no_match.subtitle" = "We couldn't identify the insect in this photo";
+"scanner.recognition_no_match.try_again" = "Try again";
 "scanner.tips.title" = "Tips";
 "scanner.tips.intro" = "A clear photo improves recognition accuracy. Follow these tips for best results:";
 "scanner.tips.1.title" = "1. Keep the insect in sharp focus";
