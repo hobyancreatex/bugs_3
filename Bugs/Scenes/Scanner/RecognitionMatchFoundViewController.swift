@@ -220,11 +220,15 @@ final class RecognitionMatchFoundViewController: UIViewController {
     }
 
     private func openRecognitionResult() {
-        let detail = InsectDetailConfigurator.assemble(
-            heroImageAssetName: resultHeroAssetName,
-            isInCollection: false
-        )
-        navigationController?.pushViewController(detail, animated: true)
+        var ordered: [String] = []
+        for name in [resultHeroAssetName] + candidateAssetNames where !ordered.contains(name) {
+            ordered.append(name)
+        }
+        if ordered.isEmpty {
+            ordered = ["home_popular_insect", "home_article_cover", "home_category_thumbnail"]
+        }
+        let pager = RecognitionResultsPagerViewController(heroImageAssetNames: ordered)
+        navigationController?.pushViewController(pager, animated: true)
     }
 
     private static func lightCloseImage() -> UIImage? {

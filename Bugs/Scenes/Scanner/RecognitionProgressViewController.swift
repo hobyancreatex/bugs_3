@@ -138,24 +138,13 @@ final class RecognitionProgressViewController: UIViewController {
             self.pendingSimulatedLoadWork = nil
             self.simulatedLoadFinished = true
             guard let nav = self.navigationController, nav.topViewController === self else { return }
-            let heroName = "home_popular_insect"
-            let candidates = [
+            let resultHeroes = [
                 "home_popular_insect",
                 "home_article_cover",
                 "home_category_thumbnail",
-                "profile_collection_empty",
             ]
-            if SubscriptionAccess.shared.isPremiumActive {
-                let detail = InsectDetailConfigurator.assemble(heroImageAssetName: heroName, isInCollection: false)
-                nav.pushViewController(detail, animated: true)
-            } else {
-                let match = RecognitionMatchFoundViewController(
-                    userPhoto: self.backgroundImage,
-                    candidateAssetNames: candidates,
-                    resultHeroAssetName: heroName
-                )
-                nav.pushViewController(match, animated: true)
-            }
+            let pager = RecognitionResultsPagerViewController(heroImageAssetNames: resultHeroes)
+            nav.pushViewController(pager, animated: true)
         }
         pendingSimulatedLoadWork = work
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: work)

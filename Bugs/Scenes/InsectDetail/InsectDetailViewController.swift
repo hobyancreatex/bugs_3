@@ -16,6 +16,24 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     /// Если true — в «Моей коллекции»: показываем удаление сверху справа. Иначе — градиент «В коллекцию» снизу.
     var isInCollection = false
 
+    /// Если true — скрываем свою кнопку «назад» (например, в горизонтальном пейджере результатов).
+    var suppressesBackButton = false
+
+    /// Число страниц в пейджере распознавания; при > 1 показываем индикатор на герое.
+    var recognitionPagerPageCount: Int = 0 {
+        didSet {
+            if isViewLoaded {
+                refreshHeroPageIndicator()
+            }
+        }
+    }
+
+    /// Выбор страницы в пейджере (свайп или тап по индикатору).
+    var recognitionPageSelectHandler: ((Int) -> Void)?
+
+    private var recognitionPagerSelectedIndex: Int = 0
+    private var heroPageIndicator: InsectDetailHeroPageIndicatorView?
+
     private var galleryAssetNames: [String] = []
 
     private let deleteFromCollectionButton: UIButton = {
@@ -232,8 +250,15 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         addToCollectionControl.setTitle(addTitle, for: .normal)
         addToCollectionControl.accessibilityLabel = addTitle
         buildLayout()
+        refreshHeroPageIndicator()
+        backButton.isHidden = suppressesBackButton
         applyCollectionChrome()
         interactor?.loadDetail(request: InsectDetail.Load.Request())
+    }
+
+    func updateRecognitionPagerSelection(index: Int, animated: Bool) {
+        recognitionPagerSelectedIndex = index
+        heroPageIndicator?.setSelectedIndex(index, animated: animated)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -276,6 +301,24 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             }
         }
         updateScrollInsetForAddToCollectionButton()
+    }
+
+    private func refreshHeroPageIndicator() {
+        heroPageIndicator?.removeFromSuperview()
+        heroPageIndicator = nil
+        guard recognitionPagerPageCount > 1 else { return }
+        let ind = InsectDetailHeroPageIndicatorView(pageCount: recognitionPagerPageCount)
+        ind.onSelectPage = { [weak self] i in
+            self?.recognitionPageSelectHandler?(i)
+        }
+        ind.setSelectedIndex(recognitionPagerSelectedIndex, animated: false)
+        heroImageView.addSubview(ind)
+        heroImageView.bringSubviewToFront(ind)
+        NSLayoutConstraint.activate([
+            ind.trailingAnchor.constraint(equalTo: heroImageView.trailingAnchor, constant: -30),
+            ind.bottomAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: -20),
+        ])
+        heroPageIndicator = ind
     }
 
     private func buildLayout() {
@@ -400,7 +443,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             addToCollectionControl.heightAnchor.constraint(equalToConstant: 56)
         ])
 
-        view.bringSubviewToFront(backButton)
+        if !suppressesBackButton {
+            view.bringSubviewToFront(backButton)
+        }
         view.bringSubviewToFront(deleteFromCollectionButton)
         view.bringSubviewToFront(addToCollectionControl)
 
