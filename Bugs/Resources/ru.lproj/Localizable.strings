@@ -42,6 +42,14 @@
 "scanner.recognition_no_match.title" = "Совпадений не найдено";
 "scanner.recognition_no_match.subtitle" = "Не удалось определить насекомое на этом фото";
 "scanner.recognition_no_match.try_again" = "Попробовать снова";
+"scanner.recognition_match.title" = "Есть совпадения!";
+"scanner.recognition_match.subtitle" = "Мы нашли возможные совпадения. Продолжите, чтобы увидеть насекомое";
+"scanner.recognition_match.see_result" = "Смотреть результат";
+
+/* Paywall (stub until StoreKit) */
+"paywall.title" = "Откройте полное распознавание";
+"paywall.subscribe" = "Подписаться";
+"paywall.close" = "Закрыть";
 "scanner.tips.title" = "Подсказки";
 "scanner.tips.intro" = "Чёткое фото повышает точность распознавания. Следуйте этим советам:";
 "scanner.tips.1.title" = "1. Снимайте насекомое в чётком фокусе";
