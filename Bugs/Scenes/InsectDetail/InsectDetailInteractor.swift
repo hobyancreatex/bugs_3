@@ -16,13 +16,39 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
     private let heroImageAssetName: String
     private let leftHazardStatus: InsectDetail.LeftHazardStatus
 
+    /// Разные ассеты из каталога — для отладки полноэкранной галереи и пейджинга.
+    private static let stubGalleryAssetNames: [String] = [
+        "home_popular_insect",
+        "home_article_cover",
+        "home_category_thumbnail",
+        "scanner_no_match_illustration",
+        "home_ai_banner_background",
+        "scanner_tip_1_right",
+        "scanner_tip_2_right",
+        "scanner_tip_3_right",
+        "scanner_tip_4_right",
+        "scanner_tip_1_wrong",
+        "scanner_tip_2_wrong",
+        "scanner_tip_3_wrong",
+        "scanner_tip_4_wrong",
+        "list_search_empty",
+        "profile_collection_empty",
+        "insect_detail_status_harmless",
+        "insect_detail_status_poisonous",
+        "insect_detail_status_toxic",
+        "insect_detail_status_widespread",
+    ]
+
     init(heroImageAssetName: String, leftHazardStatus: InsectDetail.LeftHazardStatus = .harmless) {
         self.heroImageAssetName = heroImageAssetName
         self.leftHazardStatus = leftHazardStatus
     }
 
     func loadDetail(request: InsectDetail.Load.Request) {
-        let gallery = (0..<5).map { _ in heroImageAssetName }
+        var gallery = Self.stubGalleryAssetNames
+        if !gallery.contains(heroImageAssetName) {
+            gallery.insert(heroImageAssetName, at: 0)
+        }
         let characteristicRows: [InsectDetail.CharacteristicLocalizationPair] = [
             .init(titleKey: "insect.detail.char.adult_size.title", valueKey: "insect.detail.char.adult_size.value"),
             .init(titleKey: "insect.detail.char.forms.title", valueKey: "insect.detail.char.forms.value"),

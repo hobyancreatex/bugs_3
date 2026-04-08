@@ -35,6 +35,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var heroPageIndicator: InsectDetailHeroPageIndicatorView?
 
     private var galleryAssetNames: [String] = []
+    private var heroAssetName: String = ""
 
     private let deleteFromCollectionButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -251,6 +252,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         addToCollectionControl.accessibilityLabel = addTitle
         buildLayout()
         refreshHeroPageIndicator()
+        heroImageView.isUserInteractionEnabled = true
+        heroImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heroImageTapped)))
         backButton.isHidden = suppressesBackButton
         applyCollectionChrome()
         interactor?.loadDetail(request: InsectDetail.Load.Request())
@@ -507,6 +510,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func addToCollectionTapped() {}
 
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
+        heroAssetName = viewModel.heroImageAssetName
         heroImageView.image = UIImage(named: viewModel.heroImageAssetName)
         galleryAssetNames = viewModel.galleryImageAssetNames
         galleryCollectionView.reloadData()
@@ -580,6 +584,33 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         }
     }
 
+    @objc
+    private func heroImageTapped() {
+        presentImageGallery(initialAssetName: heroAssetName)
+    }
+
+    private func presentImageGallery(initialAssetName: String?) {
+        let names = Self.orderedUniqueImageNames(hero: heroAssetName, gallery: galleryAssetNames)
+        guard !names.isEmpty else { return }
+        let idx: Int
+        if let initial = initialAssetName, let i = names.firstIndex(of: initial) {
+            idx = i
+        } else {
+            idx = 0
+        }
+        let vc = InsectImageGalleryViewController(imageAssetNames: names, initialIndex: idx)
+        present(vc, animated: true)
+    }
+
+    private static func orderedUniqueImageNames(hero: String, gallery: [String]) -> [String] {
+        var seen = Set<String>()
+        var out: [String] = []
+        for name in [hero] + gallery where seen.insert(name).inserted {
+            out.append(name)
+        }
+        return out
+    }
+
     private func applyAliases(prefix: String, names: String) {
         let m = NSMutableAttributedString()
         m.append(NSAttributedString(
@@ -618,7 +649,14 @@ extension InsectDetailViewController: UICollectionViewDataSource {
     }
 }
 
-extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {}
+extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView === galleryCollectionView else { return }
+        guard indexPath.item < galleryAssetNames.count else { return }
+        presentImageGallery(initialAssetName: galleryAssetNames[indexPath.item])
+    }
+}
 
 extension InsectDetailViewController: UITableViewDataSource {
 
