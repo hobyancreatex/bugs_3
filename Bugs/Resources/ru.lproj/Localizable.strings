@@ -138,3 +138,30 @@
 "home.article.habitats.subtitle" = "От почвы и опавших листьев до цветов и воды — типичные места, которые можно изучать аккуратно.";
 "home.article.photography.title" = "Макросъёмка без стресса";
 "home.article.photography.subtitle" = "Свет, дистанция и терпение: короткие советы для более чётких снимков мелких объектов.";
+
+/* Settings (те же группы, что в CoinRecognizer) */
+"settings.title" = "Настройки";
+"settings.section.support" = "Поддержка";
+"settings.section.feedback" = "Обратная связь";
+"settings.section.security" = "Безопасность";
+"settings.row.contact_us" = "Свяжитесь с нами";
+"settings.row.restore" = "Восстановить";
+"settings.row.rate_app" = "Оцените приложение";
+"settings.row.share_app" = "Поделитесь приложением";
+"settings.row.privacy" = "Политика конфиденциальности";
+"settings.row.terms" = "Условия использования";
+"settings.row.refund_consent" = "Согласие на возврат";
+"settings.row.reset_consent" = "Сброс согласия";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Поддержка приложения Bugs";
+"settings.support.mail_body" = "Здравствуйте,\n\n";
+"settings.support.mail_unavailable_title" = "Напишите нам на почту";
+"settings.restore.message" = "Восстановление покупок через App Store появится в обновлении. Если Premium уже включён в этой сборке, доступ сохранён на этом устройстве.";
+"settings.refund_consent.message" = "Даёте ли вы согласие на обработку данных в целях возврата средств?";
+"settings.refund_consent.allow" = "Разрешить";
+"settings.refund_consent.decline" = "Отклонить";
+"settings.reset_consent.message" = "Управление рекламным согласием появится в следующих версиях.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

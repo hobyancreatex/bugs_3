@@ -101,6 +101,7 @@ final class ProfileViewController: UIViewController {
         )
 
         segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+        settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
 
         buildHierarchy()
         layoutConstraints()
@@ -187,6 +188,11 @@ final class ProfileViewController: UIViewController {
             collectionEmptyStateView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             collectionEmptyStateView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
         ])
+    }
+
+    @objc
+    private func settingsTapped() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 
     @objc

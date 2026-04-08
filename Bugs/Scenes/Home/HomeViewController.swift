@@ -199,6 +199,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         buildHierarchy()
         layoutConstraints()
         configureHomeSearchField()
+        settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
         interactor?.load(request: Home.Load.Request())
     }
 
@@ -219,6 +220,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             guard let self else { return }
             self.navigationController?.pushViewController(LibraryConfigurator.assemble(), animated: true)
         }
+    }
+
+    @objc
+    private func settingsTapped() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 
     @objc

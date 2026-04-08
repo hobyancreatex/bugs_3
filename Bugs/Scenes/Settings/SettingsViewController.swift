@@ -1,0 +1,317 @@
+//
+//  SettingsViewController.swift
+//  Bugs
+//
+
+import MessageUI
+import UIKit
+
+/// Настройки: те же группы и пункты, что в Coin Recognizer (support / feedback / security).
+final class SettingsViewController: UIViewController {
+
+    private enum Section: Int, CaseIterable {
+        case support
+        case feedback
+        case security
+
+        var titleKey: String {
+            switch self {
+            case .support: return "settings.section.support"
+            case .feedback: return "settings.section.feedback"
+            case .security: return "settings.section.security"
+            }
+        }
+    }
+
+    private enum SupportRow: Int, CaseIterable {
+        case contactUs
+        case restore
+    }
+
+    private enum FeedbackRow: Int, CaseIterable {
+        case rateApp
+        case shareApp
+    }
+
+    private enum SecurityRow {
+        case privacy
+        case terms
+        case refundConsent
+        case resetConsent
+    }
+
+    private let tableView: UITableView = {
+        let t = UITableView(frame: .zero, style: .insetGrouped)
+        t.translatesAutoresizingMaskIntoConstraints = false
+        t.backgroundColor = .appBackground
+        t.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        t.sectionHeaderTopPadding = 8
+        t.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return t
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .appBackground
+        overrideUserInterfaceStyle = .light
+        navigationItem.title = L10n.string("settings.title")
+        configureNavigationBar()
+        configureBackButton()
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        let safe = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: safe.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
+    private func securityRows() -> [SecurityRow] {
+        var rows: [SecurityRow] = [.privacy, .terms]
+        if SubscriptionAccess.shared.isPremiumActive {
+            rows.append(.refundConsent)
+        }
+        rows.append(.resetConsent)
+        return rows
+    }
+
+    private func configureNavigationBar() {
+        if let nav = navigationController?.navigationBar {
+            AppNavigationBarAppearance.apply(to: nav)
+        }
+    }
+
+    private func configureBackButton() {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "library_nav_back"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 32),
+            button.heightAnchor.constraint(equalToConstant: 32),
+        ])
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+    }
+
+    @objc
+    private func backTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    private func groupedCellBackground() -> UIBackgroundConfiguration {
+        var bg = UIBackgroundConfiguration.listGroupedCell()
+        bg.backgroundColor = UIColor.white.withAlphaComponent(0.94)
+        return bg
+    }
+
+    private func configureCell(_ cell: UITableViewCell, titleKey: String, symbolName: String?) {
+        var content = cell.defaultContentConfiguration()
+        content.text = L10n.string(titleKey)
+        content.textProperties.font = .systemFont(ofSize: 16, weight: .regular)
+        content.textProperties.color = .appTextPrimary
+        if let symbolName, let img = UIImage(systemName: symbolName) {
+            content.image = img
+            content.imageProperties.tintColor = .appTextSecondary
+            content.imageProperties.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+        }
+        cell.contentConfiguration = content
+        cell.accessoryType = .disclosureIndicator
+        cell.backgroundConfiguration = groupedCellBackground()
+    }
+
+    // MARK: - Actions (как в CoinRecognizer / SettingsPresenter)
+
+    private func contactUs() {
+        let email = L10n.string("settings.support.email")
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([email])
+            mail.setSubject(L10n.string("settings.support.mail_subject"))
+            mail.setMessageBody(L10n.string("settings.support.mail_body"), isHTML: false)
+            present(mail, animated: true)
+        } else {
+            let alert = UIAlertController(
+                title: L10n.string("settings.support.mail_unavailable_title"),
+                message: email,
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+            present(alert, animated: true)
+        }
+    }
+
+    private func restorePurchases() {
+        let alert = UIAlertController(
+            title: L10n.string("settings.row.restore"),
+            message: L10n.string("settings.restore.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+        present(alert, animated: true)
+    }
+
+    private func rateApp() {
+        openURLString(L10n.string("settings.link.app_store"))
+    }
+
+    private func shareApp() {
+        let urlString = L10n.string("settings.link.share")
+        guard let url = URL(string: urlString) else { return }
+        let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        vc.popoverPresentationController?.sourceView = view
+        present(vc, animated: true)
+    }
+
+    private func privacyPolicy() {
+        openURLString(L10n.string("settings.link.privacy"))
+    }
+
+    private func termsOfUse() {
+        openURLString(L10n.string("settings.link.terms"))
+    }
+
+    private func showRefundConsentAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: L10n.string("settings.refund_consent.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L10n.string("settings.refund_consent.allow"), style: .default) { _ in
+            UserDefaults.standard.set(true, forKey: Self.refundConsentKey)
+        })
+        alert.addAction(UIAlertAction(title: L10n.string("settings.refund_consent.decline"), style: .cancel) { _ in
+            UserDefaults.standard.set(false, forKey: Self.refundConsentKey)
+        })
+        present(alert, animated: true)
+    }
+
+    private static let refundConsentKey = "bugs.settings.refundConsent"
+
+    private func resetConsent() {
+        presentStubAlert(
+            title: L10n.string("settings.row.reset_consent"),
+            message: L10n.string("settings.reset_consent.message")
+        )
+    }
+
+    private func openURLString(_ string: String) {
+        guard let url = URL(string: string), UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    private func presentStubAlert(title: String, message: String) {
+        let a = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        a.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+        present(a, animated: true)
+    }
+}
+
+extension SettingsViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        Section.allCases.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch Section(rawValue: section)! {
+        case .support: return SupportRow.allCases.count
+        case .feedback: return FeedbackRow.allCases.count
+        case .security: return securityRows().count
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        switch Section(rawValue: indexPath.section)! {
+        case .support:
+            switch SupportRow(rawValue: indexPath.row)! {
+            case .contactUs:
+                configureCell(cell, titleKey: "settings.row.contact_us", symbolName: "envelope")
+            case .restore:
+                configureCell(cell, titleKey: "settings.row.restore", symbolName: "arrow.clockwise")
+            }
+        case .feedback:
+            switch FeedbackRow(rawValue: indexPath.row)! {
+            case .rateApp:
+                configureCell(cell, titleKey: "settings.row.rate_app", symbolName: "star.fill")
+            case .shareApp:
+                configureCell(cell, titleKey: "settings.row.share_app", symbolName: "square.and.arrow.up")
+            }
+        case .security:
+            let row = securityRows()[indexPath.row]
+            switch row {
+            case .privacy:
+                configureCell(cell, titleKey: "settings.row.privacy", symbolName: "lock.shield")
+            case .terms:
+                configureCell(cell, titleKey: "settings.row.terms", symbolName: "doc.text")
+            case .refundConsent:
+                configureCell(cell, titleKey: "settings.row.refund_consent", symbolName: "checkmark.shield.fill")
+            case .resetConsent:
+                configureCell(cell, titleKey: "settings.row.reset_consent", symbolName: "arrow.counterclockwise")
+            }
+        }
+        return cell
+    }
+}
+
+extension SettingsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        40
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let container = UIView()
+        container.backgroundColor = .clear
+        let plaque = InsectSectionHeaderPlaqueView()
+        plaque.setTitle(L10n.string(Section.allCases[section].titleKey))
+        plaque.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(plaque)
+        NSLayoutConstraint.activate([
+            plaque.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            plaque.topAnchor.constraint(equalTo: container.topAnchor, constant: 12),
+        ])
+        return container
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch Section(rawValue: indexPath.section)! {
+        case .support:
+            switch SupportRow(rawValue: indexPath.row)! {
+            case .contactUs: contactUs()
+            case .restore: restorePurchases()
+            }
+        case .feedback:
+            switch FeedbackRow(rawValue: indexPath.row)! {
+            case .rateApp: rateApp()
+            case .shareApp: shareApp()
+            }
+        case .security:
+            switch securityRows()[indexPath.row] {
+            case .privacy: privacyPolicy()
+            case .terms: termsOfUse()
+            case .refundConsent: showRefundConsentAlert()
+            case .resetConsent: resetConsent()
+            }
+        }
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}

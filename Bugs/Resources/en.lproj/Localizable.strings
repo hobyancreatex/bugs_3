@@ -138,3 +138,30 @@
 "home.article.habitats.subtitle" = "From soil and leaf litter to flowers and water — typical habitats you can explore safely.";
 "home.article.photography.title" = "Macro photos without stress";
 "home.article.photography.subtitle" = "Light, distance, and patience: short tips for clearer pictures of small subjects.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Settings";
+"settings.section.support" = "Support";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Security";
+"settings.row.contact_us" = "Contact us";
+"settings.row.restore" = "Restore";
+"settings.row.rate_app" = "Rate the app";
+"settings.row.share_app" = "Share the app";
+"settings.row.privacy" = "Privacy policy";
+"settings.row.terms" = "Terms of Use";
+"settings.row.refund_consent" = "Refund consent";
+"settings.row.reset_consent" = "Reset Consent";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Bugs app support";
+"settings.support.mail_body" = "Hi,\n\n";
+"settings.support.mail_unavailable_title" = "Contact us by email";
+"settings.restore.message" = "Restore purchases will connect to the App Store in a future update. If you subscribed in this build via Premium, it is already unlocked on this device.";
+"settings.refund_consent.message" = "Do you consent to the processing of your data for refund purposes?";
+"settings.refund_consent.allow" = "Allow";
+"settings.refund_consent.decline" = "Decline";
+"settings.reset_consent.message" = "Advertising consent management will be available in a future update.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";
