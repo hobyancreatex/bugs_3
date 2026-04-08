@@ -9,11 +9,15 @@ import UIKit
 final class ListSearchEmptyStateView: UIView {
 
     private let imageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "list_search_empty"))
+        let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
+
+    private var imageWidthConstraint: NSLayoutConstraint!
+    private var imageHeightConstraint: NSLayoutConstraint!
+    private var imageContainerHeightConstraint: NSLayoutConstraint!
 
     private let imageContainer: UIView = {
         let v = UIView()
@@ -66,20 +70,26 @@ final class ListSearchEmptyStateView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
+        let defaultSide: CGFloat = 86
+        imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: defaultSide)
+        imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: defaultSide)
+        imageContainerHeightConstraint = imageContainer.heightAnchor.constraint(equalToConstant: defaultSide)
+
         imageContainer.addSubview(imageView)
         addSubview(rootStack)
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 86),
-            imageView.heightAnchor.constraint(equalToConstant: 86),
+            imageWidthConstraint,
+            imageHeightConstraint,
             imageView.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor),
-            imageContainer.heightAnchor.constraint(equalToConstant: 86),
+            imageContainerHeightConstraint,
 
             rootStack.topAnchor.constraint(equalTo: topAnchor),
             rootStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             rootStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             rootStack.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
         ])
+        imageView.image = UIImage(named: "list_search_empty")
     }
 
     required init?(coder: NSCoder) {
@@ -87,7 +97,20 @@ final class ListSearchEmptyStateView: UIView {
     }
 
     func configure(title: String, subtitle: String) {
+        configure(title: title, subtitle: subtitle, imageAssetName: "list_search_empty", imageSide: 86)
+    }
+
+    /// Каталог поиска: `list_search_empty`. Профиль и др.: свой ассет и размер иллюстрации (pt).
+    func configure(title: String, subtitle: String, imageAssetName: String, imageSide: CGFloat) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        if let img = UIImage(named: imageAssetName) {
+            imageView.image = img
+        } else {
+            imageView.image = UIImage(named: "list_search_empty")
+        }
+        imageWidthConstraint.constant = imageSide
+        imageHeightConstraint.constant = imageSide
+        imageContainerHeightConstraint.constant = imageSide
     }
 }

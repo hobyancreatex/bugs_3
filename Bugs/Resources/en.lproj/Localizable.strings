@@ -28,6 +28,8 @@
 "profile.segment.collection" = "My collection";
 "profile.segment.achievements" = "My achievements";
 "profile.achievements.placeholder" = "Achievements will appear here.";
+"profile.collection.empty.title" = "Start your insect collection";
+"profile.collection.empty.subtitle" = "Photograph insects, grow your collection, earn rewards, and track your progress";
 "tab.home.accessibility" = "Home";
 "tab.library.accessibility" = "Library";
 "tab.chat.accessibility" = "AI chat";

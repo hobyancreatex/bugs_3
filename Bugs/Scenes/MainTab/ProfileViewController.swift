@@ -8,7 +8,15 @@ import UIKit
 /// Профиль: кастомный навбар как на главной, сегмент «Коллекция / Достижения», список насекомых в коллекции.
 final class ProfileViewController: UIViewController {
 
+    /// Пустой массив — показывается заглушка коллекции. Для превью списка временно добавьте элементы.
     private var collectionRows: [CategoryInsects.InsectCellViewModel] = []
+
+    private let collectionEmptyStateView: ListSearchEmptyStateView = {
+        let v = ListSearchEmptyStateView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.isHidden = true
+        return v
+    }()
 
     private let navBarContainer: UIView = {
         let v = UIView()
@@ -85,12 +93,18 @@ final class ProfileViewController: UIViewController {
         titleLabel.text = L10n.string("profile.title")
         achievementsPlaceholder.text = L10n.string("profile.achievements.placeholder")
         loadMockCollection()
+        collectionEmptyStateView.configure(
+            title: L10n.string("profile.collection.empty.title"),
+            subtitle: L10n.string("profile.collection.empty.subtitle"),
+            imageAssetName: "profile_collection_empty",
+            imageSide: 120
+        )
 
         segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 
         buildHierarchy()
         layoutConstraints()
-        updateTabVisibility()
+        applyCollectionTabContentVisibility()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,28 +129,7 @@ final class ProfileViewController: UIViewController {
     }
 
     private func loadMockCollection() {
-        collectionRows = [
-            CategoryInsects.InsectCellViewModel(
-                title: L10n.string("insect.hym.1.title"),
-                subtitle: L10n.string("insect.hym.1.subtitle"),
-                imageAssetName: "home_popular_insect"
-            ),
-            CategoryInsects.InsectCellViewModel(
-                title: L10n.string("insect.hym.2.title"),
-                subtitle: L10n.string("insect.hym.2.subtitle"),
-                imageAssetName: "home_popular_insect"
-            ),
-            CategoryInsects.InsectCellViewModel(
-                title: L10n.string("insect.hym.3.title"),
-                subtitle: L10n.string("insect.hym.3.subtitle"),
-                imageAssetName: "home_popular_insect"
-            ),
-            CategoryInsects.InsectCellViewModel(
-                title: L10n.string("insect.hym.4.title"),
-                subtitle: L10n.string("insect.hym.4.subtitle"),
-                imageAssetName: "home_popular_insect"
-            ),
-        ]
+        collectionRows = []
     }
 
     private func buildHierarchy() {
@@ -147,6 +140,7 @@ final class ProfileViewController: UIViewController {
 
         view.addSubview(segmentControl)
         view.addSubview(collectionView)
+        view.addSubview(collectionEmptyStateView)
         view.addSubview(achievementsPlaceholder)
     }
 
@@ -187,18 +181,33 @@ final class ProfileViewController: UIViewController {
             achievementsPlaceholder.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             achievementsPlaceholder.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             achievementsPlaceholder.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
+
+            collectionEmptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionEmptyStateView.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
+            collectionEmptyStateView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
+            collectionEmptyStateView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
         ])
     }
 
     @objc
     private func segmentChanged() {
-        updateTabVisibility()
+        applyCollectionTabContentVisibility()
     }
 
-    private func updateTabVisibility() {
-        let showCollection = segmentControl.selectedIndex == 0
-        collectionView.isHidden = !showCollection
-        achievementsPlaceholder.isHidden = showCollection
+    private func applyCollectionTabContentVisibility() {
+        let onCollection = segmentControl.selectedIndex == 0
+        achievementsPlaceholder.isHidden = onCollection
+        guard onCollection else {
+            collectionView.isHidden = true
+            collectionEmptyStateView.isHidden = true
+            return
+        }
+        let empty = collectionRows.isEmpty
+        collectionView.isHidden = empty
+        collectionEmptyStateView.isHidden = !empty
+        if !empty {
+            collectionView.reloadData()
+        }
     }
 }
 

@@ -28,6 +28,8 @@
 "profile.segment.collection" = "Моя коллекция";
 "profile.segment.achievements" = "Мои достижения";
 "profile.achievements.placeholder" = "Здесь появятся достижения.";
+"profile.collection.empty.title" = "Начните коллекцию насекомых";
+"profile.collection.empty.subtitle" = "Фотографируйте насекомых, пополняйте коллекцию, получайте награды и следите за прогрессом";
 "tab.home.accessibility" = "Главная";
 "tab.library.accessibility" = "Библиотека";
 "tab.chat.accessibility" = "ИИ-чат";
