@@ -1,6 +1,19 @@
 /* Common */
 "common.done" = "Done";
 
+/* Onboarding */
+"onboarding.intro.title" = "Hi! I'm your guide to the insect world 🐞";
+"onboarding.intro.subtitle" = "In this app, you can:";
+"onboarding.intro.benefit.identify" = "Identify insects in seconds";
+"onboarding.intro.benefit.collection" = "Save them to your collection";
+"onboarding.intro.benefit.achievements" = "Earn achievements";
+"onboarding.intro.benefit.ai" = "Chat with an AI assistant";
+"onboarding.intro.benefit.articles" = "Read helpful articles";
+"onboarding.outro.title" = "You're all set!";
+"onboarding.outro.subtitle" = "Use the scanner, browse the library, or ask the AI — whenever you like.";
+"onboarding.button.next" = "Next";
+"onboarding.button.start" = "Get started";
+
 /* Home */
 "home.title" = "Home";
 "home.search.placeholder" = "Search";

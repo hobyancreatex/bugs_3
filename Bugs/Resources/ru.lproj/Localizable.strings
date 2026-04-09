@@ -1,6 +1,19 @@
 /* Common */
 "common.done" = "Готово";
 
+/* Onboarding */
+"onboarding.intro.title" = "Привет! Я проведу тебя по миру насекомых 🐞";
+"onboarding.intro.subtitle" = "В этом приложении ты можешь:";
+"onboarding.intro.benefit.identify" = "Определять насекомых за секунды";
+"onboarding.intro.benefit.collection" = "Сохранять их в коллекцию";
+"onboarding.intro.benefit.achievements" = "Получать достижения";
+"onboarding.intro.benefit.ai" = "Общаться с ИИ-ассистентом";
+"onboarding.intro.benefit.articles" = "Читать полезные статьи";
+"onboarding.outro.title" = "Всё готово!";
+"onboarding.outro.subtitle" = "Сканер, библиотека или ИИ — заходи, когда удобно.";
+"onboarding.button.next" = "Далее";
+"onboarding.button.start" = "Начать";
+
 /* Home */
 "home.title" = "Главная";
 "home.search.placeholder" = "Поиск";
