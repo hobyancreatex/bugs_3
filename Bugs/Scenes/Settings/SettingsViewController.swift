@@ -152,11 +152,37 @@ final class SettingsViewController: UIViewController {
     }
 
     private func restorePurchases() {
-        let alert = UIAlertController(
-            title: L10n.string("settings.row.restore"),
-            message: L10n.string("settings.restore.message"),
-            preferredStyle: .alert
-        )
+        Task { await performRestorePurchases() }
+    }
+
+    @MainActor
+    private func performRestorePurchases() async {
+        showCenterLoadingOverlay()
+        defer { hideCenterLoadingOverlay() }
+
+        do {
+            try await SubscriptionManager.shared.restorePurchases()
+            if SubscriptionManager.shared.isSubscriptionActive {
+                presentSimpleAlert(
+                    title: L10n.string("subscription.restore.title"),
+                    message: L10n.string("subscription.restore.success")
+                )
+            } else {
+                presentSimpleAlert(
+                    title: L10n.string("subscription.restore.title"),
+                    message: L10n.string("subscription.restore.nothing")
+                )
+            }
+        } catch {
+            presentSimpleAlert(
+                title: L10n.string("subscription.error.title"),
+                message: L10n.string("subscription.error.restore_failed")
+            )
+        }
+    }
+
+    private func presentSimpleAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
         present(alert, animated: true)
     }

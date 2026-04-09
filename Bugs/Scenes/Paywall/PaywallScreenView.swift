@@ -390,14 +390,17 @@ final class PaywallScreenView: UIView {
     private func loadProductPrice() async {
         var price: String?
         do {
-            let products = try await Product.products(for: [PaywallConfiguration.subscriptionProductID])
-            if let p = products.first {
-                price = p.displayPrice
-            }
+            let products = try await SubscriptionManager.shared.loadSubscriptionProducts()
+            price = products.first?.displayPrice
         } catch {
             price = nil
         }
         updateProductLabel(priceText: price)
+    }
+
+    func setPurchaseInProgress(_ inProgress: Bool) {
+        primaryButton.isEnabled = !inProgress
+        primaryButton.alpha = inProgress ? 0.55 : 1
     }
 
     private func updateProductLabel(priceText: String?) {

@@ -3,9 +3,10 @@
 //  Bugs
 //
 
+import StoreKit
 import UIKit
 
-/// Полноэкранный пейвол (модально). После «Next» выставляет премиум и закрывается.
+/// Полноэкранный пейвол (модально). Покупка и restore через `SubscriptionManager`.
 final class PaywallViewController: UIViewController {
 
     private let contentView = PaywallScreenView(embeddedInOnboarding: false)
@@ -20,8 +21,7 @@ final class PaywallViewController: UIViewController {
             self?.dismiss(animated: true)
         }
         contentView.onPrimaryTap = { [weak self] in
-            SubscriptionAccess.shared.setPremiumActive(true)
-            self?.dismiss(animated: true)
+            Task { await self?.performPurchase() }
         }
         contentView.onTermsTap = { [weak self] in
             self?.openExternalURL(key: "settings.link.terms")
@@ -30,7 +30,7 @@ final class PaywallViewController: UIViewController {
             self?.openExternalURL(key: "settings.link.privacy")
         }
         contentView.onRestoreTap = { [weak self] in
-            self?.presentRestoreMessage()
+            Task { await self?.performRestore() }
         }
 
         view.addSubview(contentView)
@@ -48,13 +48,64 @@ final class PaywallViewController: UIViewController {
         UIApplication.shared.open(url)
     }
 
-    private func presentRestoreMessage() {
+    @MainActor
+    private func performPurchase() async {
+        contentView.setPurchaseInProgress(true)
+        showCenterLoadingOverlay()
+        defer {
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
+        }
+
+        do {
+            let products = try await SubscriptionManager.shared.loadSubscriptionProducts()
+            guard let product = products.first else {
+                presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.product_unavailable")
+                return
+            }
+            try await SubscriptionManager.shared.purchase(product)
+            dismiss(animated: true)
+        } catch SubscriptionManagerError.userCancelled {
+            return
+        } catch SubscriptionManagerError.pending {
+            presentAlert(titleKey: "subscription.pending.title", messageKey: "subscription.pending.message")
+        } catch {
+            presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.purchase_failed")
+        }
+    }
+
+    @MainActor
+    private func performRestore() async {
+        contentView.setPurchaseInProgress(true)
+        showCenterLoadingOverlay()
+        defer {
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
+        }
+
+        do {
+            try await SubscriptionManager.shared.restorePurchases()
+            if SubscriptionManager.shared.isSubscriptionActive {
+                presentAlert(titleKey: "subscription.restore.title", messageKey: "subscription.restore.success", dismissSelf: true)
+            } else {
+                presentAlert(titleKey: "subscription.restore.title", messageKey: "subscription.restore.nothing")
+            }
+        } catch {
+            presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.restore_failed")
+        }
+    }
+
+    private func presentAlert(titleKey: String, messageKey: String, dismissSelf: Bool = false) {
         let alert = UIAlertController(
-            title: L10n.string("settings.row.restore"),
-            message: L10n.string("settings.restore.message"),
+            title: L10n.string(titleKey),
+            message: L10n.string(messageKey),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+        alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default) { [weak self] _ in
+            if dismissSelf {
+                self?.dismiss(animated: true)
+            }
+        })
         present(alert, animated: true)
     }
 }

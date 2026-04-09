@@ -5,24 +5,25 @@
 
 import Foundation
 
-/// Доступ к премиум-контенту. Заглушка на UserDefaults — позже подключить StoreKit / сервер.
+/// Доступ к премиуму: активность = дата окончания в UserDefaults после покупки / restore (см. `SubscriptionManager`).
 final class SubscriptionAccess {
 
     static let shared = SubscriptionAccess()
 
     static let premiumStatusDidChange = Notification.Name("bugs.subscription.premiumStatusDidChange")
 
-    private let premiumKey = "bugs.subscription.isPremiumActive"
-
     private init() {}
 
     var isPremiumActive: Bool {
-        UserDefaults.standard.bool(forKey: premiumKey)
+        SubscriptionManager.shared.isSubscriptionActive
     }
 
-    /// После успешной покупки / восстановления из пейвола или StoreKit.
+    /// `true` — локально продлить премиум (онбординг и т.п.). `false` — сбросить сохранённую дату.
     func setPremiumActive(_ active: Bool) {
-        UserDefaults.standard.set(active, forKey: premiumKey)
-        NotificationCenter.default.post(name: Self.premiumStatusDidChange, object: nil)
+        if active {
+            SubscriptionManager.shared.grantLocalPremiumExtension(days: 7)
+        } else {
+            SubscriptionManager.shared.clearSubscription()
+        }
     }
 }

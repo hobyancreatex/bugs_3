@@ -105,18 +105,12 @@ final class OnboardingViewController: UIViewController {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             updateChromeForPage()
         } else {
-            completeOnboardingWithSubscription()
+            Task { await performSubscriptionPurchase() }
         }
     }
 
     fileprivate func completeOnboardingAndGoMain() {
-        OnboardingCompletionStore.isComplete = true
         transitionToMain()
-    }
-
-    fileprivate func completeOnboardingWithSubscription() {
-        SubscriptionAccess.shared.setPremiumActive(true)
-        completeOnboardingAndGoMain()
     }
 
     fileprivate func completeOnboardingSkipPaywall() {
@@ -137,10 +131,57 @@ final class OnboardingViewController: UIViewController {
         UIApplication.shared.open(url)
     }
 
-    fileprivate func presentRestoreMessage() {
+    @MainActor
+    private func performSubscriptionPurchase() async {
+        actionButton.isEnabled = false
+        showCenterLoadingOverlay()
+        defer {
+            hideCenterLoadingOverlay()
+            actionButton.isEnabled = true
+        }
+
+        do {
+            let products = try await SubscriptionManager.shared.loadSubscriptionProducts()
+            guard let product = products.first else {
+                presentSubscriptionAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.product_unavailable")
+                return
+            }
+            try await SubscriptionManager.shared.purchase(product)
+            completeOnboardingAndGoMain()
+        } catch SubscriptionManagerError.userCancelled {
+            return
+        } catch SubscriptionManagerError.pending {
+            presentSubscriptionAlert(titleKey: "subscription.pending.title", messageKey: "subscription.pending.message")
+        } catch {
+            presentSubscriptionAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.purchase_failed")
+        }
+    }
+
+    @MainActor
+    private func performRestoreFromOnboarding() async {
+        actionButton.isEnabled = false
+        showCenterLoadingOverlay()
+        defer {
+            hideCenterLoadingOverlay()
+            actionButton.isEnabled = true
+        }
+
+        do {
+            try await SubscriptionManager.shared.restorePurchases()
+            if SubscriptionManager.shared.isSubscriptionActive {
+                completeOnboardingAndGoMain()
+            } else {
+                presentSubscriptionAlert(titleKey: "subscription.restore.title", messageKey: "subscription.restore.nothing")
+            }
+        } catch {
+            presentSubscriptionAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.restore_failed")
+        }
+    }
+
+    private func presentSubscriptionAlert(titleKey: String, messageKey: String) {
         let alert = UIAlertController(
-            title: L10n.string("settings.row.restore"),
-            message: L10n.string("settings.restore.message"),
+            title: L10n.string(titleKey),
+            message: L10n.string(messageKey),
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
@@ -171,7 +212,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
             onClose: { [weak self] in self?.completeOnboardingSkipPaywall() },
             onTerms: { OnboardingViewController.openExternalURL(key: "settings.link.terms") },
             onPrivacy: { OnboardingViewController.openExternalURL(key: "settings.link.privacy") },
-            onRestore: { [weak self] in self?.presentRestoreMessage() }
+            onRestore: { [weak self] in Task { await self?.performRestoreFromOnboarding() } }
         )
         return cell
     }

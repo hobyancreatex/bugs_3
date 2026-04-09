@@ -74,6 +74,18 @@
 "paywall.footer.terms" = "Terms of use";
 "paywall.footer.privacy" = "Privacy policy";
 "paywall.footer.restore" = "Restore";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Purchase";
+"subscription.error.product_unavailable" = "This subscription is not available right now. Check App Store Connect or try again later.";
+"subscription.error.purchase_failed" = "The purchase could not be completed. Please try again.";
+"subscription.error.restore_failed" = "Could not restore purchases. Check your connection and try again.";
+"subscription.pending.title" = "Pending";
+"subscription.pending.message" = "Your purchase is waiting for approval. Access will unlock when it completes.";
+"subscription.restore.title" = "Restore";
+"subscription.restore.success" = "Your purchases were restored.";
+"subscription.restore.nothing" = "No active subscription was found for this Apple ID.";
+
 "scanner.tips.title" = "Tips";
 "scanner.tips.intro" = "A clear photo improves recognition accuracy. Follow these tips for best results:";
 "scanner.tips.1.title" = "1. Keep the insect in sharp focus";
@@ -194,7 +206,7 @@
 "settings.support.mail_subject" = "Bugs app support";
 "settings.support.mail_body" = "Hi,\n\n";
 "settings.support.mail_unavailable_title" = "Contact us by email";
-"settings.restore.message" = "Restore purchases will connect to the App Store in a future update. If you subscribed in this build via Premium, it is already unlocked on this device.";
+"settings.restore.message" = "Restores your subscription from the App Store for this Apple ID.";
 "settings.refund_consent.message" = "Do you consent to the processing of your data for refund purposes?";
 "settings.refund_consent.allow" = "Allow";
 "settings.refund_consent.decline" = "Decline";

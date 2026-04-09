@@ -74,6 +74,18 @@
 "paywall.footer.terms" = "Условия использования";
 "paywall.footer.privacy" = "Конфиденциальность";
 "paywall.footer.restore" = "Восстановить";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Покупка";
+"subscription.error.product_unavailable" = "Подписка сейчас недоступна. Проверьте настройки в App Store Connect или попробуйте позже.";
+"subscription.error.purchase_failed" = "Не удалось завершить покупку. Попробуйте ещё раз.";
+"subscription.error.restore_failed" = "Не удалось восстановить покупки. Проверьте подключение и попробуйте снова.";
+"subscription.pending.title" = "В обработке";
+"subscription.pending.message" = "Покупка ожидает подтверждения. Доступ откроется после завершения.";
+"subscription.restore.title" = "Восстановление";
+"subscription.restore.success" = "Покупки восстановлены.";
+"subscription.restore.nothing" = "Для этого Apple ID активной подписки не найдено.";
+
 "scanner.tips.title" = "Подсказки";
 "scanner.tips.intro" = "Чёткое фото повышает точность распознавания. Следуйте этим советам:";
 "scanner.tips.1.title" = "1. Снимайте насекомое в чётком фокусе";
@@ -194,7 +206,7 @@
 "settings.support.mail_subject" = "Поддержка приложения Bugs";
 "settings.support.mail_body" = "Здравствуйте,\n\n";
 "settings.support.mail_unavailable_title" = "Напишите нам на почту";
-"settings.restore.message" = "Восстановление покупок через App Store появится в обновлении. Если Premium уже включён в этой сборке, доступ сохранён на этом устройстве.";
+"settings.restore.message" = "Восстанавливает подписку из App Store для этого Apple ID.";
 "settings.refund_consent.message" = "Даёте ли вы согласие на обработку данных в целях возврата средств?";
 "settings.refund_consent.allow" = "Разрешить";
 "settings.refund_consent.decline" = "Отклонить";

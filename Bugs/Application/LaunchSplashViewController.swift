@@ -61,7 +61,7 @@ final class LaunchSplashViewController: UIViewController {
     private func transitionToMain() {
         guard let window = view.window else { return }
         finishWorkItem = nil
-        let next: UIViewController = OnboardingCompletionStore.isComplete
+        let next: UIViewController = SubscriptionManager.shared.isSubscriptionActive
             ? MainTabBarController()
             : OnboardingViewController()
         UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve) {
