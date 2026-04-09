@@ -3,13 +3,13 @@
 //  Bugs
 //
 
+import Lottie
 import UIKit
 
-/// Прогресс распознавания: фото на фоне, полноэкранный блюр как на сканере, закрытие и центральный стек.
+/// Прогресс распознавания: фото на фоне, полноэкранный блюр как на сканере, по центру — Lottie «loading» как на лаунче (зациклено).
 final class RecognitionProgressViewController: UIViewController {
 
     private let backgroundImage: UIImage
-    private let iconAssetName: String
 
     private var pendingSimulatedLoadWork: DispatchWorkItem?
     private var simulatedLoadFinished = false
@@ -39,11 +39,14 @@ final class RecognitionProgressViewController: UIViewController {
         return s
     }()
 
-    private let progressIconView: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
-        return iv
+    private let loadingAnimationView: LottieAnimationView = {
+        let v = LottieAnimationView(name: "loading", bundle: .main)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .clear
+        v.contentMode = .scaleAspectFit
+        v.loopMode = .loop
+        v.backgroundBehavior = .pauseAndRestore
+        return v
     }()
 
     private let messageLabel: UILabel = {
@@ -56,12 +59,9 @@ final class RecognitionProgressViewController: UIViewController {
         return l
     }()
 
-    /// - Parameters:
-    ///   - backgroundImage: Кадр с камеры или из галереи.
-    ///   - iconAssetName: Иллюстрация над текстом (по умолчанию та же, что в популярных на главной).
-    init(backgroundImage: UIImage, iconAssetName: String = "home_popular_insect") {
+    /// - Parameter backgroundImage: Кадр с камеры или из галереи.
+    init(backgroundImage: UIImage) {
         self.backgroundImage = backgroundImage
-        self.iconAssetName = iconAssetName
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -75,13 +75,12 @@ final class RecognitionProgressViewController: UIViewController {
         view.backgroundColor = .black
 
         imageView.image = backgroundImage
-        progressIconView.image = UIImage(named: iconAssetName)
         messageLabel.text = L10n.string("scanner.recognition_progress.message")
         closeButton.setImage(Self.scaledCloseImage(), for: .normal)
         closeButton.accessibilityLabel = L10n.string("scanner.close.accessibility")
         closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
 
-        centerStack.addArrangedSubview(progressIconView)
+        centerStack.addArrangedSubview(loadingAnimationView)
         centerStack.addArrangedSubview(messageLabel)
 
         view.addSubview(imageView)
@@ -110,8 +109,8 @@ final class RecognitionProgressViewController: UIViewController {
             centerStack.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             centerStack.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
 
-            progressIconView.widthAnchor.constraint(equalToConstant: 88),
-            progressIconView.heightAnchor.constraint(equalToConstant: 88),
+            loadingAnimationView.widthAnchor.constraint(equalToConstant: 88),
+            loadingAnimationView.heightAnchor.constraint(equalToConstant: 88),
         ])
     }
 
@@ -123,11 +122,13 @@ final class RecognitionProgressViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadingAnimationView.play()
         scheduleSimulatedRecognitionIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        loadingAnimationView.pause()
         pendingSimulatedLoadWork?.cancel()
         pendingSimulatedLoadWork = nil
     }
@@ -139,6 +140,17 @@ final class RecognitionProgressViewController: UIViewController {
             self.pendingSimulatedLoadWork = nil
             self.simulatedLoadFinished = true
             guard let nav = self.navigationController, nav.topViewController === self else { return }
+            _ = SubscriptionManager.shared.checkSubscriptionStatus()
+            if SubscriptionAccess.shared.isPremiumActive {
+                let resultHeroes = [
+                    "home_popular_insect",
+                    "home_article_cover",
+                    "home_category_thumbnail",
+                ]
+                let pager = RecognitionResultsPagerViewController(heroImageAssetNames: resultHeroes)
+                nav.pushViewController(pager, animated: true)
+                return
+            }
             let candidateAssetNames = [
                 "home_popular_insect",
                 "home_article_cover",
