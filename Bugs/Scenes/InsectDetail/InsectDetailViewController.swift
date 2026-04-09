@@ -34,6 +34,11 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var recognitionPagerSelectedIndex: Int = 0
     private var heroPageIndicator: InsectDetailHeroPageIndicatorView?
 
+    private var isPresentingAddToCollectionFlow = false
+    private var addToCollectionLoadingView: UIView?
+    private var addToCollectionPendingWorkItem: DispatchWorkItem?
+    private var addToCollectionSuccessOverlay: InsectDetailAddToCollectionSuccessOverlay?
+
     private var galleryAssetNames: [String] = []
     private var heroAssetName: String = ""
 
@@ -271,9 +276,16 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if isMovingFromParent || isBeingDismissed {
+            cancelAddToCollectionFlow()
+        }
         if isMovingFromParent {
             navigationController?.setNavigationBarHidden(false, animated: animated)
         }
+    }
+
+    deinit {
+        cancelAddToCollectionFlow()
     }
 
     override func viewDidLayoutSubviews() {
@@ -487,6 +499,11 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         updateScrollInsetForAddToCollectionButton()
     }
 
+    /// Полноэкранный слой поверх всего (в т.ч. «Назад» у `RecognitionResultsPagerViewController`, не только `self.view`).
+    private var addToCollectionFullscreenHost: UIView {
+        navigationController?.view ?? view
+    }
+
     /// Скролл на весь экран; кнопка поверх. Нижний inset, чтобы последний контент можно было прокрутить выше кнопки.
     private func updateScrollInsetForAddToCollectionButton() {
         guard !isInCollection, !addToCollectionControl.isHidden else {
@@ -507,7 +524,90 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func deleteFromCollectionTapped() {}
 
     @objc
-    private func addToCollectionTapped() {}
+    private func addToCollectionTapped() {
+        guard !isPresentingAddToCollectionFlow else { return }
+        isPresentingAddToCollectionFlow = true
+
+        let dim = UIView()
+        dim.translatesAutoresizingMaskIntoConstraints = false
+        dim.backgroundColor = UIColor.black.withAlphaComponent(0.35)
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .white
+        spinner.startAnimating()
+        dim.addSubview(spinner)
+        let host = addToCollectionFullscreenHost
+        host.addSubview(dim)
+        NSLayoutConstraint.activate([
+            dim.topAnchor.constraint(equalTo: host.topAnchor),
+            dim.leadingAnchor.constraint(equalTo: host.leadingAnchor),
+            dim.trailingAnchor.constraint(equalTo: host.trailingAnchor),
+            dim.bottomAnchor.constraint(equalTo: host.bottomAnchor),
+            spinner.centerXAnchor.constraint(equalTo: dim.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: dim.centerYAnchor),
+        ])
+        host.bringSubviewToFront(dim)
+        addToCollectionLoadingView = dim
+
+        let work = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            self.addToCollectionPendingWorkItem = nil
+            self.removeAddToCollectionLoading()
+            guard self.isPresentingAddToCollectionFlow else { return }
+            self.presentAddToCollectionSuccessOverlay()
+        }
+        addToCollectionPendingWorkItem = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: work)
+    }
+
+    private func removeAddToCollectionLoading() {
+        addToCollectionLoadingView?.removeFromSuperview()
+        addToCollectionLoadingView = nil
+    }
+
+    private func cancelAddToCollectionFlow() {
+        addToCollectionPendingWorkItem?.cancel()
+        addToCollectionPendingWorkItem = nil
+        removeAddToCollectionLoading()
+        if let overlay = addToCollectionSuccessOverlay {
+            overlay.cancelAutoDismiss()
+            overlay.removeFromSuperview()
+            addToCollectionSuccessOverlay = nil
+        }
+        isPresentingAddToCollectionFlow = false
+    }
+
+    private func presentAddToCollectionSuccessOverlay() {
+        let overlay = InsectDetailAddToCollectionSuccessOverlay(
+            title: L10n.string("insect.detail.add_to_collection.success.title"),
+            subtitle: L10n.string("insect.detail.add_to_collection.success.subtitle"),
+            imageAssetName: "profile_collection_empty",
+            imageSide: 120
+        )
+        overlay.onDismiss = { [weak self] in
+            self?.addToCollectionSuccessOverlay = nil
+            self?.isPresentingAddToCollectionFlow = false
+        }
+        addToCollectionSuccessOverlay = overlay
+        overlay.alpha = 0
+        let host = addToCollectionFullscreenHost
+        host.addSubview(overlay)
+        NSLayoutConstraint.activate([
+            overlay.topAnchor.constraint(equalTo: host.topAnchor),
+            overlay.leadingAnchor.constraint(equalTo: host.leadingAnchor),
+            overlay.trailingAnchor.constraint(equalTo: host.trailingAnchor),
+            overlay.bottomAnchor.constraint(equalTo: host.bottomAnchor),
+        ])
+        host.bringSubviewToFront(overlay)
+        host.layoutIfNeeded()
+
+        let showDuration: TimeInterval = 0.45
+        UIView.transition(with: host, duration: showDuration, options: .transitionCrossDissolve, animations: {
+            overlay.alpha = 1
+        }, completion: { _ in
+            overlay.scheduleAutoDismiss(after: 3)
+        })
+    }
 
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
         heroAssetName = viewModel.heroImageAssetName

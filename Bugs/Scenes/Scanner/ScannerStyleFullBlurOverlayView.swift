@@ -28,7 +28,8 @@ final class ScannerStyleFullBlurOverlayView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         isOpaque = false
         backgroundColor = .clear
-        isUserInteractionEnabled = false
+        // Контейнер перехватывает касания; дочерние blur/tint выключены — тапы не «просачиваются» под оверлей.
+        isUserInteractionEnabled = true
 
         addSubview(blurView)
         addSubview(tintView)

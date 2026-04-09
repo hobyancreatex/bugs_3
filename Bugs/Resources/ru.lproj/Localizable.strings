@@ -95,6 +95,8 @@
 "insect.detail.section.classification" = "Научная классификация";
 "insect.detail.section.bites" = "Укусы";
 "insect.detail.add_to_collection" = "В коллекцию";
+"insect.detail.add_to_collection.success.title" = "Готово!";
+"insect.detail.add_to_collection.success.subtitle" = "Насекомое успешно добавлено в коллекцию";
 "insect.detail.remove_from_collection.accessibility" = "Убрать из коллекции";
 "insect.detail.class.genus.title" = "Род";
 "insect.detail.class.genus.value" = "Apis";

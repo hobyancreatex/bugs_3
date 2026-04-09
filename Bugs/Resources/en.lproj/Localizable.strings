@@ -95,6 +95,8 @@
 "insect.detail.section.classification" = "Scientific classification";
 "insect.detail.section.bites" = "Bites";
 "insect.detail.add_to_collection" = "Add to collection";
+"insect.detail.add_to_collection.success.title" = "Success!";
+"insect.detail.add_to_collection.success.subtitle" = "The insect has been successfully added to your collection";
 "insect.detail.remove_from_collection.accessibility" = "Remove from collection";
 "insect.detail.class.genus.title" = "Genus";
 "insect.detail.class.genus.value" = "Apis";
