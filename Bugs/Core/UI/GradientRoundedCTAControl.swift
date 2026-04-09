@@ -3,10 +3,27 @@
 //  Bugs
 //
 
+import QuartzCore
 import UIKit
 
 /// Кнопка «В коллекцию»: градиент и тень через слои, без отдельных фоновых `UIView`.
 final class GradientRoundedCTAControl: UIButton {
+
+    private static let pulseAnimationKey = "subscriptionPulseScale"
+    private static let pulseScaleFrom: CGFloat = 1.0
+    private static let pulseScaleTo: CGFloat = 1.045
+    private static let pulseDuration: CFTimeInterval = 0.9
+
+    /// Лёгкая пульсация масштаба; после сворачивания приложения возобновляется на `didBecomeActive`.
+    var isPulseAnimationEnabled: Bool = false {
+        didSet {
+            if isPulseAnimationEnabled {
+                startPulseIfAppropriate()
+            } else {
+                removePulseAnimation()
+            }
+        }
+    }
 
     private let gradientLayer: CAGradientLayer = {
         let g = CAGradientLayer()
@@ -32,6 +49,13 @@ final class GradientRoundedCTAControl: UIButton {
         layer.shadowRadius = 6
         layer.insertSublayer(gradientLayer, at: 0)
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAppDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
         setTitleColor(.white, for: .normal)
         setTitleColor(.white.withAlphaComponent(0.85), for: .highlighted)
         titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -55,5 +79,80 @@ final class GradientRoundedCTAControl: UIButton {
         if let iv = imageView {
             bringSubviewToFront(iv)
         }
+        if isPulseAnimationEnabled,
+           window != nil,
+           layer.animation(forKey: Self.pulseAnimationKey) == nil {
+            startPulseIfAppropriate()
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        if isPulseAnimationEnabled {
+            if window != nil {
+                startPulseIfAppropriate()
+            } else {
+                removePulseAnimation()
+            }
+        }
+    }
+
+    override var isHidden: Bool {
+        didSet {
+            guard isPulseAnimationEnabled else { return }
+            if isHidden {
+                removePulseAnimation()
+            } else {
+                startPulseIfAppropriate()
+            }
+        }
+    }
+
+    override var alpha: CGFloat {
+        didSet {
+            guard isPulseAnimationEnabled else { return }
+            if alpha < 0.02 {
+                removePulseAnimation()
+            } else {
+                startPulseIfAppropriate()
+            }
+        }
+    }
+
+    @objc
+    private func handleAppDidBecomeActive() {
+        guard isPulseAnimationEnabled else { return }
+        startPulseIfAppropriate()
+    }
+
+    private func startPulseIfAppropriate() {
+        guard isPulseAnimationEnabled,
+              window != nil,
+              !isHidden,
+              alpha > 0.02,
+              bounds.width > 1,
+              bounds.height > 1
+        else { return }
+
+        removePulseAnimation()
+
+        let anim = CABasicAnimation(keyPath: "transform.scale")
+        anim.fromValue = Self.pulseScaleFrom
+        anim.toValue = Self.pulseScaleTo
+        anim.duration = Self.pulseDuration
+        anim.autoreverses = true
+        anim.repeatCount = .infinity
+        anim.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        anim.isRemovedOnCompletion = false
+        layer.add(anim, forKey: Self.pulseAnimationKey)
+    }
+
+    private func removePulseAnimation() {
+        layer.removeAnimation(forKey: Self.pulseAnimationKey)
+        layer.transform = CATransform3DIdentity
     }
 }

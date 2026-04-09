@@ -9,8 +9,6 @@
 "onboarding.intro.benefit.achievements" = "Earn achievements";
 "onboarding.intro.benefit.ai" = "Chat with an AI assistant";
 "onboarding.intro.benefit.articles" = "Read helpful articles";
-"onboarding.outro.title" = "You're all set!";
-"onboarding.outro.subtitle" = "Use the scanner, browse the library, or ask the AI — whenever you like.";
 "onboarding.button.next" = "Next";
 "onboarding.button.start" = "Get started";
 
@@ -59,10 +57,20 @@
 "scanner.recognition_match.subtitle" = "We've identified possible matches. Continue to see which insect it is";
 "scanner.recognition_match.see_result" = "See result";
 
-/* Paywall (stub until StoreKit) */
-"paywall.title" = "Unlock full identification";
-"paywall.subscribe" = "Subscribe";
-"paywall.close" = "Close";
+/* Paywall */
+"paywall.close.accessibility" = "Close";
+"paywall.headline" = "Unlock the full insect world";
+"paywall.benefit.scans" = "Unlimited scans";
+"paywall.benefit.collection" = "Full collection access";
+"paywall.benefit.ai" = "AI assistant without limits";
+"paywall.benefit.achievements" = "Exclusive achievements";
+"paywall.product.prefix" = "3 days for free, then ";
+"paywall.product.suffix" = " a week";
+"paywall.cancel_anytime" = "Cancel at any time. With auto-renewal.";
+"paywall.button.next" = "Next";
+"paywall.footer.terms" = "Terms of use";
+"paywall.footer.privacy" = "Privacy policy";
+"paywall.footer.restore" = "Restore";
 "scanner.tips.title" = "Tips";
 "scanner.tips.intro" = "A clear photo improves recognition accuracy. Follow these tips for best results:";
 "scanner.tips.1.title" = "1. Keep the insect in sharp focus";

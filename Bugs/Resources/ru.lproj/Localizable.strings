@@ -9,8 +9,6 @@
 "onboarding.intro.benefit.achievements" = "Получать достижения";
 "onboarding.intro.benefit.ai" = "Общаться с ИИ-ассистентом";
 "onboarding.intro.benefit.articles" = "Читать полезные статьи";
-"onboarding.outro.title" = "Всё готово!";
-"onboarding.outro.subtitle" = "Сканер, библиотека или ИИ — заходи, когда удобно.";
 "onboarding.button.next" = "Далее";
 "onboarding.button.start" = "Начать";
 
@@ -59,10 +57,20 @@
 "scanner.recognition_match.subtitle" = "Мы нашли возможные совпадения. Продолжите, чтобы увидеть насекомое";
 "scanner.recognition_match.see_result" = "Смотреть результат";
 
-/* Paywall (stub until StoreKit) */
-"paywall.title" = "Откройте полное распознавание";
-"paywall.subscribe" = "Подписаться";
-"paywall.close" = "Закрыть";
+/* Paywall */
+"paywall.close.accessibility" = "Закрыть";
+"paywall.headline" = "Открой весь мир насекомых";
+"paywall.benefit.scans" = "Безлимитные сканирования";
+"paywall.benefit.collection" = "Полный доступ к коллекции";
+"paywall.benefit.ai" = "ИИ-ассистент без ограничений";
+"paywall.benefit.achievements" = "Эксклюзивные достижения";
+"paywall.product.prefix" = "3 дня бесплатно, затем ";
+"paywall.product.suffix" = " в неделю";
+"paywall.cancel_anytime" = "Отмена в любой момент. С автопродлением.";
+"paywall.button.next" = "Далее";
+"paywall.footer.terms" = "Условия использования";
+"paywall.footer.privacy" = "Конфиденциальность";
+"paywall.footer.restore" = "Восстановить";
 "scanner.tips.title" = "Подсказки";
 "scanner.tips.intro" = "Чёткое фото повышает точность распознавания. Следуйте этим советам:";
 "scanner.tips.1.title" = "1. Снимайте насекомое в чётком фокусе";

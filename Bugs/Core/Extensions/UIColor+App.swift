@@ -26,4 +26,10 @@ extension UIColor {
     static let appCharacteristicsRowAlternate = UIColor(red: 243 / 255, green: 245 / 255, blue: 232 / 255, alpha: 1)
     static let appCharacteristicTitle = UIColor(red: 155 / 255, green: 152 / 255, blue: 148 / 255, alpha: 1)
     static let appCharacteristicValue = UIColor(red: 82 / 255, green: 76 / 255, blue: 67 / 255, alpha: 1)
+    /// Текст блока цены на пейволе (#493E3E).
+    static let appPaywallProductBody = UIColor(red: 73 / 255, green: 62 / 255, blue: 62 / 255, alpha: 1)
+    /// Цена на пейволе (#3AA176).
+    static let appPaywallPriceHighlight = UIColor(red: 58 / 255, green: 161 / 255, blue: 118 / 255, alpha: 1)
+    /// Крестик закрытия пейвола (#7B7E5C).
+    static let appPaywallClose = UIColor(red: 123 / 255, green: 126 / 255, blue: 92 / 255, alpha: 1)
 }

@@ -5,7 +5,14 @@
 
 import UIKit
 
-/// Два экрана на `UICollectionView`, листание только по кнопке.
+/// Общая геометрия плавающей CTA и встроенной кнопки пейвола на втором шаге онбординга.
+enum OnboardingFloatingCTALayout {
+    static let buttonHeight: CGFloat = 56
+    /// Низ кнопки на `safeAreaLayoutGuide.bottomAnchor` с этим отступом (отрицательная константа в Auto Layout).
+    static let bottomOffsetFromSafeAreaBottom: CGFloat = 44
+}
+
+/// Два экрана на `UICollectionView`, листание только по кнопке на первом шаге; второй — пейвол.
 final class OnboardingViewController: UIViewController {
 
     private var currentPage = 0
@@ -31,7 +38,7 @@ final class OnboardingViewController: UIViewController {
         cv.dataSource = self
         cv.delegate = self
         cv.register(OnboardingIntroPageCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingIntroPageCollectionViewCell.reuseIdentifier)
-        cv.register(OnboardingOutroPageCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingOutroPageCollectionViewCell.reuseIdentifier)
+        cv.register(OnboardingPaywallCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingPaywallCollectionViewCell.reuseIdentifier)
         return cv
     }()
 
@@ -47,7 +54,7 @@ final class OnboardingViewController: UIViewController {
         view.backgroundColor = .appBackground
 
         actionButton.addTarget(self, action: #selector(actionTapped), for: .touchUpInside)
-        updateButtonTitle()
+        updateChromeForPage()
 
         view.addSubview(collectionView)
         view.addSubview(actionButton)
@@ -60,8 +67,11 @@ final class OnboardingViewController: UIViewController {
 
             actionButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 46),
             actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -46),
-            actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -44),
-            actionButton.heightAnchor.constraint(equalToConstant: 56),
+            actionButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -OnboardingFloatingCTALayout.bottomOffsetFromSafeAreaBottom
+            ),
+            actionButton.heightAnchor.constraint(equalToConstant: OnboardingFloatingCTALayout.buttonHeight),
         ])
 
         view.bringSubviewToFront(actionButton)
@@ -77,9 +87,14 @@ final class OnboardingViewController: UIViewController {
         }
     }
 
-    private func updateButtonTitle() {
-        let key = currentPage == 0 ? "onboarding.button.next" : "onboarding.button.start"
-        actionButton.setTitle(L10n.string(key), for: .normal)
+    private func updateChromeForPage() {
+        actionButton.isHidden = false
+        if currentPage == 0 {
+            actionButton.setTitle(L10n.string("onboarding.button.next"), for: .normal)
+        } else {
+            actionButton.setTitle(L10n.string("paywall.button.next"), for: .normal)
+        }
+        actionButton.isPulseAnimationEnabled = (currentPage == 1)
     }
 
     @objc
@@ -88,11 +103,24 @@ final class OnboardingViewController: UIViewController {
             currentPage = 1
             let indexPath = IndexPath(item: 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            updateButtonTitle()
+            updateChromeForPage()
         } else {
-            OnboardingCompletionStore.isComplete = true
-            transitionToMain()
+            completeOnboardingWithSubscription()
         }
+    }
+
+    fileprivate func completeOnboardingAndGoMain() {
+        OnboardingCompletionStore.isComplete = true
+        transitionToMain()
+    }
+
+    fileprivate func completeOnboardingWithSubscription() {
+        SubscriptionAccess.shared.setPremiumActive(true)
+        completeOnboardingAndGoMain()
+    }
+
+    fileprivate func completeOnboardingSkipPaywall() {
+        completeOnboardingAndGoMain()
     }
 
     private func transitionToMain() {
@@ -101,6 +129,22 @@ final class OnboardingViewController: UIViewController {
         UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve) {
             window.rootViewController = main
         }
+    }
+
+    fileprivate static func openExternalURL(key: String) {
+        let s = L10n.string(key)
+        guard let url = URL(string: s) else { return }
+        UIApplication.shared.open(url)
+    }
+
+    fileprivate func presentRestoreMessage() {
+        let alert = UIAlertController(
+            title: L10n.string("settings.row.restore"),
+            message: L10n.string("settings.restore.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -120,10 +164,15 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
             return cell
         }
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: OnboardingOutroPageCollectionViewCell.reuseIdentifier,
+            withReuseIdentifier: OnboardingPaywallCollectionViewCell.reuseIdentifier,
             for: indexPath
-        ) as! OnboardingOutroPageCollectionViewCell
-        cell.configure()
+        ) as! OnboardingPaywallCollectionViewCell
+        cell.configure(
+            onClose: { [weak self] in self?.completeOnboardingSkipPaywall() },
+            onTerms: { OnboardingViewController.openExternalURL(key: "settings.link.terms") },
+            onPrivacy: { OnboardingViewController.openExternalURL(key: "settings.link.privacy") },
+            onRestore: { [weak self] in self?.presentRestoreMessage() }
+        )
         return cell
     }
 

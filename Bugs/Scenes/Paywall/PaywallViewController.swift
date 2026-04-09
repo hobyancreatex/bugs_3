@@ -5,72 +5,56 @@
 
 import UIKit
 
-/// Заглушка пейвола: после «Подписаться» выставляет премиум и закрывается.
+/// Полноэкранный пейвол (модально). После «Next» выставляет премиум и закрывается.
 final class PaywallViewController: UIViewController {
 
-    private let closeButton: UIButton = {
-        let b = UIButton(type: .system)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.setTitle(L10n.string("paywall.close"), for: .normal)
-        b.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        b.setTitleColor(.appReadMore, for: .normal)
-        return b
-    }()
-
-    private let titleLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = .systemFont(ofSize: 24, weight: .bold)
-        l.textColor = .appTextPrimary
-        l.textAlignment = .center
-        l.numberOfLines = 0
-        l.text = L10n.string("paywall.title")
-        return l
-    }()
-
-    private let subscribeButton: GradientRoundedCTAControl = {
-        let b = GradientRoundedCTAControl()
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.setTitle(L10n.string("paywall.subscribe"), for: .normal)
-        return b
-    }()
+    private let contentView = PaywallScreenView(embeddedInOnboarding: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
         overrideUserInterfaceStyle = .light
 
-        closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
-        subscribeButton.addTarget(self, action: #selector(subscribeTapped), for: .touchUpInside)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.onCloseTap = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        contentView.onPrimaryTap = { [weak self] in
+            SubscriptionAccess.shared.setPremiumActive(true)
+            self?.dismiss(animated: true)
+        }
+        contentView.onTermsTap = { [weak self] in
+            self?.openExternalURL(key: "settings.link.terms")
+        }
+        contentView.onPrivacyTap = { [weak self] in
+            self?.openExternalURL(key: "settings.link.privacy")
+        }
+        contentView.onRestoreTap = { [weak self] in
+            self?.presentRestoreMessage()
+        }
 
-        view.addSubview(closeButton)
-        view.addSubview(titleLabel)
-        view.addSubview(subscribeButton)
-
+        view.addSubview(contentView)
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-
-            subscribeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 46),
-            subscribeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -46),
-            subscribeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
-            subscribeButton.heightAnchor.constraint(equalToConstant: 56),
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 
-    @objc
-    private func closeTapped() {
-        dismiss(animated: true)
+    private func openExternalURL(key: String) {
+        let s = L10n.string(key)
+        guard let url = URL(string: s) else { return }
+        UIApplication.shared.open(url)
     }
 
-    @objc
-    private func subscribeTapped() {
-        SubscriptionAccess.shared.setPremiumActive(true)
-        dismiss(animated: true)
+    private func presentRestoreMessage() {
+        let alert = UIAlertController(
+            title: L10n.string("settings.row.restore"),
+            message: L10n.string("settings.restore.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
+        present(alert, animated: true)
     }
 }
