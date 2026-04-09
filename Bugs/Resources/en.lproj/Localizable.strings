@@ -58,6 +58,9 @@
 "scanner.recognition_match.see_result" = "See result";
 
 /* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Family: Nymphalidae";
+"paywall.preview.harmless" = "Harmless";
 "paywall.close.accessibility" = "Close";
 "paywall.headline" = "Unlock the full insect world";
 "paywall.benefit.scans" = "Unlimited scans";

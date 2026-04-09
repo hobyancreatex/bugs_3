@@ -23,6 +23,9 @@ final class PaywallScreenView: UIView {
     private var videoFadeLayer: CAGradientLayer?
     private var endObserver: NSObjectProtocol?
     private var didKickoffPriceLoad = false
+    private var didRevealPaywallPreviewCard = false
+
+    private let previewCard = PaywallOnboardingPreviewCardView()
 
     private let videoContainer: UIView = {
         let v = UIView()
@@ -137,6 +140,7 @@ final class PaywallScreenView: UIView {
         primaryButton.isPulseAnimationEnabled = !embeddedInOnboarding
 
         addSubview(videoContainer)
+        addSubview(previewCard)
         addSubview(titleLabel)
         addSubview(benefitsGrid)
         addSubview(productLabel)
@@ -196,10 +200,17 @@ final class PaywallScreenView: UIView {
             benefitsGrid.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             benefitsGrid.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
+            previewCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 54),
+            previewCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -54),
+            titleLabel.topAnchor.constraint(equalTo: previewCard.bottomAnchor, constant: 23),
             titleLabel.bottomAnchor.constraint(equalTo: benefitsGrid.topAnchor, constant: -16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
+
+        let previewBelowVideo = previewCard.topAnchor.constraint(greaterThanOrEqualTo: videoContainer.bottomAnchor, constant: 8)
+        previewBelowVideo.priority = .defaultHigh
+        previewBelowVideo.isActive = true
 
         footerStack.setContentCompressionResistancePriority(.required, for: .vertical)
 
@@ -223,6 +234,11 @@ final class PaywallScreenView: UIView {
         applyManualOnboardingSafeAreaInsets()
         if player == nil {
             setupVideo()
+        }
+        if Self.paywallVideoURL() == nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+                self?.revealPaywallPreviewCardIfNeeded()
+            }
         }
         if !didKickoffPriceLoad {
             didKickoffPriceLoad = true
@@ -349,12 +365,18 @@ final class PaywallScreenView: UIView {
             forName: .AVPlayerItemDidPlayToEndTime,
             object: item,
             queue: .main
-        ) { [weak p] _ in
-            p?.seek(to: .zero)
+        ) { [weak self, weak p] _ in
             p?.pause()
+            self?.revealPaywallPreviewCardIfNeeded()
         }
 
         p.play()
+    }
+
+    private func revealPaywallPreviewCardIfNeeded() {
+        guard !didRevealPaywallPreviewCard else { return }
+        didRevealPaywallPreviewCard = true
+        previewCard.animateInIfNeeded()
     }
 
     private static func paywallVideoURL() -> URL? {

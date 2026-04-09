@@ -58,6 +58,9 @@
 "scanner.recognition_match.see_result" = "Смотреть результат";
 
 /* Paywall */
+"paywall.preview.species" = "Перламутровка";
+"paywall.preview.family" = "Семейство: Нимфалиды";
+"paywall.preview.harmless" = "Безопасен";
 "paywall.close.accessibility" = "Закрыть";
 "paywall.headline" = "Открой весь мир насекомых";
 "paywall.benefit.scans" = "Безлимитные сканирования";
