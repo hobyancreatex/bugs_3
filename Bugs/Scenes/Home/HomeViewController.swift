@@ -146,6 +146,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
+        cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(HomePopularInsectCell.self, forCellWithReuseIdentifier: HomePopularInsectCell.reuseIdentifier)
         return cv
@@ -486,6 +487,13 @@ extension HomeViewController: UICollectionViewDelegate {
         if collectionView === articlesCollectionView {
             collectionView.deselectItem(at: indexPath, animated: true)
             let detail = ArticleDetailViewController(viewModel: articles[indexPath.item].detail)
+            navigationController?.pushViewController(detail, animated: true)
+            return
+        }
+        if collectionView === popularCollectionView {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            let asset = popularInsects[indexPath.item].imageAssetName
+            let detail = InsectDetailConfigurator.assemble(heroImageAssetName: asset, isInCollection: false)
             navigationController?.pushViewController(detail, animated: true)
             return
         }
