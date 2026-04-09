@@ -49,6 +49,9 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
         return s
     }()
 
+    private var benefitRows: [OnboardingBenefitRowView] = []
+    private var benefitsRevealGeneration = 0
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .appBackground
@@ -66,7 +69,10 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
             "onboarding.intro.benefit.articles",
         ]
         for key in benefitKeys {
-            benefitsStack.addArrangedSubview(OnboardingBenefitRowView(text: L10n.string(key)))
+            let row = OnboardingBenefitRowView(text: L10n.string(key))
+            row.alpha = 0
+            benefitRows.append(row)
+            benefitsStack.addArrangedSubview(row)
         }
 
         NSLayoutConstraint.activate([
@@ -96,5 +102,35 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
     func configure() {
         titleLabel.text = L10n.string("onboarding.intro.title")
         subtitleLabel.text = L10n.string("onboarding.intro.subtitle")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        benefitsRevealGeneration += 1
+        for row in benefitRows {
+            row.layer.removeAllAnimations()
+            row.alpha = 0
+        }
+    }
+
+    /// Поочерёдное появление строк (вызывать из `willDisplay`).
+    func playBenefitsRevealAnimation() {
+        benefitsRevealGeneration += 1
+        let generation = benefitsRevealGeneration
+        for row in benefitRows {
+            row.layer.removeAllAnimations()
+            row.alpha = 0
+        }
+        let step: TimeInterval = 0.32
+        let duration: TimeInterval = 0.55
+        for (index, row) in benefitRows.enumerated() {
+            let delay = step * Double(index)
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                guard let self, generation == self.benefitsRevealGeneration else { return }
+                UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .allowUserInteraction]) {
+                    row.alpha = 1
+                }
+            }
+        }
     }
 }

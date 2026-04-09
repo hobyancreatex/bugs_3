@@ -126,4 +126,10 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         cell.configure()
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let intro = cell as? OnboardingIntroPageCollectionViewCell {
+            intro.playBenefitsRevealAnimation()
+        }
+    }
 }
