@@ -182,6 +182,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
+        cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(HomeArticleCell.self, forCellWithReuseIdentifier: HomeArticleCell.reuseIdentifier)
         return cv
@@ -449,6 +450,12 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 extension HomeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView === articlesCollectionView {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            let detail = ArticleDetailViewController(viewModel: articles[indexPath.item].detail)
+            navigationController?.pushViewController(detail, animated: true)
+            return
+        }
         guard collectionView === categoriesCollectionView else { return }
         collectionView.deselectItem(at: indexPath, animated: true)
         let key = categories[indexPath.item].categoryLocalizationKey

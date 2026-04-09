@@ -50,15 +50,33 @@ enum Home {
         let badgeAssetName: String
     }
 
+    struct ArticleDetailBlockResponse {
+        let titleLocalizationKey: String?
+        let bodyLocalizationKey: String
+    }
+
     struct ArticleItemResponse {
         let titleLocalizationKey: String
         let subtitleLocalizationKey: String
         let imageAssetName: String
+        let blocks: [ArticleDetailBlockResponse]
+    }
+
+    struct ArticleDetailViewModel {
+        let title: String
+        let subtitle: String
+        let heroImageAssetName: String
+        let blocks: [Block]
+        struct Block {
+            let sectionTitle: String?
+            let body: String
+        }
     }
 
     struct ArticleCellViewModel {
         let title: String
         let subtitle: String
         let imageAssetName: String
+        let detail: ArticleDetailViewModel
     }
 }

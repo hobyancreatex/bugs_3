@@ -30,18 +30,48 @@ final class HomeInteractor: HomeBusinessLogic {
             Home.ArticleItemResponse(
                 titleLocalizationKey: "home.article.identify.title",
                 subtitleLocalizationKey: "home.article.identify.subtitle",
-                imageAssetName: "home_article_cover"
+                imageAssetName: "home_article_cover",
+                blocks: [
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.identify.block1.title",
+                        bodyLocalizationKey: "home.article.identify.block1.body"
+                    ),
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.identify.block2.title",
+                        bodyLocalizationKey: "home.article.identify.block2.body"
+                    ),
+                ]
             ),
             Home.ArticleItemResponse(
                 titleLocalizationKey: "home.article.habitats.title",
                 subtitleLocalizationKey: "home.article.habitats.subtitle",
-                imageAssetName: "home_article_cover"
+                imageAssetName: "home_article_cover",
+                blocks: [
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.habitats.block1.title",
+                        bodyLocalizationKey: "home.article.habitats.block1.body"
+                    ),
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.habitats.block2.title",
+                        bodyLocalizationKey: "home.article.habitats.block2.body"
+                    ),
+                ]
             ),
             Home.ArticleItemResponse(
                 titleLocalizationKey: "home.article.photography.title",
                 subtitleLocalizationKey: "home.article.photography.subtitle",
-                imageAssetName: "home_article_cover"
-            )
+                imageAssetName: "home_article_cover",
+                blocks: [
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.photography.block1.title",
+                        bodyLocalizationKey: "home.article.photography.block1.body"
+                    ),
+                    Home.ArticleDetailBlockResponse(
+                        titleLocalizationKey: "home.article.photography.block2.title",
+                        bodyLocalizationKey: "home.article.photography.block2.body"
+                    ),
+                ]
+            ),
         ]
         let response = Home.Load.Response(categories: categories, popularInsects: popularInsects, articles: articles)
         presenter?.presentLoad(response: response)

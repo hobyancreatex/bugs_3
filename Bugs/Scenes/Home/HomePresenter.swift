@@ -29,10 +29,23 @@ final class HomePresenter: HomePresentationLogic {
             )
         }
         let articles = response.articles.map { item in
-            Home.ArticleCellViewModel(
+            let detailBlocks = item.blocks.map { block in
+                Home.ArticleDetailViewModel.Block(
+                    sectionTitle: block.titleLocalizationKey.map { L10n.string($0) },
+                    body: L10n.string(block.bodyLocalizationKey)
+                )
+            }
+            let detail = Home.ArticleDetailViewModel(
                 title: L10n.string(item.titleLocalizationKey),
                 subtitle: L10n.string(item.subtitleLocalizationKey),
-                imageAssetName: item.imageAssetName
+                heroImageAssetName: item.imageAssetName,
+                blocks: detailBlocks
+            )
+            return Home.ArticleCellViewModel(
+                title: detail.title,
+                subtitle: detail.subtitle,
+                imageAssetName: item.imageAssetName,
+                detail: detail
             )
         }
         let viewModel = Home.Load.ViewModel(

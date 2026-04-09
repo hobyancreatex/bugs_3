@@ -138,6 +138,18 @@
 "home.article.habitats.subtitle" = "From soil and leaf litter to flowers and water — typical habitats you can explore safely.";
 "home.article.photography.title" = "Macro photos without stress";
 "home.article.photography.subtitle" = "Light, distance, and patience: short tips for clearer pictures of small subjects.";
+"home.article.identify.block1.title" = "What we look at first";
+"home.article.identify.block1.body" = "Shape of the body, wings, antennae, and legs often narrow down the order of insects at a glance. Color patterns help, but they vary within species — combine them with size, posture, and behaviour. When possible, note where you saw the insect: host plant, soil surface, or water edge all add context.";
+"home.article.identify.block2.title" = "From a photo";
+"home.article.identify.block2.body" = "A sharp, well-lit image beats a blurry one every time. Capture the top view and, if you can, the side profile. Include a sense of scale (a coin or your finger) when size matters. Several angles reduce guesswork when markings are subtle or hidden under folded wings.";
+"home.article.habitats.block1.title" = "Layers of a habitat";
+"home.article.habitats.block1.body" = "Insects use vertical space: canopy, understory, leaf litter, bark crevices, and soil. Turning a log or lifting a stone reveals a different community than a flower head in full sun. Move slowly and replace covers so microhabitats stay intact.";
+"home.article.habitats.block2.title" = "Water and edges";
+"home.article.habitats.block2.body" = "Ponds, streams, and damp meadows host specialists such as dragonflies, damselflies, and many beetles. The border between land and water — reeds, muddy banks — is often the richest zone. Observe from a distance first to avoid disturbing resting insects.";
+"home.article.photography.block1.title" = "Light and distance";
+"home.article.photography.block1.body" = "Diffuse daylight or open shade gives even illumination without harsh shadows. Get close enough to fill the frame, but avoid casting your own shadow across the subject. A small reflector or white card can lift detail in deep recesses of flowers or bark.";
+"home.article.photography.block2.title" = "Patience and respect";
+"home.article.photography.block2.body" = "Let insects settle instead of chasing them. Burst mode helps with skittish flyers. If you use flash, keep sessions short and never point it directly into eyes of vertebrates nearby. When you are done, leave the habitat as you found it.";
 
 /* Settings (same groups as CoinRecognizer) */
 "settings.title" = "Settings";
