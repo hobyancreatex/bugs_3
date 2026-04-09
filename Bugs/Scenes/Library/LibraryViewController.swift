@@ -62,6 +62,11 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         interactor?.presentCategories(request: Library.Present.Request(searchQuery: ""))
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+    }
+
     private func configureNavigationBar() {
         if let nav = navigationController?.navigationBar {
             AppNavigationBarAppearance.apply(to: nav)

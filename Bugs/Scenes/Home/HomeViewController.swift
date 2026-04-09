@@ -188,6 +188,9 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return cv
     }()
 
+    private var settingsButtonTrailingToPremiumConstraint: NSLayoutConstraint!
+    private var settingsButtonTrailingToNavConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -201,11 +204,15 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         layoutConstraints()
         configureHomeSearchField()
         settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
+        premiumButton.addTarget(self, action: #selector(premiumTapped), for: .touchUpInside)
         interactor?.load(request: Home.Load.Request())
+        updatePremiumNavBarChrome()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+        updatePremiumNavBarChrome()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -229,8 +236,24 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
 
     @objc
+    private func premiumTapped() {
+        presentPaywallFullScreen()
+    }
+
+    @objc
     private func aiAskTapped() {
+        if !SubscriptionAccess.shared.isPremiumActive {
+            presentPaywallFullScreen()
+            return
+        }
         navigationController?.pushViewController(AIConsultantChatViewController(), animated: true)
+    }
+
+    private func updatePremiumNavBarChrome() {
+        let active = SubscriptionAccess.shared.isPremiumActive
+        premiumButton.isHidden = active
+        settingsButtonTrailingToPremiumConstraint?.isActive = !active
+        settingsButtonTrailingToNavConstraint?.isActive = active
     }
 
     private func configureAskButtonAppearance() {
@@ -289,7 +312,6 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             premiumButton.widthAnchor.constraint(equalToConstant: 28),
             premiumButton.heightAnchor.constraint(equalToConstant: 28),
 
-            settingsButton.trailingAnchor.constraint(equalTo: premiumButton.leadingAnchor, constant: -16),
             settingsButton.centerYAnchor.constraint(equalTo: navBarContainer.centerYAnchor),
             settingsButton.widthAnchor.constraint(equalToConstant: 28),
             settingsButton.heightAnchor.constraint(equalToConstant: 28),
@@ -368,6 +390,17 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             aiAskButton.heightAnchor.constraint(equalToConstant: 50),
             aiAskButton.topAnchor.constraint(greaterThanOrEqualTo: aiBannerTitleLabel.bottomAnchor, constant: 12)
         ])
+
+        settingsButtonTrailingToPremiumConstraint = settingsButton.trailingAnchor.constraint(
+            equalTo: premiumButton.leadingAnchor,
+            constant: -16
+        )
+        settingsButtonTrailingToNavConstraint = settingsButton.trailingAnchor.constraint(
+            equalTo: navBarContainer.trailingAnchor,
+            constant: -16
+        )
+        settingsButtonTrailingToPremiumConstraint.isActive = true
+        settingsButtonTrailingToNavConstraint.isActive = false
     }
 
     func displayLoad(viewModel: Home.Load.ViewModel) {

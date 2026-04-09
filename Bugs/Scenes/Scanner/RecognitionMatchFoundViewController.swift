@@ -194,6 +194,7 @@ final class RecognitionMatchFoundViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         updateSubscriptionGatedUI()
     }
@@ -213,9 +214,7 @@ final class RecognitionMatchFoundViewController: UIViewController {
         if SubscriptionAccess.shared.isPremiumActive {
             openRecognitionResult()
         } else {
-            let paywall = PaywallViewController()
-            paywall.modalPresentationStyle = .fullScreen
-            present(paywall, animated: true)
+            presentPaywallFullScreen()
         }
     }
 

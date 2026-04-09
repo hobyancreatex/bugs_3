@@ -60,6 +60,11 @@ final class MainTabBarController: UIViewController {
         switchToContentTab(tag: 0)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+    }
+
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         tabBarHeightConstraint.constant = Metrics.tabBarContentHeight + view.safeAreaInsets.bottom
@@ -282,6 +287,10 @@ final class MainTabBarController: UIViewController {
 
     private func presentChatModallyFromCurrentScreen() {
         guard !isAIChatModalPresented() else { return }
+        if !SubscriptionAccess.shared.isPremiumActive {
+            presenterForChatModal().presentPaywallFullScreen()
+            return
+        }
         let chat = AIConsultantChatViewController()
         chat.presentsAsModalFromTabBar = true
         let nav = UINavigationController(rootViewController: chat)

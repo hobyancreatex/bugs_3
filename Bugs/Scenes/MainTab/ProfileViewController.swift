@@ -87,6 +87,9 @@ final class ProfileViewController: UIViewController {
 
     private var lastCollectionWidthForLayout: CGFloat = 0
 
+    private var settingsButtonTrailingToPremiumConstraint: NSLayoutConstraint!
+    private var settingsButtonTrailingToNavConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -102,14 +105,18 @@ final class ProfileViewController: UIViewController {
 
         segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
+        premiumButton.addTarget(self, action: #selector(premiumTapped), for: .touchUpInside)
 
         buildHierarchy()
         layoutConstraints()
         applyCollectionTabContentVisibility()
+        updatePremiumNavBarChrome()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+        updatePremiumNavBarChrome()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -161,7 +168,6 @@ final class ProfileViewController: UIViewController {
             premiumButton.widthAnchor.constraint(equalToConstant: 28),
             premiumButton.heightAnchor.constraint(equalToConstant: 28),
 
-            settingsButton.trailingAnchor.constraint(equalTo: premiumButton.leadingAnchor, constant: -16),
             settingsButton.centerYAnchor.constraint(equalTo: navBarContainer.centerYAnchor),
             settingsButton.widthAnchor.constraint(equalToConstant: 28),
             settingsButton.heightAnchor.constraint(equalToConstant: 28),
@@ -188,6 +194,17 @@ final class ProfileViewController: UIViewController {
             collectionEmptyStateView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             collectionEmptyStateView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
         ])
+
+        settingsButtonTrailingToPremiumConstraint = settingsButton.trailingAnchor.constraint(
+            equalTo: premiumButton.leadingAnchor,
+            constant: -16
+        )
+        settingsButtonTrailingToNavConstraint = settingsButton.trailingAnchor.constraint(
+            equalTo: navBarContainer.trailingAnchor,
+            constant: -16
+        )
+        settingsButtonTrailingToPremiumConstraint.isActive = true
+        settingsButtonTrailingToNavConstraint.isActive = false
     }
 
     @objc
@@ -196,7 +213,24 @@ final class ProfileViewController: UIViewController {
     }
 
     @objc
+    private func premiumTapped() {
+        presentPaywallFullScreen()
+    }
+
+    private func updatePremiumNavBarChrome() {
+        let active = SubscriptionAccess.shared.isPremiumActive
+        premiumButton.isHidden = active
+        settingsButtonTrailingToPremiumConstraint?.isActive = !active
+        settingsButtonTrailingToNavConstraint?.isActive = active
+    }
+
+    @objc
     private func segmentChanged() {
+        if segmentControl.selectedIndex == 1, !SubscriptionAccess.shared.isPremiumActive {
+            segmentControl.selectedIndex = 0
+            presentPaywallFullScreen()
+            return
+        }
         applyCollectionTabContentVisibility()
     }
 

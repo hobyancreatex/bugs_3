@@ -117,6 +117,7 @@ final class RecognitionProgressViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -138,13 +139,18 @@ final class RecognitionProgressViewController: UIViewController {
             self.pendingSimulatedLoadWork = nil
             self.simulatedLoadFinished = true
             guard let nav = self.navigationController, nav.topViewController === self else { return }
-            let resultHeroes = [
+            let candidateAssetNames = [
                 "home_popular_insect",
                 "home_article_cover",
                 "home_category_thumbnail",
+                "home_category_thumbnail",
             ]
-            let pager = RecognitionResultsPagerViewController(heroImageAssetNames: resultHeroes)
-            nav.pushViewController(pager, animated: true)
+            let match = RecognitionMatchFoundViewController(
+                userPhoto: self.backgroundImage,
+                candidateAssetNames: candidateAssetNames,
+                resultHeroAssetName: "home_popular_insect"
+            )
+            nav.pushViewController(match, animated: true)
         }
         pendingSimulatedLoadWork = work
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: work)

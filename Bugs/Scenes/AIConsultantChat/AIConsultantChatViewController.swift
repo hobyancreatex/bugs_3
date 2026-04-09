@@ -126,6 +126,7 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 

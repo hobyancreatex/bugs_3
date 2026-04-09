@@ -72,6 +72,7 @@ final class SettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         tableView.reloadData()
     }
 

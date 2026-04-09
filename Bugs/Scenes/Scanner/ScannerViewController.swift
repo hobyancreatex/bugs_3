@@ -147,6 +147,7 @@ final class ScannerViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         sessionQueue.async { [weak self] in
             self?.session.startRunning()

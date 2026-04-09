@@ -212,6 +212,11 @@ final class ArticleDetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+    }
+
     @objc
     private func backTapped() {
         navigationController?.popViewController(animated: true)

@@ -104,6 +104,7 @@ final class RecognitionNoMatchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 

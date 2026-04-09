@@ -77,6 +77,11 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         interactor?.presentInsects(request: CategoryInsects.Present.Request(searchQuery: ""))
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
+    }
+
     private func configureNavigationBar() {
         if let nav = navigationController?.navigationBar {
             AppNavigationBarAppearance.apply(to: nav)

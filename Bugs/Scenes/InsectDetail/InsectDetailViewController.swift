@@ -271,6 +271,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
