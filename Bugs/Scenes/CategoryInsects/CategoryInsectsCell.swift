@@ -103,14 +103,20 @@ final class CategoryInsectsCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: coverImageView)
         titleLabel.text = nil
         subtitleLabel.text = nil
         coverImageView.image = nil
     }
 
+    /// Ячейка ушла с экрана: отменяем докачку, чтобы не затирать чужую ячейку по завершении задачи.
+    func cancelCoverImageLoadIfNeeded() {
+        RemoteImageLoader.cancelLoad(for: coverImageView)
+    }
+
     func configure(with viewModel: CategoryInsects.InsectCellViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
-        coverImageView.image = UIImage(named: viewModel.imageAssetName)
+        RemoteImageLoader.load(into: coverImageView, url: viewModel.imageURL)
     }
 }

@@ -48,19 +48,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return b
     }()
 
-    private let contentLoadingContainer: UIView = {
-        let v = UIView()
-        v.backgroundColor = .clear
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }()
-
-    private let contentLoadingIndicator: UIActivityIndicatorView = {
-        let v = UIActivityIndicatorView(style: .large)
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.hidesWhenStopped = false
-        return v
-    }()
+    private let contentLoadingOverlay = ContentLoadingOverlayView()
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
@@ -217,9 +205,8 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         aiBannerContainer.addGestureRecognizer(aiBannerTap)
         buildHierarchy()
         layoutConstraints()
-        contentLoadingIndicator.transform = CGAffineTransform(scaleX: 1.45, y: 1.45)
         scrollView.isHidden = true
-        contentLoadingIndicator.startAnimating()
+        contentLoadingOverlay.setActive(true)
         configureHomeSearchField()
         settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
         premiumButton.addTarget(self, action: #selector(premiumTapped), for: .touchUpInside)
@@ -295,8 +282,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         navBarContainer.addSubview(premiumButton)
 
         view.addSubview(scrollView)
-        view.addSubview(contentLoadingContainer)
-        contentLoadingContainer.addSubview(contentLoadingIndicator)
+        view.addSubview(contentLoadingOverlay)
         scrollView.addSubview(scrollContentView)
 
         scrollContentView.addSubview(insetSearchField)
@@ -343,13 +329,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
 
-            contentLoadingContainer.topAnchor.constraint(equalTo: navBarContainer.bottomAnchor),
-            contentLoadingContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentLoadingContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentLoadingContainer.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
-
-            contentLoadingIndicator.centerXAnchor.constraint(equalTo: contentLoadingContainer.centerXAnchor),
-            contentLoadingIndicator.centerYAnchor.constraint(equalTo: contentLoadingContainer.centerYAnchor),
+            contentLoadingOverlay.topAnchor.constraint(equalTo: navBarContainer.bottomAnchor),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
 
             scrollContentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -432,8 +415,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
 
     func displayLoad(viewModel: Home.Load.ViewModel) {
-        contentLoadingIndicator.stopAnimating()
-        contentLoadingContainer.isHidden = true
+        contentLoadingOverlay.setActive(false)
         scrollView.isHidden = false
 
         titleLabel.text = viewModel.title
@@ -523,8 +505,13 @@ extension HomeViewController: UICollectionViewDelegate {
         }
         if collectionView === popularCollectionView {
             collectionView.deselectItem(at: indexPath, animated: true)
-            let asset = popularInsects[indexPath.item].imageAssetName
-            let detail = InsectDetailConfigurator.assemble(heroImageAssetName: asset, isInCollection: false)
+            let row = popularInsects[indexPath.item]
+            let detail = InsectDetailConfigurator.assemble(
+                heroImageAssetName: row.imageAssetName,
+                heroImageURL: row.imageURL,
+                insectId: row.insectId,
+                isInCollection: false
+            )
             navigationController?.pushViewController(detail, animated: true)
             return
         }

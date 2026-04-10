@@ -23,19 +23,15 @@ enum CollectAPILogger {
         log(parts.joined(separator: " | "))
     }
 
-    nonisolated static func logResponse(url: URL?, status: Int?, data: Data?, error: Error?) {
-        var parts: [String] = []
-        if let url { parts.append("url: \(url.absoluteString)") }
-        if let status { parts.append("status: \(status)") }
-        if let error { parts.append("error: \(error.localizedDescription)") }
-        if let data, !data.isEmpty {
-            if let s = String(data: data, encoding: .utf8) {
-                parts.append("body: \(s)")
-            } else {
-                parts.append("body: <\(data.count) bytes, non-UTF8>")
-            }
+    /// Только для отладки деталки жука (`GET insects/{id}/`).
+    nonisolated static func logInsectDetailResponse(_ data: Data) {
+        let body: String
+        if let s = String(data: data, encoding: .utf8) {
+            body = s
+        } else {
+            body = "<\(data.count) bytes, non-UTF8>"
         }
-        log("RESPONSE " + parts.joined(separator: " | "))
+        log("insects/{id}/ RESPONSE body: \(body)")
     }
 
     /// Для логов: не светим токен в `Authorization`.

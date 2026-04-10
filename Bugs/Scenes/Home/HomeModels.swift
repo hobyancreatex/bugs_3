@@ -43,6 +43,7 @@ enum Home {
     }
 
     struct PopularInsectItemResponse {
+        let insectId: String?
         let displayTitle: String
         let imageAssetName: String
         let badgeAssetName: String
@@ -50,6 +51,7 @@ enum Home {
     }
 
     struct PopularInsectCellViewModel {
+        let insectId: String?
         let title: String
         let imageAssetName: String
         let badgeAssetName: String

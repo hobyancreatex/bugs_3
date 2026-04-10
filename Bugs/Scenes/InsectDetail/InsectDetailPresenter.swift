@@ -6,6 +6,7 @@
 import Foundation
 
 protocol InsectDetailPresentationLogic: AnyObject {
+    func presentLoading(_ active: Bool)
     func presentDetail(response: InsectDetail.Load.Response)
 }
 
@@ -13,31 +14,63 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
 
     weak var viewController: InsectDetailDisplayLogic?
 
+    func presentLoading(_ active: Bool) {
+        viewController?.displayLoading(active)
+    }
+
     func presentDetail(response: InsectDetail.Load.Response) {
-        let rows = response.characteristicRows.map {
-            (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
+        let rows: [(title: String, value: String)]
+        if let resolved = response.characteristicRowsResolved {
+            rows = resolved
+        } else {
+            rows = response.characteristicRows.map {
+                (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
+            }
         }
-        let classificationRows = response.classificationRows.map {
-            (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
+        let classificationRows: [(title: String, value: String)]
+        if let resolved = response.classificationRowsResolved {
+            classificationRows = resolved
+        } else {
+            classificationRows = response.classificationRows.map {
+                (title: L10n.string($0.titleKey), value: L10n.string($0.valueKey))
+            }
         }
+        let galleryURLs = response.galleryImageURLs
+        let names = response.galleryImageAssetNames
+        let paddedURLs: [URL?] = (0 ..< names.count).map { idx in
+            idx < galleryURLs.count ? galleryURLs[idx] : nil
+        }
+
+        let biteTextTrimmed = response.biteDescriptionOverride?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let bitePhotos = response.bitePhotoURLs
+        let showsBites = !biteTextTrimmed.isEmpty || !bitePhotos.isEmpty
+        let biteBullets = biteTextTrimmed.isEmpty ? [] : InsectDetailBitesTextFormatter.bullets(from: biteTextTrimmed)
+
         viewController?.displayDetail(
             viewModel: InsectDetail.Load.ViewModel(
                 heroImageAssetName: response.heroImageAssetName,
-                galleryImageAssetNames: response.galleryImageAssetNames,
-                scientificTitle: L10n.string(response.scientificTitleKey),
+                heroImageURL: response.heroImageURL,
+                galleryImageAssetNames: names,
+                galleryImageURLs: paddedURLs,
+                scientificTitle: response.scientificTitleOverride ?? L10n.string(response.scientificTitleKey),
                 leftHazardStatus: response.leftHazardStatus,
                 leftStatusText: L10n.string(response.leftHazardStatus.localizationKey),
-                widespreadStatusText: L10n.string(response.widespreadStatusKey),
+                widespreadStatusText: response.widespreadStatusOverride ?? L10n.string(response.widespreadStatusKey),
                 alsoKnownPrefix: L10n.string(response.alsoKnownPrefixKey),
-                alsoKnownNames: L10n.string(response.aliasesKey),
+                alsoKnownNames: response.aliasesNamesOverride ?? L10n.string(response.aliasesKey),
                 descriptionSectionTitle: L10n.string(response.descriptionSectionKey),
-                descriptionBody: L10n.string(response.descriptionBodyKey),
+                descriptionBody: response.descriptionBodyOverride ?? L10n.string(response.descriptionBodyKey),
                 readMoreTitle: L10n.string(response.readMoreKey),
                 characteristicsSectionTitle: L10n.string(response.characteristicsSectionKey),
                 characteristicRows: rows,
                 classificationSectionTitle: L10n.string(response.classificationSectionKey),
                 classificationRows: classificationRows,
-                bitesSectionTitle: L10n.string(response.bitesSectionKey)
+                bitesSectionTitle: L10n.string(response.bitesSectionKey),
+                showsBitesSection: showsBites,
+                bitesIntro: showsBites ? L10n.string("insect.detail.bites.intro") : "",
+                bitesFirstAidTitle: showsBites ? L10n.string("insect.detail.bites.first_aid") : "",
+                bitesBulletLines: biteBullets,
+                bitePhotoURLs: bitePhotos
             )
         )
     }

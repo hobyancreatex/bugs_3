@@ -87,11 +87,7 @@ final class HomePopularInsectCell: UICollectionViewCell {
 
     func configure(with viewModel: Home.PopularInsectCellViewModel) {
         titleLabel.text = viewModel.title
-        RemoteImageLoader.load(
-            into: insectImageView,
-            placeholderAssetName: viewModel.imageAssetName,
-            url: viewModel.imageURL
-        )
+        RemoteImageLoader.load(into: insectImageView, url: viewModel.imageURL)
         if viewModel.badgeAssetName.isEmpty {
             badgeImageView.image = nil
             badgeImageView.isHidden = true

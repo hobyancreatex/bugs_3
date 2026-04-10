@@ -24,6 +24,7 @@ final class HomePresenter: HomePresentationLogic {
         }
         let popularInsects = response.popularInsects.map { item in
             Home.PopularInsectCellViewModel(
+                insectId: item.insectId,
                 title: item.displayTitle,
                 imageAssetName: item.imageAssetName,
                 badgeAssetName: item.badgeAssetName,

@@ -121,6 +121,8 @@
 "insect.detail.status.poisonous" = "Poisonous";
 "insect.detail.status.toxic" = "Toxic";
 "insect.detail.status.widespread" = "Widespread";
+"insect.detail.widespread.api.yes" = "Widespread";
+"insect.detail.widespread.api.no" = "Uncommon";
 "insect.detail.also_known_prefix" = "Also known as: ";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
 "insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
@@ -130,6 +132,8 @@
 "insect.detail.section.characteristics" = "Characteristics";
 "insect.detail.section.classification" = "Scientific classification";
 "insect.detail.section.bites" = "Bites";
+"insect.detail.bites.intro" = "If you have been bitten or stung, follow these steps:";
+"insect.detail.bites.first_aid" = "Immediate first aid:";
 "insect.detail.add_to_collection" = "Add to collection";
 "insect.detail.add_to_collection.success.title" = "Success!";
 "insect.detail.add_to_collection.success.subtitle" = "The insect has been successfully added to your collection";

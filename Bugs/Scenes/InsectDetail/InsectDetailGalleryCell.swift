@@ -34,12 +34,13 @@ final class InsectDetailGalleryCell: UICollectionViewCell {
         nil
     }
 
-    func configure(imageAssetName: String) {
-        imageView.image = UIImage(named: imageAssetName)
+    func configure(imageURL: URL?) {
+        RemoteImageLoader.load(into: imageView, url: imageURL)
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: imageView)
         imageView.image = nil
     }
 }

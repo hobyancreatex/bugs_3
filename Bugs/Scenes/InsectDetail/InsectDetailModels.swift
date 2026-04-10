@@ -40,24 +40,41 @@ enum InsectDetail {
         struct Request {}
         struct Response {
             let heroImageAssetName: String
+            let heroImageURL: URL?
             let galleryImageAssetNames: [String]
+            /// Параллельно именам ассетов; при непустом URL ячейка грузит картинку по сети.
+            let galleryImageURLs: [URL?]
             let scientificTitleKey: String
+            /// Если задано, подставляется вместо `L10n.string(scientificTitleKey)` (например имя с API).
+            let scientificTitleOverride: String?
             let leftHazardStatus: LeftHazardStatus
             let widespreadStatusKey: String
+            /// Текст из API (`widespread`), иначе локализованный заглушечный `widespreadStatusKey`.
+            let widespreadStatusOverride: String?
             let aliasesKey: String
+            /// Если задано, подставляется вместо `L10n.string(aliasesKey)` (например латинское имя).
+            let aliasesNamesOverride: String?
             let alsoKnownPrefixKey: String
             let descriptionSectionKey: String
             let descriptionBodyKey: String
+            /// Если задано, подставляется вместо `L10n.string(descriptionBodyKey)`.
+            let descriptionBodyOverride: String?
             let readMoreKey: String
             let characteristicsSectionKey: String
             let characteristicRows: [CharacteristicLocalizationPair]
+            let characteristicRowsResolved: [(title: String, value: String)]?
             let classificationSectionKey: String
             let classificationRows: [CharacteristicLocalizationPair]
+            let classificationRowsResolved: [(title: String, value: String)]?
             let bitesSectionKey: String
+            let biteDescriptionOverride: String?
+            let bitePhotoURLs: [URL]
         }
         struct ViewModel {
             let heroImageAssetName: String
+            let heroImageURL: URL?
             let galleryImageAssetNames: [String]
+            let galleryImageURLs: [URL?]
             let scientificTitle: String
             let leftHazardStatus: LeftHazardStatus
             let leftStatusText: String
@@ -72,6 +89,12 @@ enum InsectDetail {
             let classificationSectionTitle: String
             let classificationRows: [(title: String, value: String)]
             let bitesSectionTitle: String
+            /// Показывать секцию «Укусы» (есть текст и/или фото укусов с API).
+            let showsBitesSection: Bool
+            let bitesIntro: String
+            let bitesFirstAidTitle: String
+            let bitesBulletLines: [String]
+            let bitePhotoURLs: [URL]
         }
     }
 }

@@ -8,13 +8,18 @@ import UIKit
 /// Полноэкранный просмотр фото насекомого: свайп, миниатюры, счётчик «текущая/всего».
 final class InsectImageGalleryViewController: UIViewController {
 
-    private let imageAssetNames: [String]
+    private enum Source {
+        case remote([URL])
+        case assets([String])
+    }
+
+    private let source: Source
     private let initialIndex: Int
 
     private var didApplyInitialScroll = false
     private var currentPage: Int = 0
 
-    /// Однократная загрузка из каталога — без повторного декодирования PDF при свайпе.
+    /// Только для режима `.assets` — без повторного `UIImage(named:)` при свайпе.
     private var imageCache: [String: UIImage] = [:]
 
     private let mainCollectionView: UICollectionView = {
@@ -78,12 +83,27 @@ final class InsectImageGalleryViewController: UIViewController {
         return b
     }()
 
-    /// - Parameters:
-    ///   - imageAssetNames: Имена ассетов в порядке просмотра (без пустого списка).
-    ///   - initialIndex: Стартовая страница.
+    private var itemCount: Int {
+        switch source {
+        case .remote(let urls): return urls.count
+        case .assets(let names): return names.count
+        }
+    }
+
+    /// Реальные URL с бэка (порядок: герой, затем галерея, без дублей).
+    init(imageURLs: [URL], initialIndex: Int = 0) {
+        self.source = .remote(imageURLs)
+        let maxIdx = max(0, imageURLs.count - 1)
+        self.initialIndex = min(max(0, initialIndex), maxIdx)
+        super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .fullScreen
+    }
+
+    /// Заглушка без сети (mock / список ассетов).
     init(imageAssetNames: [String], initialIndex: Int = 0) {
-        self.imageAssetNames = imageAssetNames
-        self.initialIndex = min(max(0, initialIndex), max(0, imageAssetNames.count - 1))
+        self.source = .assets(imageAssetNames)
+        let maxIdx = max(0, imageAssetNames.count - 1)
+        self.initialIndex = min(max(0, initialIndex), maxIdx)
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
     }
@@ -98,8 +118,8 @@ final class InsectImageGalleryViewController: UIViewController {
         view.backgroundColor = .appBackground
 
         currentPage = initialIndex
-        for name in imageAssetNames {
-            if imageCache[name] == nil {
+        if case .assets(let names) = source {
+            for name in names where imageCache[name] == nil {
                 imageCache[name] = UIImage(named: name)
             }
         }
@@ -158,9 +178,9 @@ final class InsectImageGalleryViewController: UIViewController {
             flow.invalidateLayout()
         }
 
-        guard !didApplyInitialScroll, mainCollectionView.bounds.width > 0, !imageAssetNames.isEmpty else { return }
+        guard !didApplyInitialScroll, mainCollectionView.bounds.width > 0, itemCount > 0 else { return }
         didApplyInitialScroll = true
-        let idx = min(initialIndex, imageAssetNames.count - 1)
+        let idx = min(initialIndex, itemCount - 1)
         mainCollectionView.scrollToItem(at: IndexPath(item: idx, section: 0), at: .centeredHorizontally, animated: false)
         currentPage = idx
         updateCounterLabel(page: idx)
@@ -174,13 +194,13 @@ final class InsectImageGalleryViewController: UIViewController {
     }
 
     private func updateCounterLabel(page: Int) {
-        let total = max(1, imageAssetNames.count)
+        let total = max(1, itemCount)
         let p = min(max(0, page), total - 1) + 1
         counterLabel.text = "\(p)/\(total)"
     }
 
     private func setPage(_ page: Int, animated: Bool) {
-        let maxP = max(0, imageAssetNames.count - 1)
+        let maxP = max(0, itemCount - 1)
         let p = min(max(0, page), maxP)
         let previous = currentPage
         currentPage = p
@@ -190,10 +210,9 @@ final class InsectImageGalleryViewController: UIViewController {
         scrollThumbToVisible(animated: animated)
     }
 
-    /// Обновляем только обводку (видимые ячейки без `reloadItems`; невидимые — догоним при появлении).
     private func updateThumbnailSelection(from oldIndex: Int, to newIndex: Int) {
         guard oldIndex != newIndex else { return }
-        let candidates = [oldIndex, newIndex].filter { $0 >= 0 && $0 < imageAssetNames.count }
+        let candidates = [oldIndex, newIndex].filter { $0 >= 0 && $0 < itemCount }
         var needReload: [IndexPath] = []
         for index in candidates {
             let ip = IndexPath(item: index, section: 0)
@@ -219,11 +238,10 @@ final class InsectImageGalleryViewController: UIViewController {
 
     private func scrollThumbToVisible(animated: Bool) {
         let ip = IndexPath(item: currentPage, section: 0)
-        guard currentPage < imageAssetNames.count else { return }
+        guard currentPage < itemCount else { return }
         thumbCollectionView.scrollToItem(at: ip, at: .centeredHorizontally, animated: animated)
     }
 
-    /// Круг с обводкой и крестом (#3AA176), как на экранах сканера / «совпадение найдено».
     private static func lightCloseImage() -> UIImage? {
         let side: CGFloat = 32
         let format = UIGraphicsImageRendererFormat()
@@ -263,7 +281,7 @@ final class InsectImageGalleryViewController: UIViewController {
 extension InsectImageGalleryViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageAssetNames.count
+        itemCount
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -274,8 +292,12 @@ extension InsectImageGalleryViewController: UICollectionViewDataSource {
             ) as? InsectImageGalleryPageCell else {
                 return UICollectionViewCell()
             }
-            let name = imageAssetNames[indexPath.item]
-            cell.configure(image: imageCache[name])
+            switch source {
+            case .remote(let urls):
+                cell.configureRemote(url: urls[indexPath.item])
+            case .assets(let names):
+                cell.configureLocal(image: imageCache[names[indexPath.item]])
+            }
             return cell
         }
         guard let cell = collectionView.dequeueReusableCell(
@@ -284,8 +306,12 @@ extension InsectImageGalleryViewController: UICollectionViewDataSource {
         ) as? InsectImageGalleryThumbnailCell else {
             return UICollectionViewCell()
         }
-        let name = imageAssetNames[indexPath.item]
-        cell.configure(image: imageCache[name], selected: indexPath.item == currentPage)
+        switch source {
+        case .remote(let urls):
+            cell.configureRemote(url: urls[indexPath.item], selected: indexPath.item == currentPage)
+        case .assets(let names):
+            cell.configureLocal(image: imageCache[names[indexPath.item]], selected: indexPath.item == currentPage)
+        }
         return cell
     }
 }
@@ -343,7 +369,7 @@ private final class InsectImageGalleryPageCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.backgroundColor = .appBackground
         return iv
@@ -364,8 +390,19 @@ private final class InsectImageGalleryPageCell: UICollectionViewCell {
         nil
     }
 
-    func configure(image: UIImage?) {
+    func configureRemote(url: URL) {
+        RemoteImageLoader.load(into: imageView, url: url)
+    }
+
+    func configureLocal(image: UIImage?) {
+        RemoteImageLoader.cancelLoad(for: imageView)
         imageView.image = image
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: imageView)
+        imageView.image = nil
     }
 }
 
@@ -400,7 +437,13 @@ private final class InsectImageGalleryThumbnailCell: UICollectionViewCell {
         nil
     }
 
-    func configure(image: UIImage?, selected: Bool) {
+    func configureRemote(url: URL, selected: Bool) {
+        RemoteImageLoader.load(into: imageView, url: url)
+        applySelection(selected: selected)
+    }
+
+    func configureLocal(image: UIImage?, selected: Bool) {
+        RemoteImageLoader.cancelLoad(for: imageView)
         imageView.image = image
         applySelection(selected: selected)
     }
@@ -412,6 +455,8 @@ private final class InsectImageGalleryThumbnailCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: imageView)
+        imageView.image = nil
         imageView.layer.borderWidth = 0
     }
 }

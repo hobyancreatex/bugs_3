@@ -20,7 +20,11 @@ final class CollectAPIClient {
         guard let url = URL(string: path, relativeTo: base)?.absoluteURL else {
             throw CollectAPIError.invalidURL
         }
+        return try await get(url: url)
+    }
 
+    /// Полный URL (например из поля `next` пагинации).
+    func get(url: URL) async throws -> Data {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -39,13 +43,11 @@ final class CollectAPIClient {
         do {
             (data, response) = try await session.data(for: request)
         } catch {
-            CollectAPILogger.logResponse(url: url, status: nil, data: nil, error: error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode
-        CollectAPILogger.logResponse(url: url, status: status, data: data, error: nil)
 
         guard let status, (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status ?? -1, data.isEmpty ? nil : data)

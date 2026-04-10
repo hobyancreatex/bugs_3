@@ -15,12 +15,24 @@ final class LibraryPresenter: LibraryPresentationLogic {
 
     func presentCategories(response: Library.Present.Response) {
         let trimmedQuery = response.searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if response.isLoading {
+            let viewModel = Library.Present.ViewModel(
+                isLoading: true,
+                cellItems: [],
+                showsEmptySearchState: false
+            )
+            viewController?.displayCategories(viewModel: viewModel)
+            return
+        }
+
         let showsEmptySearchState = response.definitions.isEmpty && !trimmedQuery.isEmpty
         var items: [Library.CellItem] = response.definitions.map {
             .category(
-                title: L10n.string($0.titleLocalizationKey),
-                titleLocalizationKey: $0.titleLocalizationKey,
-                imageAssetName: $0.imageAssetName
+                title: $0.displayTitle,
+                routingKey: $0.routingKey,
+                imageAssetName: $0.imageAssetName,
+                imageURL: $0.imageURL
             )
         }
         if !items.isEmpty {
@@ -31,7 +43,11 @@ final class LibraryPresenter: LibraryPresentationLogic {
                 }
             }
         }
-        let viewModel = Library.Present.ViewModel(cellItems: items, showsEmptySearchState: showsEmptySearchState)
+        let viewModel = Library.Present.ViewModel(
+            isLoading: false,
+            cellItems: items,
+            showsEmptySearchState: showsEmptySearchState
+        )
         viewController?.displayCategories(viewModel: viewModel)
     }
 }

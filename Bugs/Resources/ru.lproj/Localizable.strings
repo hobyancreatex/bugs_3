@@ -121,6 +121,8 @@
 "insect.detail.status.poisonous" = "Ядовитый";
 "insect.detail.status.toxic" = "Токсичный";
 "insect.detail.status.widespread" = "Распространён";
+"insect.detail.widespread.api.yes" = "Распространён";
+"insect.detail.widespread.api.no" = "Редко встречается";
 "insect.detail.also_known_prefix" = "Также известен как: ";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
 "insect.detail.mock.aliases" = "Европейская медоносная пчела, западная медоносная пчела, медоносная пчела";
@@ -130,6 +132,8 @@
 "insect.detail.section.characteristics" = "Характеристики";
 "insect.detail.section.classification" = "Научная классификация";
 "insect.detail.section.bites" = "Укусы";
+"insect.detail.bites.intro" = "Если вас укусило насекомое, следуйте этим рекомендациям:";
+"insect.detail.bites.first_aid" = "Первая помощь:";
 "insect.detail.add_to_collection" = "В коллекцию";
 "insect.detail.add_to_collection.success.title" = "Готово!";
 "insect.detail.add_to_collection.success.subtitle" = "Насекомое успешно добавлено в коллекцию";

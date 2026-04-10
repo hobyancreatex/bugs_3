@@ -9,7 +9,7 @@ enum CategoryInsectsConfigurator {
 
     static func assemble(categoryLocalizationKey: String) -> UIViewController {
         let viewController = CategoryInsectsViewController(categoryLocalizationKey: categoryLocalizationKey)
-        let interactor = CategoryInsectsInteractor(categoryLocalizationKey: categoryLocalizationKey)
+        let interactor = CategoryInsectsInteractor(categoryRoutingKey: categoryLocalizationKey)
         let presenter = CategoryInsectsPresenter()
 
         viewController.interactor = interactor

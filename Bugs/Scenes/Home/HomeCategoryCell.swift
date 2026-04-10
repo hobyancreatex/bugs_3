@@ -73,11 +73,7 @@ final class HomeCategoryCell: UICollectionViewCell {
         contentView.alpha = 1
         isUserInteractionEnabled = true
         titleLabel.text = viewModel.title
-        RemoteImageLoader.load(
-            into: iconView,
-            placeholderAssetName: viewModel.imageAssetName,
-            url: viewModel.imageURL
-        )
+        RemoteImageLoader.load(into: iconView, url: viewModel.imageURL)
     }
 
     /// Invisible cell that keeps grid slot (Library incomplete rows).

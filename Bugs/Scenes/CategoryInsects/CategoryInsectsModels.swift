@@ -8,15 +8,19 @@ import Foundation
 enum CategoryInsects {
 
     struct InsectDefinition {
-        let titleLocalizationKey: String
-        let subtitleLocalizationKey: String
-        let imageAssetName: String
-    }
-
-    struct InsectCellViewModel {
+        let insectId: String?
         let title: String
         let subtitle: String
         let imageAssetName: String
+        let imageURL: URL?
+    }
+
+    struct InsectCellViewModel {
+        let insectId: String?
+        let title: String
+        let subtitle: String
+        let imageAssetName: String
+        let imageURL: URL?
     }
 
     enum Present {
@@ -26,8 +30,12 @@ enum CategoryInsects {
         struct Response {
             let insects: [InsectDefinition]
             let searchQuery: String
+            let isLoading: Bool
+            let isLoadingMore: Bool
         }
         struct ViewModel {
+            let isLoading: Bool
+            let isLoadingMore: Bool
             let rows: [InsectCellViewModel]
             let showsEmptySearchState: Bool
         }

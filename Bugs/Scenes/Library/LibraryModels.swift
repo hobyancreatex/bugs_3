@@ -7,13 +7,15 @@ import Foundation
 
 enum Library {
 
-    struct CategoryDefinition {
-        let titleLocalizationKey: String
+    struct CategoryDefinition: Equatable {
+        let displayTitle: String
+        let routingKey: String
         let imageAssetName: String
+        let imageURL: URL?
     }
 
     enum CellItem: Equatable {
-        case category(title: String, titleLocalizationKey: String, imageAssetName: String)
+        case category(title: String, routingKey: String, imageAssetName: String, imageURL: URL?)
         case spacer
     }
 
@@ -24,8 +26,10 @@ enum Library {
         struct Response {
             let definitions: [CategoryDefinition]
             let searchQuery: String
+            let isLoading: Bool
         }
         struct ViewModel {
+            let isLoading: Bool
             let cellItems: [CellItem]
             let showsEmptySearchState: Bool
         }

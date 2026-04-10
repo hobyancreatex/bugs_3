@@ -25,6 +25,8 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         return v
     }()
 
+    private let contentLoadingOverlay = ContentLoadingOverlayView()
+
     private lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: LibraryCompositionalLayoutBuilder.makeLayout())
         cv.backgroundColor = .clear
@@ -96,6 +98,7 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         view.addSubview(insetSearchField)
         view.addSubview(collectionView)
         view.addSubview(emptySearchStateView)
+        view.addSubview(contentLoadingOverlay)
 
         let safe = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -110,7 +113,12 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
 
             emptySearchStateView.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 32),
             emptySearchStateView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
-            emptySearchStateView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -24)
+            emptySearchStateView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -24),
+
+            contentLoadingOverlay.topAnchor.constraint(equalTo: insetSearchField.bottomAnchor, constant: 20),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
         ])
     }
 
@@ -126,6 +134,13 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
     }
 
     func displayCategories(viewModel: Library.Present.ViewModel) {
+        contentLoadingOverlay.setActive(viewModel.isLoading)
+        if viewModel.isLoading {
+            collectionView.isHidden = true
+            emptySearchStateView.isHidden = true
+            return
+        }
+
         cellItems = viewModel.cellItems
         emptySearchStateView.isHidden = !viewModel.showsEmptySearchState
         collectionView.isHidden = viewModel.showsEmptySearchState
@@ -166,12 +181,12 @@ extension LibraryViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         switch cellItems[indexPath.item] {
-        case let .category(title, titleLocalizationKey, imageAssetName):
+        case let .category(title, routingKey, imageAssetName, imageURL):
             cell.configure(with: Home.CategoryCellViewModel(
                 title: title,
-                categoryLocalizationKey: titleLocalizationKey,
+                categoryLocalizationKey: routingKey,
                 imageAssetName: imageAssetName,
-                imageURL: nil
+                imageURL: imageURL
             ))
         case .spacer:
             cell.configureAsSpacer()
@@ -184,8 +199,8 @@ extension LibraryViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard case let .category(_, titleLocalizationKey, _) = cellItems[indexPath.item] else { return }
-        let insectsList = CategoryInsectsConfigurator.assemble(categoryLocalizationKey: titleLocalizationKey)
+        guard case let .category(_, routingKey, _, _) = cellItems[indexPath.item] else { return }
+        let insectsList = CategoryInsectsConfigurator.assemble(categoryLocalizationKey: routingKey)
         navigationController?.pushViewController(insectsList, animated: true)
     }
 }

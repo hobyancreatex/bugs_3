@@ -15,7 +15,12 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
 
     let categoryLocalizationKey: String
 
+    private static let loadMoreFooterReuseId = "CategoryInsectsLoadMoreFooter"
+    private let loadMoreIndicatorTag = 9_001
+
     private var rows: [CategoryInsects.InsectCellViewModel] = []
+    private var isLoadingMore = false
+    private var isInitialListLoading = false
     private var lastCollectionWidthForLayout: CGFloat = 0
 
     private let insetSearchField = InsetSearchFieldView()
@@ -26,6 +31,8 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         v.isHidden = true
         return v
     }()
+
+    private let contentLoadingOverlay = ContentLoadingOverlayView()
 
     private lazy var listLayout: UICollectionViewFlowLayout = {
         let l = UICollectionViewFlowLayout()
@@ -44,6 +51,11 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.contentInsetAdjustmentBehavior = .always
         cv.register(CategoryInsectsCell.self, forCellWithReuseIdentifier: CategoryInsectsCell.reuseIdentifier)
+        cv.register(
+            UICollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: Self.loadMoreFooterReuseId
+        )
         return cv
     }()
 
@@ -59,7 +71,9 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
-        navigationItem.title = L10n.string(categoryLocalizationKey)
+        navigationItem.title = categoryLocalizationKey.contains(".")
+            ? L10n.string(categoryLocalizationKey)
+            : categoryLocalizationKey
         configureNavigationBar()
         configureBackButton()
         configureSearchField()
@@ -111,6 +125,7 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         view.addSubview(insetSearchField)
         view.addSubview(collectionView)
         view.addSubview(emptySearchStateView)
+        view.addSubview(contentLoadingOverlay)
 
         let safe = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -125,7 +140,12 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
 
             emptySearchStateView.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 32),
             emptySearchStateView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
-            emptySearchStateView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -24)
+            emptySearchStateView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -24),
+
+            contentLoadingOverlay.topAnchor.constraint(equalTo: insetSearchField.bottomAnchor, constant: 20),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
         ])
     }
 
@@ -141,6 +161,16 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
     }
 
     func displayInsects(viewModel: CategoryInsects.Present.ViewModel) {
+        contentLoadingOverlay.setActive(viewModel.isLoading)
+        isInitialListLoading = viewModel.isLoading
+        if viewModel.isLoading {
+            isLoadingMore = false
+            collectionView.isHidden = true
+            emptySearchStateView.isHidden = true
+            return
+        }
+
+        isLoadingMore = viewModel.isLoadingMore
         rows = viewModel.rows
         emptySearchStateView.isHidden = !viewModel.showsEmptySearchState
         collectionView.isHidden = viewModel.showsEmptySearchState
@@ -183,6 +213,35 @@ extension CategoryInsectsViewController: UICollectionViewDataSource {
         cell.configure(with: rows[indexPath.item])
         return cell
     }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: Self.loadMoreFooterReuseId,
+            for: indexPath
+        )
+        guard kind == UICollectionView.elementKindSectionFooter else { return view }
+        let spinner: UIActivityIndicatorView
+        if let existing = view.viewWithTag(loadMoreIndicatorTag) as? UIActivityIndicatorView {
+            spinner = existing
+        } else {
+            let s = UIActivityIndicatorView(style: .medium)
+            s.tag = loadMoreIndicatorTag
+            s.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(s)
+            NSLayoutConstraint.activate([
+                s.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                s.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            ])
+            spinner = s
+        }
+        spinner.startAnimating()
+        return view
+    }
 }
 
 extension CategoryInsectsViewController: UICollectionViewDelegateFlowLayout {
@@ -196,14 +255,52 @@ extension CategoryInsectsViewController: UICollectionViewDelegateFlowLayout {
         let w = max(0, collectionView.bounds.width - horizontalInset)
         return CGSize(width: w, height: 104)
     }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForFooterInSection section: Int
+    ) -> CGSize {
+        guard isLoadingMore else { return .zero }
+        let w = max(0, collectionView.bounds.width)
+        return CGSize(width: w, height: 44)
+    }
 }
 
 extension CategoryInsectsViewController: UICollectionViewDelegate {
 
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didEndDisplaying cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        if let insectCell = cell as? CategoryInsectsCell {
+            insectCell.cancelCoverImageLoadIfNeeded()
+        }
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        guard !isInitialListLoading, !isLoadingMore, !rows.isEmpty else { return }
+        let threshold = 5
+        let triggerIndex = max(0, rows.count - threshold)
+        if indexPath.item >= triggerIndex {
+            interactor?.loadMoreInsects()
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let asset = rows[indexPath.item].imageAssetName
-        let detail = InsectDetailConfigurator.assemble(heroImageAssetName: asset, isInCollection: false)
+        let row = rows[indexPath.item]
+        let detail = InsectDetailConfigurator.assemble(
+            heroImageAssetName: row.imageAssetName,
+            heroImageURL: row.imageURL,
+            insectId: row.insectId,
+            isInCollection: false
+        )
         navigationController?.pushViewController(detail, animated: true)
     }
 }

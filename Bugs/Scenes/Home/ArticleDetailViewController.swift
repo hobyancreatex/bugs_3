@@ -61,11 +61,7 @@ final class ArticleDetailViewController: UIViewController {
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
         heroImageView.contentMode = .scaleAspectFill
         heroImageView.clipsToBounds = true
-        RemoteImageLoader.load(
-            into: heroImageView,
-            placeholderAssetName: viewModel.heroImageAssetName,
-            url: viewModel.heroImageURL
-        )
+        RemoteImageLoader.load(into: heroImageView, url: viewModel.heroImageURL)
         heroContainer.addSubview(heroImageView)
 
         contentStack.addArrangedSubview(heroContainer)

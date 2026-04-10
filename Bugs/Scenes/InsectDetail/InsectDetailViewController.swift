@@ -6,6 +6,7 @@
 import UIKit
 
 protocol InsectDetailDisplayLogic: AnyObject {
+    func displayLoading(_ active: Bool)
     func displayDetail(viewModel: InsectDetail.Load.ViewModel)
 }
 
@@ -40,7 +41,13 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var addToCollectionSuccessOverlay: InsectDetailAddToCollectionSuccessOverlay?
 
     private var galleryAssetNames: [String] = []
+    private var galleryImageURLs: [URL?] = []
     private var heroAssetName: String = ""
+    private var heroImageURL: URL?
+
+    private let contentLoadingOverlay = ContentLoadingOverlayView()
+
+    private var galleryCollectionHeightConstraint: NSLayoutConstraint!
 
     private let deleteFromCollectionButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -237,13 +244,22 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var lastClassificationLayoutWidth: CGFloat = 0
 
     private let bitesPlaque = InsectSectionHeaderPlaqueView()
+    private let bitesBlockHolder = UIView()
+    private let bitesBlockView = InsectDetailBitesBlockView()
 
-    private let bitesPlaceholderView: UIView = {
-        let v = UIView()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = .clear
-        return v
+    private lazy var bitesColumnStack: UIStackView = {
+        let s = UIStackView(arrangedSubviews: [bitesPlaque, bitesBlockHolder])
+        s.axis = .vertical
+        s.alignment = .leading
+        s.spacing = 12
+        s.translatesAutoresizingMaskIntoConstraints = false
+        return s
     }()
+
+    private var bitesColumnStackTopConstraint: NSLayoutConstraint!
+    private var classificationTopToBitesColumnConstraint: NSLayoutConstraint!
+    private var bitesBlockHolderWidthConstraint: NSLayoutConstraint!
+    private var showsBitesSection = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -339,6 +355,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private func buildLayout() {
         view.addSubview(scrollView)
+        view.addSubview(contentLoadingOverlay)
         scrollView.addSubview(contentView)
         contentView.addSubview(heroImageView)
         contentView.addSubview(galleryCollectionView)
@@ -349,8 +366,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         contentView.addSubview(descriptionTextView)
         contentView.addSubview(characteristicsPlaque)
         contentView.addSubview(characteristicsTableView)
-        contentView.addSubview(bitesPlaque)
-        contentView.addSubview(bitesPlaceholderView)
+        bitesBlockHolder.translatesAutoresizingMaskIntoConstraints = false
+        bitesBlockHolder.addSubview(bitesBlockView)
+        contentView.addSubview(bitesColumnStack)
         contentView.addSubview(classificationPlaque)
         contentView.addSubview(classificationTableView)
         view.addSubview(backButton)
@@ -400,9 +418,13 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             galleryCollectionView.topAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: 4),
             galleryCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             galleryCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            galleryCollectionView.heightAnchor.constraint(equalToConstant: 128),
 
             titleLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 20),
+
+            contentLoadingOverlay.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
@@ -429,15 +451,14 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             characteristicsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             characteristicsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            bitesPlaque.topAnchor.constraint(equalTo: characteristicsTableView.bottomAnchor, constant: 20),
-            bitesPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bitesColumnStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bitesColumnStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            bitesPlaceholderView.topAnchor.constraint(equalTo: bitesPlaque.bottomAnchor, constant: 12),
-            bitesPlaceholderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bitesPlaceholderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            bitesPlaceholderView.heightAnchor.constraint(equalToConstant: 200),
+            bitesBlockView.topAnchor.constraint(equalTo: bitesBlockHolder.topAnchor),
+            bitesBlockView.bottomAnchor.constraint(equalTo: bitesBlockHolder.bottomAnchor),
+            bitesBlockView.leadingAnchor.constraint(equalTo: bitesBlockHolder.leadingAnchor, constant: 16),
+            bitesBlockView.trailingAnchor.constraint(equalTo: bitesBlockHolder.trailingAnchor, constant: -16),
 
-            classificationPlaque.topAnchor.constraint(equalTo: bitesPlaceholderView.bottomAnchor, constant: 20),
             classificationPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 
             classificationTableView.topAnchor.constraint(equalTo: classificationPlaque.bottomAnchor, constant: 12),
@@ -446,6 +467,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
             contentView.bottomAnchor.constraint(equalTo: classificationTableView.bottomAnchor, constant: 24)
         ])
+
+        galleryCollectionHeightConstraint = galleryCollectionView.heightAnchor.constraint(equalToConstant: 128)
+        galleryCollectionHeightConstraint.isActive = true
 
         NSLayoutConstraint.activate([
             deleteFromCollectionButton.widthAnchor.constraint(equalToConstant: 32),
@@ -459,6 +483,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             addToCollectionControl.heightAnchor.constraint(equalToConstant: 56)
         ])
 
+        view.bringSubviewToFront(contentLoadingOverlay)
         if !suppressesBackButton {
             view.bringSubviewToFront(backButton)
         }
@@ -471,6 +496,24 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         characteristicsTableHeightConstraint.isActive = true
         classificationTableHeightConstraint = classificationTableView.heightAnchor.constraint(equalToConstant: 1)
         classificationTableHeightConstraint.isActive = true
+
+        bitesColumnStackTopConstraint = bitesColumnStack.topAnchor.constraint(
+            equalTo: characteristicsTableView.bottomAnchor,
+            constant: 0
+        )
+        classificationTopToBitesColumnConstraint = classificationPlaque.topAnchor.constraint(
+            equalTo: bitesColumnStack.bottomAnchor,
+            constant: 20
+        )
+        bitesBlockHolderWidthConstraint = bitesBlockHolder.widthAnchor.constraint(equalTo: contentView.widthAnchor)
+        NSLayoutConstraint.activate([
+            bitesColumnStackTopConstraint,
+            classificationTopToBitesColumnConstraint,
+            bitesBlockHolderWidthConstraint,
+        ])
+        bitesPlaque.isHidden = true
+        bitesBlockHolder.isHidden = true
+        bitesColumnStackTopConstraint.constant = 0
     }
 
     private static func statusIconView(named: String) -> UIImageView {
@@ -610,10 +653,26 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         })
     }
 
+    func displayLoading(_ active: Bool) {
+        contentLoadingOverlay.setActive(active)
+        scrollView.isHidden = active
+    }
+
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
+        contentLoadingOverlay.setActive(false)
+        scrollView.isHidden = false
         heroAssetName = viewModel.heroImageAssetName
-        heroImageView.image = UIImage(named: viewModel.heroImageAssetName)
+        heroImageURL = viewModel.heroImageURL
+        RemoteImageLoader.load(
+            into: heroImageView,
+            url: viewModel.heroImageURL,
+            animatedTransition: false
+        )
         galleryAssetNames = viewModel.galleryImageAssetNames
+        galleryImageURLs = viewModel.galleryImageURLs
+        let gh: CGFloat = viewModel.galleryImageAssetNames.isEmpty ? 0 : 128
+        galleryCollectionHeightConstraint.constant = gh
+        galleryCollectionView.isHidden = viewModel.galleryImageAssetNames.isEmpty
         galleryCollectionView.reloadData()
         titleLabel.text = viewModel.scientificTitle
         applyLeftHazardStatus(viewModel.leftHazardStatus, text: viewModel.leftStatusText)
@@ -633,8 +692,26 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         classificationPlaque.setTitle(viewModel.classificationSectionTitle)
         lastClassificationLayoutWidth = 0
         classificationTableView.reloadData()
+
+        showsBitesSection = viewModel.showsBitesSection
+        bitesPlaque.isHidden = !viewModel.showsBitesSection
+        bitesBlockHolder.isHidden = !viewModel.showsBitesSection
+        bitesColumnStackTopConstraint.constant = viewModel.showsBitesSection ? 20 : 0
         bitesPlaque.setTitle(viewModel.bitesSectionTitle)
+        if viewModel.showsBitesSection {
+            bitesBlockView.configure(
+                intro: viewModel.bitesIntro,
+                firstAidTitle: viewModel.bitesFirstAidTitle,
+                bullets: viewModel.bitesBulletLines,
+                imageURLs: viewModel.bitePhotoURLs
+            )
+        } else {
+            bitesBlockView.configure(intro: "", firstAidTitle: "", bullets: [], imageURLs: [])
+        }
         view.setNeedsLayout()
+        view.layoutIfNeeded()
+        updateCharacteristicsTableHeight()
+        updateClassificationTableHeight()
     }
 
     private func updateCharacteristicsTableHeight() {
@@ -642,6 +719,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             characteristicsTableHeightConstraint.constant = 0
             return
         }
+        let relaxed: CGFloat = 50_000
+        characteristicsTableHeightConstraint.constant = relaxed
+        view.layoutIfNeeded()
         characteristicsTableView.layoutIfNeeded()
         let h = characteristicsTableView.contentSize.height
         characteristicsTableHeightConstraint.constant = max(1, ceil(h))
@@ -652,6 +732,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             classificationTableHeightConstraint.constant = 0
             return
         }
+        let relaxed: CGFloat = 50_000
+        classificationTableHeightConstraint.constant = relaxed
+        view.layoutIfNeeded()
         classificationTableView.layoutIfNeeded()
         let h = classificationTableView.contentSize.height
         classificationTableHeightConstraint.constant = max(1, ceil(h))
@@ -687,10 +770,18 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     @objc
     private func heroImageTapped() {
-        presentImageGallery(initialAssetName: heroAssetName)
+        presentImageGallery(initialURL: heroImageURL, initialAssetName: heroAssetName)
     }
 
-    private func presentImageGallery(initialAssetName: String?) {
+    /// Сначала полноэкранная галерея по реальным URL; если их нет — по ассетам (stub).
+    private func presentImageGallery(initialURL: URL? = nil, initialAssetName: String? = nil) {
+        let urls = Self.orderedUniqueURLs(hero: heroImageURL, gallery: galleryImageURLs)
+        if !urls.isEmpty {
+            let idx = Self.indexOfURL(initialURL, in: urls) ?? 0
+            let vc = InsectImageGalleryViewController(imageURLs: urls, initialIndex: idx)
+            present(vc, animated: true)
+            return
+        }
         let names = Self.orderedUniqueImageNames(hero: heroAssetName, gallery: galleryAssetNames)
         guard !names.isEmpty else { return }
         let idx: Int
@@ -701,6 +792,25 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         }
         let vc = InsectImageGalleryViewController(imageAssetNames: names, initialIndex: idx)
         present(vc, animated: true)
+    }
+
+    private static func orderedUniqueURLs(hero: URL?, gallery: [URL?]) -> [URL] {
+        var seen = Set<String>()
+        var out: [URL] = []
+        let sequence: [URL?] = [hero] + gallery
+        for u in sequence {
+            guard let u else { continue }
+            let key = u.absoluteString
+            guard seen.insert(key).inserted else { continue }
+            out.append(u)
+        }
+        return out
+    }
+
+    private static func indexOfURL(_ url: URL?, in urls: [URL]) -> Int? {
+        guard let url else { return nil }
+        let key = url.absoluteString
+        return urls.firstIndex { $0.absoluteString == key }
     }
 
     private static func orderedUniqueImageNames(hero: String, gallery: [String]) -> [String] {
@@ -745,7 +855,8 @@ extension InsectDetailViewController: UICollectionViewDataSource {
         ) as? InsectDetailGalleryCell else {
             return UICollectionViewCell()
         }
-        cell.configure(imageAssetName: galleryAssetNames[indexPath.item])
+        let url = indexPath.item < galleryImageURLs.count ? galleryImageURLs[indexPath.item] : nil
+        cell.configure(imageURL: url)
         return cell
     }
 }
@@ -755,7 +866,9 @@ extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView === galleryCollectionView else { return }
         guard indexPath.item < galleryAssetNames.count else { return }
-        presentImageGallery(initialAssetName: galleryAssetNames[indexPath.item])
+        let url = indexPath.item < galleryImageURLs.count ? galleryImageURLs[indexPath.item] : nil
+        let name = galleryAssetNames[indexPath.item]
+        presentImageGallery(initialURL: url, initialAssetName: name)
     }
 }
 

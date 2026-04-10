@@ -10,6 +10,17 @@ enum CollectHomePayloadError: Error {
     case unexpectedShape
 }
 
+/// Элемент каталога `GET insects/` (для фильтра по категории на клиенте).
+struct CollectCatalogInsect: Equatable {
+    let title: String
+    let subtitle: String
+    let imageURL: URL?
+    /// Идентификатор для `GET insects/{id}/`, если бэкенд отдаёт в списке.
+    let id: String?
+    /// Нормализованные строки для сопоставления с `categoryRoutingKey` (имя порядка, slug, id).
+    let categoryMatchKeys: [String]
+}
+
 /// Достаёт массив объектов из ответа Collect API (корень, `insects_payload`, вложенные списки).
 enum CollectHomeListPayload {
     private static let nestedArrayKeys = [
@@ -98,7 +109,9 @@ enum CollectHomeDTOMapper {
                 "preview", "preview_image", "hero_image",
             ]
         )
+        let insectId = CollectHomeListPayload.pickString(dict, keys: ["id", "pk", "insect_id", "uuid"])
         return Home.PopularInsectItemResponse(
+            insectId: insectId,
             displayTitle: title,
             imageAssetName: "home_popular_insect",
             badgeAssetName: "home_popular_badge",
@@ -153,5 +166,57 @@ enum CollectHomeDTOMapper {
             return [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: content)]
         }
         return []
+    }
+
+    static func catalogInsect(_ dict: [String: Any]) -> CollectCatalogInsect? {
+        guard let title = CollectHomeListPayload.pickString(
+            dict,
+            keys: ["name", "common_name", "title", "species", "label"]
+        ) else {
+            return nil
+        }
+        let subtitle = CollectHomeListPayload.pickString(
+            dict,
+            keys: ["scientific_name", "latin_name", "species_name", "description", "subtitle"]
+        ) ?? ""
+        let imageURL = CollectHomeListPayload.pickURL(
+            dict,
+            keys: [
+                "image", "image_url", "photo", "thumbnail", "thumbnail_url", "cover",
+                "preview", "preview_image", "hero_image",
+            ]
+        )
+        let id = CollectHomeListPayload.pickString(dict, keys: ["id", "pk", "insect_id", "uuid"])
+        return CollectCatalogInsect(
+            title: title,
+            subtitle: subtitle,
+            imageURL: imageURL,
+            id: id,
+            categoryMatchKeys: categoryMatchKeys(from: dict)
+        )
+    }
+
+    private static func categoryMatchKeys(from dict: [String: Any]) -> [String] {
+        var keys: Set<String> = []
+        func add(_ raw: String?) {
+            guard let s = raw?.trimmingCharacters(in: .whitespacesAndNewlines), !s.isEmpty else { return }
+            keys.insert(s.lowercased())
+        }
+        add(CollectHomeListPayload.pickString(dict, keys: [
+            "category", "category_name", "order", "order_name", "insect_order", "taxon_order",
+        ]))
+        if let s = dict["category"] as? String {
+            add(s)
+        }
+        if let nested = dict["category"] as? [String: Any] {
+            add(CollectHomeListPayload.pickString(nested, keys: ["name", "title", "slug", "label"]))
+            add(CollectHomeListPayload.pickString(nested, keys: ["id"]))
+        }
+        if let nested = dict["insect_category"] as? [String: Any] {
+            add(CollectHomeListPayload.pickString(nested, keys: ["name", "title", "slug", "label"]))
+            add(CollectHomeListPayload.pickString(nested, keys: ["id"]))
+        }
+        add(CollectHomeListPayload.pickString(dict, keys: ["category_id", "insect_category_id"]))
+        return Array(keys)
     }
 }
