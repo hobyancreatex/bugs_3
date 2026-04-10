@@ -18,7 +18,7 @@ final class LaunchSplashViewController: UIViewController {
 
     private let animationView = LottieAnimationView(name: "loading", bundle: .main)
 
-    private var finishWorkItem: DispatchWorkItem?
+    private var launchTask: Task<Void, Never>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,23 +44,28 @@ final class LaunchSplashViewController: UIViewController {
         super.viewDidAppear(animated)
         animationView.play()
 
-        finishWorkItem?.cancel()
-        let work = DispatchWorkItem { [weak self] in
-            self?.transitionToMain()
+        launchTask?.cancel()
+        launchTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            async let minSplash: Void = {
+                try? await Task.sleep(nanoseconds: 3_000_000_000)
+            }()
+            await AuthBootstrapper.shared.bootstrapIfNeeded()
+            await minSplash
+            guard !Task.isCancelled else { return }
+            transitionToMain()
         }
-        finishWorkItem = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: work)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        finishWorkItem?.cancel()
-        finishWorkItem = nil
+        launchTask?.cancel()
+        launchTask = nil
     }
 
     private func transitionToMain() {
         guard let window = view.window else { return }
-        finishWorkItem = nil
+        launchTask = nil
         let next: UIViewController = SubscriptionManager.shared.isSubscriptionActive
             ? MainTabBarController()
             : OnboardingViewController()
