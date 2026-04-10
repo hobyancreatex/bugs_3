@@ -10,8 +10,7 @@ import UIKit
 final class RecognitionMatchFoundViewController: UIViewController {
 
     private let userPhoto: UIImage
-    private let candidateAssetNames: [String]
-    private let resultHeroAssetName: String
+    private let candidates: [RecognitionClassificationCandidate]
 
     private let closeButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -77,13 +76,23 @@ final class RecognitionMatchFoundViewController: UIViewController {
 
     /// - Parameters:
     ///   - userPhoto: Кадр пользователя (как на экране загрузки).
-    ///   - candidateAssetNames: До четырёх имён ассетов для сетки (заглушка до API).
-    ///   - resultHeroAssetName: Герой для экрана результата после подписки.
-    init(userPhoto: UIImage, candidateAssetNames: [String], resultHeroAssetName: String = "home_popular_insect") {
+    ///   - candidates: До четырёх кандидатов для сетки и пейджера (URL с API или ассеты-заглушки).
+    init(userPhoto: UIImage, candidates: [RecognitionClassificationCandidate]) {
         self.userPhoto = userPhoto
-        self.candidateAssetNames = candidateAssetNames
-        self.resultHeroAssetName = resultHeroAssetName
+        self.candidates = candidates
         super.init(nibName: nil, bundle: nil)
+    }
+
+    /// Заглушка по ассетам (порядок: герой, затем сетка).
+    convenience init(userPhoto: UIImage, candidateAssetNames: [String], resultHeroAssetName: String = "home_popular_insect") {
+        var ordered: [String] = []
+        for name in [resultHeroAssetName] + candidateAssetNames where !ordered.contains(name) {
+            ordered.append(name)
+        }
+        if ordered.isEmpty {
+            ordered = ["home_popular_insect"]
+        }
+        self.init(userPhoto: userPhoto, candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(ordered))
     }
 
     required init?(coder: NSCoder) {
@@ -122,13 +131,6 @@ final class RecognitionMatchFoundViewController: UIViewController {
             ])
             checksStack.addArrangedSubview(iv)
         }
-
-        var candidateImages: [UIImage] = candidateAssetNames.prefix(4).compactMap { UIImage(named: $0) }
-        let fallbackThumb = UIImage(named: "home_popular_insect")
-        while candidateImages.count < 4, let f = fallbackThumb {
-            candidateImages.append(f)
-        }
-        candidatesGrid.images = candidateImages
 
         candidatesGrid.translatesAutoresizingMaskIntoConstraints = false
         gridContainer.addSubview(candidatesGrid)
@@ -190,6 +192,12 @@ final class RecognitionMatchFoundViewController: UIViewController {
         }
 
         updateSubscriptionGatedUI()
+
+        Task { [weak self] in
+            guard let self else { return }
+            let images = await Self.gridThumbnails(for: self.candidates)
+            await MainActor.run { self.candidatesGrid.images = images }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -219,15 +227,32 @@ final class RecognitionMatchFoundViewController: UIViewController {
     }
 
     private func openRecognitionResult() {
-        var ordered: [String] = []
-        for name in [resultHeroAssetName] + candidateAssetNames where !ordered.contains(name) {
-            ordered.append(name)
-        }
-        if ordered.isEmpty {
-            ordered = ["home_popular_insect", "home_article_cover", "home_category_thumbnail"]
-        }
-        let pager = RecognitionResultsPagerViewController(heroImageAssetNames: ordered)
+        let pager = RecognitionResultsPagerViewController(candidates: candidates)
         navigationController?.pushViewController(pager, animated: true)
+    }
+
+    /// Только успешно загруженные превью по кандидатам API (или ассетам заглушки), без дозаполнения до 4.
+    private static func gridThumbnails(for candidates: [RecognitionClassificationCandidate]) async -> [UIImage] {
+        let slice = Array(candidates.prefix(4))
+        var images: [UIImage] = []
+        for c in slice {
+            if let url = c.thumbnailURL ?? c.heroImageURL, let img = await loadImage(from: url) {
+                images.append(img)
+            } else if let name = c.thumbnailAssetName, let img = UIImage(named: name) {
+                images.append(img)
+            }
+        }
+        return images
+    }
+
+    private static func loadImage(from url: URL) async -> UIImage? {
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let http = response as? HTTPURLResponse, (200 ..< 300).contains(http.statusCode) else { return nil }
+            return UIImage(data: data)
+        } catch {
+            return nil
+        }
     }
 
     private static func lightCloseImage() -> UIImage? {

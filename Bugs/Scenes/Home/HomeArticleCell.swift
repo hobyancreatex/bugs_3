@@ -64,6 +64,9 @@ final class HomeArticleCell: UICollectionViewCell {
 
         let imageSide: CGFloat = 115
 
+        let textCenterY = textStack.centerYAnchor.constraint(equalTo: cardView.centerYAnchor)
+        textCenterY.priority = .defaultHigh
+
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -78,8 +81,9 @@ final class HomeArticleCell: UICollectionViewCell {
 
             textStack.leadingAnchor.constraint(equalTo: coverImageView.trailingAnchor, constant: 16),
             textStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -16),
-            textStack.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 12),
-            textStack.bottomAnchor.constraint(lessThanOrEqualTo: cardView.bottomAnchor, constant: -12)
+            textCenterY,
+            textStack.topAnchor.constraint(greaterThanOrEqualTo: cardView.topAnchor, constant: 12),
+            textStack.bottomAnchor.constraint(lessThanOrEqualTo: cardView.bottomAnchor, constant: -12),
         ])
     }
 

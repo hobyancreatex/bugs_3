@@ -8,7 +8,9 @@ import UIKit
 /// Несколько экранов детализации насекомого с горизонтальным свайпом; общая кнопка «назад».
 final class RecognitionResultsPagerViewController: UIViewController {
 
-    private let heroImageAssetNames: [String]
+    private static let fallbackHeroAssetName = "home_popular_insect"
+
+    private let candidates: [RecognitionClassificationCandidate]
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
@@ -39,11 +41,20 @@ final class RecognitionResultsPagerViewController: UIViewController {
         return b
     }()
 
-    /// - Parameter heroImageAssetNames: Имена ассетов героя для каждого результата (заглушка до API).
-    init(heroImageAssetNames: [String]) {
-        let names = heroImageAssetNames.isEmpty ? ["home_popular_insect"] : heroImageAssetNames
-        self.heroImageAssetNames = names
+    /// - Parameter candidates: Результаты классификации (URL + id) или заглушки с `thumbnailAssetName`.
+    init(candidates: [RecognitionClassificationCandidate]) {
+        if candidates.isEmpty {
+            self.candidates = RecognitionClassificationCandidate.fromLegacyAssetNames([Self.fallbackHeroAssetName])
+        } else {
+            self.candidates = candidates
+        }
         super.init(nibName: nil, bundle: nil)
+    }
+
+    /// Заглушка: только имена ассетов героя для каждого результата.
+    convenience init(heroImageAssetNames: [String]) {
+        let names = heroImageAssetNames.isEmpty ? [Self.fallbackHeroAssetName] : heroImageAssetNames
+        self.init(candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(names))
     }
 
     required init?(coder: NSCoder) {
@@ -61,7 +72,7 @@ final class RecognitionResultsPagerViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
 
-        let pageCount = heroImageAssetNames.count
+        let pageCount = candidates.count
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -77,12 +88,19 @@ final class RecognitionResultsPagerViewController: UIViewController {
         ])
 
         var previousPage: UIView?
-        for assetName in heroImageAssetNames {
+        for candidate in candidates {
             let page = UIView()
             page.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(page)
 
-            let detail = InsectDetailConfigurator.assemble(heroImageAssetName: assetName, isInCollection: false)
+            let assetName = candidate.thumbnailAssetName ?? Self.fallbackHeroAssetName
+            let insectId = candidate.insectId.trimmingCharacters(in: .whitespacesAndNewlines)
+            let detail = InsectDetailConfigurator.assemble(
+                heroImageAssetName: assetName,
+                heroImageURL: candidate.heroImageURL,
+                insectId: insectId.isEmpty ? nil : insectId,
+                isInCollection: false
+            )
             if let insectDetail = detail as? InsectDetailViewController {
                 insectDetail.suppressesBackButton = true
                 insectDetail.recognitionPagerPageCount = pageCount
@@ -147,12 +165,12 @@ final class RecognitionResultsPagerViewController: UIViewController {
         let w = scrollView.bounds.width
         guard w > 1 else { return 0 }
         let page = Int(round(scrollView.contentOffset.x / w))
-        return min(max(0, page), heroImageAssetNames.count - 1)
+        return min(max(0, page), candidates.count - 1)
     }
 
     private func scrollToPage(_ index: Int, animated: Bool) {
         let w = scrollView.bounds.width
-        guard w > 0, index >= 0, index < heroImageAssetNames.count else { return }
+        guard w > 0, index >= 0, index < candidates.count else { return }
         scrollView.setContentOffset(CGPoint(x: CGFloat(index) * w, y: 0), animated: animated)
         if !animated {
             indicatorDisplayedPage = index

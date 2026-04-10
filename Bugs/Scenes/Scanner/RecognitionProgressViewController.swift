@@ -11,8 +11,8 @@ final class RecognitionProgressViewController: UIViewController {
 
     private let backgroundImage: UIImage
 
-    private var pendingSimulatedLoadWork: DispatchWorkItem?
-    private var simulatedLoadFinished = false
+    private var classificationTask: Task<Void, Never>?
+    private var didStartClassification = false
 
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -123,49 +123,92 @@ final class RecognitionProgressViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadingAnimationView.play()
-        scheduleSimulatedRecognitionIfNeeded()
+        startClassificationIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         loadingAnimationView.pause()
-        pendingSimulatedLoadWork?.cancel()
-        pendingSimulatedLoadWork = nil
+        classificationTask?.cancel()
+        classificationTask = nil
     }
 
-    private func scheduleSimulatedRecognitionIfNeeded() {
-        guard !simulatedLoadFinished, pendingSimulatedLoadWork == nil else { return }
-        let work = DispatchWorkItem { [weak self] in
-            guard let self else { return }
-            self.pendingSimulatedLoadWork = nil
-            self.simulatedLoadFinished = true
-            guard let nav = self.navigationController, nav.topViewController === self else { return }
-            _ = SubscriptionManager.shared.checkSubscriptionStatus()
-            if SubscriptionAccess.shared.isPremiumActive {
-                let resultHeroes = [
-                    "home_popular_insect",
-                    "home_article_cover",
-                    "home_category_thumbnail",
-                ]
-                let pager = RecognitionResultsPagerViewController(heroImageAssetNames: resultHeroes)
-                nav.pushViewController(pager, animated: true)
+    private func startClassificationIfNeeded() {
+        guard !didStartClassification else { return }
+        didStartClassification = true
+        CollectAPILogger.log("classification: UI viewDidAppear → scheduling upload task")
+
+        classificationTask = Task { [weak self] in
+            CollectAPILogger.log("classification: task started (will POST classification/)")
+            guard let self else {
+                CollectAPILogger.log("classification: task exit — view controller deallocated before work")
                 return
             }
-            let candidateAssetNames = [
-                "home_popular_insect",
-                "home_article_cover",
-                "home_category_thumbnail",
-                "home_category_thumbnail",
-            ]
-            let match = RecognitionMatchFoundViewController(
-                userPhoto: self.backgroundImage,
-                candidateAssetNames: candidateAssetNames,
-                resultHeroAssetName: "home_popular_insect"
-            )
-            nav.pushViewController(match, animated: true)
+            guard let jpeg = Self.jpegDataForClassificationUpload(self.backgroundImage) else {
+                CollectAPILogger.log("classification: abort — failed to build JPEG from capture")
+                await MainActor.run { self.navigateAfterFailure() }
+                return
+            }
+            CollectAPILogger.log("classification: JPEG \(jpeg.count) bytes, sending multipart…")
+            do {
+                let data = try await CollectAPIClient.shared.postClassification(imageJPEGData: jpeg)
+                await MainActor.run { self.navigateAfterSuccess(responseData: data) }
+            } catch is CancellationError {
+                CollectAPILogger.log("classification: cancelled (user left screen or new task)")
+            } catch {
+                CollectAPILogger.log("classification: failed — \(error.localizedDescription)")
+                await MainActor.run { self.navigateAfterFailure() }
+            }
         }
-        pendingSimulatedLoadWork = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: work)
+    }
+
+    private func navigateAfterSuccess(responseData: Data) {
+        CollectAPILogger.log("classification: success, response \(responseData.count) bytes (see RESPONSE log above)")
+        let candidates: [RecognitionClassificationCandidate]
+        do {
+            let root = try CollectClassificationParsing.decode(responseData)
+            candidates = CollectClassificationParsing.candidates(from: root)
+        } catch {
+            CollectAPILogger.log("classification: JSON decode failed — \(error.localizedDescription)")
+            navigateAfterFailure()
+            return
+        }
+        guard !candidates.isEmpty else {
+            CollectAPILogger.log("classification: empty results → no-match")
+            navigateAfterFailure()
+            return
+        }
+        CollectAPILogger.log(
+            "classification: \(candidates.count) candidate(s) ids=\(candidates.map(\.insectId).joined(separator: ","))"
+        )
+        guard let nav = navigationController, nav.topViewController === self else { return }
+        _ = SubscriptionManager.shared.checkSubscriptionStatus()
+        if SubscriptionAccess.shared.isPremiumActive {
+            let pager = RecognitionResultsPagerViewController(candidates: candidates)
+            nav.pushViewController(pager, animated: true)
+            return
+        }
+        let match = RecognitionMatchFoundViewController(userPhoto: backgroundImage, candidates: candidates)
+        nav.pushViewController(match, animated: true)
+    }
+
+    private func navigateAfterFailure() {
+        guard let nav = navigationController, nav.topViewController === self else { return }
+        nav.pushViewController(RecognitionNoMatchViewController(), animated: true)
+    }
+
+    /// Длинная сторона не больше 2048 pt, JPEG ~0.88 — умеренный размер тела запроса.
+    private static func jpegDataForClassificationUpload(_ image: UIImage) -> Data? {
+        let maxSide: CGFloat = 2048
+        let size = image.size
+        let longest = max(size.width, size.height)
+        let scale = longest > maxSide ? maxSide / longest : 1
+        let target = CGSize(width: size.width * scale, height: size.height * scale)
+        let renderer = UIGraphicsImageRenderer(size: target)
+        let scaled = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: target))
+        }
+        return scaled.jpegData(compressionQuality: 0.88)
     }
 
     @objc
