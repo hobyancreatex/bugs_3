@@ -170,7 +170,8 @@ extension LibraryViewController: UICollectionViewDataSource {
             cell.configure(with: Home.CategoryCellViewModel(
                 title: title,
                 categoryLocalizationKey: titleLocalizationKey,
-                imageAssetName: imageAssetName
+                imageAssetName: imageAssetName,
+                imageURL: nil
             ))
         case .spacer:
             cell.configureAsSpacer()

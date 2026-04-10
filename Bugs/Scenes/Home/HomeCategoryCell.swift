@@ -22,6 +22,7 @@ final class HomeCategoryCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
+        iv.layer.cornerRadius = 20
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
@@ -52,10 +53,10 @@ final class HomeCategoryCell: UICollectionViewCell {
             circleView.widthAnchor.constraint(equalToConstant: 56),
             circleView.heightAnchor.constraint(equalToConstant: 56),
 
-            iconView.topAnchor.constraint(equalTo: circleView.topAnchor),
-            iconView.leadingAnchor.constraint(equalTo: circleView.leadingAnchor),
-            iconView.trailingAnchor.constraint(equalTo: circleView.trailingAnchor),
-            iconView.bottomAnchor.constraint(equalTo: circleView.bottomAnchor),
+            iconView.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
+            iconView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
+            iconView.widthAnchor.constraint(equalToConstant: 40),
+            iconView.heightAnchor.constraint(equalToConstant: 40),
 
             titleLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 4),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -72,11 +73,16 @@ final class HomeCategoryCell: UICollectionViewCell {
         contentView.alpha = 1
         isUserInteractionEnabled = true
         titleLabel.text = viewModel.title
-        iconView.image = UIImage(named: viewModel.imageAssetName)
+        RemoteImageLoader.load(
+            into: iconView,
+            placeholderAssetName: viewModel.imageAssetName,
+            url: viewModel.imageURL
+        )
     }
 
     /// Invisible cell that keeps grid slot (Library incomplete rows).
     func configureAsSpacer() {
+        RemoteImageLoader.cancelLoad(for: iconView)
         contentView.alpha = 0
         isUserInteractionEnabled = false
         titleLabel.text = nil
@@ -85,6 +91,7 @@ final class HomeCategoryCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: iconView)
         contentView.alpha = 1
         isUserInteractionEnabled = true
         titleLabel.text = nil

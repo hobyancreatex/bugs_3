@@ -39,14 +39,14 @@ final class CollectAuthService {
     }
 
     func signUp(credentials: CollectAuthCredentialsRequest) async throws -> String {
-        try await post(path: "auth/sign-up/", body: credentials)
+        try await post(path: "auth/sign-up/", authOperation: "sign-up", body: credentials)
     }
 
     func login(credentials: CollectAuthCredentialsRequest) async throws -> String {
-        try await post(path: "auth/login/", body: credentials)
+        try await post(path: "auth/login/", authOperation: "login", body: credentials)
     }
 
-    private func post(path: String, body: CollectAuthCredentialsRequest) async throws -> String {
+    private func post(path: String, authOperation: String, body: CollectAuthCredentialsRequest) async throws -> String {
         let base = APIConfiguration.collectBaseURL
         guard let url = URL(string: path, relativeTo: base)?.absoluteURL else {
             throw CollectAuthServiceError.invalidURL
@@ -60,33 +60,31 @@ final class CollectAuthService {
         let payload = try jsonEncoder.encode(body)
         request.httpBody = payload
 
-        CollectAPILogger.logRequest(
-            method: "POST",
-            url: url,
-            headers: request.allHTTPHeaderFields,
-            body: payload
-        )
-
         let (data, response): (Data, URLResponse)
         do {
             (data, response) = try await session.data(for: request)
         } catch {
-            CollectAPILogger.logResponse(url: url, status: nil, data: nil, error: error)
+            CollectAPILogger.logAuthFailure(authOperation, error: error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode
-        CollectAPILogger.logResponse(url: url, status: status, data: data, error: nil)
 
         guard let status, (200 ..< 300).contains(status) else {
+            CollectAPILogger.logAuthFailure(
+                authOperation,
+                error: CollectAuthServiceError.badStatus(status ?? -1, data.isEmpty ? nil : data)
+            )
             throw CollectAuthServiceError.badStatus(status ?? -1, data.isEmpty ? nil : data)
         }
 
         let decoded = try? jsonDecoder.decode(CollectAuthAPIResponse.self, from: data)
         guard let token = decoded?.authToken else {
+            CollectAPILogger.logAuthFailure(authOperation, error: CollectAuthServiceError.noTokenInResponse)
             throw CollectAuthServiceError.noTokenInResponse
         }
+        CollectAPILogger.logAuthSuccess(authOperation)
         return token
     }
 }

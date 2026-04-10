@@ -61,7 +61,11 @@ final class ArticleDetailViewController: UIViewController {
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
         heroImageView.contentMode = .scaleAspectFill
         heroImageView.clipsToBounds = true
-        heroImageView.image = UIImage(named: viewModel.heroImageAssetName)
+        RemoteImageLoader.load(
+            into: heroImageView,
+            placeholderAssetName: viewModel.heroImageAssetName,
+            url: viewModel.heroImageURL
+        )
         heroContainer.addSubview(heroImageView)
 
         contentStack.addArrangedSubview(heroContainer)
@@ -221,4 +225,5 @@ final class ArticleDetailViewController: UIViewController {
     private func backTapped() {
         navigationController?.popViewController(animated: true)
     }
+
 }

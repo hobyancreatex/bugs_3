@@ -90,6 +90,18 @@ final class HomeArticleCell: UICollectionViewCell {
     func configure(with viewModel: Home.ArticleCellViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
-        coverImageView.image = UIImage(named: viewModel.imageAssetName)
+        RemoteImageLoader.load(
+            into: coverImageView,
+            placeholderAssetName: viewModel.imageAssetName,
+            url: viewModel.coverImageURL
+        )
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: coverImageView)
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+        coverImageView.image = nil
     }
 }

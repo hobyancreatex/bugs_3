@@ -16,35 +16,39 @@ final class HomePresenter: HomePresentationLogic {
     func presentLoad(response: Home.Load.Response) {
         let categories = response.categories.map { item in
             Home.CategoryCellViewModel(
-                title: L10n.string(item.titleLocalizationKey),
-                categoryLocalizationKey: item.titleLocalizationKey,
-                imageAssetName: item.imageAssetName
+                title: item.displayTitle,
+                categoryLocalizationKey: item.categoryRoutingKey,
+                imageAssetName: item.imageAssetName,
+                imageURL: item.imageURL
             )
         }
         let popularInsects = response.popularInsects.map { item in
             Home.PopularInsectCellViewModel(
-                title: L10n.string(item.titleLocalizationKey),
+                title: item.displayTitle,
                 imageAssetName: item.imageAssetName,
-                badgeAssetName: item.badgeAssetName
+                badgeAssetName: item.badgeAssetName,
+                imageURL: item.imageURL
             )
         }
         let articles = response.articles.map { item in
             let detailBlocks = item.blocks.map { block in
                 Home.ArticleDetailViewModel.Block(
-                    sectionTitle: block.titleLocalizationKey.map { L10n.string($0) },
-                    body: L10n.string(block.bodyLocalizationKey)
+                    sectionTitle: block.sectionTitle,
+                    body: block.body
                 )
             }
             let detail = Home.ArticleDetailViewModel(
-                title: L10n.string(item.titleLocalizationKey),
-                subtitle: L10n.string(item.subtitleLocalizationKey),
+                title: item.displayTitle,
+                subtitle: item.displaySubtitle,
                 heroImageAssetName: item.imageAssetName,
+                heroImageURL: item.coverImageURL,
                 blocks: detailBlocks
             )
             return Home.ArticleCellViewModel(
                 title: detail.title,
                 subtitle: detail.subtitle,
                 imageAssetName: item.imageAssetName,
+                coverImageURL: item.coverImageURL,
                 detail: detail
             )
         }

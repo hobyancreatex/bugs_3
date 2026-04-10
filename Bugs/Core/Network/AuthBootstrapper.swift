@@ -30,7 +30,6 @@ actor AuthBootstrapper {
                   let password = DeviceAuthKeychain.storedPassword,
                   !username.isEmpty, !password.isEmpty
             else {
-                CollectAPILogger.log("bootstrap: registered flag set but missing credentials; registering new device")
                 await registerNewDevice(using: service)
                 return
             }
@@ -41,9 +40,8 @@ actor AuthBootstrapper {
                 )
                 try DeviceAuthKeychain.saveToken(token)
                 CollectAPIAuthState.setToken(token)
-                CollectAPILogger.log("bootstrap: login OK, token updated")
             } catch {
-                CollectAPILogger.log("bootstrap: login failed — \(error)")
+                // Итог авторизации уже залогирован в CollectAuthService.
             }
             return
         }
@@ -61,9 +59,8 @@ actor AuthBootstrapper {
             try DeviceAuthKeychain.saveToken(token)
             try DeviceAuthKeychain.setDeviceRegistered(true)
             CollectAPIAuthState.setToken(token)
-            CollectAPILogger.log("bootstrap: sign-up OK, device registered")
         } catch {
-            CollectAPILogger.log("bootstrap: sign-up failed — \(error)")
+            // Итог авторизации уже залогирован в CollectAuthService.
         }
     }
 }

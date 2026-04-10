@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D876E37D2F88E7A800964BA9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D876E37C2F88E7A800964BA9 /* Kingfisher */; };
 		D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE864D2F83B8D5008EB485 /* MessageKit */; };
 		D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE9CE92F87994C008EB485 /* Lottie */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D876E37D2F88E7A800964BA9 /* Kingfisher in Frameworks */,
 				D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */,
 				D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				D8EE864D2F83B8D5008EB485 /* MessageKit */,
 				D8EE9CE92F87994C008EB485 /* Lottie */,
+				D876E37C2F88E7A800964BA9 /* Kingfisher */,
 			);
 			productName = Bugs;
 			productReference = D85FEA0E2F7E92ED009BB95B /* Bugs.app */;
@@ -120,6 +123,7 @@
 			packageReferences = (
 				D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				D8EE9CE82F87994C008EB485 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D85FEA0F2F7E92ED009BB95B /* Products */;
@@ -361,6 +365,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.8.1;
+			};
+		};
 		D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
@@ -380,6 +392,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D876E37C2F88E7A800964BA9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		D8EE864D2F83B8D5008EB485 /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */;

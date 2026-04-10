@@ -80,9 +80,33 @@ final class HomePopularInsectCell: UICollectionViewCell {
         nil
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        insectImageView.bringSubviewToFront(badgeImageView)
+    }
+
     func configure(with viewModel: Home.PopularInsectCellViewModel) {
         titleLabel.text = viewModel.title
-        insectImageView.image = UIImage(named: viewModel.imageAssetName)
-        badgeImageView.image = UIImage(named: viewModel.badgeAssetName)
+        RemoteImageLoader.load(
+            into: insectImageView,
+            placeholderAssetName: viewModel.imageAssetName,
+            url: viewModel.imageURL
+        )
+        if viewModel.badgeAssetName.isEmpty {
+            badgeImageView.image = nil
+            badgeImageView.isHidden = true
+        } else {
+            badgeImageView.isHidden = false
+            badgeImageView.image = UIImage(named: viewModel.badgeAssetName)
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        RemoteImageLoader.cancelLoad(for: insectImageView)
+        titleLabel.text = nil
+        insectImageView.image = nil
+        badgeImageView.image = nil
+        badgeImageView.isHidden = false
     }
 }

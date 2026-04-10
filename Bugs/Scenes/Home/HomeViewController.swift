@@ -48,6 +48,20 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return b
     }()
 
+    private let contentLoadingContainer: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    private let contentLoadingIndicator: UIActivityIndicatorView = {
+        let v = UIActivityIndicatorView(style: .large)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.hidesWhenStopped = false
+        return v
+    }()
+
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
         s.alwaysBounceVertical = true
@@ -203,6 +217,9 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         aiBannerContainer.addGestureRecognizer(aiBannerTap)
         buildHierarchy()
         layoutConstraints()
+        contentLoadingIndicator.transform = CGAffineTransform(scaleX: 1.45, y: 1.45)
+        scrollView.isHidden = true
+        contentLoadingIndicator.startAnimating()
         configureHomeSearchField()
         settingsButton.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
         premiumButton.addTarget(self, action: #selector(premiumTapped), for: .touchUpInside)
@@ -278,6 +295,8 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         navBarContainer.addSubview(premiumButton)
 
         view.addSubview(scrollView)
+        view.addSubview(contentLoadingContainer)
+        contentLoadingContainer.addSubview(contentLoadingIndicator)
         scrollView.addSubview(scrollContentView)
 
         scrollContentView.addSubview(insetSearchField)
@@ -323,6 +342,14 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+
+            contentLoadingContainer.topAnchor.constraint(equalTo: navBarContainer.bottomAnchor),
+            contentLoadingContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentLoadingContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentLoadingContainer.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+
+            contentLoadingIndicator.centerXAnchor.constraint(equalTo: contentLoadingContainer.centerXAnchor),
+            contentLoadingIndicator.centerYAnchor.constraint(equalTo: contentLoadingContainer.centerYAnchor),
 
             scrollContentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -405,6 +432,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
 
     func displayLoad(viewModel: Home.Load.ViewModel) {
+        contentLoadingIndicator.stopAnimating()
+        contentLoadingContainer.isHidden = true
+        scrollView.isHidden = false
+
         titleLabel.text = viewModel.title
         insetSearchField.setAttributedPlaceholder(
             NSAttributedString(

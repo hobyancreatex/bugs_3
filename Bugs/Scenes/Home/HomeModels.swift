@@ -28,37 +28,44 @@ enum Home {
     }
 
     struct CategoryItemResponse {
-        let titleLocalizationKey: String
+        let displayTitle: String
+        let categoryRoutingKey: String
         let imageAssetName: String
+        let imageURL: URL?
     }
 
     struct CategoryCellViewModel {
         let title: String
+        /// Ключ для перехода в список (slug / id / legacy localization key).
         let categoryLocalizationKey: String
         let imageAssetName: String
+        let imageURL: URL?
     }
 
     struct PopularInsectItemResponse {
-        let titleLocalizationKey: String
+        let displayTitle: String
         let imageAssetName: String
         let badgeAssetName: String
+        let imageURL: URL?
     }
 
     struct PopularInsectCellViewModel {
         let title: String
         let imageAssetName: String
         let badgeAssetName: String
+        let imageURL: URL?
     }
 
     struct ArticleDetailBlockResponse {
-        let titleLocalizationKey: String?
-        let bodyLocalizationKey: String
+        let sectionTitle: String?
+        let body: String
     }
 
     struct ArticleItemResponse {
-        let titleLocalizationKey: String
-        let subtitleLocalizationKey: String
+        let displayTitle: String
+        let displaySubtitle: String
         let imageAssetName: String
+        let coverImageURL: URL?
         let blocks: [ArticleDetailBlockResponse]
     }
 
@@ -66,6 +73,7 @@ enum Home {
         let title: String
         let subtitle: String
         let heroImageAssetName: String
+        let heroImageURL: URL?
         let blocks: [Block]
         struct Block {
             let sectionTitle: String?
@@ -77,6 +85,7 @@ enum Home {
         let title: String
         let subtitle: String
         let imageAssetName: String
+        let coverImageURL: URL?
         let detail: ArticleDetailViewModel
     }
 }

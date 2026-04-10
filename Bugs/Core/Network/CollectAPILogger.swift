@@ -37,4 +37,21 @@ enum CollectAPILogger {
         }
         log("RESPONSE " + parts.joined(separator: " | "))
     }
+
+    /// Для логов: не светим токен в `Authorization`.
+    nonisolated static func redactedHTTPHeaders(_ headers: [String: String]?) -> [String: String]? {
+        guard var h = headers, !h.isEmpty else { return headers }
+        if h["Authorization"] != nil {
+            h["Authorization"] = "Token <redacted>"
+        }
+        return h
+    }
+
+    nonisolated static func logAuthSuccess(_ operation: String) {
+        log("auth \(operation) OK")
+    }
+
+    nonisolated static func logAuthFailure(_ operation: String, error: Error) {
+        log("auth \(operation) failed: \(error.localizedDescription)")
+    }
 }
