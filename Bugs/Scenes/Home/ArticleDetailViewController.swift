@@ -5,10 +5,11 @@
 
 import UIKit
 
-/// Экран статьи: логика как в CoinRecognizer (герой + блоки заголовок/текст), оформление под Bugs.
+/// Экран статьи: при наличии `articleId` контент показывается только после `GET articles/insects/{id}/` (до этого — навбар и лоадер).
 final class ArticleDetailViewController: UIViewController {
 
-    private let viewModel: Home.ArticleDetailViewModel
+    private let articleId: String?
+    private var displayedViewModel: Home.ArticleDetailViewModel
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
@@ -28,13 +29,31 @@ final class ArticleDetailViewController: UIViewController {
         return s
     }()
 
-    init(viewModel: Home.ArticleDetailViewModel) {
-        self.viewModel = viewModel
+    private let contentLoadingOverlay = ContentLoadingOverlayView()
+
+    private var articleFetchTask: Task<Void, Never>?
+
+    /// - Parameters:
+    ///   - articleId: Идентификатор для `GET articles/insects/{id}/`; если `nil`, остаётся превью со списка.
+    ///   - preview: Данные из списка статей до ответа детального запроса.
+    init(articleId: String?, preview: Home.ArticleDetailViewModel) {
+        let trimmed = articleId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        self.articleId = trimmed.isEmpty ? nil : trimmed
+        self.displayedViewModel = preview
         super.init(nibName: nil, bundle: nil)
+    }
+
+    /// Совместимость: только превью, без запроса деталки.
+    convenience init(viewModel: Home.ArticleDetailViewModel) {
+        self.init(articleId: nil, preview: viewModel)
     }
 
     required init?(coder: NSCoder) {
         nil
+    }
+
+    deinit {
+        articleFetchTask?.cancel()
     }
 
     override func viewDidLoad() {
@@ -42,12 +61,56 @@ final class ArticleDetailViewController: UIViewController {
         view.backgroundColor = .appBackground
         overrideUserInterfaceStyle = .light
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = viewModel.title
         configureNavigationBar()
         configureBackButton()
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentStack)
+        view.addSubview(contentLoadingOverlay)
+
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            contentStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentStack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentStack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentStack.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+
+            contentLoadingOverlay.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+
+        view.bringSubviewToFront(contentLoadingOverlay)
+
+        if let id = articleId {
+            navigationItem.title = nil
+            scrollView.isHidden = true
+            contentLoadingOverlay.backgroundColor = .appBackground
+            contentLoadingOverlay.setActive(true)
+            articleFetchTask = Task { [weak self] in
+                await self?.fetchFullArticle(id: id)
+            }
+        } else {
+            scrollView.isHidden = false
+            contentLoadingOverlay.backgroundColor = .clear
+            contentLoadingOverlay.setActive(false)
+            applyViewModel(displayedViewModel)
+        }
+    }
+
+    private func applyViewModel(_ viewModel: Home.ArticleDetailViewModel) {
+        navigationItem.title = viewModel.title
+
+        for subview in contentStack.arrangedSubviews {
+            contentStack.removeArrangedSubview(subview)
+            subview.removeFromSuperview()
+        }
 
         let heroHeight: CGFloat = 232
         let heroContainer = UIView()
@@ -96,8 +159,13 @@ final class ArticleDetailViewController: UIViewController {
         subtitleLabel.numberOfLines = 0
         subtitleLabel.text = viewModel.subtitle
 
+        let trimmedSubtitle = viewModel.subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        var titleStackRows: [UIView] = [titleLabel]
+        if !trimmedSubtitle.isEmpty {
+            titleStackRows.append(subtitleLabel)
+        }
         let titleBlock = Self.hInsetWrap(
-            arrangedSubviews: [titleLabel, subtitleLabel],
+            arrangedSubviews: titleStackRows,
             axis: .vertical,
             spacing: 12,
             inset: 16
@@ -133,22 +201,52 @@ final class ArticleDetailViewController: UIViewController {
 
         contentStack.addArrangedSubview(textChrome)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            contentStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            contentStack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            contentStack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            contentStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            contentStack.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-
             innerStack.topAnchor.constraint(equalTo: textChrome.topAnchor, constant: 20),
             innerStack.leadingAnchor.constraint(equalTo: textChrome.leadingAnchor),
             innerStack.trailingAnchor.constraint(equalTo: textChrome.trailingAnchor),
             innerStack.bottomAnchor.constraint(equalTo: textChrome.bottomAnchor, constant: -32),
         ])
+    }
+
+    private func fetchFullArticle(id: String) async {
+        do {
+            let data = try await CollectAPIClient.shared.get(path: "articles/insects/\(id)/")
+            try Task.checkCancellation()
+            CollectAPILogger.logArticleDetailSuccess(articleId: id, data: data)
+            let dict = try CollectHomeListPayload.singleJSONObject(from: data)
+            try Task.checkCancellation()
+            guard let item = CollectHomeDTOMapper.article(dict) else {
+                await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
+                return
+            }
+            let vm = Home.ArticleDetailViewModel(from: item)
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                self.displayedViewModel = vm
+                self.revealArticleContent()
+                self.applyViewModel(vm)
+            }
+        } catch is CancellationError {
+            await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
+        } catch {
+            await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
+            CollectAPILogger.logArticleDetailFailure(articleId: id, error: error)
+        }
+    }
+
+    /// Показать скролл и контент после успешной загрузки.
+    private func revealArticleContent() {
+        contentLoadingOverlay.setActive(false)
+        contentLoadingOverlay.backgroundColor = .clear
+        scrollView.isHidden = false
+    }
+
+    /// Ошибка или невалидный JSON: убрать лоадер и показать превью со списка (если было).
+    private func applyPreviewFallbackAfterFailedLoad() {
+        contentLoadingOverlay.setActive(false)
+        contentLoadingOverlay.backgroundColor = .clear
+        scrollView.isHidden = false
+        applyViewModel(displayedViewModel)
     }
 
     /// Строка на всю ширину стека: `subview` слева, ширина по контенту (как плашки на карточке насекомого).
@@ -221,5 +319,4 @@ final class ArticleDetailViewController: UIViewController {
     private func backTapped() {
         navigationController?.popViewController(animated: true)
     }
-
 }

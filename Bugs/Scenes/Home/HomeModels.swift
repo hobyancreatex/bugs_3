@@ -64,6 +64,7 @@ enum Home {
     }
 
     struct ArticleItemResponse {
+        let articleId: String?
         let displayTitle: String
         let displaySubtitle: String
         let imageAssetName: String
@@ -81,9 +82,40 @@ enum Home {
             let sectionTitle: String?
             let body: String
         }
+
+        init(title: String, subtitle: String, heroImageAssetName: String, heroImageURL: URL?, blocks: [Block]) {
+            self.title = title
+            self.subtitle = subtitle
+            self.heroImageAssetName = heroImageAssetName
+            self.heroImageURL = heroImageURL
+            self.blocks = blocks
+        }
+
+        init(from item: ArticleItemResponse) {
+            let detailBlocks = item.blocks.map { Block(sectionTitle: $0.sectionTitle, body: $0.body) }
+            var subtitle = item.displaySubtitle
+            // Пустой `parts`: описание уходит и в subtitle, и в единственный блок — на экране дублируется.
+            if detailBlocks.count == 1, detailBlocks[0].sectionTitle == nil {
+                let body = detailBlocks[0].body
+                if body == subtitle
+                    || body.trimmingCharacters(in: .whitespacesAndNewlines)
+                    == subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                {
+                    subtitle = ""
+                }
+            }
+            self.init(
+                title: item.displayTitle,
+                subtitle: subtitle,
+                heroImageAssetName: item.imageAssetName,
+                heroImageURL: item.coverImageURL,
+                blocks: detailBlocks
+            )
+        }
     }
 
     struct ArticleCellViewModel {
+        let articleId: String?
         let title: String
         let subtitle: String
         let imageAssetName: String

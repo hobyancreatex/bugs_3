@@ -45,6 +45,21 @@ enum CollectHomeListPayload {
         throw CollectHomePayloadError.unexpectedShape
     }
 
+    /// Один объект статьи/сущности из `GET articles/insects/{id}/` и похожих ответов.
+    static func singleJSONObject(from data: Data) throws -> [String: Any] {
+        let obj = try JSONSerialization.jsonObject(with: data)
+        if let dict = obj as? [String: Any] {
+            if let rows = dict["results"] as? [[String: Any]], let first = rows.first {
+                return first
+            }
+            for key in ["article", "data", "insects_payload", "payload"] {
+                if let inner = dict[key] as? [String: Any] { return inner }
+            }
+            return dict
+        }
+        throw CollectHomePayloadError.unexpectedShape
+    }
+
     static func pickString(_ dict: [String: Any], keys: [String]) -> String? {
         for key in keys {
             guard let value = dict[key] else { continue }
@@ -123,22 +138,28 @@ enum CollectHomeDTOMapper {
         guard let title = CollectHomeListPayload.pickString(dict, keys: ["title", "name", "heading"]) else {
             return nil
         }
-        let subtitle = CollectHomeListPayload.pickString(
-            dict,
-            keys: ["subtitle", "description", "excerpt", "summary", "lead"]
-        ) ?? ""
+        let subtitle = normalizeArticleWhitespace(
+            CollectHomeListPayload.pickString(
+                dict,
+                keys: ["subtitle", "description", "excerpt", "summary", "lead"]
+            ) ?? ""
+        )
         let coverURL = CollectHomeListPayload.pickURL(
             dict,
             keys: ["image", "cover", "cover_image", "thumbnail", "image_url", "preview_image", "hero_image"]
         )
         let blocks = articleBlocks(from: dict)
         let finalBlocks: [Home.ArticleDetailBlockResponse]
-        if blocks.isEmpty {
-            finalBlocks = [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: "")]
-        } else {
+        if !blocks.isEmpty {
             finalBlocks = blocks
+        } else if !subtitle.isEmpty {
+            finalBlocks = [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: subtitle)]
+        } else {
+            finalBlocks = [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: "")]
         }
+        let articleId = CollectHomeListPayload.pickString(dict, keys: ["id", "pk", "insect_id", "uuid", "article_id"])
         return Home.ArticleItemResponse(
+            articleId: articleId,
             displayTitle: title,
             displaySubtitle: subtitle,
             imageAssetName: "home_article_cover",
@@ -148,24 +169,46 @@ enum CollectHomeDTOMapper {
     }
 
     private static func articleBlocks(from dict: [String: Any]) -> [Home.ArticleDetailBlockResponse] {
+        if let raw = dict["parts"] as? [[String: Any]] {
+            let mapped = raw.compactMap { part -> Home.ArticleDetailBlockResponse? in
+                let section = CollectHomeListPayload.pickString(
+                    part,
+                    keys: ["title", "heading", "section_title"]
+                )
+                let bodyRaw = CollectHomeListPayload.pickString(
+                    part,
+                    keys: ["text", "body", "content", "html"]
+                ) ?? ""
+                let body = normalizeArticleWhitespace(bodyRaw)
+                if body.isEmpty, section == nil { return nil }
+                return Home.ArticleDetailBlockResponse(sectionTitle: section, body: body)
+            }
+            if !mapped.isEmpty { return mapped }
+        }
         if let raw = dict["blocks"] as? [[String: Any]] {
-            return raw.compactMap { block in
+            let mapped = raw.compactMap { block -> Home.ArticleDetailBlockResponse? in
                 let section = CollectHomeListPayload.pickString(
                     block,
                     keys: ["title", "heading", "section_title"]
                 )
-                let body = CollectHomeListPayload.pickString(
+                let bodyRaw = CollectHomeListPayload.pickString(
                     block,
                     keys: ["body", "text", "content", "html"]
                 ) ?? ""
+                let body = normalizeArticleWhitespace(bodyRaw)
                 if body.isEmpty, section == nil { return nil }
                 return Home.ArticleDetailBlockResponse(sectionTitle: section, body: body)
             }
+            if !mapped.isEmpty { return mapped }
         }
         if let content = CollectHomeListPayload.pickString(dict, keys: ["content", "body", "text", "html"]) {
-            return [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: content)]
+            return [Home.ArticleDetailBlockResponse(sectionTitle: nil, body: normalizeArticleWhitespace(content))]
         }
         return []
+    }
+
+    private static func normalizeArticleWhitespace(_ s: String) -> String {
+        s.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n")
     }
 
     static func catalogInsect(_ dict: [String: Any]) -> CollectCatalogInsect? {

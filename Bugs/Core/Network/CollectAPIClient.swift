@@ -85,28 +85,15 @@ final class CollectAPIClient {
             request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
         }
 
-        CollectAPILogger.logClassificationWillSend(
-            url: url,
-            fieldName: fieldName,
-            fileName: fileName,
-            mimeType: mimeType,
-            imageByteCount: imageJPEGData.count,
-            multipartBodyByteCount: body.count,
-            boundary: boundary,
-            headers: CollectAPILogger.redactedHTTPHeaders(request.allHTTPHeaderFields)
-        )
-
         let (data, response): (Data, URLResponse)
         do {
             (data, response) = try await session.data(for: request)
         } catch {
-            CollectAPILogger.logClassificationTransportError(error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
-        CollectAPILogger.logClassificationResponse(status: status, url: response.url, data: data)
 
         guard let code = http?.statusCode, (200 ..< 300).contains(code) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)

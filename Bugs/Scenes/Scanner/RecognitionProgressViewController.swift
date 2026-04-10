@@ -136,51 +136,37 @@ final class RecognitionProgressViewController: UIViewController {
     private func startClassificationIfNeeded() {
         guard !didStartClassification else { return }
         didStartClassification = true
-        CollectAPILogger.log("classification: UI viewDidAppear → scheduling upload task")
 
         classificationTask = Task { [weak self] in
-            CollectAPILogger.log("classification: task started (will POST classification/)")
-            guard let self else {
-                CollectAPILogger.log("classification: task exit — view controller deallocated before work")
-                return
-            }
+            guard let self else { return }
             guard let jpeg = Self.jpegDataForClassificationUpload(self.backgroundImage) else {
-                CollectAPILogger.log("classification: abort — failed to build JPEG from capture")
                 await MainActor.run { self.navigateAfterFailure() }
                 return
             }
-            CollectAPILogger.log("classification: JPEG \(jpeg.count) bytes, sending multipart…")
             do {
                 let data = try await CollectAPIClient.shared.postClassification(imageJPEGData: jpeg)
                 await MainActor.run { self.navigateAfterSuccess(responseData: data) }
             } catch is CancellationError {
-                CollectAPILogger.log("classification: cancelled (user left screen or new task)")
+                return
             } catch {
-                CollectAPILogger.log("classification: failed — \(error.localizedDescription)")
                 await MainActor.run { self.navigateAfterFailure() }
             }
         }
     }
 
     private func navigateAfterSuccess(responseData: Data) {
-        CollectAPILogger.log("classification: success, response \(responseData.count) bytes (see RESPONSE log above)")
         let candidates: [RecognitionClassificationCandidate]
         do {
             let root = try CollectClassificationParsing.decode(responseData)
             candidates = CollectClassificationParsing.candidates(from: root)
         } catch {
-            CollectAPILogger.log("classification: JSON decode failed — \(error.localizedDescription)")
             navigateAfterFailure()
             return
         }
         guard !candidates.isEmpty else {
-            CollectAPILogger.log("classification: empty results → no-match")
             navigateAfterFailure()
             return
         }
-        CollectAPILogger.log(
-            "classification: \(candidates.count) candidate(s) ids=\(candidates.map(\.insectId).joined(separator: ","))"
-        )
         guard let nav = navigationController, nav.topViewController === self else { return }
         _ = SubscriptionManager.shared.checkSubscriptionStatus()
         if SubscriptionAccess.shared.isPremiumActive {

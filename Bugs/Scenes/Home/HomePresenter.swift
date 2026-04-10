@@ -32,20 +32,9 @@ final class HomePresenter: HomePresentationLogic {
             )
         }
         let articles = response.articles.map { item in
-            let detailBlocks = item.blocks.map { block in
-                Home.ArticleDetailViewModel.Block(
-                    sectionTitle: block.sectionTitle,
-                    body: block.body
-                )
-            }
-            let detail = Home.ArticleDetailViewModel(
-                title: item.displayTitle,
-                subtitle: item.displaySubtitle,
-                heroImageAssetName: item.imageAssetName,
-                heroImageURL: item.coverImageURL,
-                blocks: detailBlocks
-            )
+            let detail = Home.ArticleDetailViewModel(from: item)
             return Home.ArticleCellViewModel(
+                articleId: item.articleId,
                 title: detail.title,
                 subtitle: detail.subtitle,
                 imageAssetName: item.imageAssetName,

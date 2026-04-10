@@ -43,46 +43,20 @@ enum CollectAPILogger {
         log("auth \(operation) failed: \(error.localizedDescription)")
     }
 
-    // MARK: - Classification (multipart)
+    // MARK: - Article detail
 
-    nonisolated static func logClassificationWillSend(
-        url: URL,
-        fieldName: String,
-        fileName: String,
-        mimeType: String,
-        imageByteCount: Int,
-        multipartBodyByteCount: Int,
-        boundary: String,
-        headers: [String: String]?
-    ) {
-        var parts = [
-            "classification REQUEST POST \(url.absoluteString)",
-            "form field=\(fieldName) filename=\(fileName) mime=\(mimeType)",
-            "image payload: \(imageByteCount) bytes",
-            "multipart body: \(multipartBodyByteCount) bytes",
-            "boundary: \(boundary)",
-        ]
-        if let headers, !headers.isEmpty {
-            parts.append("headers: \(headers)")
-        }
-        log(parts.joined(separator: " | "))
+    nonisolated static func logArticleDetailSuccess(articleId: String, data: Data) {
+        let body = responseBodyPreview(data, maxLen: 12_000)
+        log("article detail RESPONSE id=\(articleId) bytes=\(data.count) body: \(body)")
     }
 
-    nonisolated static func logClassificationResponse(status: Int, url: URL?, data: Data) {
-        let body = classificationResponseBodyPreview(data)
-        let u = url?.absoluteString ?? "(nil)"
-        log("classification RESPONSE status=\(status) url=\(u) body: \(body)")
+    nonisolated static func logArticleDetailFailure(articleId: String, error: Error) {
+        log("article detail FAILED id=\(articleId) error: \(error.localizedDescription)")
     }
 
-    nonisolated static func logClassificationTransportError(_ error: Error) {
-        log("classification transport error: \(error.localizedDescription)")
-    }
-
-    /// Текст ответа для лога (обрезка, чтобы не залить консоль).
-    nonisolated private static func classificationResponseBodyPreview(_ data: Data) -> String {
+    nonisolated private static func responseBodyPreview(_ data: Data, maxLen: Int) -> String {
         if data.isEmpty { return "<empty>" }
         if let s = String(data: data, encoding: .utf8) {
-            let maxLen = 12_000
             if s.count <= maxLen { return s }
             return String(s.prefix(maxLen)) + " …(\(s.count - maxLen) chars truncated)"
         }

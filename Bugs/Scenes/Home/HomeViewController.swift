@@ -499,7 +499,8 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView === articlesCollectionView {
             collectionView.deselectItem(at: indexPath, animated: true)
-            let detail = ArticleDetailViewController(viewModel: articles[indexPath.item].detail)
+            let row = articles[indexPath.item]
+            let detail = ArticleDetailViewController(articleId: row.articleId, preview: row.detail)
             navigationController?.pushViewController(detail, animated: true)
             return
         }
