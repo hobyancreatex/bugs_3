@@ -21,12 +21,14 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
     private var nextPageURL: URL?
     private var isLoadingMore = false
     private var lastSearchQuery: String = ""
+    private var listFetchTask: Task<Void, Never>?
 
     init(categoryRoutingKey: String) {
         self.categoryRoutingKey = categoryRoutingKey
     }
 
     func presentInsects(request: CategoryInsects.Present.Request) {
+        listFetchTask?.cancel()
         let query = request.searchQuery
         lock.lock()
         loadGeneration += 1
@@ -37,7 +39,7 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         lastSearchQuery = query
         lock.unlock()
 
-        Task { [weak self] in
+        listFetchTask = Task { [weak self] in
             guard let self else { return }
             await MainActor.run { [weak self] in
                 guard let self, generation == self.loadGeneration else { return }
@@ -51,32 +53,13 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
                 )
             }
 
-            var url: URL? = Self.firstInsectsListURL()
-            var pagesScanned = 0
-            let maxSilentPages = 25
+            do {
+                try await self.runInitialListFetch(generation: generation, query: query)
+            } catch {
+                return
+            }
 
-            repeat {
-                guard generation == self.loadGeneration else { return }
-                guard let pageURL = url else { break }
-                let (items, next) = await Self.fetchPage(url: pageURL)
-                let inCategory = Self.filterByCategory(items, routingKey: self.categoryRoutingKey)
-                self.lock.lock()
-                guard generation == self.loadGeneration else {
-                    self.lock.unlock()
-                    return
-                }
-                self.accumulated.append(contentsOf: inCategory)
-                self.nextPageURL = next
-                self.lock.unlock()
-                url = next
-                pagesScanned += 1
-
-                let snapshot = self.copyAccumulated()
-                if !Self.filterBySearch(snapshot, query: query).isEmpty { break }
-                if next == nil { break }
-            } while pagesScanned < maxSilentPages
-
-            let definitions = self.makeDefinitions(search: query)
+            let definitions = self.makeDefinitions()
             await MainActor.run { [weak self] in
                 guard let self, generation == self.loadGeneration else { return }
                 self.presenter?.presentInsects(
@@ -91,6 +74,36 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         }
     }
 
+    /// Первая выдача: `GET insects/?search=…` (если строка не пустая), фильтр по категории на клиенте; при пустом результате листаем страницы, пока не появятся совпадения или конец выдачи.
+    private func runInitialListFetch(generation: Int, query: String) async throws {
+        var url: URL? = Self.firstInsectsListURL(search: query)
+        var pagesScanned = 0
+        let maxSilentPages = 25
+
+        while pagesScanned < maxSilentPages {
+            try Task.checkCancellation()
+            guard generation == loadGeneration else { throw CancellationError() }
+            guard let pageURL = url else { break }
+
+            let (items, next) = await Self.fetchPage(url: pageURL)
+            let inCategory = Self.filterByCategory(items, routingKey: categoryRoutingKey)
+
+            lock.lock()
+            guard generation == loadGeneration else {
+                lock.unlock()
+                throw CancellationError()
+            }
+            accumulated.append(contentsOf: inCategory)
+            nextPageURL = next
+            lock.unlock()
+
+            pagesScanned += 1
+            if !copyAccumulated().isEmpty { break }
+            if next == nil { break }
+            url = next
+        }
+    }
+
     func loadMoreInsects() {
         Task { [weak self] in
             guard let self else { return }
@@ -101,16 +114,16 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
             }
             let generation = self.loadGeneration
             self.isLoadingMore = true
-            let search = self.lastSearchQuery
+            let queryForResponse = self.lastSearchQuery
             self.lock.unlock()
 
-            let beforeDefinitions = self.makeDefinitions(search: search)
+            let beforeDefinitions = self.makeDefinitions()
             await MainActor.run { [weak self] in
                 guard let self, generation == self.loadGeneration else { return }
                 self.presenter?.presentInsects(
                     response: CategoryInsects.Present.Response(
                         insects: beforeDefinitions,
-                        searchQuery: search,
+                        searchQuery: queryForResponse,
                         isLoading: false,
                         isLoadingMore: true
                     )
@@ -131,13 +144,13 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
             self.isLoadingMore = false
             self.lock.unlock()
 
-            let definitions = self.makeDefinitions(search: search)
+            let definitions = self.makeDefinitions()
             await MainActor.run { [weak self] in
                 guard let self, generation == self.loadGeneration else { return }
                 self.presenter?.presentInsects(
                     response: CategoryInsects.Present.Response(
                         insects: definitions,
-                        searchQuery: search,
+                        searchQuery: queryForResponse,
                         isLoading: false,
                         isLoadingMore: false
                     )
@@ -153,10 +166,8 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         return c
     }
 
-    private func makeDefinitions(search: String) -> [CategoryInsects.InsectDefinition] {
-        let raw = copyAccumulated()
-        let filtered = Self.filterBySearch(raw, query: search)
-        return filtered.map {
+    private func makeDefinitions() -> [CategoryInsects.InsectDefinition] {
+        copyAccumulated().map {
             CategoryInsects.InsectDefinition(
                 insectId: $0.id,
                 title: $0.title,
@@ -167,8 +178,15 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         }
     }
 
-    private static func firstInsectsListURL() -> URL {
-        URL(string: "insects/", relativeTo: APIConfiguration.collectBaseURL)!.absoluteURL
+    private static func firstInsectsListURL(search: String) -> URL {
+        let base = URL(string: "insects/", relativeTo: APIConfiguration.collectBaseURL)!.absoluteURL
+        let trimmed = search.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return base }
+        var components = URLComponents(url: base, resolvingAgainstBaseURL: false)!
+        var items = components.queryItems ?? []
+        items.append(URLQueryItem(name: "search", value: trimmed))
+        components.queryItems = items
+        return components.url ?? base
     }
 
     private static func fetchPage(url: URL) async -> (items: [CollectCatalogInsect], next: URL?) {
@@ -196,13 +214,4 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         }
     }
 
-    private static func filterBySearch(_ items: [CollectCatalogInsect], query: String) -> [CollectCatalogInsect] {
-        let q = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        if q.isEmpty {
-            return items
-        }
-        return items.filter {
-            $0.title.lowercased().contains(q) || $0.subtitle.lowercased().contains(q)
-        }
-    }
 }

@@ -23,17 +23,6 @@ enum CollectAPILogger {
         log(parts.joined(separator: " | "))
     }
 
-    /// Только для отладки деталки жука (`GET insects/{id}/`).
-    nonisolated static func logInsectDetailResponse(_ data: Data) {
-        let body: String
-        if let s = String(data: data, encoding: .utf8) {
-            body = s
-        } else {
-            body = "<\(data.count) bytes, non-UTF8>"
-        }
-        log("insects/{id}/ RESPONSE body: \(body)")
-    }
-
     /// Для логов: не светим токен в `Authorization`.
     nonisolated static func redactedHTTPHeaders(_ headers: [String: String]?) -> [String: String]? {
         guard var h = headers, !h.isEmpty else { return headers }

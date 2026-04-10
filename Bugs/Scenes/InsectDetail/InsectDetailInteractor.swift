@@ -72,7 +72,6 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             do {
                 let path = "insects/\(trimmedId)/"
                 let data = try await CollectAPIClient.shared.get(path: path)
-                CollectAPILogger.logInsectDetailResponse(data)
                 let root = try CollectInsectDetailPayload.rootObject(from: data)
                 let mapped = CollectInsectDetailMapper.map(root)
                 let response: InsectDetail.Load.Response

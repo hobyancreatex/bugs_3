@@ -22,6 +22,7 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
     private var isLoadingMore = false
     private var isInitialListLoading = false
     private var lastCollectionWidthForLayout: CGFloat = 0
+    private var pendingSearchWorkItem: DispatchWorkItem?
 
     private let insetSearchField = InsetSearchFieldView()
 
@@ -136,7 +137,7 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
             collectionView.topAnchor.constraint(equalTo: insetSearchField.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             emptySearchStateView.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 32),
             emptySearchStateView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
@@ -145,7 +146,7 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
             contentLoadingOverlay.topAnchor.constraint(equalTo: insetSearchField.bottomAnchor, constant: 20),
             contentLoadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentLoadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentLoadingOverlay.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -156,8 +157,13 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
 
     @objc
     private func searchTextChanged() {
+        pendingSearchWorkItem?.cancel()
         let q = insetSearchField.textField.text ?? ""
-        interactor?.presentInsects(request: CategoryInsects.Present.Request(searchQuery: q))
+        let work = DispatchWorkItem { [weak self] in
+            self?.interactor?.presentInsects(request: CategoryInsects.Present.Request(searchQuery: q))
+        }
+        pendingSearchWorkItem = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: work)
     }
 
     func displayInsects(viewModel: CategoryInsects.Present.ViewModel) {
