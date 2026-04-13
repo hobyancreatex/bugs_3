@@ -23,6 +23,11 @@
 "ai_chat.input.placeholder" = "Спросите что-нибудь…";
 "ai_chat.stub.ai" = "Я знаю всё о насекомых — можете меня проконсультировать.";
 "ai_chat.stub.user" = "Расскажи про пчёл";
+"ai_chat.seed_creation_message" = "кто ты?";
+"ai_chat.error.bootstrap" = "Не удалось открыть чат. Попробуйте ещё раз.";
+"ai_chat.error.send" = "Не удалось отправить сообщение. Попробуйте ещё раз.";
+"ai_chat.alert.connection_lost.message" = "Соединение было потеряно. Зайдите позже.";
+"ai_chat.alert.connection_lost.action" = "OK";
 
 /* Home — categories */
 "home.category.coleoptera" = "Coleoptera";

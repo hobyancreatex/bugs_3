@@ -23,6 +23,11 @@
 "ai_chat.input.placeholder" = "Ask me something…";
 "ai_chat.stub.ai" = "I know all about insects, you can consult me.";
 "ai_chat.stub.user" = "Tell me about the bees";
+"ai_chat.seed_creation_message" = "who are you?";
+"ai_chat.error.bootstrap" = "Couldn’t open the chat. Please try again.";
+"ai_chat.error.send" = "Couldn’t send the message. Please try again.";
+"ai_chat.alert.connection_lost.message" = "The connection was lost. Please try again later.";
+"ai_chat.alert.connection_lost.action" = "OK";
 
 /* Home — categories */
 "home.category.coleoptera" = "Coleoptera";

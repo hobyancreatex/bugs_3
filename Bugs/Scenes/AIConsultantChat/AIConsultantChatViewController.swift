@@ -84,7 +84,7 @@ private final class AIChatAvatarHeaderReusableView: MessageReusableView {
             imageView.heightAnchor.constraint(equalToConstant: 100),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
         ])
-        imageView.image = UIImage(named: "home_popular_insect")
+        imageView.image = UIImage(named: "chat_avatar")
     }
 
     required init?(coder: NSCoder) {
@@ -95,6 +95,7 @@ private final class AIChatAvatarHeaderReusableView: MessageReusableView {
 final class AIConsultantChatViewController: MessagesViewController {
 
     private static let avatarHeaderHeight: CGFloat = 128
+    private static let streamingAIMessageId = "ai.streaming.placeholder"
 
     /// Открытие с таббара модально: «Назад» закрывает экран через `dismiss`, а не `pop`.
     var presentsAsModalFromTabBar: Bool = false
@@ -103,6 +104,30 @@ final class AIConsultantChatViewController: MessagesViewController {
     private let userSender = ChatSender(senderId: "user", displayName: "Me")
 
     private var messages: [ChatMessage] = []
+    private var chatId: Int?
+    private let socket = CollectChatWebSocketClient()
+    private var isStreamingAI = false
+    private var aiStreamBuffer = ""
+
+    /// Разрешаем рисовать чанки сокета: после завершения гейта открытия, после успешного POST, пока не придёт пустой delta или `applyDetail` не сбросит ленту.
+    private var acceptingSocketStream = false
+
+    /// После фона: алерт и закрытие чата по OK (см. `handleAppDidEnterBackground`).
+    private var pendingConnectionLossAlert = false
+
+    /// Пока `true`: данные чата подгружаем, но ленту не показываем; чанки WS только буферизуем до тишины или конца стрима.
+    private var socketSettleGateActive = false
+    private var socketSettleGateBeganAt: Date?
+    private var socketSettleIdleWaitTask: Task<Void, Never>?
+
+    private var backgroundObservers: [NSObjectProtocol] = []
+
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let v = UIActivityIndicatorView(style: .large)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.hidesWhenStopped = true
+        return v
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,18 +141,439 @@ final class AIConsultantChatViewController: MessagesViewController {
         } else {
             configureBackButton()
         }
-        seedStarterMessages()
+        view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
         registerHeader()
         configureMessageCollectionView()
         configureInputBar()
+        messageInputBar.isUserInteractionEnabled = false
+        messagesCollectionView.isHidden = true
+        loadingIndicator.startAnimating()
         messagesCollectionView.reloadData()
-        messagesCollectionView.scrollToLastItem(animated: false)
+        registerAppLifecycleObservers()
+        runBootstrap()
+    }
+
+    deinit {
+        for o in backgroundObservers {
+            NotificationCenter.default.removeObserver(o)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        if presentConnectionLossAlertIfNeeded() { return }
+        guard chatId != nil else { return }
+        guard presentedViewController == nil else { return }
+        beginSocketSettleGate()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        socket.disconnect()
+        if isChatActuallyLeavingHierarchy {
+            socketSettleIdleWaitTask?.cancel()
+            socketSettleIdleWaitTask = nil
+            socketSettleGateActive = false
+            socketSettleGateBeganAt = nil
+            loadingIndicator.stopAnimating()
+            acceptingSocketStream = false
+            isStreamingAI = false
+            aiStreamBuffer = ""
+            stripStreamingPlaceholderIfNeeded()
+        }
+    }
+
+    /// `false`, если экран только перекрыли модалкой/оверлеем — иначе сброс стрима рвёт ответ, хотя чанки в логе идут.
+    private var isChatActuallyLeavingHierarchy: Bool {
+        if isBeingDismissed || isMovingFromParent { return true }
+        if let nav = navigationController {
+            return !nav.viewControllers.contains(where: { $0 === self })
+        }
+        return false
+    }
+
+    private func registerAppLifecycleObservers() {
+        let center = NotificationCenter.default
+        backgroundObservers.append(center.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.handleAppDidEnterBackground()
+        })
+        backgroundObservers.append(center.addObserver(
+            forName: UIApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self, self.isViewLoaded else { return }
+            _ = self.presentConnectionLossAlertIfNeeded()
+        })
+    }
+
+    /// Чат модально в `UINavigationController`: реагируем только когда этот экран сверху.
+    private var isChatScreenOnTop: Bool {
+        isViewLoaded && view.window != nil && (navigationController?.topViewController === self)
+    }
+
+    private func handleAppDidEnterBackground() {
+        guard isChatScreenOnTop, chatId != nil else { return }
+        socket.disconnect()
+        acceptingSocketStream = false
+        isStreamingAI = false
+        aiStreamBuffer = ""
+        stripStreamingPlaceholderIfNeeded()
+        messageInputBar.isUserInteractionEnabled = true
+        pendingConnectionLossAlert = true
+    }
+
+    private func stripStreamingPlaceholderIfNeeded() {
+        guard let idx = messages.lastIndex(where: { $0.messageId == Self.streamingAIMessageId }) else { return }
+        messages.remove(at: idx)
+        messagesCollectionView.reloadData()
+    }
+
+    /// Лента скрыта: только проверка WS (тишина / конец стрима). Историю с API подтягиваем **после** этого в `completeSettleGateWithFreshMessages`.
+    private func beginSocketSettleGate() {
+        guard !socketSettleGateActive else { return }
+        socketSettleGateActive = true
+        socketSettleGateBeganAt = Date()
+        messagesCollectionView.isHidden = true
+        loadingIndicator.startAnimating()
+        view.bringSubviewToFront(loadingIndicator)
+        messageInputBar.isUserInteractionEnabled = false
+        messagesCollectionView.isUserInteractionEnabled = false
+        acceptingSocketStream = false
+        isStreamingAI = false
+        aiStreamBuffer = ""
+        socketSettleIdleWaitTask?.cancel()
+        socketSettleIdleWaitTask = nil
+        Task { @MainActor [weak self] in
+            self?.startWebSocket()
+            self?.scheduleSocketSettleIdleFallback()
+        }
+    }
+
+    /// 2 с без активного стрима после подключения — показываем ленту. Если уже шли непустые чанки, **не** закрываем гейт по таймеру (иначе хвост уходит в обычный `handleSocketText` и снова рисуется по кускам).
+    private func scheduleSocketSettleIdleFallback() {
+        socketSettleIdleWaitTask?.cancel()
+        socketSettleIdleWaitTask = Task { @MainActor [weak self] in
+            do {
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+            } catch {
+                return
+            }
+            guard let self, self.socketSettleGateActive else { return }
+            if let began = self.socketSettleGateBeganAt, Date().timeIntervalSince(began) > 120 {
+                self.isStreamingAI = false
+                self.aiStreamBuffer = ""
+                self.acceptingSocketStream = false
+                await self.completeSettleGateWithFreshMessages()
+                return
+            }
+            if self.isStreamingAI {
+                self.scheduleSocketSettleIdleFallback()
+                return
+            }
+            await self.completeSettleGateWithFreshMessages()
+        }
+    }
+
+    @MainActor
+    private func completeSettleGateWithFreshMessages() async {
+        guard socketSettleGateActive else { return }
+        await refetchChatFromServerSilently(updateCollectionView: false)
+        // После пустого delta ответ может ещё не попасть в GET — один короткий повтор.
+        if messages.isEmpty, chatId != nil {
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            await refetchChatFromServerSilently(updateCollectionView: false)
+        }
+        revealChatAfterSettleGate()
+    }
+
+    /// Всегда обновляет UI (без `guard socketSettleGateActive`): иначе при двух почти одновременных `completeSettleGate…` (idle + пустой delta) второй `applyDetail` обновляет `messages`, а `reloadData` не вызывается — лента пустая.
+    private func revealChatAfterSettleGate() {
+        socketSettleIdleWaitTask?.cancel()
+        socketSettleIdleWaitTask = nil
+        socketSettleGateActive = false
+        socketSettleGateBeganAt = nil
+        loadingIndicator.stopAnimating()
+        messagesCollectionView.isHidden = false
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: false)
+        messagesCollectionView.isUserInteractionEnabled = true
+        messageInputBar.isUserInteractionEnabled = true
+        acceptingSocketStream = true
+    }
+
+    private func handleSocketTextWhileSettleGate(delta: String) {
+        if delta.isEmpty {
+            if isStreamingAI {
+                socketSettleIdleWaitTask?.cancel()
+                socketSettleIdleWaitTask = nil
+                isStreamingAI = false
+                aiStreamBuffer = ""
+                acceptingSocketStream = false
+                Task { @MainActor [weak self] in
+                    await self?.completeSettleGateWithFreshMessages()
+                }
+            }
+            return
+        }
+        socketSettleIdleWaitTask?.cancel()
+        socketSettleIdleWaitTask = nil
+        if !isStreamingAI {
+            isStreamingAI = true
+            aiStreamBuffer = delta
+        } else {
+            aiStreamBuffer += delta
+        }
+        scheduleSocketSettleIdleFallback()
+    }
+
+    /// `true`, если показали алерт (экран чата после OK закрывается — гейт не запускаем).
+    @discardableResult
+    private func presentConnectionLossAlertIfNeeded() -> Bool {
+        guard pendingConnectionLossAlert else { return false }
+        guard isChatScreenOnTop, chatId != nil else { return false }
+        guard presentedViewController == nil else { return false } // не трогаем `pending`, покажем после снятия чужой модалки
+        pendingConnectionLossAlert = false
+        let a = UIAlertController(title: nil, message: L10n.string("ai_chat.alert.connection_lost.message"), preferredStyle: .alert)
+        a.addAction(UIAlertAction(title: L10n.string("ai_chat.alert.connection_lost.action"), style: .default) { [weak self] _ in
+            self?.closeChatAfterConnectionLoss()
+        })
+        present(a, animated: true)
+        return true
+    }
+
+    private func closeChatAfterConnectionLoss() {
+        if presentsAsModalFromTabBar {
+            navigationController?.dismiss(animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
+    private func runBootstrap() {
+        Task { @MainActor in
+            do {
+                let detail = try await CollectChatBootstrapper.loadOrCreateChat(
+                    seedMessage: L10n.string("ai_chat.seed_creation_message")
+                )
+                chatId = detail.id
+                messages = []
+                messagesCollectionView.reloadData()
+                beginSocketSettleGate()
+            } catch CollectChatFlowError.noAuthToken {
+                loadingIndicator.stopAnimating()
+                messagesCollectionView.isHidden = false
+                messageInputBar.isUserInteractionEnabled = true
+                presentSimpleAlert(message: L10n.string("ai_chat.error.bootstrap"))
+            } catch {
+                loadingIndicator.stopAnimating()
+                messagesCollectionView.isHidden = false
+                messageInputBar.isUserInteractionEnabled = true
+                presentSimpleAlert(message: L10n.string("ai_chat.error.bootstrap"))
+            }
+        }
+    }
+
+    private func applyDetail(_ detail: CollectChatDetailDTO) {
+        acceptingSocketStream = false
+        isStreamingAI = false
+        aiStreamBuffer = ""
+
+        var sorted = detail.messages.sorted(by: { $0.id < $1.id })
+        // Не показываем сид при создании чата, но только если после удаления остаётся история — иначе лента пустая (типично сразу после POST + GET).
+        if sorted.count > 1, let first = sorted.first, first.sender != nil {
+            sorted.removeFirst()
+        }
+        messages = sorted.map { dto in
+            let isUser = dto.sender != nil
+            let sender: SenderType = isUser ? userSender : aiSender
+            let date = Self.parseChatDate(dto.createdAt) ?? Date()
+            return ChatMessage(
+                sender: sender,
+                messageId: "api-\(dto.id)",
+                sentDate: date,
+                kind: .text(dto.text)
+            )
+        }
+    }
+
+    private static func parseChatDate(_ s: String) -> Date? {
+        let withFrac = ISO8601DateFormatter()
+        withFrac.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = withFrac.date(from: s) { return d }
+        let plain = ISO8601DateFormatter()
+        plain.formatOptions = [.withInternetDateTime]
+        return plain.date(from: s)
+    }
+
+    private func startWebSocket() {
+        socket.connect { [weak self] text in
+            self?.handleSocketText(text)
+        }
+    }
+
+    /// Декодирование как в legacy; запасной разбор — если прилетит другой JSON, а в консоли уже виден текст.
+    private static func parseSocketStreamPayload(_ text: String, expectedChatId: Int) -> (matchesChat: Bool, delta: String) {
+        guard let data = text.data(using: .utf8) else { return (false, "") }
+        let decoder = JSONDecoder()
+        if let chunk = try? decoder.decode(CollectChatSocketChunk.self, from: data) {
+            guard chunk.chatID == expectedChatId else { return (false, "") }
+            let d = chunk.chunk.choices.first?.delta.content ?? ""
+            return (true, d)
+        }
+        if let env = try? decoder.decode(CollectChatInsectsEnvelope<CollectChatSocketChunk>.self, from: data) {
+            let chunk = env.insectsPayload
+            guard chunk.chatID == expectedChatId else { return (false, "") }
+            let d = chunk.chunk.choices.first?.delta.content ?? ""
+            return (true, d)
+        }
+        guard let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return (false, "") }
+        let candidates = Self.socketJSONCandidateObjects(root)
+        for obj in candidates {
+            guard let cid = Self.jsonIntForSocket(obj["chat_id"]), cid == expectedChatId else { continue }
+            if let d = Self.deltaStringFromChunkObject(obj["chunk"]) { return (true, d) }
+        }
+        for obj in candidates {
+            guard Self.jsonIntForSocket(obj["chat_id"]) == nil else { continue }
+            if let d = Self.deltaStringFromChunkObject(obj["chunk"]), !d.isEmpty { return (true, d) }
+        }
+        return (false, "")
+    }
+
+    /// Все словари, где может лежать пара `chat_id` + `chunk` (корень, `insects_payload`, вложенные поля).
+    private static func socketJSONCandidateObjects(_ root: [String: Any]) -> [[String: Any]] {
+        var out: [[String: Any]] = [root]
+        let nestedKeys = ["insects_payload", "data", "payload", "result", "message"]
+        for k in nestedKeys {
+            if let d = root[k] as? [String: Any] { out.append(d) }
+        }
+        if let payload = root["insects_payload"] as? [String: Any] {
+            for k in nestedKeys where k != "insects_payload" {
+                if let d = payload[k] as? [String: Any] { out.append(d) }
+            }
+        }
+        return out
+    }
+
+    private static func deltaStringFromChunkObject(_ chunk: Any?) -> String? {
+        guard let ch = chunk as? [String: Any] else { return nil }
+        let choices = ch["choices"] as? [[String: Any]] ?? []
+        guard let first = choices.first, let deltaObj = first["delta"] as? [String: Any] else { return nil }
+        return deltaObj["content"] as? String ?? ""
+    }
+
+    private static func jsonIntForSocket(_ value: Any?) -> Int? {
+        switch value {
+        case let i as Int: return i
+        case let i as Int64: return Int(i)
+        case let d as Double: return Int(d)
+        case let n as NSNumber: return n.intValue
+        case let s as String: return Int(s)
+        default: return nil
+        }
+    }
+
+    private func handleSocketText(_ text: String) {
+        guard let chatId else { return }
+        let parsed = Self.parseSocketStreamPayload(text, expectedChatId: chatId)
+        guard parsed.matchesChat else { return }
+
+        if socketSettleGateActive {
+            handleSocketTextWhileSettleGate(delta: parsed.delta)
+            return
+        }
+
+        let delta = parsed.delta
+        // Пустые delta в начале стрима (роль, служебные кадры) — не конец ответа; конец — пустой кадр уже во время показа стрима.
+        if delta.isEmpty {
+            if isStreamingAI {
+                isStreamingAI = false
+                aiStreamBuffer = ""
+                acceptingSocketStream = false
+                messageInputBar.isUserInteractionEnabled = true
+                Task { @MainActor [weak self] in
+                    await self?.refetchChatFromServerSilently()
+                }
+            }
+            return
+        }
+
+        if !isStreamingAI {
+            isStreamingAI = true
+            aiStreamBuffer = delta
+            let msg = ChatMessage(
+                sender: aiSender,
+                messageId: Self.streamingAIMessageId,
+                sentDate: Date(),
+                kind: .text(delta)
+            )
+            let newSection = messages.count
+            messages.append(msg)
+            messagesCollectionView.performBatchUpdates({
+                messagesCollectionView.insertSections([newSection])
+            }, completion: { [weak self] _ in
+                self?.messagesCollectionView.scrollToLastItem(animated: true)
+            })
+        } else {
+            aiStreamBuffer += delta
+            guard let idx = messages.lastIndex(where: { $0.messageId == Self.streamingAIMessageId }) else { return }
+            let prev = messages[idx]
+            messages[idx] = ChatMessage(
+                sender: aiSender,
+                messageId: Self.streamingAIMessageId,
+                sentDate: prev.sentDate,
+                kind: .text(aiStreamBuffer)
+            )
+            applyStreamingChunkToVisibleCell(section: idx)
+            messagesCollectionView.scrollToLastItem(animated: false)
+        }
+    }
+
+    /// Без `reloadSections`: иначе каждый чанк заново конфигурирует ячейку и «прыгает» фон пузыря.
+    private func applyStreamingChunkToVisibleCell(section idx: Int) {
+        let indexPath = IndexPath(item: 0, section: idx)
+        UIView.performWithoutAnimation {
+            if let cell = messagesCollectionView.cellForItem(at: indexPath) as? TextMessageCell {
+                cell.messageLabel.text = aiStreamBuffer
+                cell.messageLabel.textColor = AIChatPalette.incomingText
+                cell.messageLabel.font = .systemFont(ofSize: 16, weight: .regular)
+                cell.messageContainerView.backgroundColor = AIChatPalette.incomingBubble
+                cell.messageContainerView.style = bubbleStyle(outgoing: false)
+            }
+            messagesCollectionView.collectionViewLayout.invalidateLayout()
+            messagesCollectionView.layoutIfNeeded()
+        }
+    }
+
+    @MainActor
+    private func refetchChatFromServerSilently(updateCollectionView: Bool = true) async {
+        guard let id = chatId else { return }
+        do {
+            let detail = try await CollectChatBootstrapper.fetchChatDetail(id: id)
+            applyDetail(detail)
+            if updateCollectionView {
+                messagesCollectionView.reloadData()
+                messagesCollectionView.scrollToLastItem(animated: false)
+            }
+        } catch {
+            // Оставляем текущую ленту; устаревшие чанки всё равно отфильтрованы поколением.
+        }
+    }
+
+    private func presentSimpleAlert(message: String) {
+        let a = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        a.addAction(UIAlertAction(title: "OK", style: .default))
+        present(a, animated: true)
     }
 
     private func configureNavigationBar() {
@@ -165,24 +611,6 @@ final class AIConsultantChatViewController: MessagesViewController {
     @objc
     private func modalDismissTapped() {
         navigationController?.dismiss(animated: true)
-    }
-
-    private func seedStarterMessages() {
-        let now = Date()
-        messages = [
-            ChatMessage(
-                sender: aiSender,
-                messageId: "stub-ai",
-                sentDate: now.addingTimeInterval(-120),
-                kind: .text(L10n.string("ai_chat.stub.ai"))
-            ),
-            ChatMessage(
-                sender: userSender,
-                messageId: "stub-user",
-                sentDate: now.addingTimeInterval(-60),
-                kind: .text(L10n.string("ai_chat.stub.user"))
-            ),
-        ]
     }
 
     private func registerHeader() {
@@ -321,11 +749,12 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
 
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
+        guard !trimmed.isEmpty, let id = chatId else { return }
 
+        let messageId = UUID().uuidString
         let newMessage = ChatMessage(
             sender: userSender,
-            messageId: UUID().uuidString,
+            messageId: messageId,
             sentDate: Date(),
             kind: .text(trimmed)
         )
@@ -339,5 +768,24 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
         }, completion: { [weak self] _ in
             self?.messagesCollectionView.scrollToLastItem(animated: true)
         })
+
+        messageInputBar.isUserInteractionEnabled = false
+        acceptingSocketStream = true
+        Task {
+            do {
+                _ = try await CollectChatHTTPClient.shared.postJSON(path: "chats/\(id)/", body: ["text": trimmed])
+            } catch {
+                await MainActor.run { [weak self] in
+                    guard let self else { return }
+                    acceptingSocketStream = false
+                    if let idx = messages.lastIndex(where: { $0.messageId == messageId }) {
+                        messages.remove(at: idx)
+                        messagesCollectionView.reloadData()
+                    }
+                    messageInputBar.isUserInteractionEnabled = true
+                    presentSimpleAlert(message: L10n.string("ai_chat.error.send"))
+                }
+            }
+        }
     }
 }

@@ -50,8 +50,6 @@ final class CollectAPIClient {
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
 
-        CollectAPILogger.logHTTPResponse(method: "GET", url: url, statusCode: status, body: data)
-
         guard (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
         }
@@ -119,8 +117,6 @@ final class CollectAPIClient {
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
 
-        CollectAPILogger.logHTTPResponse(method: "DELETE", url: url, statusCode: status, body: data)
-
         guard (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
         }
@@ -184,8 +180,6 @@ final class CollectAPIClient {
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
-
-        CollectAPILogger.logHTTPResponse(method: "POST", url: url, statusCode: status, body: data)
 
         guard (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)

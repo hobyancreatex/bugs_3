@@ -80,15 +80,12 @@ final class CollectAuthService {
         let status = http?.statusCode ?? -1
 
         guard (200 ..< 300).contains(status) else {
-            CollectAPILogger.logAuthHTTPResponse(url: url, statusCode: status, body: data)
             CollectAPILogger.logAuthFailure(
                 authOperation,
                 error: CollectAuthServiceError.badStatus(status, data.isEmpty ? nil : data)
             )
             throw CollectAuthServiceError.badStatus(status, data.isEmpty ? nil : data)
         }
-
-        CollectAPILogger.logAuthHTTPResponse(url: url, statusCode: status, body: data)
 
         let decoded = try? jsonDecoder.decode(CollectAuthAPIResponse.self, from: data)
         guard let token = decoded?.authToken else {

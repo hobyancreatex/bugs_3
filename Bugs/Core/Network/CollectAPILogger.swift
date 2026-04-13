@@ -33,19 +33,33 @@ enum CollectAPILogger {
         log(parts.joined(separator: " | "))
     }
 
-    nonisolated static func logHTTPResponse(method: String, url: URL, statusCode: Int, body: Data, maxBodyLen: Int = 12_000) {
-        let preview = responseBodyPreview(body, maxLen: maxBodyLen)
-        log("RESPONSE \(method) \(url.absoluteString) status=\(statusCode) bytes=\(body.count) body: \(preview)")
-    }
-
     nonisolated static func logHTTPTransportFailure(method: String, url: URL, error: Error) {
         log("RESPONSE \(method) \(url.absoluteString) transport error: \(error.localizedDescription)")
     }
 
-    /// Ответ auth JSON: значения токенов в логе заменены.
-    nonisolated static func logAuthHTTPResponse(url: URL, statusCode: Int, body: Data) {
-        let preview = redactTokensInJSONForLog(body, maxLen: 2_000)
-        log("RESPONSE POST \(url.absoluteString) status=\(statusCode) bytes=\(body.count) body: \(preview)")
+    // MARK: - Только флоу чата (HTTP + WS), для разбора контракта
+
+    nonisolated static func logChatFlowHTTPResponse(
+        method: String,
+        url: URL,
+        statusCode: Int,
+        body: Data,
+        maxBodyLen: Int = 24_000
+    ) {
+        let preview = chatFlowBodyPreview(body, maxLen: maxBodyLen)
+        log("[CHAT_FLOW] RESPONSE \(method) \(url.absoluteString) status=\(statusCode) bytes=\(body.count) body: \(preview)")
+    }
+
+    nonisolated static func logChatFlowWebSocketInbound(_ text: String, maxLen: Int = 24_000) {
+        if text.count <= maxLen {
+            log("[CHAT_FLOW] WS IN: \(text)")
+        } else {
+            log("[CHAT_FLOW] WS IN: \(String(text.prefix(maxLen))) …(\(text.count - maxLen) chars truncated)")
+        }
+    }
+
+    nonisolated static func logChatFlowTransportFailure(method: String, url: URL, error: Error) {
+        log("[CHAT_FLOW] transport \(method) \(url.absoluteString): \(error.localizedDescription)")
     }
 
     /// Для логов: не светим токен в `Authorization`.
@@ -65,42 +79,12 @@ enum CollectAPILogger {
         log("auth \(operation) failed: \(error.localizedDescription)")
     }
 
-    nonisolated private static func responseBodyPreview(_ data: Data, maxLen: Int) -> String {
+    nonisolated private static func chatFlowBodyPreview(_ data: Data, maxLen: Int) -> String {
         if data.isEmpty { return "<empty>" }
         if let s = String(data: data, encoding: .utf8) {
             if s.count <= maxLen { return s }
             return String(s.prefix(maxLen)) + " …(\(s.count - maxLen) chars truncated)"
         }
         return "<\(data.count) bytes, non-UTF8>"
-    }
-
-    nonisolated private static func redactTokensInJSONForLog(_ data: Data, maxLen: Int) -> String {
-        guard let root = try? JSONSerialization.jsonObject(with: data) else {
-            return responseBodyPreview(data, maxLen: maxLen)
-        }
-        let redacted = redactSensitiveJSONValues(root)
-        guard let out = try? JSONSerialization.data(withJSONObject: redacted, options: [.sortedKeys]) else {
-            return responseBodyPreview(data, maxLen: maxLen)
-        }
-        return responseBodyPreview(out, maxLen: maxLen)
-    }
-
-    private nonisolated static func redactSensitiveJSONValues(_ value: Any) -> Any {
-        let tokenKeys: Set<String> = ["token", "auth_token", "key", "access", "refresh"]
-        if var dict = value as? [String: Any] {
-            var out: [String: Any] = [:]
-            for (k, v) in dict {
-                if tokenKeys.contains(k) {
-                    out[k] = "<redacted>"
-                } else {
-                    out[k] = redactSensitiveJSONValues(v)
-                }
-            }
-            return out
-        }
-        if let arr = value as? [Any] {
-            return arr.map { redactSensitiveJSONValues($0) }
-        }
-        return value
     }
 }

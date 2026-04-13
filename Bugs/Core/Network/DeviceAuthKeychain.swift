@@ -20,6 +20,7 @@ enum DeviceAuthKeychain {
         static let username = "device.username"
         static let password = "device.password"
         static let token = "auth.token"
+        static let chatId = "collect.chat.id"
     }
 
     static var isDeviceRegistered: Bool {
@@ -49,6 +50,19 @@ enum DeviceAuthKeychain {
 
     static func saveToken(_ token: String) throws {
         try setString(token, for: Account.token)
+    }
+
+    /// Один чат на пользователя: id с бэкенда после `POST chats/` или из списка `GET chats/`.
+    static var storedChatId: String? {
+        try? string(for: Account.chatId)
+    }
+
+    static func saveChatId(_ id: Int) throws {
+        try setString(String(id), for: Account.chatId)
+    }
+
+    static func clearChatId() throws {
+        try deleteItem(account: Account.chatId)
     }
 
     // MARK: - Low level
@@ -100,6 +114,18 @@ enum DeviceAuthKeychain {
         }
 
         guard status == errSecSuccess else {
+            throw KeychainError.unhandledStatus(status)
+        }
+    }
+
+    private static func deleteItem(account: String) throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+        ]
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
             throw KeychainError.unhandledStatus(status)
         }
     }

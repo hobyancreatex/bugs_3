@@ -18,6 +18,17 @@ final class CenteredTextMessageCell: TextMessageCell {
         }
     }
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        // Сбрасываем пузырь: иначе до configure остаётся фон/скругления исходящего сообщения.
+        messageContainerView.style = .none
+        messageContainerView.backgroundColor = nil
+        messageContainerView.layer.cornerRadius = 0
+        messageContainerView.layer.maskedCorners = [
+            .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner,
+        ]
+    }
+
     public override func layoutSubviews() {
         super.layoutSubviews()
         let containerBounds = messageContainerView.bounds

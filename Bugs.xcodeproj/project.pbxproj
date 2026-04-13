@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D876E37D2F88E7A800964BA9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D876E37C2F88E7A800964BA9 /* Kingfisher */; };
+		D876E4752F8CDF3100964BA9 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = D876E4742F8CDF3100964BA9 /* Starscream */; };
 		D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE864D2F83B8D5008EB485 /* MessageKit */; };
 		D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE9CE92F87994C008EB485 /* Lottie */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 				D876E37D2F88E7A800964BA9 /* Kingfisher in Frameworks */,
 				D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */,
 				D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */,
+				D876E4752F8CDF3100964BA9 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +92,7 @@
 				D8EE864D2F83B8D5008EB485 /* MessageKit */,
 				D8EE9CE92F87994C008EB485 /* Lottie */,
 				D876E37C2F88E7A800964BA9 /* Kingfisher */,
+				D876E4742F8CDF3100964BA9 /* Starscream */,
 			);
 			productName = Bugs;
 			productReference = D85FEA0E2F7E92ED009BB95B /* Bugs.app */;
@@ -124,6 +127,7 @@
 				D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				D8EE9CE82F87994C008EB485 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D876E4732F8CDF3100964BA9 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D85FEA0F2F7E92ED009BB95B /* Products */;
@@ -373,6 +377,14 @@
 				minimumVersion = 8.8.1;
 			};
 		};
+		D876E4732F8CDF3100964BA9 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.8;
+			};
+		};
 		D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
@@ -396,6 +408,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		D876E4742F8CDF3100964BA9 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D876E4732F8CDF3100964BA9 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 		D8EE864D2F83B8D5008EB485 /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
