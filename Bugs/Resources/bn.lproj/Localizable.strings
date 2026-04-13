@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "সম্পন্ন";
+
+/* Onboarding */
+"onboarding.intro.title" = "হাই! আমি কীটপতঙ্গ জগতে আপনার গাইড 🐞";
+"onboarding.intro.subtitle" = "এই অ্যাপটিতে, আপনি করতে পারেন:";
+"onboarding.intro.benefit.identify" = "সেকেন্ডের মধ্যে পোকামাকড় সনাক্ত করুন";
+"onboarding.intro.benefit.collection" = "আপনার সংগ্রহে তাদের সংরক্ষণ করুন";
+"onboarding.intro.benefit.achievements" = "কৃতিত্ব অর্জন করুন";
+"onboarding.intro.benefit.ai" = "এআই সহকারীর সাথে চ্যাট করুন";
+"onboarding.intro.benefit.articles" = "সহায়ক নিবন্ধ পড়ুন";
+"onboarding.button.next" = "পরবর্তী";
+"onboarding.button.start" = "শুরু করুন";
+
+/* Home */
+"home.title" = "বাড়ি";
+"home.search.placeholder" = "অনুসন্ধান করুন";
+"home.ai_banner.title" = "আপনি যে কোন পোকামাকড় খুঁজে পান সে সম্পর্কে AI কে জিজ্ঞাসা করুন";
+"home.ai_banner.button" = "একটি প্রশ্ন জিজ্ঞাসা করুন";
+
+/* AI chat */
+"ai_chat.title" = "এআই পরামর্শদাতা";
+"ai_chat.input.placeholder" = "আমাকে কিছু জিজ্ঞাসা করুন…";
+"ai_chat.stub.ai" = "আমি কীটপতঙ্গ সম্পর্কে সব জানি, আপনি আমার সাথে পরামর্শ করতে পারেন।";
+"ai_chat.stub.user" = "মৌমাছি সম্পর্কে বলুন";
+"ai_chat.seed_creation_message" = "তুমি কে?";
+"ai_chat.error.bootstrap" = "চ্যাট খুলতে পারিনি। আবার চেষ্টা করুন.";
+"ai_chat.error.send" = "বার্তা পাঠানো যায়নি। আবার চেষ্টা করুন.";
+"ai_chat.alert.connection_lost.message" = "সংযোগ বিচ্ছিন্ন ছিল। পরে আবার চেষ্টা করুন.";
+"ai_chat.alert.connection_lost.action" = "ঠিক আছে";
+
+/* Home — categories */
+"home.category.coleoptera" = "কোলিওপ্টেরা";
+"home.category.scorpiones" = "বৃশ্চিক";
+"home.category.hymenoptera" = "হাইমেনোপ্টেরা";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "লেপিডোপ্টেরা";
+"home.category.diptera" = "দীপ্তরা";
+"home.category.blattodea" = "ব্লাটোডিয়া";
+"home.category.hemiptera" = "হেমিপ্টেরা";
+
+/* Main tab bar */
+"profile.title" = "প্রোফাইল";
+"profile.segment.collection" = "আমার সংগ্রহ";
+"profile.segment.achievements" = "আমার অর্জন";
+"profile.achievements.placeholder" = "অর্জন এখানে প্রদর্শিত হবে.";
+"profile.collection.empty.title" = "আপনার পোকা সংগ্রহ শুরু করুন";
+"profile.collection.empty.subtitle" = "পোকামাকড় ফটোগ্রাফ করুন, আপনার সংগ্রহ বাড়ান, পুরষ্কার অর্জন করুন এবং আপনার অগ্রগতি ট্র্যাক করুন";
+"profile.achievement.close.accessibility" = "বন্ধ";
+"profile.achievement.unlock_heading" = "এই অর্জন আনলক করতে";
+"profile.achievement.completed_heading" = "অভিনন্দন!";
+"profile.achievement.completed_body" = "আপনার সংগ্রহে যোগ করা হয়েছে";
+"profile.achievement.identify_more" = "%lld আরো %@ সনাক্ত করুন";
+"tab.home.accessibility" = "বাড়ি";
+"tab.library.accessibility" = "লাইব্রেরি";
+"tab.chat.accessibility" = "এআই চ্যাট";
+"tab.profile.accessibility" = "প্রোফাইল";
+"tab.scan.accessibility" = "স্ক্যান পোকা";
+
+/* Scanner */
+"scanner.close.accessibility" = "বন্ধ";
+"scanner.recognition_progress.message" = "ডেটা লোড হওয়ার সময় অনুগ্রহ করে অপেক্ষা করুন...";
+"scanner.recognition_no_match.title" = "কোনো মিল পাওয়া যায়নি";
+"scanner.recognition_no_match.subtitle" = "আমরা এই ফটোতে পোকা শনাক্ত করতে পারিনি";
+"scanner.recognition_no_match.try_again" = "আবার চেষ্টা করুন";
+"scanner.recognition_match.title" = "মিল পাওয়া গেছে!";
+"scanner.recognition_match.subtitle" = "আমরা সম্ভাব্য ম্যাচগুলো চিহ্নিত করেছি। এটা কোন পোকা দেখতে অবিরত";
+"scanner.recognition_match.see_result" = "ফলাফল দেখুন";
+
+/* Paywall */
+"paywall.preview.species" = "ফ্রিটিলারি";
+"paywall.preview.family" = "পরিবার: নিমফালিডি";
+"paywall.preview.harmless" = "ক্ষতিহীন";
+"paywall.close.accessibility" = "বন্ধ";
+"paywall.headline" = "সম্পূর্ণ পোকা জগত আনলক করুন";
+"paywall.benefit.scans" = "সীমাহীন স্ক্যান";
+"paywall.benefit.collection" = "সম্পূর্ণ সংগ্রহ অ্যাক্সেস";
+"paywall.benefit.ai" = "সীমা ছাড়া এআই সহকারী";
+"paywall.benefit.achievements" = "একচেটিয়া অর্জন";
+"paywall.product.prefix" = "3 দিন বিনামূল্যে, তারপর";
+"paywall.product.suffix" = "একটি সপ্তাহ";
+"paywall.cancel_anytime" = "যেকোনো সময় বাতিল করুন। স্বয়ংক্রিয় পুনর্নবীকরণ সহ।";
+"paywall.button.next" = "পরবর্তী";
+"paywall.footer.terms" = "ব্যবহারের শর্তাবলী";
+"paywall.footer.privacy" = "গোপনীয়তা নীতি";
+"paywall.footer.restore" = "পুনরুদ্ধার করুন";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "ক্রয়";
+"subscription.error.product_unavailable" = "এই সদস্যতা এখন উপলব্ধ নয়. অ্যাপ স্টোর কানেক্ট চেক করুন বা পরে আবার চেষ্টা করুন।";
+"subscription.error.purchase_failed" = "ক্রয় সম্পূর্ণ করা যায়নি. আবার চেষ্টা করুন.";
+"subscription.error.restore_failed" = "কেনাকাটা পুনরুদ্ধার করা যায়নি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন.";
+"subscription.pending.title" = "মুলতুবি";
+"subscription.pending.message" = "আপনার ক্রয় অনুমোদনের জন্য অপেক্ষা করছে. এটি সম্পূর্ণ হলে অ্যাক্সেস আনলক হবে।";
+"subscription.restore.title" = "পুনরুদ্ধার করুন";
+"subscription.restore.success" = "আপনার কেনাকাটা পুনরুদ্ধার করা হয়েছে.";
+"subscription.restore.nothing" = "এই অ্যাপল আইডির জন্য কোনো সক্রিয় সদস্যতা পাওয়া যায়নি।";
+
+"scanner.tips.title" = "টিপস";
+"scanner.tips.intro" = "একটি পরিষ্কার ফটো স্বীকৃতির নির্ভুলতা উন্নত করে। সেরা ফলাফলের জন্য এই টিপস অনুসরণ করুন:";
+"scanner.tips.1.title" = "1. পোকাটিকে তীক্ষ্ণ ফোকাসে রাখুন";
+"scanner.tips.2.title" = "2. পোকাটিকে ফ্রেমে কেন্দ্রে রাখুন। নিশ্চিত করুন যে এটি স্পষ্টভাবে দৃশ্যমান";
+"scanner.tips.3.title" = "3. একবারে শুধুমাত্র একটি প্রজাতি ক্যাপচার করুন — একাধিক কীটপতঙ্গ নির্ভুলতা হ্রাস করে";
+"scanner.tips.4.title" = "4. ভালো আলো ব্যবহার করুন";
+
+/* Library */
+"library.title" = "লাইব্রেরি";
+"list.search_empty.title" = "কোন ফলাফল নেই…";
+"list.search_empty.subtitle" = "আবার চেষ্টা করুন";
+
+/* Category insect list */
+"insect.hym.1.title" = "ওয়েস্টার্ন হানি বি";
+"insect.hym.1.subtitle" = "সাধারণ বাগানের কীটপতঙ্গ";
+"insect.hym.2.title" = "ইউরোপিয়ান পেপার ওয়াস্প";
+"insect.hym.2.subtitle" = "প্রায়ই বেড়া এবং eaves দেখা যায়";
+"insect.hym.3.title" = "বাফ-লেজ বাম্বলবি";
+"insect.hym.3.subtitle" = "প্রারম্ভিক বসন্ত পরাগায়নকারী";
+"insect.hym.4.title" = "মেসন বি";
+"insect.hym.4.subtitle" = "নির্জন গহ্বর নেস্টার";
+"insect.hym.5.title" = "ইকনিউমন ওয়াস্প";
+"insect.hym.5.subtitle" = "শুঁয়োপোকার পরজীবী";
+"insect.default.1.title" = "নমুনা পোকা A";
+"insect.default.1.subtitle" = "এই বিভাগের জন্য স্থানধারক সারি";
+"insect.default.2.title" = "নমুনা পোকা বি";
+"insect.default.2.subtitle" = "পরে API ডেটা দিয়ে প্রতিস্থাপন করুন";
+"insect.default.3.title" = "নমুনা পোকা গ";
+"insect.default.3.subtitle" = "এই বিভাগের জন্য স্থানধারক সারি";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "ক্ষতিহীন";
+"insect.detail.status.poisonous" = "বিষাক্ত";
+"insect.detail.status.toxic" = "বিষাক্ত";
+"insect.detail.status.widespread" = "ব্যাপক";
+"insect.detail.widespread.api.yes" = "ব্যাপক";
+"insect.detail.widespread.api.no" = "অস্বাভাবিক";
+"insect.detail.also_known_prefix" = "এছাড়াও পরিচিত:";
+"insect.detail.mock.scientific_title" = "এপিস মেলিফেরা";
+"insect.detail.mock.aliases" = "ইউরোপীয় মৌমাছি, ওয়েস্টার্ন হানি বি, হানি বি";
+"insect.detail.section.description" = "বর্ণনা";
+"insect.detail.read_more" = "আরও পড়ুন";
+"insect.detail.mock.description" = "পশ্চিমের মধু মৌমাছি (এপিস মেলিফেরা) কৃষি এবং বন্য বাস্তুতন্ত্রের সবচেয়ে গুরুত্বপূর্ণ পরিচালিত পরাগায়নকারী। ইউরোপ, পশ্চিম এশিয়া এবং আফ্রিকার স্থানীয়, এটি মৌমাছি পালনকারীদের দ্বারা মধু উৎপাদন এবং ফসলের পরাগায়নের জন্য বিশ্বব্যাপী ছড়িয়ে পড়েছে।\n\nএকটি উপনিবেশ হল একটি সুপার অর্গানিজম: একটি একক উর্বর রানী ডিম পাড়ে, যখন হাজার হাজার মহিলা কর্মী চারণ, নার্স লার্ভা, চিরুনি তৈরি করে এবং বাসা রক্ষা করে। পুরুষ ড্রোনগুলি ঋতু অনুসারে উপস্থিত হয় এবং অন্যান্য উপনিবেশের রানীদের সাথে সঙ্গী হয়। কর্মীরা ওয়াগল নাচের মাধ্যমে সমৃদ্ধ খাদ্য উত্সের দিকনির্দেশ এবং দূরত্ব যোগাযোগ করে এবং স্পর্শ এবং ফেরোমোনের মাধ্যমে তথ্য ভাগ করে।\n\nপশুপাখিরা অনেক উদ্ভিদ প্রজাতি পরিদর্শন করে, তারা চলাচলের সাথে সাথে পরাগ স্থানান্তর করে। এই আচরণ জীববৈচিত্র্য এবং খাদ্য শস্য-বাগান এবং বেরি থেকে তেলবীজ এবং তরমুজ পর্যন্ত সমর্থন করে। মৌমাছি পালনকারীরা উপনিবেশের স্বাস্থ্য, কীটপতঙ্গ, রোগ এবং পুষ্টির চাপের জন্য পর্যবেক্ষণের সাথে মধু সংগ্রহের ভারসাম্য বজায় রাখতে আমবাত পরিচালনা করে।\n\nযদিও সাধারণত ফুলের উপর নমনীয়, মধু মৌমাছিরা তাদের মৌচাক রক্ষা করে যদি তারা কোন হুমকি অনুভব করে; তাদের ইঙ্গিত বোঝা কামড় কমায়। বাসস্থানের ক্ষতি, কীটনাশক, রোগজীবাণু এবং জলবায়ু পরিবর্তন বন্য এবং পরিচালিত জনসংখ্যা উভয়কেই চ্যালেঞ্জ করে। ফুলের সম্পদ রক্ষা করা এবং যত্নশীল ব্যবস্থাপনা অবলম্বন করা ভবিষ্যতের ঋতুর জন্য এই অসাধারণ পোকামাকড়কে টিকিয়ে রাখতে সাহায্য করে।";
+"insect.detail.section.characteristics" = "বৈশিষ্ট্য";
+"insect.detail.section.classification" = "বৈজ্ঞানিক শ্রেণীবিভাগ";
+"insect.detail.section.bites" = "কামড় দেয়";
+"insect.detail.bites.intro" = "যদি আপনাকে কামড়ে বা দংশন করা হয় তবে এই পদক্ষেপগুলি অনুসরণ করুন:";
+"insect.detail.bites.first_aid" = "তাৎক্ষণিক প্রাথমিক চিকিৎসা:";
+"insect.detail.add_to_collection" = "সংগ্রহে যোগ করুন";
+"insect.detail.add_to_collection.sheet.title" = "আপনার সংগ্রহে একটি ছবি যোগ করুন";
+"insect.detail.add_to_collection.source.camera" = "ছবি তুলুন";
+"insect.detail.add_to_collection.source.library" = "লাইব্রেরি থেকে বেছে নিন";
+"insect.detail.add_to_collection.cancel" = "বাতিল করুন";
+"insect.detail.add_to_collection.alert.ok" = "ঠিক আছে";
+"insect.detail.add_to_collection.error.no_insect" = "এই স্ক্রীনটি একটি ক্যাটালগ পোকার সাথে সংযুক্ত নয়, তাই সংগ্রহটি আপডেট করা যাবে না।";
+"insect.detail.add_to_collection.error.network" = "সংগ্রহে যোগ করা যায়নি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন.";
+"insect.detail.remove_from_collection.confirm.title" = "সংগ্রহ থেকে সরান?";
+"insect.detail.remove_from_collection.confirm.message" = "এই পোকা আপনার সংগ্রহ থেকে সরানো হবে. এটি পূর্বাবস্থায় ফেরানো যাবে না।";
+"insect.detail.remove_from_collection.confirm.delete" = "সরান";
+"insect.detail.remove_from_collection.confirm.cancel" = "বাতিল করুন";
+"insect.detail.remove_from_collection.error.no_id" = "সার্ভারে অপসারণের জন্য কোন সংগ্রহ এন্ট্রি নেই।";
+"insect.detail.remove_from_collection.error.network" = "সংগ্রহ থেকে সরানো যায়নি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন.";
+"insect.detail.add_to_collection.success.title" = "সফলতার !";
+"insect.detail.add_to_collection.success.subtitle" = "পোকাটি সফলভাবে আপনার সংগ্রহে যোগ করা হয়েছে";
+"insect.detail.remove_from_collection.accessibility" = "সংগ্রহ থেকে সরান";
+"insect.detail.class.genus.title" = "জেনাস";
+"insect.detail.class.genus.value" = "এপিস";
+"insect.detail.class.family.title" = "পরিবার";
+"insect.detail.class.family.value" = "এপিডে";
+"insect.detail.class.order.title" = "অর্ডার";
+"insect.detail.class.order.value" = "হাইমেনোপ্টেরা";
+"insect.detail.class.class.title" = "ক্লাসের নাম";
+"insect.detail.class.class.value" = "ইনসেক্টা";
+"insect.detail.class.phylum.title" = "ফিলাম";
+"insect.detail.class.phylum.value" = "আর্থ্রোপোডা";
+"insect.detail.class.kingdom.title" = "রাজ্য";
+"insect.detail.class.kingdom.value" = "অ্যানিমেলিয়া";
+"insect.detail.class.domain.title" = "ডোমেইন";
+"insect.detail.class.domain.value" = "ইউক্যারিওটা";
+"insect.detail.char.adult_size.title" = "প্রাপ্তবয়স্কদের আকার";
+"insect.detail.char.adult_size.value" = "1.2 - 1.5 সেমি";
+"insect.detail.char.forms.title" = "অস্তিত্ব ফর্ম";
+"insect.detail.char.forms.value" = "ডিম, লার্ভা, পিউপা, প্রাপ্তবয়স্ক";
+"insect.detail.char.colors.title" = "রং";
+"insect.detail.char.colors.value" = "কালো ডোরা সহ সোনালি-বাদামী";
+"insect.detail.char.population.title" = "জনসংখ্যা";
+"insect.detail.char.population.value" = "অত্যন্ত ব্যাপক এবং গৃহপালিত";
+"insect.detail.char.habitat.title" = "বাসস্থান";
+"insect.detail.char.habitat.value" = "তৃণভূমি, বাগান, বন, কৃষি এলাকা";
+"insect.detail.char.diet.title" = "ডায়েট";
+"insect.detail.char.diet.value" = "ফুল গাছ থেকে অমৃত এবং পরাগ";
+
+/* Home — popular this week */
+"home.popular_this_week" = "এই সপ্তাহে জনপ্রিয়";
+"home.popular.butterfly" = "প্রজাপতি";
+"home.popular.mantis" = "ম্যান্টিস";
+"home.popular.ant" = "পিঁপড়া";
+"home.popular.beetle" = "বিটল";
+
+/* Home — articles */
+"home.articles_section_title" = "দরকারী নিবন্ধ";
+"home.article.identify.title" = "আমরা কিভাবে পোকামাকড় সনাক্ত করতে পারি?";
+"home.article.identify.subtitle" = "মৌলিক চিহ্ন এবং সরঞ্জাম যা ক্ষেত্র বা ফটো থেকে প্রজাতিকে আলাদা করতে সাহায্য করে।";
+"home.article.habitats.title" = "যেখানে পোকামাকড় বাস করে";
+"home.article.habitats.subtitle" = "মাটি এবং পাতার আবর্জনা থেকে ফুল এবং জল - সাধারণ আবাসস্থল আপনি নিরাপদে অন্বেষণ করতে পারেন।";
+"home.article.photography.title" = "চাপ ছাড়াই ম্যাক্রো ফটো";
+"home.article.photography.subtitle" = "হালকা, দূরত্ব, এবং ধৈর্য: ছোট বিষয়ের স্পষ্ট ছবিগুলির জন্য ছোট টিপস।";
+"home.article.identify.block1.title" = "আমরা কি প্রথম তাকান";
+"home.article.identify.block1.body" = "শরীরের আকৃতি, ডানা, অ্যান্টেনা এবং পায়ে প্রায়ই এক নজরে পোকামাকড়ের ক্রম সংকুচিত হয়। রঙের নিদর্শনগুলি সাহায্য করে, তবে তারা প্রজাতির মধ্যে পরিবর্তিত হয় - আকার, ভঙ্গি এবং আচরণের সাথে তাদের একত্রিত করে। যখন সম্ভব, নোট করুন আপনি কোথায় কীটপতঙ্গ দেখেছেন: হোস্ট উদ্ভিদ, মাটির পৃষ্ঠ বা জলের প্রান্ত সবই প্রসঙ্গ যোগ করে।";
+"home.article.identify.block2.title" = "একটি ছবি থেকে";
+"home.article.identify.block2.body" = "একটি তীক্ষ্ণ, ভাল-আলোকিত ছবি প্রতিবার একটি ঝাপসা ছবিকে হারায়। উপরের দৃশ্যটি ক্যাপচার করুন এবং, যদি আপনি পারেন, পাশের প্রোফাইলটি। যখন আকার গুরুত্বপূর্ণ তখন স্কেলের অনুভূতি (একটি মুদ্রা বা আপনার আঙুল) অন্তর্ভুক্ত করুন। চিহ্নগুলি সূক্ষ্ম বা ভাঁজ করা ডানার নীচে লুকিয়ে থাকলে বেশ কয়েকটি কোণ অনুমানকে হ্রাস করে।";
+"home.article.habitats.block1.title" = "আবাসস্থলের স্তর";
+"home.article.habitats.block1.body" = "পোকামাকড় উল্লম্ব স্থান ব্যবহার করে: ক্যানোপি, আন্ডারস্টোরি, পাতার আবর্জনা, বাকল ফাটল এবং মাটি। একটি লগ বাঁকানো বা একটি পাথর উত্তোলন সম্পূর্ণ সূর্যের মধ্যে একটি ফুলের মাথার চেয়ে ভিন্ন সম্প্রদায়কে প্রকাশ করে। ধীরে ধীরে সরান এবং কভার প্রতিস্থাপন করুন যাতে মাইক্রোবাস অক্ষত থাকে।";
+"home.article.habitats.block2.title" = "জল এবং প্রান্ত";
+"home.article.habitats.block2.body" = "পুকুর, স্রোত এবং স্যাঁতসেঁতে তৃণভূমিতে বিশেষজ্ঞরা যেমন ড্রাগনফ্লাই, ড্যামসেলফ্লাই এবং অনেক পোকা থাকে। ভূমি এবং জলের মধ্যে সীমানা - খাগড়া, কর্দমাক্ত তীর - প্রায়শই সবচেয়ে ধনী অঞ্চল। বিশ্রামরত পোকামাকড়কে বিরক্ত না করার জন্য প্রথমে দূর থেকে পর্যবেক্ষণ করুন।";
+"home.article.photography.block1.title" = "আলো এবং দূরত্ব";
+"home.article.photography.block1.body" = "বিচ্ছুরিত দিনের আলো বা খোলা ছায়া কঠোর ছায়া ছাড়াই আলোকসজ্জা দেয়। ফ্রেম পূরণ করার জন্য যথেষ্ট কাছাকাছি যান, কিন্তু বিষয় জুড়ে আপনার নিজের ছায়া কাস্ট করা এড়ান। একটি ছোট প্রতিফলক বা সাদা কার্ড ফুল বা বাকলের গভীর ছিদ্রে বিস্তারিত তুলে ধরতে পারে।";
+"home.article.photography.block2.title" = "ধৈর্য এবং সম্মান";
+"home.article.photography.block2.body" = "পোকামাকড়কে তাড়া না করে বসতি স্থাপন করতে দিন। বার্স্ট মোড স্কিটিশ ফ্লায়ারদের সাহায্য করে। আপনি যদি ফ্ল্যাশ ব্যবহার করেন, সেশনগুলি সংক্ষিপ্ত রাখুন এবং কখনই এটিকে আশেপাশের মেরুদণ্ডী প্রাণীদের চোখে সরাসরি নির্দেশ করবেন না। আপনার কাজ শেষ হয়ে গেলে, আবাসস্থলটি আপনি যেমন পেয়েছেন তা ছেড়ে দিন।";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "সেটিংস";
+"settings.section.support" = "সমর্থন";
+"settings.section.feedback" = "প্রতিক্রিয়া";
+"settings.section.security" = "নিরাপত্তা";
+"settings.row.contact_us" = "আমাদের সাথে যোগাযোগ করুন";
+"settings.row.restore" = "পুনরুদ্ধার করুন";
+"settings.row.rate_app" = "অ্যাপটিকে রেট দিন";
+"settings.row.share_app" = "অ্যাপটি শেয়ার করুন";
+"settings.row.privacy" = "গোপনীয়তা নীতি";
+"settings.row.terms" = "ব্যবহারের শর্তাবলী";
+"settings.row.refund_consent" = "ফেরত সম্মতি";
+"settings.row.reset_consent" = "সম্মতি রিসেট করুন";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "বাগ অ্যাপ সমর্থন";
+"settings.support.mail_body" = "হাই,";
+"settings.support.mail_unavailable_title" = "ইমেল দ্বারা আমাদের সাথে যোগাযোগ করুন";
+"settings.restore.message" = "এই অ্যাপল আইডির জন্য অ্যাপ স্টোর থেকে আপনার সদস্যতা পুনরুদ্ধার করে।";
+"settings.refund_consent.message" = "আপনি কি ফেরতের উদ্দেশ্যে আপনার ডেটা প্রক্রিয়াকরণে সম্মত হন?";
+"settings.refund_consent.allow" = "অনুমতি দিন";
+"settings.refund_consent.decline" = "প্রত্যাখ্যান";
+"settings.reset_consent.message" = "বিজ্ঞাপনের সম্মতি ব্যবস্থাপনা ভবিষ্যতের আপডেটে পাওয়া যাবে।";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

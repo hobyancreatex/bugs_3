@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Kész";
+
+/* Onboarding */
+"onboarding.intro.title" = "Szia! Én vagyok a vezetőd a rovarok világába 🐞";
+"onboarding.intro.subtitle" = "Ebben az alkalmazásban a következőket teheti:";
+"onboarding.intro.benefit.identify" = "Azonosítsa a rovarokat másodpercek alatt";
+"onboarding.intro.benefit.collection" = "Mentse el őket a gyűjteményébe";
+"onboarding.intro.benefit.achievements" = "Szerezz eredményeket";
+"onboarding.intro.benefit.ai" = "Csevegés egy AI-asszisztenssel";
+"onboarding.intro.benefit.articles" = "Olvassa el a hasznos cikkeket";
+"onboarding.button.next" = "Következő";
+"onboarding.button.start" = "Kezdje el";
+
+/* Home */
+"home.title" = "Otthon";
+"home.search.placeholder" = "Keresés";
+"home.ai_banner.title" = "Kérdezze meg az AI-t a talált rovarokról";
+"home.ai_banner.button" = "Tegyen fel egy kérdést";
+
+/* AI chat */
+"ai_chat.title" = "AI tanácsadó";
+"ai_chat.input.placeholder" = "Kérdezz valamit…";
+"ai_chat.stub.ai" = "Mindent tudok a rovarokról, kérjen tanácsot.";
+"ai_chat.stub.user" = "Mesélj a méhekről";
+"ai_chat.seed_creation_message" = "ki vagy te?";
+"ai_chat.error.bootstrap" = "Nem sikerült megnyitni a csevegést. Kérjük, próbálja újra.";
+"ai_chat.error.send" = "Nem sikerült elküldeni az üzenetet. Kérjük, próbálja újra.";
+"ai_chat.alert.connection_lost.message" = "A kapcsolat megszakadt. Kérjük, próbálja újra később.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpiók";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Kétszárnyúak";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Az én gyűjteményem";
+"profile.segment.achievements" = "Az eredményeim";
+"profile.achievements.placeholder" = "Az elért eredmények itt jelennek meg.";
+"profile.collection.empty.title" = "Indítsa el a rovargyűjtést";
+"profile.collection.empty.subtitle" = "Fényképezzen rovarokat, gyarapítsa gyűjteményét, szerezzen jutalmakat, és kövesse nyomon fejlődését";
+"profile.achievement.close.accessibility" = "Bezárás";
+"profile.achievement.unlock_heading" = "A jutalom feloldásához";
+"profile.achievement.completed_heading" = "Gratulálunk!";
+"profile.achievement.completed_body" = "Hozzáadva a gyűjteményéhez";
+"profile.achievement.identify_more" = "Azonosítson %lld további %@";
+"tab.home.accessibility" = "Otthon";
+"tab.library.accessibility" = "Könyvtár";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Scan rovar";
+
+/* Scanner */
+"scanner.close.accessibility" = "Bezárás";
+"scanner.recognition_progress.message" = "Kérjük, várjon, amíg az adatok betöltődnek…";
+"scanner.recognition_no_match.title" = "Nem található egyezés";
+"scanner.recognition_no_match.subtitle" = "Nem tudtuk azonosítani a rovart a képen";
+"scanner.recognition_no_match.try_again" = "Próbáld újra";
+"scanner.recognition_match.title" = "Talált egyezést!";
+"scanner.recognition_match.subtitle" = "Azonosítottuk a lehetséges egyezéseket. Továbbra is nézze meg, melyik rovarról van szó";
+"scanner.recognition_match.see_result" = "Lásd az eredményt";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Család: Nymphalidae";
+"paywall.preview.harmless" = "Ártalmatlan";
+"paywall.close.accessibility" = "Bezárás";
+"paywall.headline" = "Nyisd meg a teljes rovarvilágot";
+"paywall.benefit.scans" = "Korlátlan beolvasás";
+"paywall.benefit.collection" = "Teljes hozzáférés a gyűjteményhez";
+"paywall.benefit.ai" = "AI asszisztens korlátok nélkül";
+"paywall.benefit.achievements" = "Exkluzív eredmények";
+"paywall.product.prefix" = "Akkor 3 nap ingyen";
+"paywall.product.suffix" = "egy hét";
+"paywall.cancel_anytime" = "Bármikor lemondhatja. Automatikus megújulással.";
+"paywall.button.next" = "Következő";
+"paywall.footer.terms" = "Felhasználási feltételek";
+"paywall.footer.privacy" = "Adatvédelmi szabályzat";
+"paywall.footer.restore" = "Visszaállítás";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Vásárlás";
+"subscription.error.product_unavailable" = "Ez az előfizetés jelenleg nem érhető el. Ellenőrizze az App Store Connect-et, vagy próbálja újra később.";
+"subscription.error.purchase_failed" = "A vásárlást nem lehetett befejezni. Kérjük, próbálja újra.";
+"subscription.error.restore_failed" = "Nem sikerült visszaállítani a vásárlásokat. Ellenőrizze a kapcsolatot, és próbálja újra.";
+"subscription.pending.title" = "Függőben";
+"subscription.pending.message" = "Vásárlása jóváhagyásra vár. A hozzáférés feloldódik, ha befejeződik.";
+"subscription.restore.title" = "Visszaállítás";
+"subscription.restore.success" = "Vásárlásait visszaállítottuk.";
+"subscription.restore.nothing" = "Nem található aktív előfizetés ehhez az Apple ID-hoz.";
+
+"scanner.tips.title" = "Tippek";
+"scanner.tips.intro" = "A tiszta fénykép javítja a felismerés pontosságát. A legjobb eredmény érdekében kövesse az alábbi tippeket:";
+"scanner.tips.1.title" = "1. Tartsa a rovart éles fókuszban";
+"scanner.tips.2.title" = "2. Állítsa középre a rovart a keretben. Győződjön meg róla, hogy jól látható";
+"scanner.tips.3.title" = "3. Egyszerre csak egy fajt rögzítsen – több rovar csökkenti a pontosságot";
+"scanner.tips.4.title" = "4. Használjon jó világítást";
+
+/* Library */
+"library.title" = "Könyvtár";
+"list.search_empty.title" = "Nincs eredmény…";
+"list.search_empty.subtitle" = "Kérjük, próbálja újra";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western Honey Bee";
+"insect.hym.1.subtitle" = "Gyakori kertészeti kártevők";
+"insect.hym.2.title" = "Európai papírdarázs";
+"insect.hym.2.subtitle" = "Gyakran látható kerítéseken és ereszeken";
+"insect.hym.3.title" = "Buffal-tailed Bumblebee";
+"insect.hym.3.subtitle" = "Kora tavaszi beporzó";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Magányos üreges fészkelő";
+"insect.hym.5.title" = "Ichneumon Darázs";
+"insect.hym.5.subtitle" = "A hernyók parazitoidája";
+"insect.default.1.title" = "Minta rovar A";
+"insect.default.1.subtitle" = "Helyőrző sor ehhez a kategóriához";
+"insect.default.2.title" = "B minta rovar";
+"insect.default.2.subtitle" = "Cserélje le később API-adatokkal";
+"insect.default.3.title" = "Minta rovar C";
+"insect.default.3.subtitle" = "Helyőrző sor ehhez a kategóriához";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Ártalmatlan";
+"insect.detail.status.poisonous" = "Mérgező";
+"insect.detail.status.toxic" = "Mérgező";
+"insect.detail.status.widespread" = "Elterjedt";
+"insect.detail.widespread.api.yes" = "Elterjedt";
+"insect.detail.widespread.api.no" = "Nem gyakori";
+"insect.detail.also_known_prefix" = "Más néven:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.section.description" = "Leírás";
+"insect.detail.read_more" = "Olvasson tovább";
+"insect.detail.mock.description" = "A nyugati mézelő méh (Apis mellifera) a mezőgazdaságban és a vadon élő ökoszisztémákban a legfontosabb irányított beporzók közé tartozik. Európában, Nyugat-Ázsiában és Afrikában őshonos, méhészek méztermelés és termésbeporzás céljából világszerte elterjesztették.\n\nA kolónia szuperorganizmus: egyetlen termékeny királynő petéket rak, miközben nőstények ezrei takarmányoznak, lárvákat szoptatnak, fésűt építenek és megvédik a fészket. A hím drónok szezonálisan jelennek meg, és más kolóniák királynőivel párosodnak. A dolgozók a hullámzó táncon keresztül közlik az irányt és a távolságot a gazdag táplálékforrásokhoz, és érintéssel és feromonokkal osztanak meg információkat.\n\nA takarmányozók sok növényfajt meglátogatnak, és mozgásuk során virágport szállítanak. Ez a viselkedés támogatja a biológiai sokféleséget és az élelmiszernövényeket – a gyümölcsösöktől és bogyóktól az olajos magvakig és a dinnyéig. A méhészek úgy kezelik a kaptárakat, hogy egyensúlyba hozzák a méz betakarítását a telepek egészségével, a kártevők, betegségek és táplálkozási stressz megfigyelésével.\n\nBár általában engedelmesek a virágokhoz, a mézelő méhek megvédik kaptárukat, ha fenyegetést észlelnek; jelzéseik megértése csökkenti a csípéseket. Az élőhelyek elvesztése, a peszticidek, a kórokozók és az éghajlatváltozások kihívást jelentenek a vadon élő és a kezelt populációk számára egyaránt. A virágforrások védelme és a gondos kezelés alkalmazása segít fenntartani ezeket a figyelemre méltó rovarokat a következő évszakokban.";
+"insect.detail.section.characteristics" = "Jellemzők";
+"insect.detail.section.classification" = "Tudományos osztályozás";
+"insect.detail.section.bites" = "Harapások";
+"insect.detail.bites.intro" = "Ha megharapták vagy megcsípték, kövesse az alábbi lépéseket:";
+"insect.detail.bites.first_aid" = "Azonnali elsősegélynyújtás:";
+"insect.detail.add_to_collection" = "Hozzáadás a gyűjteményhez";
+"insect.detail.add_to_collection.sheet.title" = "Adjon hozzá egy fényképet a gyűjteményéhez";
+"insect.detail.add_to_collection.source.camera" = "Fotózni";
+"insect.detail.add_to_collection.source.library" = "Válasszon a könyvtárból";
+"insect.detail.add_to_collection.cancel" = "Mégsem";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Ez a képernyő nem kapcsolódik katalógus rovarhoz, így a gyűjtemény nem frissíthető.";
+"insect.detail.add_to_collection.error.network" = "Nem sikerült hozzáadni a gyűjteményhez. Ellenőrizze a kapcsolatot, és próbálja újra.";
+"insect.detail.remove_from_collection.confirm.title" = "Eltávolítja a gyűjteményből?";
+"insect.detail.remove_from_collection.confirm.message" = "Ezt a rovart eltávolítjuk a gyűjteményéből. Ezt nem lehet visszavonni.";
+"insect.detail.remove_from_collection.confirm.delete" = "Távolítsa el";
+"insect.detail.remove_from_collection.confirm.cancel" = "Mégsem";
+"insect.detail.remove_from_collection.error.no_id" = "Nincs eltávolítható gyűjteménybejegyzés a szerveren.";
+"insect.detail.remove_from_collection.error.network" = "Nem sikerült eltávolítani a gyűjteményből. Ellenőrizze a kapcsolatot, és próbálja újra.";
+"insect.detail.add_to_collection.success.title" = "Sikert!";
+"insect.detail.add_to_collection.success.subtitle" = "A rovar sikeresen bekerült a gyűjteményébe";
+"insect.detail.remove_from_collection.accessibility" = "Eltávolítás a gyűjteményből";
+"insect.detail.class.genus.title" = "nemzetség";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Család";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Rendeljen";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Osztály neve";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Ízeltlábúak";
+"insect.detail.class.kingdom.title" = "Királyság";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domain";
+"insect.detail.class.domain.value" = "Eukarióta";
+"insect.detail.char.adult_size.title" = "Felnőtt méret";
+"insect.detail.char.adult_size.value" = "1,2-1,5 cm";
+"insect.detail.char.forms.title" = "Létezési formák";
+"insect.detail.char.forms.value" = "Tojás, Lárva, Báb, Felnőtt";
+"insect.detail.char.colors.title" = "Színek";
+"insect.detail.char.colors.value" = "Aranybarna, fekete csíkokkal";
+"insect.detail.char.population.title" = "Népesség";
+"insect.detail.char.population.value" = "Nagyon elterjedt és háziasított";
+"insect.detail.char.habitat.title" = "Élőhely";
+"insect.detail.char.habitat.value" = "Rétek, kertek, erdők, mezőgazdasági területek";
+"insect.detail.char.diet.title" = "Diéta";
+"insect.detail.char.diet.value" = "Virágzó növények nektárja és pollenje";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Népszerű ezen a héten";
+"home.popular.butterfly" = "Pillangó";
+"home.popular.mantis" = "Sáska";
+"home.popular.ant" = "Ant";
+"home.popular.beetle" = "Bogár";
+
+/* Home — articles */
+"home.articles_section_title" = "Hasznos cikkek";
+"home.article.identify.title" = "Hogyan ismerjük fel a rovarokat?";
+"home.article.identify.subtitle" = "Alapvető jelek és eszközök, amelyek segítenek megkülönböztetni a fajokat a szántóföldön vagy egy fényképről.";
+"home.article.habitats.title" = "Ahol rovarok élnek";
+"home.article.habitats.subtitle" = "A talajtól és az alomtól a virágokig és a vízig – tipikus élőhelyek, amelyeket biztonságosan felfedezhet.";
+"home.article.photography.title" = "Makró fotók stressz nélkül";
+"home.article.photography.subtitle" = "Fény, távolság és türelem: rövid tippek a kis témák tisztább képéhez.";
+"home.article.identify.block1.title" = "Amit először megnézünk";
+"home.article.identify.block1.body" = "A test alakja, a szárnyak, az antennák és a lábak gyakran egy pillantásra leszűkítik a rovarok sorrendjét. A színminták segítenek, de fajon belül változnak – kombinálja őket mérettel, testtartással és viselkedéssel. Ha lehetséges, jegyezze fel, hol látta a rovart: a tápnövény, a talaj felszíne vagy a víz széle, mind kontextust ad.";
+"home.article.identify.block2.title" = "Egy fényképről";
+"home.article.identify.block2.body" = "Az éles, jól megvilágított kép minden alkalommal felülmúlja az elmosódottat. Rögzítse a felülnézetet, és ha lehet, az oldalsó profilt. Ha a méret számít, használjon méretarányt (érmét vagy ujját). Számos szög csökkenti a találgatást, ha a jelölések finomak vagy összecsukott szárnyak alatt vannak elrejtve.";
+"home.article.habitats.block1.title" = "Egy élőhely rétegei";
+"home.article.habitats.block1.body" = "A rovarok függőleges teret használnak: lombkoronát, aljnövényzetet, avart, kéregréseket és talajt. Egy rönk forgatása vagy kő felemelése más közösséget tár fel, mint egy virágfej teljes napon. Mozogjon lassan, és helyezze vissza a takarót, hogy a mikroélőhelyek érintetlenek maradjanak.";
+"home.article.habitats.block2.title" = "Víz és élek";
+"home.article.habitats.block2.body" = "A tavak, a patakok és a nyirkos rétek olyan szakembereknek adnak otthont, mint a szitakötők, leánybogárok és sok bogarak. A szárazföld és a víz határa – nádasok, iszapos partok – gyakran a leggazdagabb zóna. Először távolról figyelje meg, hogy ne zavarja a pihenő rovarokat.";
+"home.article.photography.block1.title" = "Fény és távolság";
+"home.article.photography.block1.body" = "A szórt nappali fény vagy a nyitott árnyék egyenletes megvilágítást biztosít éles árnyékok nélkül. Menjen elég közel ahhoz, hogy kitöltse a keretet, de ne vessen saját árnyékát a témára. Egy kis fényvisszaverő vagy fehér kártya képes kiemelni a részleteket a virágok vagy a kéreg mély mélyedéseiben.";
+"home.article.photography.block2.title" = "Türelem és tisztelet";
+"home.article.photography.block2.body" = "Hagyja, hogy a rovarok megtelepedjenek ahelyett, hogy üldöznék őket. A sorozatfelvétel mód segít a sivár szórólapokon. Ha vakut használ, tartsa röviden az üléseket, és soha ne irányítsa közvetlenül a közelben lévő gerincesek szemébe. Ha végzett, hagyja az élőhelyet úgy, ahogy találta.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Beállítások elemre";
+"settings.section.support" = "Támogatás";
+"settings.section.feedback" = "Visszajelzés";
+"settings.section.security" = "Biztonság";
+"settings.row.contact_us" = "Vegye fel velünk a kapcsolatot";
+"settings.row.restore" = "Visszaállítás";
+"settings.row.rate_app" = "Értékelje az alkalmazást";
+"settings.row.share_app" = "Ossza meg az alkalmazást";
+"settings.row.privacy" = "Adatvédelmi szabályzat";
+"settings.row.terms" = "Felhasználási feltételek";
+"settings.row.refund_consent" = "Visszatérítési hozzájárulás";
+"settings.row.reset_consent" = "Hozzájárulás visszaállítása";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Bugs alkalmazás támogatása";
+"settings.support.mail_body" = "Szia";
+"settings.support.mail_unavailable_title" = "Vegye fel velünk a kapcsolatot e-mailben";
+"settings.restore.message" = "Visszaállítja az előfizetést az App Store-ból ehhez az Apple ID-hez.";
+"settings.refund_consent.message" = "Hozzájárul-e adatainak visszatérítés céljából történő feldolgozásához?";
+"settings.refund_consent.allow" = "Engedélyezze";
+"settings.refund_consent.decline" = "Elutasítás";
+"settings.reset_consent.message" = "A hirdetési hozzájárulások kezelése egy jövőbeli frissítésben lesz elérhető.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

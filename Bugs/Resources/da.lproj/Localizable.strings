@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Færdig";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hej! Jeg er din guide til insektverdenen 🐞";
+"onboarding.intro.subtitle" = "I denne app kan du:";
+"onboarding.intro.benefit.identify" = "Identificer insekter på få sekunder";
+"onboarding.intro.benefit.collection" = "Gem dem i din samling";
+"onboarding.intro.benefit.achievements" = "Optjen præstationer";
+"onboarding.intro.benefit.ai" = "Chat med en AI-assistent";
+"onboarding.intro.benefit.articles" = "Læs nyttige artikler";
+"onboarding.button.next" = "Næste";
+"onboarding.button.start" = "Kom i gang";
+
+/* Home */
+"home.title" = "Hjem";
+"home.search.placeholder" = "Søg";
+"home.ai_banner.title" = "Spørg AI om ethvert insekt, du finder";
+"home.ai_banner.button" = "Stil et spørgsmål";
+
+/* AI chat */
+"ai_chat.title" = "AI konsulent";
+"ai_chat.input.placeholder" = "Spørg mig om noget...";
+"ai_chat.stub.ai" = "Jeg ved alt om insekter, du kan kontakte mig.";
+"ai_chat.stub.user" = "Fortæl mig om bierne";
+"ai_chat.seed_creation_message" = "hvem er du?";
+"ai_chat.error.bootstrap" = "Kunne ikke åbne chatten. Prøv venligst igen.";
+"ai_chat.error.send" = "Kunne ikke sende beskeden. Prøv venligst igen.";
+"ai_chat.alert.connection_lost.message" = "Forbindelsen gik tabt. Prøv venligst igen senere.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpioner";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Min samling";
+"profile.segment.achievements" = "Mine præstationer";
+"profile.achievements.placeholder" = "Præstationer vises her.";
+"profile.collection.empty.title" = "Start din insektsamling";
+"profile.collection.empty.subtitle" = "Fotografer insekter, udvid din samling, tjen belønninger og følg dine fremskridt";
+"profile.achievement.close.accessibility" = "Luk";
+"profile.achievement.unlock_heading" = "For at låse op for denne præstation";
+"profile.achievement.completed_heading" = "Tillykke!";
+"profile.achievement.completed_body" = "Tilføjet til din samling";
+"profile.achievement.identify_more" = "Identificer %lld mere %@";
+"tab.home.accessibility" = "Hjem";
+"tab.library.accessibility" = "Bibliotek";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Scan insekt";
+
+/* Scanner */
+"scanner.close.accessibility" = "Luk";
+"scanner.recognition_progress.message" = "Vent venligst mens dataene indlæses...";
+"scanner.recognition_no_match.title" = "Ingen match fundet";
+"scanner.recognition_no_match.subtitle" = "Vi kunne ikke identificere insektet på dette billede";
+"scanner.recognition_no_match.try_again" = "Prøv igen";
+"scanner.recognition_match.title" = "Match fundet!";
+"scanner.recognition_match.subtitle" = "Vi har identificeret mulige matches. Fortsæt med at se, hvilket insekt det er";
+"scanner.recognition_match.see_result" = "Se resultat";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Familie: Nymphalidae";
+"paywall.preview.harmless" = "Harmløs";
+"paywall.close.accessibility" = "Luk";
+"paywall.headline" = "Lås op for hele insektverdenen";
+"paywall.benefit.scans" = "Ubegrænsede scanninger";
+"paywall.benefit.collection" = "Fuld adgang til samlingen";
+"paywall.benefit.ai" = "AI-assistent uden grænser";
+"paywall.benefit.achievements" = "Eksklusive præstationer";
+"paywall.product.prefix" = "3 dage gratis, så";
+"paywall.product.suffix" = "en uge";
+"paywall.cancel_anytime" = "Annuller til enhver tid. Med automatisk fornyelse.";
+"paywall.button.next" = "Næste";
+"paywall.footer.terms" = "Vilkår for brug";
+"paywall.footer.privacy" = "Privatlivspolitik";
+"paywall.footer.restore" = "Gendan";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Køb";
+"subscription.error.product_unavailable" = "Dette abonnement er ikke tilgængeligt lige nu. Tjek App Store Connect, eller prøv igen senere.";
+"subscription.error.purchase_failed" = "Købet kunne ikke gennemføres. Prøv venligst igen.";
+"subscription.error.restore_failed" = "Kunne ikke gendanne køb. Tjek din forbindelse, og prøv igen.";
+"subscription.pending.title" = "Afventer";
+"subscription.pending.message" = "Dit køb venter på godkendelse. Adgang låses op, når den er fuldført.";
+"subscription.restore.title" = "Gendan";
+"subscription.restore.success" = "Dine køb blev gendannet.";
+"subscription.restore.nothing" = "Der blev ikke fundet noget aktivt abonnement for dette Apple-id.";
+
+"scanner.tips.title" = "Tips";
+"scanner.tips.intro" = "Et klart billede forbedrer genkendelsesnøjagtigheden. Følg disse tips for de bedste resultater:";
+"scanner.tips.1.title" = "1. Hold insektet i skarpt fokus";
+"scanner.tips.2.title" = "2. Centrer insektet i rammen. Sørg for, at det er tydeligt synligt";
+"scanner.tips.3.title" = "3. Fang kun én art ad gangen - flere insekter reducerer nøjagtigheden";
+"scanner.tips.4.title" = "4. Brug god belysning";
+
+/* Library */
+"library.title" = "Bibliotek";
+"list.search_empty.title" = "Ingen resultater...";
+"list.search_empty.subtitle" = "Prøv venligst igen";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western honningbi";
+"insect.hym.1.subtitle" = "Almindelige skadedyr i haven";
+"insect.hym.2.title" = "Europæisk papirhveps";
+"insect.hym.2.subtitle" = "Ses ofte på hegn og udhæng";
+"insect.hym.3.title" = "Buff-tailed humlebi";
+"insect.hym.3.subtitle" = "Tidlig forårs bestøver";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Solitær hulrumsboer";
+"insect.hym.5.title" = "Ichneumon hveps";
+"insect.hym.5.subtitle" = "Parasitoid af larver";
+"insect.default.1.title" = "Prøve af insekt A";
+"insect.default.1.subtitle" = "Pladsholderrække for denne kategori";
+"insect.default.2.title" = "Prøve af insekt B";
+"insect.default.2.subtitle" = "Erstat med API-data senere";
+"insect.default.3.title" = "Prøve af insekt C";
+"insect.default.3.subtitle" = "Pladsholderrække for denne kategori";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Harmløs";
+"insect.detail.status.poisonous" = "Giftig";
+"insect.detail.status.toxic" = "Giftig";
+"insect.detail.status.widespread" = "Udbredt";
+"insect.detail.widespread.api.yes" = "Udbredt";
+"insect.detail.widespread.api.no" = "Ikke almindelig";
+"insect.detail.also_known_prefix" = "Også kendt som:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Europæisk honningbi, vestlig honningbi, honningbi";
+"insect.detail.section.description" = "Beskrivelse";
+"insect.detail.read_more" = "Læs mere";
+"insect.detail.mock.description" = "Den vestlige honningbi (Apis mellifera) er blandt de vigtigste forvaltede bestøvere i landbruget og vilde økosystemer. Den er hjemmehørende i Europa, det vestlige Asien og Afrika og er blevet spredt over hele verden af ​​biavlere til honningproduktion og afgrødebestøvning.\n\nEn koloni er en superorganisme: en enkelt frugtbar dronning lægger æg, mens tusindvis af kvindelige arbejdere fouragerer, plejer larver, bygger kam og forsvarer reden. Handroner optræder sæsonmæssigt og parrer sig med dronninger fra andre kolonier. Arbejdere kommunikerer retningen og afstanden til rige fødekilder gennem logrende dans og deler information ved berøring og feromoner.\n\nForagere besøger mange plantearter og overfører pollen, mens de bevæger sig. Denne adfærd understøtter biodiversitet og fødevareafgrøder – fra frugtplantager og bær til oliefrø og meloner. Biavlere klarer bistader for at balancere honninghøst med kolonisundhed, overvågning for skadedyr, sygdomme og ernæringsmæssig stress.\n\nSelvom honningbier generelt er føjelige til blomster, forsvarer honningbier deres bikube, hvis de opfatter en trussel; at forstå deres signaler reducerer stik. Tab af levesteder, pesticider, patogener og klimaændringer udfordrer både vilde og forvaltede populationer. Beskyttelse af blomsterressourcer og omhyggelig forvaltning hjælper med at opretholde disse bemærkelsesværdige insekter til fremtidige sæsoner.";
+"insect.detail.section.characteristics" = "Karakteristika";
+"insect.detail.section.classification" = "Videnskabelig klassifikation";
+"insect.detail.section.bites" = "Bider";
+"insect.detail.bites.intro" = "Hvis du er blevet bidt eller stukket, skal du følge disse trin:";
+"insect.detail.bites.first_aid" = "Øjeblikkelig førstehjælp:";
+"insect.detail.add_to_collection" = "Tilføj til samling";
+"insect.detail.add_to_collection.sheet.title" = "Føj et billede til din samling";
+"insect.detail.add_to_collection.source.camera" = "Tag billede";
+"insect.detail.add_to_collection.source.library" = "Vælg fra biblioteket";
+"insect.detail.add_to_collection.cancel" = "Annuller";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Denne skærm er ikke knyttet til et kataloginsekt, så samlingen kan ikke opdateres.";
+"insect.detail.add_to_collection.error.network" = "Kunne ikke føje til samling. Tjek din forbindelse, og prøv igen.";
+"insect.detail.remove_from_collection.confirm.title" = "Vil du fjerne fra samling?";
+"insect.detail.remove_from_collection.confirm.message" = "Dette insekt vil blive fjernet fra din samling. Dette kan ikke fortrydes.";
+"insect.detail.remove_from_collection.confirm.delete" = "Fjern";
+"insect.detail.remove_from_collection.confirm.cancel" = "Annuller";
+"insect.detail.remove_from_collection.error.no_id" = "Der er ingen samlingspost at fjerne på serveren.";
+"insect.detail.remove_from_collection.error.network" = "Kunne ikke fjerne fra samlingen. Tjek din forbindelse, og prøv igen.";
+"insect.detail.add_to_collection.success.title" = "Succes!";
+"insect.detail.add_to_collection.success.subtitle" = "Insektet er blevet føjet til din samling";
+"insect.detail.remove_from_collection.accessibility" = "Fjern fra samling";
+"insect.detail.class.genus.title" = "Slægt";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familie";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Bestil";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Klassens navn";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Fylde";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Kongerige";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domæne";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Voksen størrelse";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Eksistensformer";
+"insect.detail.char.forms.value" = "Æg, larve, puppe, voksen";
+"insect.detail.char.colors.title" = "Farver";
+"insect.detail.char.colors.value" = "Gyldenbrun med sorte striber";
+"insect.detail.char.population.title" = "Befolkning";
+"insect.detail.char.population.value" = "Meget udbredt og domesticeret";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Enge, haver, skove, landbrugsarealer";
+"insect.detail.char.diet.title" = "Kost";
+"insect.detail.char.diet.value" = "Nektar og pollen fra blomstrende planter";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populært i denne uge";
+"home.popular.butterfly" = "Sommerfugl";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Ant";
+"home.popular.beetle" = "Beetle";
+
+/* Home — articles */
+"home.articles_section_title" = "Nyttige artikler";
+"home.article.identify.title" = "Hvordan identificerer vi insekter?";
+"home.article.identify.subtitle" = "Grundlæggende tegn og værktøjer, der hjælper med at skelne arter i marken eller fra et foto.";
+"home.article.habitats.title" = "Hvor insekter lever";
+"home.article.habitats.subtitle" = "Fra jord og bladaffald til blomster og vand - typiske levesteder, du kan udforske sikkert.";
+"home.article.photography.title" = "Makrobilleder uden stress";
+"home.article.photography.subtitle" = "Lys, afstand og tålmodighed: korte tips til klarere billeder af små motiver.";
+"home.article.identify.block1.title" = "Hvad vi ser på først";
+"home.article.identify.block1.body" = "Kroppens form, vinger, antenner og ben indsnævrer ofte rækkefølgen af insekter ved et blik. Farvemønstre hjælper, men de varierer inden for arter - kombiner dem med størrelse, kropsholdning og adfærd. Når det er muligt, skal du notere, hvor du så insektet: værtsplante, jordoverflade eller vandkant tilføjer alle sammenhænge.";
+"home.article.identify.block2.title" = "Fra et foto";
+"home.article.identify.block2.body" = "Et skarpt, godt oplyst billede slår et sløret hver gang. Fang topvisningen og, hvis du kan, sideprofilen. Inkluder en følelse af skala (en mønt eller din finger), når størrelsen betyder noget. Flere vinkler reducerer gætværk, når markeringer er subtile eller skjult under foldede vinger.";
+"home.article.habitats.block1.title" = "Lag af et habitat";
+"home.article.habitats.block1.body" = "Insekter bruger lodret plads: baldakin, underhus, løvstrøelse, bark sprækker og jord. At dreje en træstamme eller løfte en sten afslører et andet fællesskab end et blomsterhoved i fuld sol. Bevæg dig langsomt og udskift dæksler, så mikrohabitater forbliver intakte.";
+"home.article.habitats.block2.title" = "Vand og kanter";
+"home.article.habitats.block2.body" = "Damme, vandløb og fugtige enge er vært for specialister som guldsmede, vandmøller og mange biller. Grænsen mellem land og vand - siv, mudrede bredder - er ofte den rigeste zone. Observer først på afstand for at undgå at forstyrre hvilende insekter.";
+"home.article.photography.block1.title" = "Lys og afstand";
+"home.article.photography.block1.body" = "Diffust dagslys eller åben skygge giver jævn belysning uden hårde skygger. Kom tæt nok på til at fylde rammen, men undgå at kaste din egen skygge hen over motivet. En lille refleks eller hvidt kort kan løfte detaljer i dybe fordybninger af blomster eller bark.";
+"home.article.photography.block2.title" = "Tålmodighed og respekt";
+"home.article.photography.block2.body" = "Lad insekter slå sig ned i stedet for at jage dem. Burst-tilstand hjælper med skæve flyers. Hvis du bruger blitz, skal du holde sessionerne korte og aldrig rette den direkte ind i øjnene på hvirveldyr i nærheden. Når du er færdig, skal du forlade habitatet, som du fandt det.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Indstillinger";
+"settings.section.support" = "Support";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Sikkerhed";
+"settings.row.contact_us" = "Kontakt os";
+"settings.row.restore" = "Gendan";
+"settings.row.rate_app" = "Bedøm appen";
+"settings.row.share_app" = "Del appen";
+"settings.row.privacy" = "Privatlivspolitik";
+"settings.row.terms" = "Vilkår for brug";
+"settings.row.refund_consent" = "Samtykke til tilbagebetaling";
+"settings.row.reset_consent" = "Nulstil samtykke";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Bugs app support";
+"settings.support.mail_body" = "Hej";
+"settings.support.mail_unavailable_title" = "Kontakt os på e-mail";
+"settings.restore.message" = "Gendanner dit abonnement fra App Store for dette Apple-id.";
+"settings.refund_consent.message" = "Giver du samtykke til behandling af dine data til refusionsformål?";
+"settings.refund_consent.allow" = "Tillad";
+"settings.refund_consent.decline" = "Afslå";
+"settings.reset_consent.message" = "Administration af annonceringssamtykke vil være tilgængelig i en fremtidig opdatering.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

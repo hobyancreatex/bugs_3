@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Готово";
+
+/* Onboarding */
+"onboarding.intro.title" = "привіт Я ваш гід у світ комах 🐞";
+"onboarding.intro.subtitle" = "У цій програмі ви можете:";
+"onboarding.intro.benefit.identify" = "Розпізнавайте комах за секунди";
+"onboarding.intro.benefit.collection" = "Збережіть їх у свою колекцію";
+"onboarding.intro.benefit.achievements" = "Заробляйте досягнення";
+"onboarding.intro.benefit.ai" = "Спілкуйтеся з помічником AI";
+"onboarding.intro.benefit.articles" = "Читайте корисні статті";
+"onboarding.button.next" = "Далі";
+"onboarding.button.start" = "Почніть роботу";
+
+/* Home */
+"home.title" = "додому";
+"home.search.placeholder" = "Пошук";
+"home.ai_banner.title" = "Запитайте ШІ про будь-яку знайдену комаху";
+"home.ai_banner.button" = "Задайте питання";
+
+/* AI chat */
+"ai_chat.title" = "AI консультант";
+"ai_chat.input.placeholder" = "Запитай мене щось…";
+"ai_chat.stub.ai" = "Я знаю все про комах, можете проконсультуватися зі мною.";
+"ai_chat.stub.user" = "Розкажи мені про бджіл";
+"ai_chat.seed_creation_message" = "ти хто";
+"ai_chat.error.bootstrap" = "Не вдалося відкрити чат. Спробуйте ще раз.";
+"ai_chat.error.send" = "Не вдалося надіслати повідомлення. Спробуйте ще раз.";
+"ai_chat.alert.connection_lost.message" = "З'єднання було втрачено. Спробуйте пізніше.";
+"ai_chat.alert.connection_lost.action" = "добре";
+
+/* Home — categories */
+"home.category.coleoptera" = "Жовткокрилі";
+"home.category.scorpiones" = "Скорпіони";
+"home.category.hymenoptera" = "Перетинчастокрилі";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Лускокрилі";
+"home.category.diptera" = "двокрилі";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "напівкрилі";
+
+/* Main tab bar */
+"profile.title" = "Профіль";
+"profile.segment.collection" = "Моя колекція";
+"profile.segment.achievements" = "Мої досягнення";
+"profile.achievements.placeholder" = "Тут з'являться досягнення.";
+"profile.collection.empty.title" = "Почніть свою колекцію комах";
+"profile.collection.empty.subtitle" = "Фотографуйте комах, збільшуйте свою колекцію, отримуйте нагороди та відстежуйте свій прогрес";
+"profile.achievement.close.accessibility" = "Закрити";
+"profile.achievement.unlock_heading" = "Щоб розблокувати це досягнення";
+"profile.achievement.completed_heading" = "Щиро вітаю!";
+"profile.achievement.completed_body" = "Додано до вашої колекції";
+"profile.achievement.identify_more" = "Визначте ще %lld %@";
+"tab.home.accessibility" = "додому";
+"tab.library.accessibility" = "Бібліотека";
+"tab.chat.accessibility" = "ШІ чат";
+"tab.profile.accessibility" = "Профіль";
+"tab.scan.accessibility" = "Сканування комах";
+
+/* Scanner */
+"scanner.close.accessibility" = "Закрити";
+"scanner.recognition_progress.message" = "Зачекайте, поки дані завантажуються…";
+"scanner.recognition_no_match.title" = "Збігів не знайдено";
+"scanner.recognition_no_match.subtitle" = "Нам не вдалося впізнати комаху на цій фотографії";
+"scanner.recognition_no_match.try_again" = "Спробуйте знову";
+"scanner.recognition_match.title" = "Збіг знайдено!";
+"scanner.recognition_match.subtitle" = "Ми визначили можливі збіги. Продовжте дивитися, яка це комаха";
+"scanner.recognition_match.see_result" = "Дивіться результат";
+
+/* Paywall */
+"paywall.preview.species" = "Рябчик";
+"paywall.preview.family" = "Родина: німфаліди";
+"paywall.preview.harmless" = "Нешкідливий";
+"paywall.close.accessibility" = "Закрити";
+"paywall.headline" = "Розблокуйте повний світ комах";
+"paywall.benefit.scans" = "Необмежена кількість сканувань";
+"paywall.benefit.collection" = "Повний доступ до колекції";
+"paywall.benefit.ai" = "ШІ-помічник без обмежень";
+"paywall.benefit.achievements" = "Ексклюзивні досягнення";
+"paywall.product.prefix" = "Тоді 3 дні безкоштовно";
+"paywall.product.suffix" = "тиждень";
+"paywall.cancel_anytime" = "Скасувати в будь-який час. З автопоновленням.";
+"paywall.button.next" = "Далі";
+"paywall.footer.terms" = "Умови використання";
+"paywall.footer.privacy" = "Політика конфіденційності";
+"paywall.footer.restore" = "Відновити";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Купівля";
+"subscription.error.product_unavailable" = "Ця підписка зараз недоступна. Перевірте App Store Connect або повторіть спробу пізніше.";
+"subscription.error.purchase_failed" = "Не вдалося завершити покупку. Спробуйте ще раз.";
+"subscription.error.restore_failed" = "Не вдалося відновити покупки. Перевірте підключення та повторіть спробу.";
+"subscription.pending.title" = "В очікуванні";
+"subscription.pending.message" = "Ваша покупка очікує на підтвердження. Доступ буде розблоковано, коли він завершиться.";
+"subscription.restore.title" = "Відновити";
+"subscription.restore.success" = "Ваші покупки відновлено.";
+"subscription.restore.nothing" = "Не знайдено жодної активної підписки для цього Apple ID.";
+
+"scanner.tips.title" = "Поради";
+"scanner.tips.intro" = "Чітка фотографія покращує точність розпізнавання. Щоб отримати найкращі результати, дотримуйтесь цих порад:";
+"scanner.tips.1.title" = "1. Тримайте комаху в чіткому фокусі";
+"scanner.tips.2.title" = "2. Розмістіть комаху в кадрі. Переконайтеся, що його добре видно";
+"scanner.tips.3.title" = "3. Захоплюйте лише один вид за раз — кілька комах знижують точність";
+"scanner.tips.4.title" = "4. Використовуйте хороше освітлення";
+
+/* Library */
+"library.title" = "Бібліотека";
+"list.search_empty.title" = "Немає результатів…";
+"list.search_empty.subtitle" = "Спробуйте ще раз";
+
+/* Category insect list */
+"insect.hym.1.title" = "Західна медоносна бджола";
+"insect.hym.1.subtitle" = "Поширені садові шкідники";
+"insect.hym.2.title" = "Європейська паперова оса";
+"insect.hym.2.subtitle" = "Часто можна побачити на парканах і карнизах";
+"insect.hym.3.title" = "Джміль бухохвостий";
+"insect.hym.3.subtitle" = "Ранньовесняний запилювач";
+"insect.hym.4.title" = "Мейсон Бі";
+"insect.hym.4.subtitle" = "Одиночний дуплистий гніздовик";
+"insect.hym.5.title" = "Іхневмон оса";
+"insect.hym.5.subtitle" = "Паразитоїд гусениць";
+"insect.default.1.title" = "Зразок комахи А";
+"insect.default.1.subtitle" = "Рядок-заповнювач для цієї категорії";
+"insect.default.2.title" = "Зразок комахи Б";
+"insect.default.2.subtitle" = "Пізніше замініть даними API";
+"insect.default.3.title" = "Зразок комахи C";
+"insect.default.3.subtitle" = "Рядок-заповнювач для цієї категорії";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Нешкідливий";
+"insect.detail.status.poisonous" = "Отруйні";
+"insect.detail.status.toxic" = "Токсичний";
+"insect.detail.status.widespread" = "Широке поширення";
+"insect.detail.widespread.api.yes" = "Широке поширення";
+"insect.detail.widespread.api.no" = "Нечасто";
+"insect.detail.also_known_prefix" = "Також відомий як:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Європейська медоносна бджола, західна медоносна бджола, медоносна бджола";
+"insect.detail.section.description" = "опис";
+"insect.detail.read_more" = "Детальніше";
+"insect.detail.mock.description" = "Західна медоносна бджола (Apis mellifera) є одним з найважливіших керованих запилювачів у сільському господарстві та диких екосистемах. Походить із Європи, Західної Азії та Африки, бджолярі поширили його по всьому світу для виробництва меду та запилення сільськогосподарських культур.\n\nКолонія — це суперорганізм: одна плідна матка відкладає яйця, а тисячі робочих самок добувають їжу, годують личинок, будують гребінь і захищають гніздо. Самці трутнів з'являються сезонно і спаровуються з матками з інших колоній. Робітники повідомляють напрямок і відстань до багатих джерел їжі за допомогою танцю погойдування та обмінюються інформацією за допомогою дотиків і феромонів.\n\nЗбирачі відвідують багато видів рослин, переносячи пилок під час руху. Така поведінка підтримує біорізноманіття та продовольчі культури — від фруктових садів і ягід до насіння олійних культур і баштанних культур. Пасічники обслуговують вулики, щоб збалансувати збір меду зі здоров’ям сім’ї, стежити за шкідниками, хворобами та харчовим стресом.\n\nХоча медоносні бджоли зазвичай слухняні до квітів, вони захищають свій вулик, якщо відчувають загрозу; розуміння їхніх сигналів зменшує жала. Втрата середовища проживання, пестициди, хвороботворні мікроорганізми та зміни клімату викликають як дикі, так і керовані популяції. Захист квіткових ресурсів і ретельний менеджмент допомагає зберегти цих чудових комах у майбутніх сезонах.";
+"insect.detail.section.characteristics" = "характеристики";
+"insect.detail.section.classification" = "Наукова класифікація";
+"insect.detail.section.bites" = "Укуси";
+"insect.detail.bites.intro" = "Якщо вас вкусили або вжалили, виконайте такі дії:";
+"insect.detail.bites.first_aid" = "Невідкладна перша допомога:";
+"insect.detail.add_to_collection" = "Додати до колекції";
+"insect.detail.add_to_collection.sheet.title" = "Додайте фото до своєї колекції";
+"insect.detail.add_to_collection.source.camera" = "Зробіть фото";
+"insect.detail.add_to_collection.source.library" = "Вибрати з бібліотеки";
+"insect.detail.add_to_collection.cancel" = "Скасувати";
+"insect.detail.add_to_collection.alert.ok" = "добре";
+"insect.detail.add_to_collection.error.no_insect" = "Цей екран не пов’язаний з комахою каталогу, тому колекцію не можна оновити.";
+"insect.detail.add_to_collection.error.network" = "Не вдалося додати до колекції. Перевірте підключення та повторіть спробу.";
+"insect.detail.remove_from_collection.confirm.title" = "Видалити з колекції?";
+"insect.detail.remove_from_collection.confirm.message" = "Цю комаху буде видалено з вашої колекції. Це неможливо скасувати.";
+"insect.detail.remove_from_collection.confirm.delete" = "видалити";
+"insect.detail.remove_from_collection.confirm.cancel" = "Скасувати";
+"insect.detail.remove_from_collection.error.no_id" = "На сервері немає запису колекції для видалення.";
+"insect.detail.remove_from_collection.error.network" = "Не вдалося видалити з колекції. Перевірте підключення та повторіть спробу.";
+"insect.detail.add_to_collection.success.title" = "Успіх!";
+"insect.detail.add_to_collection.success.subtitle" = "Комаху успішно додано до вашої колекції";
+"insect.detail.remove_from_collection.accessibility" = "Видалити з колекції";
+"insect.detail.class.genus.title" = "Рід";
+"insect.detail.class.genus.value" = "Апіс";
+"insect.detail.class.family.title" = "Сім'я";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "порядок";
+"insect.detail.class.order.value" = "Перетинчастокрилі";
+"insect.detail.class.class.title" = "Назва класу";
+"insect.detail.class.class.value" = "Комаха";
+"insect.detail.class.phylum.title" = "Тип";
+"insect.detail.class.phylum.value" = "Членистоногі";
+"insect.detail.class.kingdom.title" = "Королівство";
+"insect.detail.class.kingdom.value" = "Анімалія";
+"insect.detail.class.domain.title" = "Домен";
+"insect.detail.class.domain.value" = "Еукаріоти";
+"insect.detail.char.adult_size.title" = "Розмір для дорослих";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 см";
+"insect.detail.char.forms.title" = "Форми існування";
+"insect.detail.char.forms.value" = "Яйце, Личинка, Лялечка, Доросла особина";
+"insect.detail.char.colors.title" = "Кольори";
+"insect.detail.char.colors.value" = "Золотисто-коричневий з чорними смугами";
+"insect.detail.char.population.title" = "Населення";
+"insect.detail.char.population.value" = "Широко поширений і одомашнений";
+"insect.detail.char.habitat.title" = "середовище існування";
+"insect.detail.char.habitat.value" = "Луки, сади, ліси, сільськогосподарські угіддя";
+"insect.detail.char.diet.title" = "дієта";
+"insect.detail.char.diet.value" = "Нектар і пилок квіткових рослин";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Популярне цього тижня";
+"home.popular.butterfly" = "метелик";
+"home.popular.mantis" = "Богомол";
+"home.popular.ant" = "Мураха";
+"home.popular.beetle" = "Жук";
+
+/* Home — articles */
+"home.articles_section_title" = "Корисні статті";
+"home.article.identify.title" = "Як ми розпізнаємо комах?";
+"home.article.identify.subtitle" = "Основні ознаки та інструменти, які допомагають розрізняти види в полі або на фото.";
+"home.article.habitats.title" = "Де живуть комахи";
+"home.article.habitats.subtitle" = "Від ґрунту та листя до квітів і води — типові середовища існування, які ви можете досліджувати безпечно.";
+"home.article.photography.title" = "Макро фото без стресу";
+"home.article.photography.subtitle" = "Світло, відстань і терпіння: короткі поради для отримання чіткіших зображень маленьких об’єктів.";
+"home.article.identify.block1.title" = "На що дивимося спочатку";
+"home.article.identify.block1.body" = "Форма тіла, крил, вусиків і ніг часто з першого погляду звужує ряд комах. Кольорові візерунки допомагають, але вони відрізняються в межах виду — поєднуйте їх із розміром, поставою та поведінкою. Якщо можливо, запам’ятайте, де ви бачили комаху: рослина-господар, поверхня ґрунту чи край води – все це додає контекст.";
+"home.article.identify.block2.title" = "З фото";
+"home.article.identify.block2.body" = "Чітке, добре освітлене зображення щоразу перевершує розмите. Зніміть вид зверху і, якщо можете, профіль збоку. Включайте відчуття масштабу (монета або ваш палець), коли розмір має значення. Кілька кутів зменшують здогадки, коли маркування тонкі або приховані під складеними крилами.";
+"home.article.habitats.block1.title" = "Шари середовища існування";
+"home.article.habitats.block1.body" = "Комахи використовують вертикальний простір: полог, підлісок, листовий опад, тріщини кори та ґрунт. Повертаючи колоду чи піднімаючи камінь, можна виявити іншу спільноту, ніж голова квітки на сонці. Рухайтесь повільно та замінюйте кришки, щоб мікрожитла залишалися недоторканими.";
+"home.article.habitats.block2.title" = "Вода і краї";
+"home.article.habitats.block2.body" = "Ставки, струмки та вологі луки є домом для таких спеціалістів, як бабки, бабки та багато жуків. Кордон між землею та водою — очерет, мулисті береги — часто є найбагатшою зоною. Спочатку спостерігайте здалеку, щоб не турбувати відпочиваючих комах.";
+"home.article.photography.block1.title" = "Світло і відстань";
+"home.article.photography.block1.body" = "Розсіяне денне світло або відкрита тінь дає рівномірне освітлення без різких тіней. Підійдіть достатньо близько, щоб заповнити кадр, але не відкидайте власну тінь на об’єкт. Маленький відбивач або біла карта можуть підняти деталь у глибоких заглибленнях квітів або кори.";
+"home.article.photography.block2.title" = "Терпіння і повага";
+"home.article.photography.block2.body" = "Нехай комахи осідають, а не переслідують їх. Режим серійної зйомки допомагає з плачевними листівками. Якщо ви використовуєте спалах, зробіть сеанси короткими та ніколи не спрямовуйте його прямо в очі хребетним поблизу. Коли ви закінчите, залиште місце проживання таким, яким ви його знайшли.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Налаштування";
+"settings.section.support" = "Підтримка";
+"settings.section.feedback" = "Зворотній зв'язок";
+"settings.section.security" = "Безпека";
+"settings.row.contact_us" = "Зв'яжіться з нами";
+"settings.row.restore" = "Відновити";
+"settings.row.rate_app" = "Оцініть програму";
+"settings.row.share_app" = "Поділіться додатком";
+"settings.row.privacy" = "Політика конфіденційності";
+"settings.row.terms" = "Умови використання";
+"settings.row.refund_consent" = "Згода на повернення коштів";
+"settings.row.reset_consent" = "Скинути згоду";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Підтримка програми Bugs";
+"settings.support.mail_body" = "привіт";
+"settings.support.mail_unavailable_title" = "Зв'яжіться з нами електронною поштою";
+"settings.restore.message" = "Відновлює вашу підписку з App Store для цього Apple ID.";
+"settings.refund_consent.message" = "Чи даєте ви згоду на обробку ваших даних для повернення коштів?";
+"settings.refund_consent.allow" = "Дозволити";
+"settings.refund_consent.decline" = "відхилити";
+"settings.reset_consent.message" = "Керування згодою на рекламу буде доступне в майбутньому оновленні.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

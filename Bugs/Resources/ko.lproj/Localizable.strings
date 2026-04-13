@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "완료";
+
+/* Onboarding */
+"onboarding.intro.title" = "안녕하세요! 나는 곤충 세계의 가이드입니다 🐞";
+"onboarding.intro.subtitle" = "이 앱에서는 다음을 수행할 수 있습니다.";
+"onboarding.intro.benefit.identify" = "몇 초 안에 곤충을 식별하세요";
+"onboarding.intro.benefit.collection" = "컬렉션에 저장하세요";
+"onboarding.intro.benefit.achievements" = "업적 획득";
+"onboarding.intro.benefit.ai" = "AI 비서와 채팅";
+"onboarding.intro.benefit.articles" = "유용한 기사 읽기";
+"onboarding.button.next" = "다음";
+"onboarding.button.start" = "시작하기";
+
+/* Home */
+"home.title" = "홈";
+"home.search.placeholder" = "검색";
+"home.ai_banner.title" = "발견한 곤충에 대해 AI에게 물어보세요.";
+"home.ai_banner.button" = "질문하기";
+
+/* AI chat */
+"ai_chat.title" = "AI 컨설턴트";
+"ai_chat.input.placeholder" = "뭔가 물어보세요…";
+"ai_chat.stub.ai" = "저는 곤충에 대해 다 알고 있으니 상담해 주세요.";
+"ai_chat.stub.user" = "꿀벌에 대해 알려주세요";
+"ai_chat.seed_creation_message" = "당신은 누구입니까?";
+"ai_chat.error.bootstrap" = "채팅을 열 수 없습니다. 다시 시도해 주세요.";
+"ai_chat.error.send" = "메시지를 보낼 수 없습니다. 다시 시도해 주세요.";
+"ai_chat.alert.connection_lost.message" = "연결이 끊어졌습니다. 나중에 다시 시도해 주세요.";
+"ai_chat.alert.connection_lost.action" = "알았어";
+
+/* Home — categories */
+"home.category.coleoptera" = "딱정벌레목";
+"home.category.scorpiones" = "전갈";
+"home.category.hymenoptera" = "벌목";
+"home.category.araneae" = "아라네과";
+"home.category.lepidoptera" = "나비목";
+"home.category.diptera" = "파리목";
+"home.category.blattodea" = "블라토데아";
+"home.category.hemiptera" = "노린재목";
+
+/* Main tab bar */
+"profile.title" = "프로필";
+"profile.segment.collection" = "내 컬렉션";
+"profile.segment.achievements" = "내 업적";
+"profile.achievements.placeholder" = "여기에 업적이 표시됩니다.";
+"profile.collection.empty.title" = "곤충 수집을 시작하세요";
+"profile.collection.empty.subtitle" = "곤충 사진을 찍고, 컬렉션을 늘리고, 보상을 받고, 진행 상황을 추적하세요.";
+"profile.achievement.close.accessibility" = "닫기";
+"profile.achievement.unlock_heading" = "이 업적을 잠금 해제하려면";
+"profile.achievement.completed_heading" = "축하합니다!";
+"profile.achievement.completed_body" = "컬렉션에 추가됨";
+"profile.achievement.identify_more" = "%lld 더보기 %@ 식별";
+"tab.home.accessibility" = "홈";
+"tab.library.accessibility" = "도서관";
+"tab.chat.accessibility" = "AI채팅";
+"tab.profile.accessibility" = "프로필";
+"tab.scan.accessibility" = "곤충 스캔";
+
+/* Scanner */
+"scanner.close.accessibility" = "닫기";
+"scanner.recognition_progress.message" = "데이터를 로드하는 동안 잠시 기다려 주십시오…";
+"scanner.recognition_no_match.title" = "일치하는 항목이 없습니다.";
+"scanner.recognition_no_match.subtitle" = "이 사진에서는 곤충을 식별할 수 없습니다.";
+"scanner.recognition_no_match.try_again" = "다시 시도하세요";
+"scanner.recognition_match.title" = "일치하는 항목을 찾았습니다!";
+"scanner.recognition_match.subtitle" = "가능한 일치 항목을 확인했습니다. 계속해서 어떤 곤충인지 확인하세요.";
+"scanner.recognition_match.see_result" = "결과 보기";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "가족: 님팔과";
+"paywall.preview.harmless" = "무해한";
+"paywall.close.accessibility" = "닫기";
+"paywall.headline" = "곤충 세계를 모두 잠금 해제하세요";
+"paywall.benefit.scans" = "무제한 스캔";
+"paywall.benefit.collection" = "전체 컬렉션 액세스";
+"paywall.benefit.ai" = "제한 없는 AI 비서";
+"paywall.benefit.achievements" = "독점 업적";
+"paywall.product.prefix" = "3일간 무료로 사용 후";
+"paywall.product.suffix" = "일주일";
+"paywall.cancel_anytime" = "언제든지 취소하세요. 자동 갱신.";
+"paywall.button.next" = "다음";
+"paywall.footer.terms" = "이용약관";
+"paywall.footer.privacy" = "개인 정보 보호 정책";
+"paywall.footer.restore" = "복원";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "구매";
+"subscription.error.product_unavailable" = "지금은 이 구독을 사용할 수 없습니다. App Store Connect를 확인하거나 나중에 다시 시도하세요.";
+"subscription.error.purchase_failed" = "구매를 완료할 수 없습니다. 다시 시도해 주세요.";
+"subscription.error.restore_failed" = "구매를 복원할 수 없습니다. 연결을 확인하고 다시 시도하세요.";
+"subscription.pending.title" = "보류 중";
+"subscription.pending.message" = "구매가 승인 대기 중입니다. 액세스가 완료되면 액세스가 잠금 해제됩니다.";
+"subscription.restore.title" = "복원";
+"subscription.restore.success" = "구매 항목이 복원되었습니다.";
+"subscription.restore.nothing" = "이 Apple ID에 대한 활성 구독을 찾을 수 없습니다.";
+
+"scanner.tips.title" = "팁";
+"scanner.tips.intro" = "선명한 사진은 인식 정확도를 높여줍니다. 최상의 결과를 얻으려면 다음 팁을 따르십시오.";
+"scanner.tips.1.title" = "1. 곤충의 초점을 선명하게 유지하세요";
+"scanner.tips.2.title" = "2. 곤충을 프레임 중앙에 놓습니다. 눈에 잘 띄는지 확인하세요";
+"scanner.tips.3.title" = "3. 한 번에 한 종만 포획하십시오. 여러 곤충이 있으면 정확도가 떨어집니다.";
+"scanner.tips.4.title" = "4. 좋은 조명을 사용하세요";
+
+/* Library */
+"library.title" = "도서관";
+"list.search_empty.title" = "결과가 없습니다…";
+"list.search_empty.subtitle" = "다시 시도해 주세요";
+
+/* Category insect list */
+"insect.hym.1.title" = "서부 꿀벌";
+"insect.hym.1.subtitle" = "일반적인 원예 해충";
+"insect.hym.2.title" = "유럽 종이 말벌";
+"insect.hym.2.subtitle" = "울타리나 처마에서 흔히 볼 수 있는";
+"insect.hym.3.title" = "담황색 호박벌";
+"insect.hym.3.subtitle" = "이른 봄의 수분매개자";
+"insect.hym.4.title" = "메이슨 비";
+"insect.hym.4.subtitle" = "독방 공동 네스터";
+"insect.hym.5.title" = "이크뉴몬 말벌";
+"insect.hym.5.subtitle" = "애벌레의 기생충";
+"insect.default.1.title" = "샘플 곤충 A";
+"insect.default.1.subtitle" = "이 카테고리에 대한 자리표시자 행";
+"insect.default.2.title" = "샘플 곤충 B";
+"insect.default.2.subtitle" = "나중에 API 데이터로 대체";
+"insect.default.3.title" = "샘플 곤충 C";
+"insect.default.3.subtitle" = "이 카테고리에 대한 자리표시자 행";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "무해한";
+"insect.detail.status.poisonous" = "유독한";
+"insect.detail.status.toxic" = "독성";
+"insect.detail.status.widespread" = "광범위하게";
+"insect.detail.widespread.api.yes" = "광범위하게";
+"insect.detail.widespread.api.no" = "흔하지 않은";
+"insect.detail.also_known_prefix" = "다음으로도 알려져 있습니다.";
+"insect.detail.mock.scientific_title" = "아피스 멜리페라";
+"insect.detail.mock.aliases" = "유럽 꿀벌, 서양 꿀벌, 꿀벌";
+"insect.detail.section.description" = "설명";
+"insect.detail.read_more" = "자세히 알아보기";
+"insect.detail.mock.description" = "서부꿀벌(Apis mellifera)은 농업과 야생 생태계에서 가장 중요한 관리 수분매개자 중 하나입니다. 유럽, 서아시아, 아프리카가 원산지이며, 벌꿀 생산과 작물 수분을 위해 양봉가에 의해 전 세계로 퍼졌습니다.\n\n군집은 초유기체입니다. 번식력이 있는 여왕 한 마리가 알을 낳고, 수천 명의 암컷 일개미가 먹이를 찾고, 애벌레를 돌보고, 빗을 만들고, 둥지를 방어합니다. 수컷 수벌은 계절에 따라 나타나며 다른 식민지의 여왕벌과 짝짓기를 합니다. 일꾼들은 와글댄스를 통해 풍부한 식량원에 대한 방향과 거리를 전달하고 접촉과 페로몬을 통해 정보를 공유합니다.\n\n채집자는 많은 식물 종을 방문하여 이동하면서 꽃가루를 옮깁니다. 이러한 행동은 과수원과 열매부터 유지 종자와 멜론에 이르기까지 생물 다양성과 식량 작물을 지원합니다. 양봉가는 벌통을 관리하여 벌집 건강과 벌꿀 수확의 균형을 맞추고 해충, 질병 ​​및 영양 스트레스를 모니터링합니다.\n\n일반적으로 꽃에는 온순하지만, 꿀벌은 위협을 감지하면 벌집을 보호합니다. 그들의 단서를 이해하면 찌르는 소리가 줄어 듭니다. 서식지 손실, 살충제, 병원균 및 기후 변화는 야생 개체군과 관리되는 개체군 모두에게 문제가 됩니다. 꽃 자원을 보호하고 신중한 관리를 채택하면 이 놀라운 곤충이 미래의 계절을 위해 유지되는 데 도움이 됩니다.";
+"insect.detail.section.characteristics" = "특성";
+"insect.detail.section.classification" = "과학적 분류";
+"insect.detail.section.bites" = "바이트";
+"insect.detail.bites.intro" = "물렸거나 쏘인 경우 다음 단계를 따르십시오.";
+"insect.detail.bites.first_aid" = "즉각적인 응급처치:";
+"insect.detail.add_to_collection" = "컬렉션에 추가";
+"insect.detail.add_to_collection.sheet.title" = "컬렉션에 사진 추가";
+"insect.detail.add_to_collection.source.camera" = "사진 찍기";
+"insect.detail.add_to_collection.source.library" = "라이브러리에서 선택";
+"insect.detail.add_to_collection.cancel" = "취소";
+"insect.detail.add_to_collection.alert.ok" = "알았어";
+"insect.detail.add_to_collection.error.no_insect" = "이 화면은 곤충 카탈로그와 연결되어 있지 않으므로 컬렉션을 업데이트할 수 없습니다.";
+"insect.detail.add_to_collection.error.network" = "컬렉션에 추가할 수 없습니다. 연결을 확인하고 다시 시도하세요.";
+"insect.detail.remove_from_collection.confirm.title" = "컬렉션에서 삭제하시겠습니까?";
+"insect.detail.remove_from_collection.confirm.message" = "이 곤충은 컬렉션에서 제거됩니다. 이 작업은 취소할 수 없습니다.";
+"insect.detail.remove_from_collection.confirm.delete" = "제거";
+"insect.detail.remove_from_collection.confirm.cancel" = "취소";
+"insect.detail.remove_from_collection.error.no_id" = "서버에 제거할 컬렉션 항목이 없습니다.";
+"insect.detail.remove_from_collection.error.network" = "컬렉션에서 삭제할 수 없습니다. 연결을 확인하고 다시 시도하세요.";
+"insect.detail.add_to_collection.success.title" = "성공!";
+"insect.detail.add_to_collection.success.subtitle" = "곤충이 컬렉션에 성공적으로 추가되었습니다.";
+"insect.detail.remove_from_collection.accessibility" = "컬렉션에서 제거";
+"insect.detail.class.genus.title" = "속";
+"insect.detail.class.genus.value" = "아피스";
+"insect.detail.class.family.title" = "가족";
+"insect.detail.class.family.value" = "아피과";
+"insect.detail.class.order.title" = "주문";
+"insect.detail.class.order.value" = "벌목";
+"insect.detail.class.class.title" = "수업명";
+"insect.detail.class.class.value" = "곤충";
+"insect.detail.class.phylum.title" = "문";
+"insect.detail.class.phylum.value" = "절지동물";
+"insect.detail.class.kingdom.title" = "왕국";
+"insect.detail.class.kingdom.value" = "동물";
+"insect.detail.class.domain.title" = "도메인";
+"insect.detail.class.domain.value" = "진핵생물";
+"insect.detail.char.adult_size.title" = "성인 크기";
+"insect.detail.char.adult_size.value" = "1.2~1.5cm";
+"insect.detail.char.forms.title" = "존재 형태";
+"insect.detail.char.forms.value" = "계란, 유충, 번데기, 성인";
+"insect.detail.char.colors.title" = "색상";
+"insect.detail.char.colors.value" = "검은 줄무늬가 있는 황금빛 갈색";
+"insect.detail.char.population.title" = "인구";
+"insect.detail.char.population.value" = "매우 널리 퍼져 있고 길들여져 있음";
+"insect.detail.char.habitat.title" = "서식지";
+"insect.detail.char.habitat.value" = "초원, 정원, 숲, 농업 지역";
+"insect.detail.char.diet.title" = "다이어트";
+"insect.detail.char.diet.value" = "꽃 피는 식물의 꿀과 꽃가루";
+
+/* Home — popular this week */
+"home.popular_this_week" = "이번주 인기";
+"home.popular.butterfly" = "나비";
+"home.popular.mantis" = "사마귀";
+"home.popular.ant" = "개미";
+"home.popular.beetle" = "딱정벌레";
+
+/* Home — articles */
+"home.articles_section_title" = "유용한 기사";
+"home.article.identify.title" = "곤충을 어떻게 식별합니까?";
+"home.article.identify.subtitle" = "현장이나 사진에서 종을 구별하는 데 도움이 되는 기본 표시 및 도구입니다.";
+"home.article.habitats.title" = "곤충이 사는 곳";
+"home.article.habitats.subtitle" = "흙과 나뭇잎부터 꽃과 물까지, 전형적인 서식지를 안전하게 탐색할 수 있습니다.";
+"home.article.photography.title" = "스트레스 없는 매크로 사진";
+"home.article.photography.subtitle" = "빛, 거리, 인내심: 작은 피사체를 더욱 선명하게 촬영하기 위한 간단한 팁입니다.";
+"home.article.identify.block1.title" = "우리가 가장 먼저 보는 것은";
+"home.article.identify.block1.body" = "몸의 모양, 날개, 더듬이, 다리 등을 보면 곤충의 순서가 한눈에 좁아지는 경우가 많습니다. 색상 패턴은 도움이 되지만 종마다 다르며 크기, 자세 및 행동과 결합됩니다. 가능하다면 곤충을 본 위치를 기록해 두십시오. 즉, 숙주 식물, 토양 표면 또는 물가는 모두 맥락을 추가합니다.";
+"home.article.identify.block2.title" = "사진에서";
+"home.article.identify.block2.body" = "선명하고 조명이 밝은 이미지는 항상 흐릿한 이미지보다 좋습니다. 평면도를 캡처하고, 가능하다면 측면 프로필도 캡처하세요. 크기가 중요한 경우 규모 감각(동전 또는 손가락)을 포함하세요. 여러 각도를 사용하면 표시가 미묘하거나 접힌 날개 아래에 숨겨져 있을 때 추측이 줄어듭니다.";
+"home.article.habitats.block1.title" = "서식지의 층";
+"home.article.habitats.block1.body" = "곤충은 캐노피, 하층, 나뭇잎 깔짚, 나무껍질 틈, 토양 등 수직 공간을 사용합니다. 통나무를 돌리거나 돌을 들어 올리면 햇빛이 가득한 꽃 머리와는 다른 공동체가 드러납니다. 천천히 움직이고 덮개를 교체하여 미생물 서식지가 그대로 유지되도록 하세요.";
+"home.article.habitats.block2.title" = "물과 가장자리";
+"home.article.habitats.block2.body" = "연못, 개울, 습한 초원에는 잠자리, 실잠자리 및 많은 딱정벌레와 같은 전문가들이 서식합니다. 육지와 물 사이의 경계(갈대, 진흙둑)는 종종 가장 부유한 지역입니다. 쉬고 있는 곤충을 방해하지 않도록 먼저 멀리서 관찰하세요.";
+"home.article.photography.block1.title" = "빛과 거리";
+"home.article.photography.block1.body" = "확산된 일광 또는 개방형 그늘은 심한 그림자 없이 균일한 조명을 제공합니다. 프레임을 채울 만큼 가까이 다가가되 피사체 전체에 자신의 그림자를 드리우지 마십시오. 작은 반사판이나 흰색 카드를 사용하면 꽃이나 나무껍질의 깊은 부분의 디테일을 끌어올릴 수 있습니다.";
+"home.article.photography.block2.title" = "인내와 존중";
+"home.article.photography.block2.body" = "곤충을 쫓는 대신 정착하게 하십시오. 버스트 모드는 겁이 많은 전단지에 도움이 됩니다. 플래시를 사용하는 경우 세션을 짧게 유지하고 근처 척추동물의 눈을 직접 가리키지 마십시오. 작업이 끝나면 서식지를 찾은 그대로 두십시오.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "설정";
+"settings.section.support" = "지원";
+"settings.section.feedback" = "피드백";
+"settings.section.security" = "보안";
+"settings.row.contact_us" = "문의하기";
+"settings.row.restore" = "복원";
+"settings.row.rate_app" = "앱 평가";
+"settings.row.share_app" = "앱 공유";
+"settings.row.privacy" = "개인 정보 보호 정책";
+"settings.row.terms" = "이용약관";
+"settings.row.refund_consent" = "환불 동의";
+"settings.row.reset_consent" = "동의 재설정";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "버그 앱 지원";
+"settings.support.mail_body" = "안녕하세요.";
+"settings.support.mail_unavailable_title" = "이메일로 문의하기";
+"settings.restore.message" = "이 Apple ID에 대해 App Store에서 구독을 복원합니다.";
+"settings.refund_consent.message" = "환불 목적으로 귀하의 데이터를 처리하는 데 동의하십니까?";
+"settings.refund_consent.allow" = "허용";
+"settings.refund_consent.decline" = "거절하다";
+"settings.reset_consent.message" = "광고 동의 관리는 향후 업데이트에서 제공될 예정입니다.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

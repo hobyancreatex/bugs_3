@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "تم";
+
+/* Onboarding */
+"onboarding.intro.title" = "مرحبًا! أنا دليلك لعالم الحشرات 🐞";
+"onboarding.intro.subtitle" = "في هذا التطبيق، يمكنك:";
+"onboarding.intro.benefit.identify" = "التعرف على الحشرات في ثوان";
+"onboarding.intro.benefit.collection" = "احفظها في مجموعتك";
+"onboarding.intro.benefit.achievements" = "كسب الإنجازات";
+"onboarding.intro.benefit.ai" = "الدردشة مع مساعد الذكاء الاصطناعي";
+"onboarding.intro.benefit.articles" = "قراءة مقالات مفيدة";
+"onboarding.button.next" = "التالي";
+"onboarding.button.start" = "ابدأ";
+
+/* Home */
+"home.title" = "الصفحة الرئيسية";
+"home.search.placeholder" = "بحث";
+"home.ai_banner.title" = "اسأل الذكاء الاصطناعي عن أي حشرة تجدها";
+"home.ai_banner.button" = "اطرح سؤالاً";
+
+/* AI chat */
+"ai_chat.title" = "مستشار الذكاء الاصطناعي";
+"ai_chat.input.placeholder" = "اسألني شيئا...";
+"ai_chat.stub.ai" = "أعرف كل شيء عن الحشرات، يمكنك استشارتي.";
+"ai_chat.stub.user" = "أخبرني عن النحل";
+"ai_chat.seed_creation_message" = "من أنت؟";
+"ai_chat.error.bootstrap" = "لا يمكن فتح الدردشة. يرجى المحاولة مرة أخرى.";
+"ai_chat.error.send" = "تعذر إرسال الرسالة. يرجى المحاولة مرة أخرى.";
+"ai_chat.alert.connection_lost.message" = "تم فقدان الاتصال. يرجى المحاولة مرة أخرى لاحقا.";
+"ai_chat.alert.connection_lost.action" = "حسنًا";
+
+/* Home — categories */
+"home.category.coleoptera" = "مغمدات الأجنحة";
+"home.category.scorpiones" = "العقارب";
+"home.category.hymenoptera" = "غشائيات الأجنحة";
+"home.category.araneae" = "أرانيا";
+"home.category.lepidoptera" = "حرشفية الأجنحة";
+"home.category.diptera" = "ثنائيات الأجنحة";
+"home.category.blattodea" = "بلاتوديا";
+"home.category.hemiptera" = "نصفيات الأجنحة";
+
+/* Main tab bar */
+"profile.title" = "الملف الشخصي";
+"profile.segment.collection" = "مجموعتي";
+"profile.segment.achievements" = "إنجازاتي";
+"profile.achievements.placeholder" = "سوف تظهر الإنجازات هنا.";
+"profile.collection.empty.title" = "ابدأ مجموعة الحشرات الخاصة بك";
+"profile.collection.empty.subtitle" = "قم بتصوير الحشرات، وقم بتنمية مجموعتك، واحصل على مكافآت، وتتبع تقدمك";
+"profile.achievement.close.accessibility" = "إغلاق";
+"profile.achievement.unlock_heading" = "لفتح هذا الإنجاز";
+"profile.achievement.completed_heading" = "تهانينا!";
+"profile.achievement.completed_body" = "تمت إضافتها إلى مجموعتك";
+"profile.achievement.identify_more" = "حدد %lld المزيد %@";
+"tab.home.accessibility" = "الصفحة الرئيسية";
+"tab.library.accessibility" = "مكتبة";
+"tab.chat.accessibility" = "دردشة الذكاء الاصطناعي";
+"tab.profile.accessibility" = "الملف الشخصي";
+"tab.scan.accessibility" = "مسح الحشرة";
+
+/* Scanner */
+"scanner.close.accessibility" = "إغلاق";
+"scanner.recognition_progress.message" = "الرجاء الانتظار بينما يتم تحميل البيانات...";
+"scanner.recognition_no_match.title" = "لم يتم العثور على تطابق";
+"scanner.recognition_no_match.subtitle" = "لم نتمكن من التعرف على الحشرة الموجودة في هذه الصورة";
+"scanner.recognition_no_match.try_again" = "حاول مرة أخرى";
+"scanner.recognition_match.title" = "تم العثور على المباراة!";
+"scanner.recognition_match.subtitle" = "لقد حددنا التطابقات المحتملة. استمر في معرفة أي حشرة هي";
+"scanner.recognition_match.see_result" = "انظر النتيجة";
+
+/* Paywall */
+"paywall.preview.species" = "فريتيلاري";
+"paywall.preview.family" = "العائلة: Nymphalidae";
+"paywall.preview.harmless" = "غير مؤذية";
+"paywall.close.accessibility" = "إغلاق";
+"paywall.headline" = "فتح عالم الحشرات الكامل";
+"paywall.benefit.scans" = "عمليات مسح غير محدودة";
+"paywall.benefit.collection" = "الوصول إلى المجموعة الكاملة";
+"paywall.benefit.ai" = "مساعد الذكاء الاصطناعي بلا حدود";
+"paywall.benefit.achievements" = "إنجازات حصرية";
+"paywall.product.prefix" = "3 أيام مجانا، ثم";
+"paywall.product.suffix" = "اسبوع";
+"paywall.cancel_anytime" = "إلغاء في أي وقت. مع التجديد التلقائي.";
+"paywall.button.next" = "التالي";
+"paywall.footer.terms" = "شروط الاستخدام";
+"paywall.footer.privacy" = "سياسة الخصوصية";
+"paywall.footer.restore" = "استعادة";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "شراء";
+"subscription.error.product_unavailable" = "هذا الاشتراك غير متوفر حاليا. تحقق من App Store Connect أو حاول مرة أخرى لاحقًا.";
+"subscription.error.purchase_failed" = "لا يمكن إكمال عملية الشراء. يرجى المحاولة مرة أخرى.";
+"subscription.error.restore_failed" = "لا يمكن استعادة المشتريات. تحقق من اتصالك وحاول مرة أخرى.";
+"subscription.pending.title" = "في انتظار";
+"subscription.pending.message" = "عملية الشراء الخاصة بك في انتظار الموافقة. سيتم فتح الوصول عند اكتماله.";
+"subscription.restore.title" = "استعادة";
+"subscription.restore.success" = "تمت استعادة مشترياتك.";
+"subscription.restore.nothing" = "لم يتم العثور على اشتراك نشط لمعرف Apple هذا.";
+
+"scanner.tips.title" = "نصائح";
+"scanner.tips.intro" = "تعمل الصورة الواضحة على تحسين دقة التعرف. اتبع هذه النصائح للحصول على أفضل النتائج:";
+"scanner.tips.1.title" = "1. أبقِ الحشرة في بؤرة تركيز حادة";
+"scanner.tips.2.title" = "2. قم بتوسيط الحشرة في الإطار. تأكد من أنها مرئية بوضوح";
+"scanner.tips.3.title" = "3. قم بالتقاط نوع واحد فقط في المرة الواحدة، فتعدد الحشرات يقلل من الدقة";
+"scanner.tips.4.title" = "4. استخدم الإضاءة الجيدة";
+
+/* Library */
+"library.title" = "مكتبة";
+"list.search_empty.title" = "لا توجد نتائج…";
+"list.search_empty.subtitle" = "يرجى المحاولة مرة أخرى";
+
+/* Category insect list */
+"insect.hym.1.title" = "نحل العسل الغربي";
+"insect.hym.1.subtitle" = "آفات البستنة الشائعة";
+"insect.hym.2.title" = "دبور الورق الأوروبي";
+"insect.hym.2.subtitle" = "كثيرا ما ينظر إليه على الأسوار والأفاريز";
+"insect.hym.3.title" = "نحلة برتقالية الذيل";
+"insect.hym.3.subtitle" = "الملقحات الربيعية المبكرة";
+"insect.hym.4.title" = "ميسون بي";
+"insect.hym.4.subtitle" = "عش التجويف الانفرادي";
+"insect.hym.5.title" = "إشنيمون دبور";
+"insect.hym.5.subtitle" = "طفيل اليرقات";
+"insect.default.1.title" = "عينة من الحشرة أ";
+"insect.default.1.subtitle" = "صف العنصر النائب لهذه الفئة";
+"insect.default.2.title" = "عينة الحشرة ب";
+"insect.default.2.subtitle" = "استبدل ببيانات API لاحقًا";
+"insect.default.3.title" = "عينة الحشرة ج";
+"insect.default.3.subtitle" = "صف العنصر النائب لهذه الفئة";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "غير مؤذية";
+"insect.detail.status.poisonous" = "سامة";
+"insect.detail.status.toxic" = "سامة";
+"insect.detail.status.widespread" = "على نطاق واسع";
+"insect.detail.widespread.api.yes" = "على نطاق واسع";
+"insect.detail.widespread.api.no" = "غير شائع";
+"insect.detail.also_known_prefix" = "يُعرف أيضًا باسم:";
+"insect.detail.mock.scientific_title" = "أبيس ميليفيرا";
+"insect.detail.mock.aliases" = "عسل النحل الأوروبي، عسل النحل الغربي، عسل النحل";
+"insect.detail.section.description" = "الوصف";
+"insect.detail.read_more" = "اقرأ المزيد";
+"insect.detail.mock.description" = "يعد نحل العسل الغربي (Apis mellifera) من بين أهم الملقحات المدارة في الزراعة والنظم البيئية البرية. موطنه الأصلي أوروبا وغرب آسيا وأفريقيا، وقد انتشر في جميع أنحاء العالم عن طريق مربي النحل لإنتاج العسل وتلقيح المحاصيل.\n\nالمستعمرة هي كائن حي فائق: ملكة واحدة خصبة تضع البيض، بينما تقوم آلاف العاملات بالبحث عن الطعام، وحضانة اليرقات، وبناء المشط، والدفاع عن العش. تظهر الذكور موسميًا وتتزاوج مع ملكات من مستعمرات أخرى. يقوم العمال بتوصيل الاتجاه والمسافة إلى مصادر الغذاء الغنية من خلال رقصة الاهتزاز ومشاركة المعلومات عن طريق اللمس والفيرومونات.\n\nيقوم الباحثون عن الطعام بزيارة العديد من أنواع النباتات، وينقلون حبوب اللقاح أثناء تحركهم. ويدعم هذا السلوك التنوع البيولوجي والمحاصيل الغذائية، من البساتين والتوت إلى البذور الزيتية والبطيخ. يقوم مربي النحل بإدارة خلايا النحل لتحقيق التوازن بين حصاد العسل وصحة المستعمرة ومراقبة الآفات والأمراض والإجهاد الغذائي.\n\nعلى الرغم من أنه سهل الانقياد بشكل عام على الزهور، إلا أن نحل العسل يدافع عن خليته إذا شعر بوجود تهديد؛ فهم إشاراتهم يقلل من اللسعات. يمثل فقدان الموائل والمبيدات الحشرية ومسببات الأمراض والتغيرات المناخية تحديًا لكل من المجموعات البرية والمدارة. تساعد حماية الموارد الزهرية واعتماد الإدارة الدقيقة في الحفاظ على هذه الحشرات الرائعة في المواسم المستقبلية.";
+"insect.detail.section.characteristics" = "الخصائص";
+"insect.detail.section.classification" = "التصنيف العلمي";
+"insect.detail.section.bites" = "لدغات";
+"insect.detail.bites.intro" = "إذا تعرضت للعض أو اللسع، اتبع الخطوات التالية:";
+"insect.detail.bites.first_aid" = "الإسعافات الأولية الفورية:";
+"insect.detail.add_to_collection" = "أضف إلى المجموعة";
+"insect.detail.add_to_collection.sheet.title" = "أضف صورة إلى مجموعتك";
+"insect.detail.add_to_collection.source.camera" = "التقط صورة";
+"insect.detail.add_to_collection.source.library" = "اختر من المكتبة";
+"insect.detail.add_to_collection.cancel" = "إلغاء";
+"insect.detail.add_to_collection.alert.ok" = "حسنًا";
+"insect.detail.add_to_collection.error.no_insect" = "هذه الشاشة غير مرتبطة بحشرة الكتالوج، لذلك لا يمكن تحديث المجموعة.";
+"insect.detail.add_to_collection.error.network" = "لا يمكن الإضافة إلى المجموعة. تحقق من اتصالك وحاول مرة أخرى.";
+"insect.detail.remove_from_collection.confirm.title" = "هل تريد الإزالة من المجموعة؟";
+"insect.detail.remove_from_collection.confirm.message" = "ستتم إزالة هذه الحشرة من مجموعتك. لا يمكن التراجع عن هذا.";
+"insect.detail.remove_from_collection.confirm.delete" = "إزالة";
+"insect.detail.remove_from_collection.confirm.cancel" = "إلغاء";
+"insect.detail.remove_from_collection.error.no_id" = "لا يوجد أي إدخال مجموعة لإزالته على الخادم.";
+"insect.detail.remove_from_collection.error.network" = "تعذرت الإزالة من المجموعة. تحقق من اتصالك وحاول مرة أخرى.";
+"insect.detail.add_to_collection.success.title" = "النجاح!";
+"insect.detail.add_to_collection.success.subtitle" = "تمت إضافة الحشرة بنجاح إلى مجموعتك";
+"insect.detail.remove_from_collection.accessibility" = "إزالة من المجموعة";
+"insect.detail.class.genus.title" = "جنس";
+"insect.detail.class.genus.value" = "أبيس";
+"insect.detail.class.family.title" = "العائلة";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "النظام";
+"insect.detail.class.order.value" = "غشائيات الأجنحة";
+"insect.detail.class.class.title" = "اسم الفئة";
+"insect.detail.class.class.value" = "إنسكتا";
+"insect.detail.class.phylum.title" = "الأسرة في اللغات";
+"insect.detail.class.phylum.value" = "المفصليات";
+"insect.detail.class.kingdom.title" = "المملكة";
+"insect.detail.class.kingdom.value" = "أنيماليا";
+"insect.detail.class.domain.title" = "المجال";
+"insect.detail.class.domain.value" = "حقيقيات النوى";
+"insect.detail.char.adult_size.title" = "حجم الكبار";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 سم";
+"insect.detail.char.forms.title" = "نماذج الوجود";
+"insect.detail.char.forms.value" = "بيضة، يرقة، خادرة، بالغة";
+"insect.detail.char.colors.title" = "الألوان";
+"insect.detail.char.colors.value" = "بني ذهبي مع خطوط سوداء";
+"insect.detail.char.population.title" = "السكان";
+"insect.detail.char.population.value" = "منتشرة على نطاق واسع ومستأنسة";
+"insect.detail.char.habitat.title" = "الموئل";
+"insect.detail.char.habitat.value" = "المروج والحدائق والغابات والمناطق الزراعية";
+"insect.detail.char.diet.title" = "النظام الغذائي";
+"insect.detail.char.diet.value" = "الرحيق وحبوب اللقاح من النباتات المزهرة";
+
+/* Home — popular this week */
+"home.popular_this_week" = "شعبية هذا الأسبوع";
+"home.popular.butterfly" = "فراشة";
+"home.popular.mantis" = "السرعوف";
+"home.popular.ant" = "نملة";
+"home.popular.beetle" = "بيتل";
+
+/* Home — articles */
+"home.articles_section_title" = "مقالات مفيدة";
+"home.article.identify.title" = "كيف نتعرف على الحشرات؟";
+"home.article.identify.subtitle" = "العلامات والأدوات الأساسية التي تساعد على التمييز بين الأنواع في الحقل أو من خلال الصورة.";
+"home.article.habitats.title" = "حيث تعيش الحشرات";
+"home.article.habitats.subtitle" = "من التربة وفضلات الأوراق إلى الزهور والمياه، يمكنك استكشاف الموائل النموذجية بأمان.";
+"home.article.photography.title" = "صور ماكرو بدون ضغوط";
+"home.article.photography.subtitle" = "الضوء والمسافة والصبر: نصائح قصيرة للحصول على صور أكثر وضوحًا للأهداف الصغيرة.";
+"home.article.identify.block1.title" = "ما ننظر إليه أولا";
+"home.article.identify.block1.body" = "غالبًا ما يؤدي شكل الجسم والأجنحة وقرون الاستشعار والأرجل إلى تضييق ترتيب الحشرات في لمحة. تساعد أنماط الألوان، لكنها تختلف باختلاف الأنواع، فهي تجمعها مع الحجم والوضعية والسلوك. عندما يكون ذلك ممكنًا، لاحظ المكان الذي رأيت فيه الحشرة: النبات المضيف، أو سطح التربة، أو حافة الماء، كلها تضيف سياقًا.";
+"home.article.identify.block2.title" = "من الصورة";
+"home.article.identify.block2.body" = "الصورة الحادة والمضاءة جيدًا تتفوق على الصورة الباهتة في كل مرة. التقط المنظر العلوي، وإذا أمكن، التقط الملف الجانبي. قم بتضمين إحساس بالحجم (عملة معدنية أو إصبعك) عندما يكون الحجم مهمًا. تعمل الزوايا المتعددة على تقليل التخمين عندما تكون العلامات خفية أو مخفية تحت الأجنحة المطوية.";
+"home.article.habitats.block1.title" = "طبقات الموائل";
+"home.article.habitats.block1.body" = "تستخدم الحشرات المساحة الرأسية: المظلة، والطبقة السفلية، وفضلات الأوراق، وشقوق اللحاء، والتربة. إن تحويل جذع شجرة أو رفع حجر يكشف عن مجتمع مختلف عن رأس زهرة تحت أشعة الشمس الكاملة. تحرك ببطء واستبدل الأغطية حتى تظل الموائل الدقيقة سليمة.";
+"home.article.habitats.block2.title" = "الماء والحواف";
+"home.article.habitats.block2.body" = "تستضيف البرك والجداول والمروج الرطبة متخصصين مثل اليعسوب والدامسيل والعديد من الخنافس. غالبًا ما تكون الحدود بين الأرض والمياه - القصب والضفاف الموحلة - هي المنطقة الأكثر ثراءً. راقب من مسافة بعيدة أولاً لتجنب إزعاج الحشرات أثناء الراحة.";
+"home.article.photography.block1.title" = "الضوء والمسافة";
+"home.article.photography.block1.body" = "ضوء النهار المنتشر أو الظل المفتوح يعطي إضاءة متساوية بدون ظلال قاسية. اقترب بدرجة كافية لملء الإطار، لكن تجنب إلقاء ظلك على الموضوع. يمكن لعاكس صغير أو بطاقة بيضاء أن ترفع التفاصيل في التجاويف العميقة للزهور أو اللحاء.";
+"home.article.photography.block2.title" = "الصبر والاحترام";
+"home.article.photography.block2.body" = "دع الحشرات تستقر بدلاً من مطاردتها. يساعد وضع الاندفاع في النشرات المتقلبة. إذا كنت تستخدم الفلاش، فاجعل الجلسات قصيرة ولا توجهه مباشرة إلى أعين الفقاريات القريبة. عند الانتهاء، اترك الموطن كما وجدته.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "الإعدادات";
+"settings.section.support" = "الدعم";
+"settings.section.feedback" = "ردود الفعل";
+"settings.section.security" = "الأمن";
+"settings.row.contact_us" = "اتصل بنا";
+"settings.row.restore" = "استعادة";
+"settings.row.rate_app" = "قيم التطبيق";
+"settings.row.share_app" = "مشاركة التطبيق";
+"settings.row.privacy" = "سياسة الخصوصية";
+"settings.row.terms" = "شروط الاستخدام";
+"settings.row.refund_consent" = "موافقة استرداد";
+"settings.row.reset_consent" = "إعادة تعيين الموافقة";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "دعم تطبيقات الأخطاء";
+"settings.support.mail_body" = "مرحبًا،";
+"settings.support.mail_unavailable_title" = "الاتصال بنا عن طريق البريد الإلكتروني";
+"settings.restore.message" = "يستعيد اشتراكك من متجر التطبيقات لمعرف Apple هذا.";
+"settings.refund_consent.message" = "هل توافق على معالجة بياناتك لأغراض استرداد الأموال؟";
+"settings.refund_consent.allow" = "السماح";
+"settings.refund_consent.decline" = "رفض";
+"settings.reset_consent.message" = "ستكون إدارة الموافقة على الإعلانات متاحة في التحديث المستقبلي.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

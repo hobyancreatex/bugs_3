@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "hecho";
+
+/* Onboarding */
+"onboarding.intro.title" = "¡Hola! Soy tu guía en el mundo de los insectos 🐞";
+"onboarding.intro.subtitle" = "En esta aplicación, puedes:";
+"onboarding.intro.benefit.identify" = "Identifica insectos en segundos";
+"onboarding.intro.benefit.collection" = "Guárdalos en tu colección";
+"onboarding.intro.benefit.achievements" = "Gana logros";
+"onboarding.intro.benefit.ai" = "Chatea con un asistente de IA";
+"onboarding.intro.benefit.articles" = "Leer artículos útiles";
+"onboarding.button.next" = "Siguiente";
+"onboarding.button.start" = "empezar";
+
+/* Home */
+"home.title" = "Inicio";
+"home.search.placeholder" = "Buscar";
+"home.ai_banner.title" = "Pregúntale a la IA sobre cualquier insecto que encuentres";
+"home.ai_banner.button" = "hacer una pregunta";
+
+/* AI chat */
+"ai_chat.title" = "consultor de inteligencia artificial";
+"ai_chat.input.placeholder" = "Pregúntame algo…";
+"ai_chat.stub.ai" = "Sé todo sobre insectos, puedes consultarme.";
+"ai_chat.stub.user" = "Háblame de las abejas";
+"ai_chat.seed_creation_message" = "¿quién eres tú?";
+"ai_chat.error.bootstrap" = "No se pudo abrir el chat. Por favor inténtalo de nuevo.";
+"ai_chat.error.send" = "No se pudo enviar el mensaje. Por favor inténtalo de nuevo.";
+"ai_chat.alert.connection_lost.message" = "La conexión se perdió. Inténtelo de nuevo más tarde.";
+"ai_chat.alert.connection_lost.action" = "bien";
+
+/* Home — categories */
+"home.category.coleoptera" = "coleópteros";
+"home.category.scorpiones" = "escorpiones";
+"home.category.hymenoptera" = "himenópteros";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "lepidópteros";
+"home.category.diptera" = "dípteros";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "hemípteros";
+
+/* Main tab bar */
+"profile.title" = "Perfil";
+"profile.segment.collection" = "mi coleccion";
+"profile.segment.achievements" = "Mis logros";
+"profile.achievements.placeholder" = "Los logros aparecerán aquí.";
+"profile.collection.empty.title" = "Comienza tu colección de insectos";
+"profile.collection.empty.subtitle" = "Fotografíe insectos, haga crecer su colección, gane recompensas y realice un seguimiento de su progreso";
+"profile.achievement.close.accessibility" = "Cerrar";
+"profile.achievement.unlock_heading" = "Para desbloquear este logro";
+"profile.achievement.completed_heading" = "¡Felicitaciones!";
+"profile.achievement.completed_body" = "Añadido a tu colección";
+"profile.achievement.identify_more" = "Identificar %lld más %@";
+"tab.home.accessibility" = "Inicio";
+"tab.library.accessibility" = "Biblioteca";
+"tab.chat.accessibility" = "chat de IA";
+"tab.profile.accessibility" = "Perfil";
+"tab.scan.accessibility" = "Escanear insectos";
+
+/* Scanner */
+"scanner.close.accessibility" = "Cerrar";
+"scanner.recognition_progress.message" = "Espere mientras se cargan los datos...";
+"scanner.recognition_no_match.title" = "No se encontró ninguna coincidencia";
+"scanner.recognition_no_match.subtitle" = "No pudimos identificar el insecto en esta foto.";
+"scanner.recognition_no_match.try_again" = "Inténtalo de nuevo";
+"scanner.recognition_match.title" = "Coincidencia encontrada!";
+"scanner.recognition_match.subtitle" = "Hemos identificado posibles coincidencias. Continúe para ver qué insecto es.";
+"scanner.recognition_match.see_result" = "Ver resultado";
+
+/* Paywall */
+"paywall.preview.species" = "Speyeria";
+"paywall.preview.family" = "Familia: Nymphalidae";
+"paywall.preview.harmless" = "Inofensivo";
+"paywall.close.accessibility" = "Cerrar";
+"paywall.headline" = "Desbloquea el mundo de los insectos completo.";
+"paywall.benefit.scans" = "Escaneos ilimitados";
+"paywall.benefit.collection" = "Acceso completo a la colección";
+"paywall.benefit.ai" = "Asistente de IA sin límites";
+"paywall.benefit.achievements" = "Logros exclusivos";
+"paywall.product.prefix" = "3 días gratis, luego";
+"paywall.product.suffix" = "una semana";
+"paywall.cancel_anytime" = "Cancelar en cualquier momento. Con renovación automática.";
+"paywall.button.next" = "Siguiente";
+"paywall.footer.terms" = "Condiciones de uso";
+"paywall.footer.privacy" = "Política de privacidad";
+"paywall.footer.restore" = "Restaurar";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Compra";
+"subscription.error.product_unavailable" = "Esta suscripción no está disponible en este momento. Verifique App Store Connect o vuelva a intentarlo más tarde.";
+"subscription.error.purchase_failed" = "La compra no se pudo completar. Por favor inténtalo de nuevo.";
+"subscription.error.restore_failed" = "No se pudieron restaurar las compras. Comprueba tu conexión y vuelve a intentarlo.";
+"subscription.pending.title" = "Pendiente";
+"subscription.pending.message" = "Su compra está esperando aprobación. El acceso se desbloqueará cuando se complete.";
+"subscription.restore.title" = "Restaurar";
+"subscription.restore.success" = "Tus compras fueron restauradas.";
+"subscription.restore.nothing" = "No se encontró ninguna suscripción activa para este ID de Apple.";
+
+"scanner.tips.title" = "Consejos";
+"scanner.tips.intro" = "Una foto clara mejora la precisión del reconocimiento. Siga estos consejos para obtener mejores resultados:";
+"scanner.tips.1.title" = "1. Mantenga el insecto bien enfocado";
+"scanner.tips.2.title" = "2. Centre el insecto en el marco. Asegúrate de que sea claramente visible";
+"scanner.tips.3.title" = "3. Capture solo una especie a la vez: varios insectos reducen la precisión";
+"scanner.tips.4.title" = "4. Utiliza una buena iluminación";
+
+/* Library */
+"library.title" = "Biblioteca";
+"list.search_empty.title" = "Sin resultados…";
+"list.search_empty.subtitle" = "Por favor inténtalo de nuevo";
+
+/* Category insect list */
+"insect.hym.1.title" = "Abeja occidental";
+"insect.hym.1.subtitle" = "Plagas comunes en jardinería";
+"insect.hym.2.title" = "Avispa del papel europea";
+"insect.hym.2.subtitle" = "A menudo se ve en cercas y aleros.";
+"insect.hym.3.title" = "Abejorro de cola de ante";
+"insect.hym.3.subtitle" = "Polinizador de principios de primavera";
+"insect.hym.4.title" = "abeja albañil";
+"insect.hym.4.subtitle" = "Anidador de cavidades solitarias";
+"insect.hym.5.title" = "Avispa icneumón";
+"insect.hym.5.subtitle" = "Parasitoide de orugas";
+"insect.default.1.title" = "Insecto de muestra A";
+"insect.default.1.subtitle" = "Fila de marcador de posición para esta categoría";
+"insect.default.2.title" = "Insecto de muestra B";
+"insect.default.2.subtitle" = "Reemplazar con datos de API más tarde";
+"insect.default.3.title" = "Insecto de muestra C";
+"insect.default.3.subtitle" = "Fila de marcador de posición para esta categoría";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Inofensivo";
+"insect.detail.status.poisonous" = "venenoso";
+"insect.detail.status.toxic" = "toxico";
+"insect.detail.status.widespread" = "generalizado";
+"insect.detail.widespread.api.yes" = "generalizado";
+"insect.detail.widespread.api.no" = "Poco común";
+"insect.detail.also_known_prefix" = "También conocido como:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Abeja Europea, Abeja Occidental, Abeja";
+"insect.detail.section.description" = "Descripción";
+"insect.detail.read_more" = "Leer más";
+"insect.detail.mock.description" = "La abeja melífera occidental (Apis mellifera) se encuentra entre los polinizadores gestionados más importantes en la agricultura y los ecosistemas silvestres. Originaria de Europa, Asia occidental y África, los apicultores la han extendido por todo el mundo para la producción de miel y la polinización de cultivos.\n\nUna colonia es un superorganismo: una única reina fértil pone huevos, mientras miles de obreras buscan alimento, cuidan las larvas, construyen panales y defienden el nido. Los zánganos macho aparecen estacionalmente y se aparean con reinas de otras colonias. Los trabajadores comunican la dirección y la distancia a las fuentes de alimentos ricos a través de la danza del meneo y comparten información mediante el tacto y las feromonas.\n\nLos recolectores visitan muchas especies de plantas y transfieren polen a medida que se mueven. Este comportamiento respalda la biodiversidad y los cultivos alimentarios, desde huertos y bayas hasta semillas oleaginosas y melones. Los apicultores manejan las colmenas para equilibrar la cosecha de miel con la salud de la colonia, monitoreando plagas, enfermedades y estrés nutricional.\n\nAunque generalmente son dóciles con las flores, las abejas melíferas defienden su colmena si perciben una amenaza; comprender sus señales reduce las picaduras. La pérdida de hábitat, los pesticidas, los patógenos y los cambios climáticos desafían tanto a las poblaciones silvestres como a las gestionadas. Proteger los recursos florales y adoptar una gestión cuidadosa ayuda a sustentar a estos notables insectos para temporadas futuras.";
+"insect.detail.section.characteristics" = "Características";
+"insect.detail.section.classification" = "clasificación científica";
+"insect.detail.section.bites" = "Mordeduras";
+"insect.detail.bites.intro" = "Si ha sido mordido o picado, siga estos pasos:";
+"insect.detail.bites.first_aid" = "Primeros auxilios inmediatos:";
+"insect.detail.add_to_collection" = "Añadir a la colección";
+"insect.detail.add_to_collection.sheet.title" = "Añade una foto a tu colección";
+"insect.detail.add_to_collection.source.camera" = "tomar foto";
+"insect.detail.add_to_collection.source.library" = "Elige de la biblioteca";
+"insect.detail.add_to_collection.cancel" = "Cancelar";
+"insect.detail.add_to_collection.alert.ok" = "bien";
+"insect.detail.add_to_collection.error.no_insect" = "Esta pantalla no está vinculada a ningún insecto del catálogo, por lo que la colección no se puede actualizar.";
+"insect.detail.add_to_collection.error.network" = "No se pudo agregar a la colección. Comprueba tu conexión y vuelve a intentarlo.";
+"insect.detail.remove_from_collection.confirm.title" = "¿Quitar de la colección?";
+"insect.detail.remove_from_collection.confirm.message" = "Este insecto será eliminado de tu colección. Esto no se puede deshacer.";
+"insect.detail.remove_from_collection.confirm.delete" = "Quitar";
+"insect.detail.remove_from_collection.confirm.cancel" = "Cancelar";
+"insect.detail.remove_from_collection.error.no_id" = "No hay ninguna entrada de colección que eliminar en el servidor.";
+"insect.detail.remove_from_collection.error.network" = "No se pudo eliminar de la colección. Comprueba tu conexión y vuelve a intentarlo.";
+"insect.detail.add_to_collection.success.title" = "¡Éxito!";
+"insect.detail.add_to_collection.success.subtitle" = "El insecto se ha añadido con éxito a tu colección.";
+"insect.detail.remove_from_collection.accessibility" = "Quitar de la colección";
+"insect.detail.class.genus.title" = "Género";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "familia";
+"insect.detail.class.family.value" = "Ápidos";
+"insect.detail.class.order.title" = "Orden";
+"insect.detail.class.order.value" = "himenópteros";
+"insect.detail.class.class.title" = "nombre de clase";
+"insect.detail.class.class.value" = "insectos";
+"insect.detail.class.phylum.title" = "filo";
+"insect.detail.class.phylum.value" = "artrópodos";
+"insect.detail.class.kingdom.title" = "Reino";
+"insect.detail.class.kingdom.value" = "animales";
+"insect.detail.class.domain.title" = "Dominio";
+"insect.detail.class.domain.value" = "eucariota";
+"insect.detail.char.adult_size.title" = "Tamaño adulto";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Formas de existencia";
+"insect.detail.char.forms.value" = "Huevo, Larva, Pupa, Adulto";
+"insect.detail.char.colors.title" = "Colores";
+"insect.detail.char.colors.value" = "Marrón dorado con rayas negras.";
+"insect.detail.char.population.title" = "Población";
+"insect.detail.char.population.value" = "Muy extendido y domesticado.";
+"insect.detail.char.habitat.title" = "Hábitat";
+"insect.detail.char.habitat.value" = "Prados, jardines, bosques, zonas agrícolas.";
+"insect.detail.char.diet.title" = "Dieta";
+"insect.detail.char.diet.value" = "Néctar y polen de plantas con flores.";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Popular esta semana";
+"home.popular.butterfly" = "mariposa";
+"home.popular.mantis" = "mantis";
+"home.popular.ant" = "hormiga";
+"home.popular.beetle" = "Escarabajo";
+
+/* Home — articles */
+"home.articles_section_title" = "Artículos útiles";
+"home.article.identify.title" = "¿Cómo identificamos los insectos?";
+"home.article.identify.subtitle" = "Señales y herramientas básicas que ayudan a diferenciar las especies en el campo o a partir de una fotografía.";
+"home.article.habitats.title" = "donde viven los insectos";
+"home.article.habitats.subtitle" = "Desde tierra y hojarasca hasta flores y agua: hábitats típicos que puedes explorar de forma segura.";
+"home.article.photography.title" = "Fotografías macro sin estrés";
+"home.article.photography.subtitle" = "Luz, distancia y paciencia: breves consejos para obtener fotografías más claras de sujetos pequeños.";
+"home.article.identify.block1.title" = "Lo que miramos primero";
+"home.article.identify.block1.body" = "La forma del cuerpo, las alas, las antenas y las patas a menudo delimitan el orden de los insectos de un vistazo. Los patrones de color ayudan, pero varían dentro de la especie: combínalos con el tamaño, la postura y el comportamiento. Cuando sea posible, observe dónde vio el insecto: la planta huésped, la superficie del suelo o el borde del agua agregan contexto.";
+"home.article.identify.block2.title" = "De una foto";
+"home.article.identify.block2.body" = "Una imagen nítida y bien iluminada siempre supera a una borrosa. Capture la vista superior y, si puede, el perfil lateral. Incluya un sentido de escala (una moneda o su dedo) cuando el tamaño importe. Varios ángulos reducen las conjeturas cuando las marcas son sutiles u ocultas bajo las alas plegadas.";
+"home.article.habitats.block1.title" = "Capas de un hábitat";
+"home.article.habitats.block1.body" = "Los insectos utilizan el espacio vertical: dosel, sotobosque, hojarasca, grietas de la corteza y suelo. Girar un tronco o levantar una piedra revela una comunidad diferente a la de una flor a pleno sol. Muévase lentamente y reemplace las cubiertas para que los microhábitats permanezcan intactos.";
+"home.article.habitats.block2.title" = "Agua y bordes";
+"home.article.habitats.block2.body" = "En estanques, arroyos y praderas húmedas viven especies como libélulas, caballitos del diablo y muchos escarabajos. La frontera entre la tierra y el agua (juncos, orillas fangosas) es a menudo la zona más rica. Observe primero desde la distancia para evitar molestar a los insectos en reposo.";
+"home.article.photography.block1.title" = "Luz y distancia";
+"home.article.photography.block1.body" = "La luz diurna difusa o la sombra abierta brindan una iluminación uniforme sin sombras marcadas. Acércate lo suficiente como para llenar el encuadre, pero evita proyectar tu propia sombra sobre el sujeto. Un pequeño reflector o una tarjeta blanca pueden resaltar detalles en rincones profundos de flores o cortezas.";
+"home.article.photography.block2.title" = "Paciencia y respeto.";
+"home.article.photography.block2.body" = "Deje que los insectos se instalen en lugar de perseguirlos. El modo ráfaga ayuda con los voladores asustadizos. Si utiliza flash, mantenga las sesiones breves y nunca apunte directamente a los ojos de los vertebrados cercanos. Cuando hayas terminado, deja el hábitat tal como lo encontraste.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Configuración";
+"settings.section.support" = "Soporte";
+"settings.section.feedback" = "Comentarios";
+"settings.section.security" = "Seguridad";
+"settings.row.contact_us" = "Contáctenos";
+"settings.row.restore" = "Restaurar";
+"settings.row.rate_app" = "Califica la aplicación";
+"settings.row.share_app" = "Comparte la aplicación";
+"settings.row.privacy" = "Política de privacidad";
+"settings.row.terms" = "Términos de uso";
+"settings.row.refund_consent" = "Consentimiento de reembolso";
+"settings.row.reset_consent" = "Restablecer consentimiento";
+"settings.support.email" = "soporte@bugs.app";
+"settings.support.mail_subject" = "Soporte de la aplicación de errores";
+"settings.support.mail_body" = "Hola,";
+"settings.support.mail_unavailable_title" = "Contáctenos por correo electrónico";
+"settings.restore.message" = "Restaura su suscripción desde la App Store para este ID de Apple.";
+"settings.refund_consent.message" = "¿Da usted su consentimiento para el tratamiento de sus datos con fines de reembolso?";
+"settings.refund_consent.allow" = "Permitir";
+"settings.refund_consent.decline" = "Rechazar";
+"settings.reset_consent.message" = "La gestión del consentimiento publicitario estará disponible en una actualización futura.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

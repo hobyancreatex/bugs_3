@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Tapos na";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hi! Ako ang iyong gabay sa mundo ng mga insekto 🐞";
+"onboarding.intro.subtitle" = "Sa app na ito, maaari mong:";
+"onboarding.intro.benefit.identify" = "Kilalanin ang mga insekto sa ilang segundo";
+"onboarding.intro.benefit.collection" = "I-save ang mga ito sa iyong koleksyon";
+"onboarding.intro.benefit.achievements" = "Makakuha ng mga tagumpay";
+"onboarding.intro.benefit.ai" = "Makipag-chat sa isang AI assistant";
+"onboarding.intro.benefit.articles" = "Basahin ang mga kapaki-pakinabang na artikulo";
+"onboarding.button.next" = "Susunod";
+"onboarding.button.start" = "Magsimula";
+
+/* Home */
+"home.title" = "Bahay";
+"home.search.placeholder" = "Maghanap";
+"home.ai_banner.title" = "Magtanong sa AI tungkol sa anumang insekto na makikita mo";
+"home.ai_banner.button" = "Magtanong";
+
+/* AI chat */
+"ai_chat.title" = "consultant ng AI";
+"ai_chat.input.placeholder" = "Magtanong sa akin ng isang bagay…";
+"ai_chat.stub.ai" = "Alam ko ang lahat tungkol sa mga insekto, maaari kang sumangguni sa akin.";
+"ai_chat.stub.user" = "Sabihin mo sa akin ang tungkol sa mga bubuyog";
+"ai_chat.seed_creation_message" = "sino ka ba";
+"ai_chat.error.bootstrap" = "Hindi mabuksan ang chat. Pakisubukang muli.";
+"ai_chat.error.send" = "Hindi maipadala ang mensahe. Pakisubukang muli.";
+"ai_chat.alert.connection_lost.message" = "Nawala ang koneksyon. Pakisubukang muli mamaya.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Mga alakdan";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profile";
+"profile.segment.collection" = "Ang aking koleksyon";
+"profile.segment.achievements" = "Aking mga nagawa";
+"profile.achievements.placeholder" = "Lalabas dito ang mga nakamit.";
+"profile.collection.empty.title" = "Simulan ang iyong koleksyon ng mga insekto";
+"profile.collection.empty.subtitle" = "Kuhanan ng larawan ang mga insekto, palaguin ang iyong koleksyon, kumita ng mga reward, at subaybayan ang iyong pag-unlad";
+"profile.achievement.close.accessibility" = "Isara";
+"profile.achievement.unlock_heading" = "Upang i-unlock ang tagumpay na ito";
+"profile.achievement.completed_heading" = "Binabati kita!";
+"profile.achievement.completed_body" = "Idinagdag sa iyong koleksyon";
+"profile.achievement.identify_more" = "Kilalanin ang %lld higit pa %@";
+"tab.home.accessibility" = "Bahay";
+"tab.library.accessibility" = "Aklatan";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profile";
+"tab.scan.accessibility" = "I-scan ang insekto";
+
+/* Scanner */
+"scanner.close.accessibility" = "Isara";
+"scanner.recognition_progress.message" = "Mangyaring maghintay habang naglo-load ang data...";
+"scanner.recognition_no_match.title" = "Walang nakitang tugma";
+"scanner.recognition_no_match.subtitle" = "Hindi namin matukoy ang insekto sa larawang ito";
+"scanner.recognition_no_match.try_again" = "Subukan muli";
+"scanner.recognition_match.title" = "Nahanap na ang laban!";
+"scanner.recognition_match.subtitle" = "Natukoy namin ang mga posibleng tugma. Patuloy na tingnan kung aling insekto ito";
+"scanner.recognition_match.see_result" = "Tingnan ang resulta";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Pamilya: Nymphalidae";
+"paywall.preview.harmless" = "Hindi nakakapinsala";
+"paywall.close.accessibility" = "Isara";
+"paywall.headline" = "I-unlock ang buong mundo ng insekto";
+"paywall.benefit.scans" = "Walang limitasyong pag-scan";
+"paywall.benefit.collection" = "Buong pag-access sa koleksyon";
+"paywall.benefit.ai" = "AI assistant na walang limitasyon";
+"paywall.benefit.achievements" = "Mga eksklusibong tagumpay";
+"paywall.product.prefix" = "3 araw nang libre, kung gayon";
+"paywall.product.suffix" = "isang linggo";
+"paywall.cancel_anytime" = "Kanselahin anumang oras. Gamit ang auto-renewal.";
+"paywall.button.next" = "Susunod";
+"paywall.footer.terms" = "Mga tuntunin sa paggamit";
+"paywall.footer.privacy" = "Patakaran sa privacy";
+"paywall.footer.restore" = "Ibalik";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Bumili";
+"subscription.error.product_unavailable" = "Hindi available ang subscription na ito sa ngayon. Tingnan ang App Store Connect o subukang muli sa ibang pagkakataon.";
+"subscription.error.purchase_failed" = "Hindi makumpleto ang pagbili. Pakisubukang muli.";
+"subscription.error.restore_failed" = "Hindi maibalik ang mga binili. Suriin ang iyong koneksyon at subukang muli.";
+"subscription.pending.title" = "Nakabinbin";
+"subscription.pending.message" = "Ang iyong pagbili ay naghihintay para sa pag-apruba. Maa-unlock ang access kapag nakumpleto na ito.";
+"subscription.restore.title" = "Ibalik";
+"subscription.restore.success" = "Na-restore ang iyong mga binili.";
+"subscription.restore.nothing" = "Walang nakitang aktibong subscription para sa Apple ID na ito.";
+
+"scanner.tips.title" = "Mga tip";
+"scanner.tips.intro" = "Ang isang malinaw na larawan ay nagpapabuti sa katumpakan ng pagkilala. Sundin ang mga tip na ito para sa pinakamahusay na mga resulta:";
+"scanner.tips.1.title" = "1. Panatilihing nakatutok ang insekto";
+"scanner.tips.2.title" = "2. Igitna ang insekto sa frame. Tiyaking malinaw itong nakikita";
+"scanner.tips.3.title" = "3. Kumuha lamang ng isang species sa isang pagkakataon - maraming mga insekto ang nagpapababa ng katumpakan";
+"scanner.tips.4.title" = "4. Gumamit ng magandang ilaw";
+
+/* Library */
+"library.title" = "Aklatan";
+"list.search_empty.title" = "Walang resulta…";
+"list.search_empty.subtitle" = "Pakisubukang muli";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western Honey Bee";
+"insect.hym.1.subtitle" = "Mga karaniwang peste sa paghahalaman";
+"insect.hym.2.title" = "European Paper Wasp";
+"insect.hym.2.subtitle" = "Madalas makikita sa mga bakod at ambi";
+"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.subtitle" = "Maagang tagsibol pollinator";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Solitary cavity nester";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "Parasitoid ng mga uod";
+"insect.default.1.title" = "Halimbawang insekto A";
+"insect.default.1.subtitle" = "Placeholder row para sa kategoryang ito";
+"insect.default.2.title" = "Halimbawang insekto B";
+"insect.default.2.subtitle" = "Palitan ng API data sa ibang pagkakataon";
+"insect.default.3.title" = "Halimbawang insekto C";
+"insect.default.3.subtitle" = "Placeholder row para sa kategoryang ito";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Hindi nakakapinsala";
+"insect.detail.status.poisonous" = "nakakalason";
+"insect.detail.status.toxic" = "Nakakalason";
+"insect.detail.status.widespread" = "Laganap";
+"insect.detail.widespread.api.yes" = "Laganap";
+"insect.detail.widespread.api.no" = "Hindi karaniwan";
+"insect.detail.also_known_prefix" = "Kilala rin bilang:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.section.description" = "Paglalarawan";
+"insect.detail.read_more" = "Magbasa pa";
+"insect.detail.mock.description" = "Ang western honey bee (Apis mellifera) ay kabilang sa pinakamahalagang pinamamahalaang pollinator sa agrikultura at ligaw na ecosystem. Katutubo sa Europa, kanlurang Asya, at Africa, ipinakalat ito sa buong mundo ng mga beekeeper para sa paggawa ng pulot at polinasyon ng pananim.\n\nAng kolonya ay isang superorganism: ang nag-iisang mayabong na reyna ay nangingitlog, habang libu-libong babaeng manggagawa ang naghahanap ng pagkain, nag-aalaga ng larvae, nagsusuklay, at nagtatanggol sa pugad. Ang mga lalaking drone ay lumalabas nang pana-panahon at nakikipag-asawa sa mga reyna mula sa ibang mga kolonya. Ipinapaalam ng mga manggagawa ang direksyon at distansya sa masaganang pinagmumulan ng pagkain sa pamamagitan ng waggle dance at nagbabahagi ng impormasyon sa pamamagitan ng touch at pheromones.\n\nAng mga foragers ay bumibisita sa maraming species ng halaman, naglilipat ng pollen habang sila ay gumagalaw. Sinusuportahan ng gawi na ito ang biodiversity at mga pananim na pagkain—mula sa mga halamanan at berry hanggang sa mga oilseed at melon. Pinamamahalaan ng mga beekeeper ang mga pantal upang balansehin ang pag-aani ng pulot sa kalusugan ng kolonya, pagsubaybay para sa mga peste, sakit, at stress sa nutrisyon.\n\nBagama't sa pangkalahatan ay masunurin sa mga bulaklak, ipinagtatanggol ng mga pulot-pukyutan ang kanilang pugad kung may naramdaman silang banta; ang pag-unawa sa kanilang mga pahiwatig ay nakakabawas ng mga kagat. Ang pagkawala ng tirahan, mga pestisidyo, mga pathogen, at mga pagbabago sa klima ay humahamon sa mga ligaw at pinamamahalaang populasyon. Ang pagprotekta sa mga mapagkukunan ng bulaklak at paggamit ng maingat na pamamahala ay nakakatulong na mapanatili ang mga kahanga-hangang insekto para sa mga darating na panahon.";
+"insect.detail.section.characteristics" = "Mga katangian";
+"insect.detail.section.classification" = "Pang-agham na pag-uuri";
+"insect.detail.section.bites" = "Mga kagat";
+"insect.detail.bites.intro" = "Kung ikaw ay nakagat o nakagat, sundin ang mga hakbang na ito:";
+"insect.detail.bites.first_aid" = "Agarang pangunang lunas:";
+"insect.detail.add_to_collection" = "Idagdag sa koleksyon";
+"insect.detail.add_to_collection.sheet.title" = "Magdagdag ng larawan sa iyong koleksyon";
+"insect.detail.add_to_collection.source.camera" = "Kumuha ng larawan";
+"insect.detail.add_to_collection.source.library" = "Pumili mula sa library";
+"insect.detail.add_to_collection.cancel" = "Kanselahin";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Ang screen na ito ay hindi naka-link sa isang catalog insect, kaya hindi ma-update ang koleksyon.";
+"insect.detail.add_to_collection.error.network" = "Hindi maidagdag sa koleksyon. Suriin ang iyong koneksyon at subukang muli.";
+"insect.detail.remove_from_collection.confirm.title" = "Alisin sa koleksyon?";
+"insect.detail.remove_from_collection.confirm.message" = "Ang insektong ito ay aalisin sa iyong koleksyon. Hindi na ito maaaring bawiin.";
+"insect.detail.remove_from_collection.confirm.delete" = "Alisin";
+"insect.detail.remove_from_collection.confirm.cancel" = "Kanselahin";
+"insect.detail.remove_from_collection.error.no_id" = "Walang collection entry na aalisin sa server.";
+"insect.detail.remove_from_collection.error.network" = "Hindi maalis sa koleksyon. Suriin ang iyong koneksyon at subukang muli.";
+"insect.detail.add_to_collection.success.title" = "Tagumpay!";
+"insect.detail.add_to_collection.success.subtitle" = "Ang insekto ay matagumpay na naidagdag sa iyong koleksyon";
+"insect.detail.remove_from_collection.accessibility" = "Alisin sa koleksyon";
+"insect.detail.class.genus.title" = "Genus";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Pamilya";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Umorder";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Pangalan ng klase";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Kaharian";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domain";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Sukat ng Pang-adulto";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 cm";
+"insect.detail.char.forms.title" = "Mga Form ng Pag-iral";
+"insect.detail.char.forms.value" = "Itlog, Larva, Pupa, Matanda";
+"insect.detail.char.colors.title" = "Mga kulay";
+"insect.detail.char.colors.value" = "Golden-brown na may itim na guhit";
+"insect.detail.char.population.title" = "Populasyon";
+"insect.detail.char.population.value" = "Lubos na laganap at domesticated";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Mga parang, hardin, kagubatan, mga lugar ng agrikultura";
+"insect.detail.char.diet.title" = "Diet";
+"insect.detail.char.diet.value" = "Nectar at pollen mula sa mga namumulaklak na halaman";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Sikat ngayong linggo";
+"home.popular.butterfly" = "Butterfly";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Langgam";
+"home.popular.beetle" = "Salaginto";
+
+/* Home — articles */
+"home.articles_section_title" = "Mga kapaki-pakinabang na artikulo";
+"home.article.identify.title" = "Paano natin nakikilala ang mga insekto?";
+"home.article.identify.subtitle" = "Mga pangunahing palatandaan at tool na tumutulong sa pagtukoy ng mga species sa field o mula sa isang larawan.";
+"home.article.habitats.title" = "Kung saan nakatira ang mga insekto";
+"home.article.habitats.subtitle" = "Mula sa mga basura ng lupa at dahon hanggang sa mga bulaklak at tubig — mga tipikal na tirahan na maaari mong tuklasin nang ligtas.";
+"home.article.photography.title" = "Mga macro na larawan nang walang stress";
+"home.article.photography.subtitle" = "Banayad, distansya, at pasensya: maikling tip para sa mas malinaw na mga larawan ng maliliit na paksa.";
+"home.article.identify.block1.title" = "Kung ano ang una nating tinitingnan";
+"home.article.identify.block1.body" = "Ang hugis ng katawan, mga pakpak, antennae, at mga binti ay kadalasang nagpapaliit sa pagkakasunud-sunod ng mga insekto sa isang sulyap. Nakakatulong ang mga pattern ng kulay, ngunit iba-iba ang mga ito sa loob ng mga species — pagsamahin ang mga ito sa laki, postura, at pag-uugali. Kung maaari, tandaan kung saan mo nakita ang insekto: host plant, ibabaw ng lupa, o gilid ng tubig lahat ay nagdaragdag ng konteksto.";
+"home.article.identify.block2.title" = "Mula sa isang larawan";
+"home.article.identify.block2.body" = "Ang isang matalas, mahusay na naiilawan na imahe ay nakakatalo sa isang malabo sa bawat oras. Kunin ang tuktok na view at, kung magagawa mo, ang profile sa gilid. Magsama ng sense of scale (isang barya o iyong daliri) kapag mahalaga ang laki. Binabawasan ng ilang mga anggulo ang panghuhula kapag ang mga marka ay banayad o nakatago sa ilalim ng mga nakatiklop na pakpak.";
+"home.article.habitats.block1.title" = "Mga layer ng isang tirahan";
+"home.article.habitats.block1.body" = "Gumagamit ang mga insekto ng patayong espasyo: canopy, understory, leaf litter, bark crevices, at lupa. Ang pagpihit ng troso o pagbubuhat ng bato ay nagpapakita ng ibang komunidad kaysa sa ulo ng bulaklak sa buong araw. Dahan-dahang gumalaw at palitan ang mga takip upang manatiling buo ang mga microhabitat.";
+"home.article.habitats.block2.title" = "Tubig at mga gilid";
+"home.article.habitats.block2.body" = "Ang mga lawa, batis, at mamasa-masa na parang ay nagho-host ng mga espesyalista tulad ng mga tutubi, damselflies, at maraming salagubang. Ang hangganan sa pagitan ng lupa at tubig - mga tambo, maputik na mga bangko - ay madalas na pinakamayamang sona. Magmasid muna mula sa malayo upang maiwasan ang mga nakakagambalang mga insektong nagpapahinga.";
+"home.article.photography.block1.title" = "Liwanag at distansya";
+"home.article.photography.block1.body" = "Ang nagkakalat na liwanag ng araw o bukas na lilim ay nagbibigay ng pantay na pag-iilaw nang walang malupit na mga anino. Lumapit nang sapat upang punan ang frame, ngunit iwasang maglagay ng sarili mong anino sa kabuuan ng paksa. Ang isang maliit na reflector o puting card ay maaaring magtaas ng detalye sa malalalim na recess ng mga bulaklak o bark.";
+"home.article.photography.block2.title" = "Pasensya at paggalang";
+"home.article.photography.block2.body" = "Hayaang tumira ang mga insekto sa halip na habulin sila. Nakakatulong ang burst mode sa mga skittish flyers. Kung gumagamit ka ng flash, panatilihing maikli ang mga session at huwag itong direktang ituro sa mga mata ng mga vertebrates sa malapit. Kapag tapos ka na, umalis sa tirahan tulad ng nakita mo.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Mga setting";
+"settings.section.support" = "Suporta";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Seguridad";
+"settings.row.contact_us" = "Makipag-ugnayan sa amin";
+"settings.row.restore" = "Ibalik";
+"settings.row.rate_app" = "I-rate ang app";
+"settings.row.share_app" = "Ibahagi ang app";
+"settings.row.privacy" = "Patakaran sa privacy";
+"settings.row.terms" = "Mga Tuntunin sa Paggamit";
+"settings.row.refund_consent" = "I-refund ang pahintulot";
+"settings.row.reset_consent" = "I-reset ang Pahintulot";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Suporta sa bugs app";
+"settings.support.mail_body" = "hi,";
+"settings.support.mail_unavailable_title" = "Makipag-ugnayan sa amin sa pamamagitan ng email";
+"settings.restore.message" = "Ibinabalik ang iyong subscription mula sa App Store para sa Apple ID na ito.";
+"settings.refund_consent.message" = "Pumapayag ka ba sa pagproseso ng iyong data para sa mga layunin ng refund?";
+"settings.refund_consent.allow" = "Payagan";
+"settings.refund_consent.decline" = "Tanggihan";
+"settings.reset_consent.message" = "Magiging available ang pamamahala ng pahintulot sa pag-advertise sa isang update sa hinaharap.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

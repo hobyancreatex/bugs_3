@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "انجام شد";
+
+/* Onboarding */
+"onboarding.intro.title" = "سلام! من راهنمای شما به دنیای حشرات هستم🐞";
+"onboarding.intro.subtitle" = "در این برنامه می توانید:";
+"onboarding.intro.benefit.identify" = "حشرات را در چند ثانیه شناسایی کنید";
+"onboarding.intro.benefit.collection" = "آنها را در مجموعه خود ذخیره کنید";
+"onboarding.intro.benefit.achievements" = "دستاوردهایی کسب کنید";
+"onboarding.intro.benefit.ai" = "با دستیار هوش مصنوعی چت کنید";
+"onboarding.intro.benefit.articles" = "مقالات مفید را بخوانید";
+"onboarding.button.next" = "بعدی";
+"onboarding.button.start" = "شروع کنید";
+
+/* Home */
+"home.title" = "صفحه اصلی";
+"home.search.placeholder" = "جستجو کنید";
+"home.ai_banner.title" = "در مورد هر حشره ای که پیدا کردید از هوش مصنوعی بپرسید";
+"home.ai_banner.button" = "یه سوال بپرس";
+
+/* AI chat */
+"ai_chat.title" = "مشاور هوش مصنوعی";
+"ai_chat.input.placeholder" = "از من چیزی بپرس…";
+"ai_chat.stub.ai" = "من همه چیز را در مورد حشرات می دانم، می توانید با من مشورت کنید.";
+"ai_chat.stub.user" = "از زنبورها بگو";
+"ai_chat.seed_creation_message" = "تو کی هستی";
+"ai_chat.error.bootstrap" = "گپ باز نشد. لطفا دوباره امتحان کنید.";
+"ai_chat.error.send" = "پیام ارسال نشد. لطفا دوباره امتحان کنید.";
+"ai_chat.alert.connection_lost.message" = "ارتباط قطع شد. لطفاً بعداً دوباره امتحان کنید.";
+"ai_chat.alert.connection_lost.action" = "باشه";
+
+/* Home — categories */
+"home.category.coleoptera" = "کولئوپترا";
+"home.category.scorpiones" = "عقرب ها";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "دوپترا";
+"home.category.blattodea" = "بلاتودیا";
+"home.category.hemiptera" = "همپتر";
+
+/* Main tab bar */
+"profile.title" = "نمایه";
+"profile.segment.collection" = "مجموعه من";
+"profile.segment.achievements" = "دستاوردهای من";
+"profile.achievements.placeholder" = "دستاوردها در اینجا ظاهر می شوند.";
+"profile.collection.empty.title" = "مجموعه حشرات خود را شروع کنید";
+"profile.collection.empty.subtitle" = "از حشرات عکس بگیرید، مجموعه خود را رشد دهید، پاداش بگیرید و پیشرفت خود را دنبال کنید";
+"profile.achievement.close.accessibility" = "بستن";
+"profile.achievement.unlock_heading" = "برای باز کردن این دستاورد";
+"profile.achievement.completed_heading" = "تبریک می گویم!";
+"profile.achievement.completed_body" = "به مجموعه شما اضافه شد";
+"profile.achievement.identify_more" = "شناسایی %lld بیشتر %@";
+"tab.home.accessibility" = "صفحه اصلی";
+"tab.library.accessibility" = "کتابخانه";
+"tab.chat.accessibility" = "چت هوش مصنوعی";
+"tab.profile.accessibility" = "نمایه";
+"tab.scan.accessibility" = "اسکن حشره";
+
+/* Scanner */
+"scanner.close.accessibility" = "بستن";
+"scanner.recognition_progress.message" = "لطفا صبر کنید تا داده ها بارگیری شوند…";
+"scanner.recognition_no_match.title" = "مطابقت پیدا نشد";
+"scanner.recognition_no_match.subtitle" = "ما نتوانستیم حشره را در این عکس شناسایی کنیم";
+"scanner.recognition_no_match.try_again" = "دوباره امتحان کنید";
+"scanner.recognition_match.title" = "مطابقت پیدا شد!";
+"scanner.recognition_match.subtitle" = "ما مسابقات احتمالی را شناسایی کرده ایم. ادامه دهید تا ببینید کدام حشره است";
+"scanner.recognition_match.see_result" = "نتیجه را ببینید";
+
+/* Paywall */
+"paywall.preview.species" = "سرخوشی";
+"paywall.preview.family" = "خانواده: Nymphalidae";
+"paywall.preview.harmless" = "بی ضرر";
+"paywall.close.accessibility" = "بستن";
+"paywall.headline" = "قفل جهان کامل حشرات را باز کنید";
+"paywall.benefit.scans" = "اسکن نامحدود";
+"paywall.benefit.collection" = "دسترسی کامل به مجموعه";
+"paywall.benefit.ai" = "دستیار هوش مصنوعی بدون محدودیت";
+"paywall.benefit.achievements" = "دستاوردهای انحصاری";
+"paywall.product.prefix" = "3 روز به صورت رایگان، سپس";
+"paywall.product.suffix" = "یک هفته";
+"paywall.cancel_anytime" = "در هر زمان لغو کنید. با تمدید خودکار";
+"paywall.button.next" = "بعدی";
+"paywall.footer.terms" = "شرایط استفاده";
+"paywall.footer.privacy" = "سیاست حفظ حریم خصوصی";
+"paywall.footer.restore" = "بازیابی کنید";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "خرید";
+"subscription.error.product_unavailable" = "این اشتراک در حال حاضر در دسترس نیست. App Store Connect را بررسی کنید یا بعداً دوباره امتحان کنید.";
+"subscription.error.purchase_failed" = "خرید انجام نشد. لطفا دوباره امتحان کنید.";
+"subscription.error.restore_failed" = "خریدها بازیابی نشد. اتصال خود را بررسی کنید و دوباره امتحان کنید.";
+"subscription.pending.title" = "در انتظار";
+"subscription.pending.message" = "خرید شما منتظر تایید است. دسترسی پس از تکمیل باز می شود.";
+"subscription.restore.title" = "بازیابی کنید";
+"subscription.restore.success" = "خریدهای شما بازیابی شد.";
+"subscription.restore.nothing" = "هیچ اشتراک فعالی برای این Apple ID یافت نشد.";
+
+"scanner.tips.title" = "نکات";
+"scanner.tips.intro" = "یک عکس واضح، دقت تشخیص را بهبود می بخشد. برای بهترین نتایج این نکات را دنبال کنید:";
+"scanner.tips.1.title" = "1. حشره را در فوکوس دقیق نگه دارید";
+"scanner.tips.2.title" = "2. حشره را در قاب وسط قرار دهید. مطمئن شوید که به وضوح قابل مشاهده است";
+"scanner.tips.3.title" = "3. فقط یک گونه را در یک زمان ضبط کنید - حشرات متعدد دقت را کاهش می دهند";
+"scanner.tips.4.title" = "4. از نور خوب استفاده کنید";
+
+/* Library */
+"library.title" = "کتابخانه";
+"list.search_empty.title" = "بدون نتیجه…";
+"list.search_empty.subtitle" = "لطفا دوباره امتحان کنید";
+
+/* Category insect list */
+"insect.hym.1.title" = "زنبور عسل غربی";
+"insect.hym.1.subtitle" = "آفات رایج باغبانی";
+"insect.hym.2.title" = "زنبور کاغذی اروپایی";
+"insect.hym.2.subtitle" = "اغلب بر روی حصارها و پیشروها دیده می شود";
+"insect.hym.3.title" = "زنبور عسل دم گاومیش";
+"insect.hym.3.subtitle" = "گرده افشان اوایل بهار";
+"insect.hym.4.title" = "میسون بی";
+"insect.hym.4.subtitle" = "آشیانه حفره منفرد";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "پارازیتوئید کاترپیلارها";
+"insect.default.1.title" = "نمونه حشره A";
+"insect.default.1.subtitle" = "ردیف نگهدارنده مکان برای این دسته";
+"insect.default.2.title" = "نمونه حشره B";
+"insect.default.2.subtitle" = "بعداً با داده های API جایگزین کنید";
+"insect.default.3.title" = "نمونه حشره C";
+"insect.default.3.subtitle" = "ردیف نگهدارنده مکان برای این دسته";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "بی ضرر";
+"insect.detail.status.poisonous" = "سمی";
+"insect.detail.status.toxic" = "سمی";
+"insect.detail.status.widespread" = "گسترده است";
+"insect.detail.widespread.api.yes" = "گسترده است";
+"insect.detail.widespread.api.no" = "غیر معمول";
+"insect.detail.also_known_prefix" = "همچنین به عنوان:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "زنبور عسل اروپایی، زنبور عسل غربی، زنبور عسل";
+"insect.detail.section.description" = "توضیحات";
+"insect.detail.read_more" = "ادامه مطلب";
+"insect.detail.mock.description" = "زنبور عسل غربی (Apis mellifera) یکی از مهم ترین گرده افشان های مدیریت شده در کشاورزی و اکوسیستم های وحشی است. این گیاه بومی اروپا، آسیای غربی و آفریقا است و توسط زنبورداران برای تولید عسل و گرده افشانی محصولات در سراسر جهان پخش شده است.\n\nیک کلنی یک ابر ارگانیسم است: یک ملکه بارور تخم می گذارد، در حالی که هزاران کارگر زن علوفه می گیرند، از لارو پرستاری می کنند، شانه می سازند و از لانه دفاع می کنند. پهپادهای نر به صورت فصلی ظاهر می شوند و با ملکه هایی از کلنی های دیگر جفت می گیرند. کارگران مسیر و فاصله را با منابع غذایی غنی از طریق رقص تکان دادن ارتباط برقرار می کنند و اطلاعات را با لمس و فرمون به اشتراک می گذارند.\n\nعلوفه جویان از بسیاری از گونه های گیاهی بازدید می کنند و گرده ها را در حین حرکت انتقال می دهند. این رفتار از تنوع زیستی و محصولات غذایی حمایت می کند - از باغات و توت ها گرفته تا دانه های روغنی و خربزه. زنبورداران با مدیریت کندوها می توانند برداشت عسل را با سلامت کلنی ها، نظارت بر آفات، بیماری ها و استرس تغذیه ای متعادل کنند.\n\nاگرچه زنبورهای عسل عموماً روی گل ها مطیع هستند، اما در صورت مشاهده خطر از کندوی خود دفاع می کنند. درک نشانه های آنها باعث کاهش نیش می شود. از دست دادن زیستگاه، آفت کش ها، پاتوژن ها و تغییرات آب و هوایی، هم جمعیت وحشی و هم جمعیت های مدیریت شده را به چالش می کشند. حفاظت از منابع گل و اتخاذ مدیریت دقیق به حفظ این حشرات قابل توجه برای فصول آینده کمک می کند.";
+"insect.detail.section.characteristics" = "خصوصیات";
+"insect.detail.section.classification" = "طبقه بندی علمی";
+"insect.detail.section.bites" = "نیش";
+"insect.detail.bites.intro" = "اگر گاز گرفتید یا گاز گرفتید، این مراحل را دنبال کنید:";
+"insect.detail.bites.first_aid" = "کمک های اولیه فوری:";
+"insect.detail.add_to_collection" = "به مجموعه اضافه کنید";
+"insect.detail.add_to_collection.sheet.title" = "یک عکس به مجموعه خود اضافه کنید";
+"insect.detail.add_to_collection.source.camera" = "عکس بگیرید";
+"insect.detail.add_to_collection.source.library" = "از کتابخانه انتخاب کنید";
+"insect.detail.add_to_collection.cancel" = "لغو کنید";
+"insect.detail.add_to_collection.alert.ok" = "باشه";
+"insect.detail.add_to_collection.error.no_insect" = "این صفحه به یک حشره کاتالوگ مرتبط نیست، بنابراین مجموعه را نمی توان به روز کرد.";
+"insect.detail.add_to_collection.error.network" = "به مجموعه اضافه نشد. اتصال خود را بررسی کنید و دوباره امتحان کنید.";
+"insect.detail.remove_from_collection.confirm.title" = "از مجموعه حذف شود؟";
+"insect.detail.remove_from_collection.confirm.message" = "این حشره از مجموعه شما حذف خواهد شد. این قابل واگرد نیست.";
+"insect.detail.remove_from_collection.confirm.delete" = "حذف کنید";
+"insect.detail.remove_from_collection.confirm.cancel" = "لغو کنید";
+"insect.detail.remove_from_collection.error.no_id" = "هیچ ورودی مجموعه ای برای حذف در سرور وجود ندارد.";
+"insect.detail.remove_from_collection.error.network" = "از مجموعه حذف نشد. اتصال خود را بررسی کنید و دوباره امتحان کنید.";
+"insect.detail.add_to_collection.success.title" = "موفقیت!";
+"insect.detail.add_to_collection.success.subtitle" = "حشره با موفقیت به مجموعه شما اضافه شد";
+"insect.detail.remove_from_collection.accessibility" = "حذف از مجموعه";
+"insect.detail.class.genus.title" = "جنس";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "خانواده";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "سفارش دهید";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "نام کلاس";
+"insect.detail.class.class.value" = "حشره";
+"insect.detail.class.phylum.title" = "فیلوم";
+"insect.detail.class.phylum.value" = "بندپایان";
+"insect.detail.class.kingdom.title" = "پادشاهی";
+"insect.detail.class.kingdom.value" = "حیوانات";
+"insect.detail.class.domain.title" = "دامنه";
+"insect.detail.class.domain.value" = "یوکاریوتا";
+"insect.detail.char.adult_size.title" = "اندازه بزرگسالان";
+"insect.detail.char.adult_size.value" = "1.2 - 1.5 سانتی متر";
+"insect.detail.char.forms.title" = "فرم های هستی";
+"insect.detail.char.forms.value" = "تخم، لارو، شفیره، بالغ";
+"insect.detail.char.colors.title" = "رنگ ها";
+"insect.detail.char.colors.value" = "قهوه ای طلایی با راه راه های مشکی";
+"insect.detail.char.population.title" = "جمعیت";
+"insect.detail.char.population.value" = "بسیار گسترده و اهلی شده است";
+"insect.detail.char.habitat.title" = "زیستگاه";
+"insect.detail.char.habitat.value" = "مراتع، باغ ها، جنگل ها، مناطق کشاورزی";
+"insect.detail.char.diet.title" = "رژیم غذایی";
+"insect.detail.char.diet.value" = "شهد و گرده گیاهان گلدار";
+
+/* Home — popular this week */
+"home.popular_this_week" = "محبوب این هفته";
+"home.popular.butterfly" = "پروانه";
+"home.popular.mantis" = "آخوندک";
+"home.popular.ant" = "مورچه";
+"home.popular.beetle" = "سوسک";
+
+/* Home — articles */
+"home.articles_section_title" = "مقالات مفید";
+"home.article.identify.title" = "چگونه حشرات را شناسایی کنیم؟";
+"home.article.identify.subtitle" = "علائم و ابزارهای اساسی که به تشخیص گونه ها در میدان یا عکس کمک می کند.";
+"home.article.habitats.title" = "جایی که حشرات زندگی می کنند";
+"home.article.habitats.subtitle" = "از خاک و بستر برگ گرفته تا گل و آب - زیستگاه های معمولی که می توانید با خیال راحت کاوش کنید.";
+"home.article.photography.title" = "عکس های ماکرو بدون استرس";
+"home.article.photography.subtitle" = "نور، فاصله و صبر: نکات کوتاه برای تصاویر واضح تر از سوژه های کوچک.";
+"home.article.identify.block1.title" = "آنچه در ابتدا نگاه می کنیم";
+"home.article.identify.block1.body" = "شکل بدن، بال‌ها، شاخک‌ها و پاها اغلب در یک نگاه مرتبه حشرات را محدود می‌کند. الگوهای رنگ کمک می کند، اما آنها در گونه ها متفاوت هستند - آنها را با اندازه، وضعیت بدن و رفتار ترکیب کنید. در صورت امکان، توجه داشته باشید که حشره را کجا دیدید: گیاه میزبان، سطح خاک، یا لبه آب، همگی زمینه را اضافه می کنند.";
+"home.article.identify.block2.title" = "از یک عکس";
+"home.article.identify.block2.body" = "یک تصویر واضح و با نور خوب هر بار تصویری تار را شکست می دهد. نمای بالا و در صورت امکان از نمایه کناری عکس بگیرید. هنگامی که اندازه مهم است، حس مقیاس (یک سکه یا انگشت خود) را در نظر بگیرید. زمانی که نشانه‌ها در زیر بال‌های تا شده پنهان می‌شوند، چندین زاویه حدس و گمان را کاهش می‌دهند.";
+"home.article.habitats.block1.title" = "لایه های یک زیستگاه";
+"home.article.habitats.block1.body" = "حشرات از فضای عمودی استفاده می کنند: سایبان، زیر زمین، بستر برگ، شکاف پوست و خاک. چرخاندن یک کنده یا بلند کردن یک سنگ جامعه ای متفاوت از یک سر گل در آفتاب کامل را نشان می دهد. به آرامی حرکت کنید و روکش ها را جایگزین کنید تا میکروسکوپ ها دست نخورده بمانند.";
+"home.article.habitats.block2.title" = "آب و لبه ها";
+"home.article.habitats.block2.body" = "برکه ها، نهرها و چمنزارهای مرطوب میزبان متخصصانی مانند سنجاقک، سنجاقک و بسیاری از سوسک ها هستند. مرز بین خشکی و آب - نیزارها، کرانه های گل آلود - اغلب غنی ترین منطقه است. برای جلوگیری از مزاحمت حشرات در حال استراحت ابتدا از فاصله دور مشاهده کنید.";
+"home.article.photography.block1.title" = "نور و فاصله";
+"home.article.photography.block1.body" = "نور پراکنده روز یا سایه باز روشنایی یکنواخت را بدون سایه های خشن می دهد. آنقدر نزدیک شوید که کادر را پر کنید، اما از انداختن سایه خود روی سوژه خودداری کنید. یک بازتابنده کوچک یا کارت سفید می تواند جزئیات را در فرورفتگی های عمیق گل ها یا پوست بلند کند.";
+"home.article.photography.block2.title" = "صبر و احترام";
+"home.article.photography.block2.body" = "بگذارید حشرات به جای تعقیب آنها ساکن شوند. حالت پشت سر هم به آگهی‌های اسکیتی کمک می‌کند. اگر از فلاش استفاده می کنید، جلسات را کوتاه نگه دارید و هرگز آن را مستقیماً به چشمان مهره داران نزدیک نگیرید. وقتی کارتان تمام شد، زیستگاه را همانطور که پیدا کردید ترک کنید.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "تنظیمات";
+"settings.section.support" = "پشتیبانی کنید";
+"settings.section.feedback" = "بازخورد";
+"settings.section.security" = "امنیت";
+"settings.row.contact_us" = "با ما تماس بگیرید";
+"settings.row.restore" = "بازیابی کنید";
+"settings.row.rate_app" = "به برنامه امتیاز دهید";
+"settings.row.share_app" = "برنامه را به اشتراک بگذارید";
+"settings.row.privacy" = "سیاست حفظ حریم خصوصی";
+"settings.row.terms" = "شرایط استفاده";
+"settings.row.refund_consent" = "رضایت بازپرداخت";
+"settings.row.reset_consent" = "بازنشانی رضایت";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "پشتیبانی از برنامه اشکالات";
+"settings.support.mail_body" = "سلام";
+"settings.support.mail_unavailable_title" = "از طریق ایمیل با ما تماس بگیرید";
+"settings.restore.message" = "اشتراک شما را از App Store برای این Apple ID بازیابی می کند.";
+"settings.refund_consent.message" = "آیا با پردازش داده های خود برای اهداف بازپرداخت موافقت می کنید؟";
+"settings.refund_consent.allow" = "اجازه دهید";
+"settings.refund_consent.decline" = "رد کردن";
+"settings.reset_consent.message" = "مدیریت رضایت تبلیغات در به‌روزرسانی آینده در دسترس خواهد بود.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

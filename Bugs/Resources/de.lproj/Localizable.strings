@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Fertig";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hallo! Ich bin Ihr Führer durch die Insektenwelt 🐞";
+"onboarding.intro.subtitle" = "In dieser App können Sie:";
+"onboarding.intro.benefit.identify" = "Identifizieren Sie Insekten in Sekundenschnelle";
+"onboarding.intro.benefit.collection" = "Speichern Sie sie in Ihrer Sammlung";
+"onboarding.intro.benefit.achievements" = "Verdienen Sie Erfolge";
+"onboarding.intro.benefit.ai" = "Chatten Sie mit einem KI-Assistenten";
+"onboarding.intro.benefit.articles" = "Lesen Sie hilfreiche Artikel";
+"onboarding.button.next" = "Als nächstes";
+"onboarding.button.start" = "Fangen Sie an";
+
+/* Home */
+"home.title" = "Zuhause";
+"home.search.placeholder" = "Suchen";
+"home.ai_banner.title" = "Fragen Sie AI nach jedem Insekt, das Sie finden";
+"home.ai_banner.button" = "Stellen Sie eine Frage";
+
+/* AI chat */
+"ai_chat.title" = "KI-Berater";
+"ai_chat.input.placeholder" = "Frag mich etwas…";
+"ai_chat.stub.ai" = "Ich weiß alles über Insekten, Sie können mich konsultieren.";
+"ai_chat.stub.user" = "Erzähl mir von den Bienen";
+"ai_chat.seed_creation_message" = "Wer bist du?";
+"ai_chat.error.bootstrap" = "Der Chat konnte nicht geöffnet werden. Bitte versuchen Sie es erneut.";
+"ai_chat.error.send" = "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.";
+"ai_chat.alert.connection_lost.message" = "Die Verbindung wurde unterbrochen. Bitte versuchen Sie es später noch einmal.";
+"ai_chat.alert.connection_lost.action" = "Okay";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpione";
+"home.category.hymenoptera" = "Hymenopteren";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Schmetterlinge";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Meine Sammlung";
+"profile.segment.achievements" = "Meine Erfolge";
+"profile.achievements.placeholder" = "Erfolge werden hier angezeigt.";
+"profile.collection.empty.title" = "Starten Sie Ihre Insektensammlung";
+"profile.collection.empty.subtitle" = "Fotografieren Sie Insekten, erweitern Sie Ihre Sammlung, verdienen Sie Belohnungen und verfolgen Sie Ihren Fortschritt";
+"profile.achievement.close.accessibility" = "Schließen";
+"profile.achievement.unlock_heading" = "Um diesen Erfolg freizuschalten";
+"profile.achievement.completed_heading" = "Herzlichen Glückwunsch!";
+"profile.achievement.completed_body" = "Zu Ihrer Sammlung hinzugefügt";
+"profile.achievement.identify_more" = "Identifizieren Sie %lld weitere %@";
+"tab.home.accessibility" = "Zuhause";
+"tab.library.accessibility" = "Bibliothek";
+"tab.chat.accessibility" = "KI-Chat";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Insekt scannen";
+
+/* Scanner */
+"scanner.close.accessibility" = "Schließen";
+"scanner.recognition_progress.message" = "Bitte warten Sie, während die Daten geladen werden…";
+"scanner.recognition_no_match.title" = "Keine Übereinstimmung gefunden";
+"scanner.recognition_no_match.subtitle" = "Wir konnten das Insekt auf diesem Foto nicht identifizieren";
+"scanner.recognition_no_match.try_again" = "Versuchen Sie es erneut";
+"scanner.recognition_match.title" = "Übereinstimmung gefunden!";
+"scanner.recognition_match.subtitle" = "Wir haben mögliche Übereinstimmungen identifiziert. Schauen Sie weiter, um welches Insekt es sich handelt";
+"scanner.recognition_match.see_result" = "Siehe Ergebnis";
+
+/* Paywall */
+"paywall.preview.species" = "Perlmutterfalter";
+"paywall.preview.family" = "Familie: Nymphalidae";
+"paywall.preview.harmless" = "Harmlos";
+"paywall.close.accessibility" = "Schließen";
+"paywall.headline" = "Schalte die gesamte Insektenwelt frei";
+"paywall.benefit.scans" = "Unbegrenzte Scans";
+"paywall.benefit.collection" = "Vollständiger Zugriff auf die Sammlung";
+"paywall.benefit.ai" = "KI-Assistent ohne Grenzen";
+"paywall.benefit.achievements" = "Exklusive Erfolge";
+"paywall.product.prefix" = "Dann 3 Tage gratis";
+"paywall.product.suffix" = "eine Woche";
+"paywall.cancel_anytime" = "Jederzeit kündbar. Mit automatischer Verlängerung.";
+"paywall.button.next" = "Als nächstes";
+"paywall.footer.terms" = "Nutzungsbedingungen";
+"paywall.footer.privacy" = "Datenschutzrichtlinie";
+"paywall.footer.restore" = "Wiederherstellen";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Kauf";
+"subscription.error.product_unavailable" = "Dieses Abonnement ist derzeit nicht verfügbar. Überprüfen Sie App Store Connect oder versuchen Sie es später erneut.";
+"subscription.error.purchase_failed" = "Der Kauf konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.";
+"subscription.error.restore_failed" = "Einkäufe konnten nicht wiederhergestellt werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.";
+"subscription.pending.title" = "Ausstehend";
+"subscription.pending.message" = "Ihr Kauf wartet auf die Genehmigung. Der Zugriff wird nach Abschluss entsperrt.";
+"subscription.restore.title" = "Wiederherstellen";
+"subscription.restore.success" = "Ihre Einkäufe wurden wiederhergestellt.";
+"subscription.restore.nothing" = "Für diese Apple-ID wurde kein aktives Abonnement gefunden.";
+
+"scanner.tips.title" = "Tipps";
+"scanner.tips.intro" = "Ein klares Foto verbessert die Erkennungsgenauigkeit. Befolgen Sie diese Tipps für beste Ergebnisse:";
+"scanner.tips.1.title" = "1. Halten Sie das Insekt scharf im Fokus";
+"scanner.tips.2.title" = "2. Zentrieren Sie das Insekt im Rahmen. Stellen Sie sicher, dass es deutlich sichtbar ist";
+"scanner.tips.3.title" = "3. Fangen Sie jeweils nur eine Art – mehrere Insekten verringern die Genauigkeit";
+"scanner.tips.4.title" = "4. Verwenden Sie eine gute Beleuchtung";
+
+/* Library */
+"library.title" = "Bibliothek";
+"list.search_empty.title" = "Keine Ergebnisse…";
+"list.search_empty.subtitle" = "Bitte versuchen Sie es erneut";
+
+/* Category insect list */
+"insect.hym.1.title" = "Westliche Honigbiene";
+"insect.hym.1.subtitle" = "Häufige Gartenschädlinge";
+"insect.hym.2.title" = "Europäische Papierwespe";
+"insect.hym.2.subtitle" = "Wird oft an Zäunen und Dachvorsprüngen gesehen";
+"insect.hym.3.title" = "Hummel mit braunem Schwanz";
+"insect.hym.3.subtitle" = "Bestäuber im zeitigen Frühjahr";
+"insect.hym.4.title" = "Mauerbiene";
+"insect.hym.4.subtitle" = "Einzelhöhlenbrüter";
+"insect.hym.5.title" = "Schlupfwespe";
+"insect.hym.5.subtitle" = "Parasitoid der Raupen";
+"insect.default.1.title" = "Probeninsekt A";
+"insect.default.1.subtitle" = "Platzhalterzeile für diese Kategorie";
+"insect.default.2.title" = "Probeninsekt B";
+"insect.default.2.subtitle" = "Später durch API-Daten ersetzen";
+"insect.default.3.title" = "Beispielinsekt C";
+"insect.default.3.subtitle" = "Platzhalterzeile für diese Kategorie";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Harmlos";
+"insect.detail.status.poisonous" = "Giftig";
+"insect.detail.status.toxic" = "Giftig";
+"insect.detail.status.widespread" = "Weit verbreitet";
+"insect.detail.widespread.api.yes" = "Weit verbreitet";
+"insect.detail.widespread.api.no" = "Ungewöhnlich";
+"insect.detail.also_known_prefix" = "Auch bekannt als:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Europäische Honigbiene, Westliche Honigbiene, Honigbiene";
+"insect.detail.section.description" = "Beschreibung";
+"insect.detail.read_more" = "Lesen Sie mehr";
+"insect.detail.mock.description" = "Die Westliche Honigbiene (Apis mellifera) gehört zu den wichtigsten kontrollierten Bestäubern in der Landwirtschaft und in wilden Ökosystemen. Sie ist in Europa, Westasien und Afrika beheimatet und wurde von Imkern weltweit zur Honigproduktion und zur Bestäubung von Nutzpflanzen verbreitet.\n\nEine Kolonie ist ein Superorganismus: Eine einzelne fruchtbare Königin legt Eier, während Tausende weibliche Arbeiterinnen nach Futter suchen, Larven pflegen, Waben bauen und das Nest verteidigen. Männliche Drohnen erscheinen saisonal und paaren sich mit Königinnen aus anderen Kolonien. Arbeiter teilen durch den Schwänzeltanz die Richtung und Entfernung zu reichhaltigen Nahrungsquellen mit und tauschen Informationen durch Berührung und Pheromone aus.\n\nSammler besuchen viele Pflanzenarten und übertragen dabei Pollen. Dieses Verhalten fördert die Artenvielfalt und Nahrungspflanzen – von Obstgärten und Beeren bis hin zu Ölsaaten und Melonen. Imker verwalten Bienenstöcke, um die Honigernte mit der Gesundheit des Volkes in Einklang zu bringen, und überwachen sie auf Schädlinge, Krankheiten und Ernährungsstress.\n\nObwohl Honigbienen im Allgemeinen Blumen gegenüber fügsam sind, verteidigen sie ihren Bienenstock, wenn sie eine Bedrohung verspüren. Das Verstehen ihrer Hinweise reduziert Stiche. Lebensraumverlust, Pestizide, Krankheitserreger und Klimaveränderungen stellen sowohl wild lebende als auch bewirtschaftete Populationen vor Herausforderungen. Der Schutz der Blumenressourcen und eine sorgfältige Bewirtschaftung tragen dazu bei, diese bemerkenswerten Insekten für zukünftige Saisons zu erhalten.";
+"insect.detail.section.characteristics" = "Eigenschaften";
+"insect.detail.section.classification" = "Wissenschaftliche Klassifizierung";
+"insect.detail.section.bites" = "Bisse";
+"insect.detail.bites.intro" = "Wenn Sie gebissen oder gestochen wurden, gehen Sie folgendermaßen vor:";
+"insect.detail.bites.first_aid" = "Sofortige Erste Hilfe:";
+"insect.detail.add_to_collection" = "Zur Sammlung hinzufügen";
+"insect.detail.add_to_collection.sheet.title" = "Fügen Sie Ihrer Sammlung ein Foto hinzu";
+"insect.detail.add_to_collection.source.camera" = "Machen Sie ein Foto";
+"insect.detail.add_to_collection.source.library" = "Wählen Sie aus der Bibliothek";
+"insect.detail.add_to_collection.cancel" = "Abbrechen";
+"insect.detail.add_to_collection.alert.ok" = "Okay";
+"insect.detail.add_to_collection.error.no_insect" = "Dieser Bildschirm ist nicht mit einem Kataloginsekt verknüpft, daher kann die Sammlung nicht aktualisiert werden.";
+"insect.detail.add_to_collection.error.network" = "Konnte der Sammlung nicht hinzugefügt werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.";
+"insect.detail.remove_from_collection.confirm.title" = "Aus der Sammlung entfernen?";
+"insect.detail.remove_from_collection.confirm.message" = "Dieses Insekt wird aus Ihrer Sammlung entfernt. Dies kann nicht rückgängig gemacht werden.";
+"insect.detail.remove_from_collection.confirm.delete" = "Entfernen";
+"insect.detail.remove_from_collection.confirm.cancel" = "Abbrechen";
+"insect.detail.remove_from_collection.error.no_id" = "Es gibt keinen zu entfernenden Sammlungseintrag auf dem Server.";
+"insect.detail.remove_from_collection.error.network" = "Konnte nicht aus der Sammlung entfernt werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.";
+"insect.detail.add_to_collection.success.title" = "Erfolg!";
+"insect.detail.add_to_collection.success.subtitle" = "Das Insekt wurde erfolgreich zu Ihrer Sammlung hinzugefügt";
+"insect.detail.remove_from_collection.accessibility" = "Aus der Sammlung entfernen";
+"insect.detail.class.genus.title" = "Gattung";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familie";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Bestellen";
+"insect.detail.class.order.value" = "Hymenopteren";
+"insect.detail.class.class.title" = "Klassenname";
+"insect.detail.class.class.value" = "Insekten";
+"insect.detail.class.phylum.title" = "Stamm";
+"insect.detail.class.phylum.value" = "Arthropoden";
+"insect.detail.class.kingdom.title" = "Königreich";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domäne";
+"insect.detail.class.domain.value" = "Eukaryoten";
+"insect.detail.char.adult_size.title" = "Erwachsenengröße";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Existenzformen";
+"insect.detail.char.forms.value" = "Ei, Larve, Puppe, Erwachsener";
+"insect.detail.char.colors.title" = "Farben";
+"insect.detail.char.colors.value" = "Goldbraun mit schwarzen Streifen";
+"insect.detail.char.population.title" = "Bevölkerung";
+"insect.detail.char.population.value" = "Weit verbreitet und domestiziert";
+"insect.detail.char.habitat.title" = "Lebensraum";
+"insect.detail.char.habitat.value" = "Wiesen, Gärten, Wälder, landwirtschaftliche Flächen";
+"insect.detail.char.diet.title" = "Diät";
+"insect.detail.char.diet.value" = "Nektar und Pollen von Blütenpflanzen";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Diese Woche beliebt";
+"home.popular.butterfly" = "Schmetterling";
+"home.popular.mantis" = "Gottesanbeterin";
+"home.popular.ant" = "Ameise";
+"home.popular.beetle" = "Käfer";
+
+/* Home — articles */
+"home.articles_section_title" = "Nützliche Artikel";
+"home.article.identify.title" = "Wie identifizieren wir Insekten?";
+"home.article.identify.subtitle" = "Grundlegende Zeichen und Werkzeuge, die dabei helfen, Arten im Feld oder auf einem Foto zu unterscheiden.";
+"home.article.habitats.title" = "Wo Insekten leben";
+"home.article.habitats.subtitle" = "Von Erde und Laub bis hin zu Blumen und Wasser – typische Lebensräume, die Sie sicher erkunden können.";
+"home.article.photography.title" = "Makrofotos ohne Stress";
+"home.article.photography.subtitle" = "Licht, Abstand und Geduld: Kurze Tipps für klarere Bilder kleiner Motive.";
+"home.article.identify.block1.title" = "Was wir uns zuerst ansehen";
+"home.article.identify.block1.body" = "Die Form des Körpers, der Flügel, der Fühler und der Beine grenzt oft auf den ersten Blick die Ordnung der Insekten ein. Farbmuster helfen, aber sie variieren je nach Art – kombinieren Sie sie mit Größe, Haltung und Verhalten. Notieren Sie nach Möglichkeit, wo Sie das Insekt gesehen haben: Wirtspflanze, Bodenoberfläche oder Gewässerrand sorgen für Kontext.";
+"home.article.identify.block2.title" = "Von einem Foto";
+"home.article.identify.block2.body" = "Ein scharfes, gut beleuchtetes Bild übertrifft jedes Mal ein verschwommenes. Erfassen Sie die Draufsicht und, wenn möglich, das Seitenprofil. Beziehen Sie einen Maßstabssinn (eine Münze oder Ihren Finger) mit ein, wenn es auf die Größe ankommt. Mehrere Winkel reduzieren das Rätselraten, wenn die Markierungen subtil sind oder unter gefalteten Flügeln verborgen sind.";
+"home.article.habitats.block1.title" = "Schichten eines Lebensraums";
+"home.article.habitats.block1.body" = "Insekten nutzen den vertikalen Raum: Blätterdach, Unterholz, Laubstreu, Rindenspalten und Erde. Das Umdrehen eines Baumstamms oder das Anheben eines Steins offenbart eine andere Gemeinschaft als ein Blütenkopf in der vollen Sonne. Gehen Sie langsam vor und bringen Sie die Abdeckungen wieder an, damit die Mikrohabitate intakt bleiben.";
+"home.article.habitats.block2.title" = "Wasser und Kanten";
+"home.article.habitats.block2.body" = "Teiche, Bäche und feuchte Wiesen beherbergen Spezialisten wie Libellen, Libellen und viele Käfer. Die Grenze zwischen Land und Wasser – Schilf, schlammige Ufer – ist oft die reichste Zone. Beobachten Sie zunächst aus einiger Entfernung, um ruhende Insekten nicht zu stören.";
+"home.article.photography.block1.title" = "Licht und Distanz";
+"home.article.photography.block1.body" = "Diffuses Tageslicht oder offener Schatten sorgen für eine gleichmäßige Ausleuchtung ohne harte Schatten. Gehen Sie nah genug heran, um den Rahmen auszufüllen, aber vermeiden Sie es, Ihren eigenen Schatten auf das Motiv zu werfen. Ein kleiner Reflektor oder eine weiße Karte können Details in tiefen Vertiefungen von Blumen oder Rinde hervorheben.";
+"home.article.photography.block2.title" = "Geduld und Respekt";
+"home.article.photography.block2.body" = "Lassen Sie Insekten sesshaft werden, anstatt sie zu jagen. Der Burst-Modus hilft bei unruhigen Fliegern. Wenn Sie einen Blitz verwenden, halten Sie die Sitzungen kurz und richten Sie ihn niemals direkt auf die Augen von Wirbeltieren in der Nähe. Wenn Sie fertig sind, verlassen Sie den Lebensraum so, wie Sie ihn vorgefunden haben.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Einstellungen";
+"settings.section.support" = "Unterstützung";
+"settings.section.feedback" = "Rückmeldung";
+"settings.section.security" = "Sicherheit";
+"settings.row.contact_us" = "Kontaktieren Sie uns";
+"settings.row.restore" = "Wiederherstellen";
+"settings.row.rate_app" = "Bewerten Sie die App";
+"settings.row.share_app" = "Teilen Sie die App";
+"settings.row.privacy" = "Datenschutzrichtlinie";
+"settings.row.terms" = "Nutzungsbedingungen";
+"settings.row.refund_consent" = "Zustimmung zur Rückerstattung";
+"settings.row.reset_consent" = "Einwilligung zurücksetzen";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Unterstützung der Bugs-App";
+"settings.support.mail_body" = "Hallo,";
+"settings.support.mail_unavailable_title" = "Kontaktieren Sie uns per E-Mail";
+"settings.restore.message" = "Stellt Ihr Abonnement aus dem App Store für diese Apple-ID wieder her.";
+"settings.refund_consent.message" = "Sind Sie mit der Verarbeitung Ihrer Daten zu Rückerstattungszwecken einverstanden?";
+"settings.refund_consent.allow" = "Erlauben";
+"settings.refund_consent.decline" = "Ablehnen";
+"settings.reset_consent.message" = "Die Verwaltung der Werbeeinwilligung wird in einem zukünftigen Update verfügbar sein.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

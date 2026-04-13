@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Klart";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hej! Jag är din guide till insektsvärlden 🐞";
+"onboarding.intro.subtitle" = "I den här appen kan du:";
+"onboarding.intro.benefit.identify" = "Identifiera insekter på några sekunder";
+"onboarding.intro.benefit.collection" = "Spara dem i din samling";
+"onboarding.intro.benefit.achievements" = "Tjäna prestationer";
+"onboarding.intro.benefit.ai" = "Chatta med en AI-assistent";
+"onboarding.intro.benefit.articles" = "Läs användbara artiklar";
+"onboarding.button.next" = "Nästa";
+"onboarding.button.start" = "Kom igång";
+
+/* Home */
+"home.title" = "Hem";
+"home.search.placeholder" = "Sök";
+"home.ai_banner.title" = "Fråga AI om alla insekter du hittar";
+"home.ai_banner.button" = "Ställ en fråga";
+
+/* AI chat */
+"ai_chat.title" = "AI-konsult";
+"ai_chat.input.placeholder" = "Fråga mig något...";
+"ai_chat.stub.ai" = "Jag kan allt om insekter, du kan rådfråga mig.";
+"ai_chat.stub.user" = "Berätta om bina";
+"ai_chat.seed_creation_message" = "vem är du?";
+"ai_chat.error.bootstrap" = "Det gick inte att öppna chatten. Försök igen.";
+"ai_chat.error.send" = "Det gick inte att skicka meddelandet. Försök igen.";
+"ai_chat.alert.connection_lost.message" = "Anslutningen förlorades. Försök igen senare.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpioner";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Min samling";
+"profile.segment.achievements" = "Mina prestationer";
+"profile.achievements.placeholder" = "Prestationer kommer att visas här.";
+"profile.collection.empty.title" = "Starta din insektssamling";
+"profile.collection.empty.subtitle" = "Fotografera insekter, utöka din samling, tjäna belöningar och spåra dina framsteg";
+"profile.achievement.close.accessibility" = "Stäng";
+"profile.achievement.unlock_heading" = "För att låsa upp denna prestation";
+"profile.achievement.completed_heading" = "Grattis!";
+"profile.achievement.completed_body" = "Lades till i din samling";
+"profile.achievement.identify_more" = "Identifiera %lld mer %@";
+"tab.home.accessibility" = "Hem";
+"tab.library.accessibility" = "Bibliotek";
+"tab.chat.accessibility" = "AI-chatt";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Skanna insekt";
+
+/* Scanner */
+"scanner.close.accessibility" = "Stäng";
+"scanner.recognition_progress.message" = "Vänta medan data laddas...";
+"scanner.recognition_no_match.title" = "Ingen matchning hittades";
+"scanner.recognition_no_match.subtitle" = "Vi kunde inte identifiera insekten på det här fotot";
+"scanner.recognition_no_match.try_again" = "Försök igen";
+"scanner.recognition_match.title" = "Matchning hittad!";
+"scanner.recognition_match.subtitle" = "Vi har identifierat möjliga matchningar. Fortsätt att se vilken insekt det är";
+"scanner.recognition_match.see_result" = "Se resultat";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Familj: Nymphalidae";
+"paywall.preview.harmless" = "Harmlöst";
+"paywall.close.accessibility" = "Stäng";
+"paywall.headline" = "Lås upp hela insektsvärlden";
+"paywall.benefit.scans" = "Obegränsade skanningar";
+"paywall.benefit.collection" = "Full tillgång till samlingen";
+"paywall.benefit.ai" = "AI-assistent utan gränser";
+"paywall.benefit.achievements" = "Exklusiva prestationer";
+"paywall.product.prefix" = "3 dagar gratis alltså";
+"paywall.product.suffix" = "en vecka";
+"paywall.cancel_anytime" = "Avbryt när som helst. Med automatisk förnyelse.";
+"paywall.button.next" = "Nästa";
+"paywall.footer.terms" = "Användarvillkor";
+"paywall.footer.privacy" = "Sekretesspolicy";
+"paywall.footer.restore" = "Återställ";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Köp";
+"subscription.error.product_unavailable" = "Den här prenumerationen är inte tillgänglig just nu. Kolla App Store Connect eller försök igen senare.";
+"subscription.error.purchase_failed" = "Köpet kunde inte genomföras. Försök igen.";
+"subscription.error.restore_failed" = "Kunde inte återställa köp. Kontrollera din anslutning och försök igen.";
+"subscription.pending.title" = "Väntar";
+"subscription.pending.message" = "Ditt köp väntar på godkännande. Åtkomsten låses upp när den är klar.";
+"subscription.restore.title" = "Återställ";
+"subscription.restore.success" = "Dina köp har återställts.";
+"subscription.restore.nothing" = "Ingen aktiv prenumeration hittades för detta Apple-ID.";
+
+"scanner.tips.title" = "Tips";
+"scanner.tips.intro" = "Ett tydligt foto förbättrar igenkänningsnoggrannheten. Följ dessa tips för bästa resultat:";
+"scanner.tips.1.title" = "1. Håll insekten i skarpt fokus";
+"scanner.tips.2.title" = "2. Centrera insekten i ramen. Se till att det syns tydligt";
+"scanner.tips.3.title" = "3. Fånga endast en art åt gången – flera insekter minskar noggrannheten";
+"scanner.tips.4.title" = "4. Använd bra belysning";
+
+/* Library */
+"library.title" = "Bibliotek";
+"list.search_empty.title" = "Inga resultat...";
+"list.search_empty.subtitle" = "Försök igen";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western honungsbi";
+"insect.hym.1.subtitle" = "Vanliga skadedjur i trädgården";
+"insect.hym.2.title" = "Europeisk pappersgeting";
+"insect.hym.2.subtitle" = "Ses ofta på staket och takfot";
+"insect.hym.3.title" = "Buff-tailed humla";
+"insect.hym.3.subtitle" = "Tidig vårpollinator";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Solitär hålighetsbojare";
+"insect.hym.5.title" = "Ichneumon geting";
+"insect.hym.5.subtitle" = "Parasitoid hos larver";
+"insect.default.1.title" = "Prov på insekt A";
+"insect.default.1.subtitle" = "Platshållarrad för den här kategorin";
+"insect.default.2.title" = "Prov på insekt B";
+"insect.default.2.subtitle" = "Ersätt med API-data senare";
+"insect.default.3.title" = "Prov på insekt C";
+"insect.default.3.subtitle" = "Platshållarrad för den här kategorin";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Harmlöst";
+"insect.detail.status.poisonous" = "Giftig";
+"insect.detail.status.toxic" = "Giftigt";
+"insect.detail.status.widespread" = "Utbredd";
+"insect.detail.widespread.api.yes" = "Utbredd";
+"insect.detail.widespread.api.no" = "Ovanligt";
+"insect.detail.also_known_prefix" = "Även känd som:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Europeiskt honungsbi, västra honungsbi, honungsbi";
+"insect.detail.section.description" = "Beskrivning";
+"insect.detail.read_more" = "Läs mer";
+"insect.detail.mock.description" = "Det västra honungsbiet (Apis mellifera) är bland de viktigaste hanterade pollinatörerna i jordbruket och vilda ekosystem. Den kommer från Europa, västra Asien och Afrika och har spridits över hela världen av biodlare för honungsproduktion och pollinering av grödor.\n\nEn koloni är en superorganism: en enda fertil drottning lägger ägg, medan tusentals kvinnliga arbetare söker föda, sköter larver, bygger kam och försvarar boet. Manliga drönare dyker upp säsongsvis och parar sig med drottningar från andra kolonier. Arbetare kommunicerar riktningen och avståndet till rika matkällor genom viftande dans och delar information genom beröring och feromoner.\n\nForagerare besöker många växtarter och överför pollen när de rör sig. Detta beteende stödjer biologisk mångfald och matgrödor – från fruktträdgårdar och bär till oljeväxter och meloner. Biodlare hanterar bikupor för att balansera honungsskörd med kolonihälsa, övervakning av skadedjur, sjukdomar och näringsstress.\n\nÄven om honungsbin i allmänhet är fogliga för blommor, försvarar hon sin bikupa om de uppfattar ett hot; att förstå deras ledtrådar minskar sting. Förlust av livsmiljöer, bekämpningsmedel, patogener och klimatförändringar utmanar både vilda och förvaltade populationer. Att skydda blomresurser och anta noggrann förvaltning hjälper till att upprätthålla dessa anmärkningsvärda insekter för framtida säsonger.";
+"insect.detail.section.characteristics" = "Egenskaper";
+"insect.detail.section.classification" = "Vetenskaplig klassificering";
+"insect.detail.section.bites" = "Biter";
+"insect.detail.bites.intro" = "Om du har blivit biten eller stucken, följ dessa steg:";
+"insect.detail.bites.first_aid" = "Omedelbar första hjälpen:";
+"insect.detail.add_to_collection" = "Lägg till i samlingen";
+"insect.detail.add_to_collection.sheet.title" = "Lägg till ett foto i din samling";
+"insect.detail.add_to_collection.source.camera" = "Ta foto";
+"insect.detail.add_to_collection.source.library" = "Välj från biblioteket";
+"insect.detail.add_to_collection.cancel" = "Avbryt";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Den här skärmen är inte länkad till en kataloginsekt, så samlingen kan inte uppdateras.";
+"insect.detail.add_to_collection.error.network" = "Det gick inte att lägga till i samlingen. Kontrollera din anslutning och försök igen.";
+"insect.detail.remove_from_collection.confirm.title" = "Ta bort från samlingen?";
+"insect.detail.remove_from_collection.confirm.message" = "Denna insekt kommer att tas bort från din samling. Detta kan inte ångras.";
+"insect.detail.remove_from_collection.confirm.delete" = "Ta bort";
+"insect.detail.remove_from_collection.confirm.cancel" = "Avbryt";
+"insect.detail.remove_from_collection.error.no_id" = "Det finns ingen samlingspost att ta bort på servern.";
+"insect.detail.remove_from_collection.error.network" = "Det gick inte att ta bort från samlingen. Kontrollera din anslutning och försök igen.";
+"insect.detail.add_to_collection.success.title" = "Framgång!";
+"insect.detail.add_to_collection.success.subtitle" = "Insekten har lagts till i din samling";
+"insect.detail.remove_from_collection.accessibility" = "Ta bort från samlingen";
+"insect.detail.class.genus.title" = "Genus";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familj";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Beställ";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Klassens namn";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Fylum";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "kungariket";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domän";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Vuxen storlek";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Existensformer";
+"insect.detail.char.forms.value" = "Ägg, larv, puppa, vuxen";
+"insect.detail.char.colors.title" = "Färger";
+"insect.detail.char.colors.value" = "Guldbrun med svarta ränder";
+"insect.detail.char.population.title" = "Befolkning";
+"insect.detail.char.population.value" = "Mycket utbredd och domesticerad";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Ängar, trädgårdar, skogar, jordbruksområden";
+"insect.detail.char.diet.title" = "Diet";
+"insect.detail.char.diet.value" = "Nektar och pollen från blommande växter";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populärt den här veckan";
+"home.popular.butterfly" = "Fjäril";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Ant";
+"home.popular.beetle" = "Skalbagge";
+
+/* Home — articles */
+"home.articles_section_title" = "Användbara artiklar";
+"home.article.identify.title" = "Hur identifierar vi insekter?";
+"home.article.identify.subtitle" = "Grundläggande tecken och verktyg som hjälper till att skilja arter åt i fält eller från ett foto.";
+"home.article.habitats.title" = "Där insekter lever";
+"home.article.habitats.subtitle" = "Från jord och lövskräp till blommor och vatten - typiska livsmiljöer du kan utforska säkert.";
+"home.article.photography.title" = "Makrobilder utan stress";
+"home.article.photography.subtitle" = "Ljus, avstånd och tålamod: korta tips för tydligare bilder av små motiv.";
+"home.article.identify.block1.title" = "Vad vi tittar på först";
+"home.article.identify.block1.body" = "Kroppens form, vingar, antenner och ben begränsar ofta insekternas ordning med ett ögonkast. Färgmönster hjälper, men de varierar inom arten - kombinera dem med storlek, hållning och beteende. Om möjligt, notera var du såg insekten: värdväxt, jordyta eller vattenkant lägger alla till sammanhang.";
+"home.article.identify.block2.title" = "Från ett foto";
+"home.article.identify.block2.body" = "En skarp, väl upplyst bild slår en suddig varje gång. Fånga toppvyn och, om du kan, sidoprofilen. Inkludera en känsla av skala (ett mynt eller ditt finger) när storleken spelar roll. Flera vinklar minskar gissningar när markeringar är subtila eller dolda under vikta vingar.";
+"home.article.habitats.block1.title" = "Lager av en livsmiljö";
+"home.article.habitats.block1.body" = "Insekter använder vertikalt utrymme: baldakin, undervåning, lövströ, barkspringor och jord. Att vända en stock eller lyfta en sten avslöjar en annan gemenskap än ett blomhuvud i full sol. Rör dig långsamt och byt ut täcken så att mikrohabitat förblir intakta.";
+"home.article.habitats.block2.title" = "Vatten och kanter";
+"home.article.habitats.block2.body" = "Dammar, bäckar och fuktiga ängar är värd för specialister som trollsländor, damselflies och många skalbaggar. Gränsen mellan land och vatten - vass, leriga stränder - är ofta den rikaste zonen. Observera först på avstånd för att undvika att störa vilande insekter.";
+"home.article.photography.block1.title" = "Ljus och avstånd";
+"home.article.photography.block1.body" = "Diffust dagsljus eller öppen skugga ger jämn belysning utan hårda skuggor. Kom tillräckligt nära för att fylla ramen, men undvik att kasta din egen skugga över motivet. En liten reflex eller vitt kort kan lyfta detaljer i djupa fördjupningar av blommor eller bark.";
+"home.article.photography.block2.title" = "Tålamod och respekt";
+"home.article.photography.block2.body" = "Låt insekter bosätta sig istället för att jaga dem. Burst-läge hjälper till med skumma flygblad. Om du använder blixt, håll sessionerna korta och rikta den aldrig direkt in i ögonen på ryggradsdjur i närheten. När du är klar, lämna livsmiljön som du hittade den.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Inställningar";
+"settings.section.support" = "Support";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Säkerhet";
+"settings.row.contact_us" = "Kontakta oss";
+"settings.row.restore" = "Återställ";
+"settings.row.rate_app" = "Betygsätt appen";
+"settings.row.share_app" = "Dela appen";
+"settings.row.privacy" = "Sekretesspolicy";
+"settings.row.terms" = "Användarvillkor";
+"settings.row.refund_consent" = "Samtycke till återbetalning";
+"settings.row.reset_consent" = "Återställ samtycke";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Stöd för buggar app";
+"settings.support.mail_body" = "hej,";
+"settings.support.mail_unavailable_title" = "Kontakta oss via e-post";
+"settings.restore.message" = "Återställer din prenumeration från App Store för detta Apple-ID.";
+"settings.refund_consent.message" = "Samtycker du till behandling av dina uppgifter för återbetalningsändamål?";
+"settings.refund_consent.allow" = "Tillåt";
+"settings.refund_consent.decline" = "Avböja";
+"settings.reset_consent.message" = "Hantering av annonssamtycke kommer att finnas tillgänglig i en framtida uppdatering.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

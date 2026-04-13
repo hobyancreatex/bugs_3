@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Hotovo";
+
+/* Onboarding */
+"onboarding.intro.title" = "Ahoj! Som váš sprievodca hmyzím svetom 🐞";
+"onboarding.intro.subtitle" = "V tejto aplikácii môžete:";
+"onboarding.intro.benefit.identify" = "Identifikujte hmyz v priebehu niekoľkých sekúnd";
+"onboarding.intro.benefit.collection" = "Uložte si ich do svojej zbierky";
+"onboarding.intro.benefit.achievements" = "Zarábajte úspechy";
+"onboarding.intro.benefit.ai" = "Chatujte s asistentom AI";
+"onboarding.intro.benefit.articles" = "Prečítajte si užitočné články";
+"onboarding.button.next" = "Ďalej";
+"onboarding.button.start" = "Začnite";
+
+/* Home */
+"home.title" = "Domov";
+"home.search.placeholder" = "Hľadať";
+"home.ai_banner.title" = "Opýtajte sa AI na akýkoľvek hmyz, ktorý nájdete";
+"home.ai_banner.button" = "položiť otázku";
+
+/* AI chat */
+"ai_chat.title" = "AI konzultant";
+"ai_chat.input.placeholder" = "Opýtajte sa ma niečo…";
+"ai_chat.stub.ai" = "Viem všetko o hmyze, môžete sa so mnou poradiť.";
+"ai_chat.stub.user" = "Povedz mi o včelách";
+"ai_chat.seed_creation_message" = "kto si";
+"ai_chat.error.bootstrap" = "Rozhovor sa nepodarilo otvoriť. Skúste to znova.";
+"ai_chat.error.send" = "Správu sa nepodarilo odoslať. Skúste to znova.";
+"ai_chat.alert.connection_lost.message" = "Spojenie sa prerušilo. Skúste to znova neskôr.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Scorpiones";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Moja zbierka";
+"profile.segment.achievements" = "Moje úspechy";
+"profile.achievements.placeholder" = "Tu sa zobrazia úspechy.";
+"profile.collection.empty.title" = "Začnite svoju zbierku hmyzu";
+"profile.collection.empty.subtitle" = "Fotografujte hmyz, rozvíjajte svoju zbierku, získavajte odmeny a sledujte svoj pokrok";
+"profile.achievement.close.accessibility" = "Zavrieť";
+"profile.achievement.unlock_heading" = "Ak chcete odomknúť tento úspech";
+"profile.achievement.completed_heading" = "Gratulujem!";
+"profile.achievement.completed_body" = "Pridané do vašej zbierky";
+"profile.achievement.identify_more" = "Identifikujte %lld ďalších %@";
+"tab.home.accessibility" = "Domov";
+"tab.library.accessibility" = "Knižnica";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Skenujte hmyz";
+
+/* Scanner */
+"scanner.close.accessibility" = "Zavrieť";
+"scanner.recognition_progress.message" = "Počkajte, kým sa údaje načítajú...";
+"scanner.recognition_no_match.title" = "Nenašla sa žiadna zhoda";
+"scanner.recognition_no_match.subtitle" = "Hmyz na tejto fotografii sa nám nepodarilo identifikovať";
+"scanner.recognition_no_match.try_again" = "Skúste to znova";
+"scanner.recognition_match.title" = "Zhoda nájdená!";
+"scanner.recognition_match.subtitle" = "Identifikovali sme možné zhody. Pokračujte v zisťovaní, o aký hmyz ide";
+"scanner.recognition_match.see_result" = "Pozri výsledok";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Čeľaď: Nymphalidae";
+"paywall.preview.harmless" = "Neškodný";
+"paywall.close.accessibility" = "Zavrieť";
+"paywall.headline" = "Odomknite celý hmyzí svet";
+"paywall.benefit.scans" = "Neobmedzené skenovanie";
+"paywall.benefit.collection" = "Úplný prístup k zbierke";
+"paywall.benefit.ai" = "Asistent AI bez obmedzení";
+"paywall.benefit.achievements" = "Exkluzívne úspechy";
+"paywall.product.prefix" = "Tak 3 dni zadarmo";
+"paywall.product.suffix" = "týždeň";
+"paywall.cancel_anytime" = "Zrušiť kedykoľvek. S automatickou obnovou.";
+"paywall.button.next" = "Ďalej";
+"paywall.footer.terms" = "Podmienky používania";
+"paywall.footer.privacy" = "Zásady ochrany osobných údajov";
+"paywall.footer.restore" = "Obnoviť";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Nákup";
+"subscription.error.product_unavailable" = "Toto predplatné nie je momentálne k dispozícii. Skontrolujte App Store Connect alebo to skúste znova neskôr.";
+"subscription.error.purchase_failed" = "Nákup nebolo možné dokončiť. Skúste to znova.";
+"subscription.error.restore_failed" = "Nákupy sa nepodarilo obnoviť. Skontrolujte pripojenie a skúste to znova.";
+"subscription.pending.title" = "Čaká na spracovanie";
+"subscription.pending.message" = "Váš nákup čaká na schválenie. Po dokončení sa prístup odomkne.";
+"subscription.restore.title" = "Obnoviť";
+"subscription.restore.success" = "Vaše nákupy boli obnovené.";
+"subscription.restore.nothing" = "Pre toto Apple ID sa nenašlo žiadne aktívne predplatné.";
+
+"scanner.tips.title" = "Tipy";
+"scanner.tips.intro" = "Jasná fotografia zlepšuje presnosť rozpoznávania. Najlepšie výsledky dosiahnete podľa týchto tipov:";
+"scanner.tips.1.title" = "1. Udržujte hmyz v ostrom zaostrení";
+"scanner.tips.2.title" = "2. Vycentrujte hmyz v ráme. Uistite sa, že je jasne viditeľný";
+"scanner.tips.3.title" = "3. Zachyťte naraz iba jeden druh — viacero druhov hmyzu znižuje presnosť";
+"scanner.tips.4.title" = "4. Používajte dobré osvetlenie";
+
+/* Library */
+"library.title" = "Knižnica";
+"list.search_empty.title" = "Žiadne výsledky…";
+"list.search_empty.subtitle" = "Skúste to znova";
+
+/* Category insect list */
+"insect.hym.1.title" = "Západná včela medonosná";
+"insect.hym.1.subtitle" = "Bežní záhradní škodcovia";
+"insect.hym.2.title" = "Európska papierová osa";
+"insect.hym.2.subtitle" = "Často vidieť na plotoch a odkvapoch";
+"insect.hym.3.title" = "Čmeliak chvostý";
+"insect.hym.3.subtitle" = "Skorý jarný opeľovač";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Nester osamelej dutiny";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "Parazitoid húseníc";
+"insect.default.1.title" = "Ukážka hmyzu A";
+"insect.default.1.subtitle" = "Riadok zástupného symbolu pre túto kategóriu";
+"insect.default.2.title" = "Ukážka hmyzu B";
+"insect.default.2.subtitle" = "Neskôr nahraďte údajmi API";
+"insect.default.3.title" = "Ukážka hmyzu C";
+"insect.default.3.subtitle" = "Riadok zástupného symbolu pre túto kategóriu";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Neškodný";
+"insect.detail.status.poisonous" = "Jedovatý";
+"insect.detail.status.toxic" = "Jedovatý";
+"insect.detail.status.widespread" = "Rozšírené";
+"insect.detail.widespread.api.yes" = "Rozšírené";
+"insect.detail.widespread.api.no" = "Menej časté";
+"insect.detail.also_known_prefix" = "Tiež známy ako:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Európska včela medonosná, včela západná, včela medonosná";
+"insect.detail.section.description" = "Popis";
+"insect.detail.read_more" = "Prečítajte si viac";
+"insect.detail.mock.description" = "Včela medonosná (Apis mellifera) patrí medzi najvýznamnejších riadených opeľovačov v poľnohospodárstve a vo voľne žijúcich ekosystémoch. Pochádza z Európy, západnej Ázie a Afriky a včelári ho rozšírili do celého sveta na produkciu medu a opeľovanie plodín.\n\nKolónia je superorganizmus: jedna plodná kráľovná kladie vajíčka, zatiaľ čo tisíce robotníc zháňajú potravu, dojčia larvy, stavajú plásty a bránia hniezdo. Samce trúdov sa objavujú sezónne a pária sa s kráľovnami z iných kolónií. Pracovníci komunikujú smer a vzdialenosť k bohatým zdrojom potravy prostredníctvom kývavého tanca a zdieľajú informácie dotykom a feromónmi.\n\nLovci navštevujú mnohé druhy rastlín a pri pohybe prenášajú peľ. Toto správanie podporuje biodiverzitu a potravinárske plodiny – od sadov a bobúľ až po olejnaté semená a melóny. Včelári riadia úle tak, aby vyvážili zber medu so zdravím kolónií, monitorovaním škodcov, chorôb a nutričným stresom.\n\nHoci sú vo všeobecnosti poslušné na kvety, včely medonosné bránia svoj úľ, ak vnímajú hrozbu; porozumenie ich podnetom znižuje bodnutie. Strata biotopov, pesticídy, patogény a klimatické zmeny sú výzvou pre voľne žijúce aj riadené populácie. Ochrana kvetinových zdrojov a starostlivé riadenie pomáha udržať tento pozoruhodný hmyz pre budúce sezóny.";
+"insect.detail.section.characteristics" = "Charakteristika";
+"insect.detail.section.classification" = "Vedecká klasifikácia";
+"insect.detail.section.bites" = "Uhryznutie";
+"insect.detail.bites.intro" = "Ak ste boli uhryznutí alebo bodnutí, postupujte takto:";
+"insect.detail.bites.first_aid" = "Okamžitá prvá pomoc:";
+"insect.detail.add_to_collection" = "Pridať do zbierky";
+"insect.detail.add_to_collection.sheet.title" = "Pridajte fotografiu do svojej zbierky";
+"insect.detail.add_to_collection.source.camera" = "Fotografujte";
+"insect.detail.add_to_collection.source.library" = "Vyberte si z knižnice";
+"insect.detail.add_to_collection.cancel" = "Zrušiť";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Táto obrazovka nie je prepojená s katalógovým hmyzom, takže kolekciu nie je možné aktualizovať.";
+"insect.detail.add_to_collection.error.network" = "Nepodarilo sa pridať do zbierky. Skontrolujte pripojenie a skúste to znova.";
+"insect.detail.remove_from_collection.confirm.title" = "Odstrániť zo zbierky?";
+"insect.detail.remove_from_collection.confirm.message" = "Tento hmyz bude odstránený z vašej zbierky. Toto sa nedá vrátiť späť.";
+"insect.detail.remove_from_collection.confirm.delete" = "Odstrániť";
+"insect.detail.remove_from_collection.confirm.cancel" = "Zrušiť";
+"insect.detail.remove_from_collection.error.no_id" = "Na serveri nie je žiadna položka kolekcie na odstránenie.";
+"insect.detail.remove_from_collection.error.network" = "Nepodarilo sa odstrániť zo zbierky. Skontrolujte pripojenie a skúste to znova.";
+"insect.detail.add_to_collection.success.title" = "Úspech!";
+"insect.detail.add_to_collection.success.subtitle" = "Hmyz bol úspešne pridaný do vašej zbierky";
+"insect.detail.remove_from_collection.accessibility" = "Odstrániť zo zbierky";
+"insect.detail.class.genus.title" = "Rod";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Rodina";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Objednať";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Názov triedy";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Kráľovstvo";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "doména";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Veľkosť pre dospelých";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Formy existencie";
+"insect.detail.char.forms.value" = "Vajíčko, Larva, Kukla, Dospelý";
+"insect.detail.char.colors.title" = "Farby";
+"insect.detail.char.colors.value" = "Zlatohnedá s čiernymi pásikmi";
+"insect.detail.char.population.title" = "Obyvateľstvo";
+"insect.detail.char.population.value" = "Veľmi rozšírený a domestikovaný";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Lúky, záhrady, lesy, poľnohospodárske plochy";
+"insect.detail.char.diet.title" = "Diéta";
+"insect.detail.char.diet.value" = "Nektár a peľ z kvitnúcich rastlín";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populárne tento týždeň";
+"home.popular.butterfly" = "Motýľ";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Ant";
+"home.popular.beetle" = "Chrobák";
+
+/* Home — articles */
+"home.articles_section_title" = "Užitočné články";
+"home.article.identify.title" = "Ako poznáme hmyz?";
+"home.article.identify.subtitle" = "Základné znaky a nástroje, ktoré pomáhajú rozlíšiť druhy na poli alebo od fotografie.";
+"home.article.habitats.title" = "Kde žije hmyz";
+"home.article.habitats.subtitle" = "Od pôdy a lístia až po kvety a vodu – typické biotopy, ktoré môžete bezpečne preskúmať.";
+"home.article.photography.title" = "Makro fotografie bez stresu";
+"home.article.photography.subtitle" = "Svetlo, vzdialenosť a trpezlivosť: krátke tipy pre jasnejšie snímky malých objektov.";
+"home.article.identify.block1.title" = "Na čo sa pozeráme ako prvé";
+"home.article.identify.block1.body" = "Tvar tela, krídel, tykadiel a nôh často na prvý pohľad zužuje poradie hmyzu. Farebné vzory pomáhajú, ale líšia sa v rámci druhu – kombinujte ich s veľkosťou, držaním tela a správaním. Ak je to možné, všimnite si, kde ste hmyz videli: hostiteľská rastlina, povrch pôdy alebo okraj vody, to všetko pridáva kontext.";
+"home.article.identify.block2.title" = "Z fotografie";
+"home.article.identify.block2.body" = "Ostrý, dobre osvetlený obraz zakaždým prekoná rozmazaný. Zachyťte pohľad zhora a ak môžete, tak aj bočný profil. Zahrňte zmysel pre mierku (mincu alebo prst), keď na veľkosti záleží. Niekoľko uhlov znižuje dohady, keď sú značky jemné alebo skryté pod zloženými krídlami.";
+"home.article.habitats.block1.title" = "Vrstvy biotopu";
+"home.article.habitats.block1.body" = "Hmyz využíva vertikálny priestor: baldachýn, podrast, podstielku, štrbiny kôry a pôdu. Otáčanie polena alebo dvíhanie kameňa odhaľuje iné spoločenstvo ako kvet na plnom slnku. Pohybujte sa pomaly a vymeňte kryty, aby mikrobiotopy zostali nedotknuté.";
+"home.article.habitats.block2.title" = "Voda a okraje";
+"home.article.habitats.block2.body" = "Rybníky, potoky a vlhké lúky sú hostiteľmi špecialistov, ako sú vážky, motýlice a mnohé chrobáky. Hranica medzi pevninou a vodou – trstina, bahnité brehy – je často najbohatšou zónou. Najskôr pozorujte z diaľky, aby ste sa vyhli rušivému odpočinku hmyzu.";
+"home.article.photography.block1.title" = "Svetlo a vzdialenosť";
+"home.article.photography.block1.body" = "Rozptýlené denné svetlo alebo otvorený tieň poskytujú rovnomerné osvetlenie bez ostrých tieňov. Priblížte sa dostatočne blízko, aby ste vyplnili rám, ale vyhnite sa vrhaniu vlastného tieňa na objekt. Malý reflektor alebo biela karta môže zdvihnúť detaily v hlbokých výklenkoch kvetov alebo kôry.";
+"home.article.photography.block2.title" = "Trpezlivosť a rešpekt";
+"home.article.photography.block2.body" = "Nechajte hmyz usadiť sa namiesto toho, aby ste ho prenasledovali. Burst režim pomáha pri plachých letákoch. Ak používate blesk, udržiavajte krátke relácie a nikdy ním nemierte priamo do očí stavovcov v okolí. Keď skončíte, nechajte biotop tak, ako ste ho našli.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Nastavenia";
+"settings.section.support" = "Podpora";
+"settings.section.feedback" = "Spätná väzba";
+"settings.section.security" = "Bezpečnosť";
+"settings.row.contact_us" = "Kontaktujte nás";
+"settings.row.restore" = "Obnoviť";
+"settings.row.rate_app" = "Ohodnoťte aplikáciu";
+"settings.row.share_app" = "Zdieľajte aplikáciu";
+"settings.row.privacy" = "Zásady ochrany osobných údajov";
+"settings.row.terms" = "Podmienky používania";
+"settings.row.refund_consent" = "Súhlas s vrátením peňazí";
+"settings.row.reset_consent" = "Resetovať súhlas";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Podpora aplikácie Bugs";
+"settings.support.mail_body" = "ahoj,";
+"settings.support.mail_unavailable_title" = "Kontaktujte nás emailom";
+"settings.restore.message" = "Obnoví vaše predplatné z App Store pre toto Apple ID.";
+"settings.refund_consent.message" = "Súhlasíte so spracovaním vašich údajov na účely vrátenia peňazí?";
+"settings.refund_consent.allow" = "Povoliť";
+"settings.refund_consent.decline" = "Odmietnuť";
+"settings.reset_consent.message" = "Správa súhlasu s inzerciou bude k dispozícii v budúcej aktualizácii.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

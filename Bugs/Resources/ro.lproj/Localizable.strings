@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Gata";
+
+/* Onboarding */
+"onboarding.intro.title" = "Bună! Sunt ghidul tău în lumea insectelor 🐞";
+"onboarding.intro.subtitle" = "În această aplicație, puteți:";
+"onboarding.intro.benefit.identify" = "Identificați insectele în câteva secunde";
+"onboarding.intro.benefit.collection" = "Salvează-le în colecția ta";
+"onboarding.intro.benefit.achievements" = "Câștigă realizări";
+"onboarding.intro.benefit.ai" = "Conversați cu un asistent AI";
+"onboarding.intro.benefit.articles" = "Citiți articole utile";
+"onboarding.button.next" = "În continuare";
+"onboarding.button.start" = "Începeți";
+
+/* Home */
+"home.title" = "Acasă";
+"home.search.placeholder" = "Caută";
+"home.ai_banner.title" = "Întrebați AI despre orice insectă pe care o găsiți";
+"home.ai_banner.button" = "Pune o întrebare";
+
+/* AI chat */
+"ai_chat.title" = "Consultant AI";
+"ai_chat.input.placeholder" = "Întreabă-mă ceva…";
+"ai_chat.stub.ai" = "Știu totul despre insecte, mă poți consulta.";
+"ai_chat.stub.user" = "Spune-mi despre albine";
+"ai_chat.seed_creation_message" = "cine esti?";
+"ai_chat.error.bootstrap" = "Nu s-a putut deschide chatul. Vă rugăm să încercați din nou.";
+"ai_chat.error.send" = "Nu s-a putut trimite mesajul. Vă rugăm să încercați din nou.";
+"ai_chat.alert.connection_lost.message" = "Conexiunea s-a pierdut. Vă rugăm să încercați din nou mai târziu.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptere";
+"home.category.scorpiones" = "Scorpionii";
+"home.category.hymenoptera" = "himenoptere";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptere";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptere";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Colecția mea";
+"profile.segment.achievements" = "Realizările mele";
+"profile.achievements.placeholder" = "Realizările vor apărea aici.";
+"profile.collection.empty.title" = "Începeți colectarea de insecte";
+"profile.collection.empty.subtitle" = "Fotografiați insecte, creșteți-vă colecția, câștigați recompense și urmăriți-vă progresul";
+"profile.achievement.close.accessibility" = "Închide";
+"profile.achievement.unlock_heading" = "Pentru a debloca această realizare";
+"profile.achievement.completed_heading" = "Felicitări!";
+"profile.achievement.completed_body" = "Adăugat la colecția dvs";
+"profile.achievement.identify_more" = "Identificați %lld mai multe %@";
+"tab.home.accessibility" = "Acasă";
+"tab.library.accessibility" = "Biblioteca";
+"tab.chat.accessibility" = "Chat AI";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Scanează insecta";
+
+/* Scanner */
+"scanner.close.accessibility" = "Închide";
+"scanner.recognition_progress.message" = "Vă rugăm să așteptați în timp ce datele se încarcă...";
+"scanner.recognition_no_match.title" = "Nu s-a găsit nicio potrivire";
+"scanner.recognition_no_match.subtitle" = "Nu am putut identifica insecta din această fotografie";
+"scanner.recognition_no_match.try_again" = "Încercați din nou";
+"scanner.recognition_match.title" = "Potrivire găsită!";
+"scanner.recognition_match.subtitle" = "Am identificat posibile potriviri. Continuați să vedeți ce insectă este";
+"scanner.recognition_match.see_result" = "Vezi rezultatul";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Familia: Nymphalidae";
+"paywall.preview.harmless" = "Inofensiv";
+"paywall.close.accessibility" = "Închide";
+"paywall.headline" = "Deblocați întreaga lume a insectelor";
+"paywall.benefit.scans" = "Scanări nelimitate";
+"paywall.benefit.collection" = "Acces complet la colecție";
+"paywall.benefit.ai" = "Asistent AI fără limite";
+"paywall.benefit.achievements" = "Realizări exclusive";
+"paywall.product.prefix" = "3 zile gratis, atunci";
+"paywall.product.suffix" = "o săptămână";
+"paywall.cancel_anytime" = "Anulați în orice moment. Cu reînnoire automată.";
+"paywall.button.next" = "În continuare";
+"paywall.footer.terms" = "Condiții de utilizare";
+"paywall.footer.privacy" = "Politica de confidențialitate";
+"paywall.footer.restore" = "Restaurați";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Cumpără";
+"subscription.error.product_unavailable" = "Acest abonament nu este disponibil momentan. Verificați App Store Connect sau încercați din nou mai târziu.";
+"subscription.error.purchase_failed" = "Achiziția nu a putut fi finalizată. Vă rugăm să încercați din nou.";
+"subscription.error.restore_failed" = "Nu s-au putut restabili achizițiile. Verificați conexiunea și încercați din nou.";
+"subscription.pending.title" = "În așteptare";
+"subscription.pending.message" = "Achiziția dvs. așteaptă aprobarea. Accesul se va debloca când se finalizează.";
+"subscription.restore.title" = "Restaurați";
+"subscription.restore.success" = "Achizițiile dvs. au fost restaurate.";
+"subscription.restore.nothing" = "Nu a fost găsit niciun abonament activ pentru acest ID Apple.";
+
+"scanner.tips.title" = "Sfaturi";
+"scanner.tips.intro" = "O fotografie clară îmbunătățește acuratețea recunoașterii. Urmați aceste sfaturi pentru cele mai bune rezultate:";
+"scanner.tips.1.title" = "1. Păstrați insecta într-o focalizare clară";
+"scanner.tips.2.title" = "2. Centrați insecta în cadru. Asigurați-vă că este clar vizibil";
+"scanner.tips.3.title" = "3. Capturați o singură specie odată - mai multe insecte reduc precizia";
+"scanner.tips.4.title" = "4. Folosiți o lumină bună";
+
+/* Library */
+"library.title" = "Biblioteca";
+"list.search_empty.title" = "Niciun rezultat...";
+"list.search_empty.subtitle" = "Vă rugăm să încercați din nou";
+
+/* Category insect list */
+"insect.hym.1.title" = "Albinele de Vest";
+"insect.hym.1.subtitle" = "Dăunători comuni de grădinărit";
+"insect.hym.2.title" = "Viespă de hârtie europeană";
+"insect.hym.2.subtitle" = "Adesea văzută pe garduri și streașini";
+"insect.hym.3.title" = "Bondar cu coadă samuroasă";
+"insect.hym.3.subtitle" = "Polenizator de primăvară timpurie";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Cuibăresc cavitate solitar";
+"insect.hym.5.title" = "Viespa Ihneumon";
+"insect.hym.5.subtitle" = "Parazitoid al omizilor";
+"insect.default.1.title" = "Eșantion de insectă A";
+"insect.default.1.subtitle" = "Rând substituent pentru această categorie";
+"insect.default.2.title" = "Eșantion de insectă B";
+"insect.default.2.subtitle" = "Înlocuiți cu datele API mai târziu";
+"insect.default.3.title" = "Eșantion de insectă C";
+"insect.default.3.subtitle" = "Rând substituent pentru această categorie";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Inofensiv";
+"insect.detail.status.poisonous" = "Otrăvitoare";
+"insect.detail.status.toxic" = "Toxic";
+"insect.detail.status.widespread" = "Răspândit";
+"insect.detail.widespread.api.yes" = "Răspândit";
+"insect.detail.widespread.api.no" = "Mai puțin frecvente";
+"insect.detail.also_known_prefix" = "Cunoscut și ca:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Albină europeană, albină occidentală, albină";
+"insect.detail.section.description" = "Descriere";
+"insect.detail.read_more" = "Citește mai mult";
+"insect.detail.mock.description" = "Albina de vest (Apis mellifera) este printre cei mai importanți polenizatori gestionați în agricultură și ecosistemele sălbatice. Originar din Europa, Asia de Vest și Africa, a fost răspândit în întreaga lume de către apicultori pentru producția de miere și polenizarea culturilor.\n\nO colonie este un superorganism: o singură matcă fertilă depune ouă, în timp ce mii de lucrătoare hrănesc, alăptează larvele, construiesc pieptene și apără cuibul. Dronele masculi apar sezonier și se împerechează cu matci din alte colonii. Lucrătorii comunică direcția și distanța față de sursele bogate de hrană prin dansul waggle și împărtășesc informații prin atingere și feromoni.\n\nFurătorii vizitează multe specii de plante, transferând polen pe măsură ce se deplasează. Acest comportament susține biodiversitatea și culturile alimentare - de la livezi și fructe de pădure până la semințe oleaginoase și pepeni. Apicultorii gestionează stupii pentru a echilibra recolta de miere cu sănătatea coloniei, monitorizarea dăunătorilor, bolilor și stresului nutrițional.\n\nDeși în general docile la flori, albinele își apără stupul dacă percep o amenințare; înțelegerea indiciilor lor reduce înțepăturile. Pierderea habitatelor, pesticidele, agenții patogeni și schimbările climatice provoacă atât populațiile sălbatice, cât și cele gestionate. Protejarea resurselor florale și adoptarea unui management atent ajută la susținerea acestor insecte remarcabile pentru sezoanele viitoare.";
+"insect.detail.section.characteristics" = "Caracteristici";
+"insect.detail.section.classification" = "Clasificarea științifică";
+"insect.detail.section.bites" = "Mușcături";
+"insect.detail.bites.intro" = "Dacă ați fost mușcat sau înțepat, urmați acești pași:";
+"insect.detail.bites.first_aid" = "Primul ajutor imediat:";
+"insect.detail.add_to_collection" = "Adăugați la colecție";
+"insect.detail.add_to_collection.sheet.title" = "Adăugați o fotografie la colecția dvs";
+"insect.detail.add_to_collection.source.camera" = "Faceți o fotografie";
+"insect.detail.add_to_collection.source.library" = "Alegeți din bibliotecă";
+"insect.detail.add_to_collection.cancel" = "Anulează";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Acest ecran nu este legat de o insectă de catalog, așa că colecția nu poate fi actualizată.";
+"insect.detail.add_to_collection.error.network" = "Nu s-a putut adăuga la colecție. Verificați conexiunea și încercați din nou.";
+"insect.detail.remove_from_collection.confirm.title" = "Eliminați din colecție?";
+"insect.detail.remove_from_collection.confirm.message" = "Această insectă va fi eliminată din colecția dvs. Acest lucru nu poate fi anulat.";
+"insect.detail.remove_from_collection.confirm.delete" = "Eliminați";
+"insect.detail.remove_from_collection.confirm.cancel" = "Anulează";
+"insect.detail.remove_from_collection.error.no_id" = "Nu există nicio intrare de colecție de eliminat pe server.";
+"insect.detail.remove_from_collection.error.network" = "Nu s-a putut elimina din colecție. Verificați conexiunea și încercați din nou.";
+"insect.detail.add_to_collection.success.title" = "Succes!";
+"insect.detail.add_to_collection.success.subtitle" = "Insecta a fost adăugată cu succes la colecția dvs";
+"insect.detail.remove_from_collection.accessibility" = "Scoateți din colecție";
+"insect.detail.class.genus.title" = "Genul";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familie";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Comanda";
+"insect.detail.class.order.value" = "himenoptere";
+"insect.detail.class.class.title" = "Numele clasei";
+"insect.detail.class.class.value" = "Insecte";
+"insect.detail.class.phylum.title" = "Filum";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Regatul";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domeniul";
+"insect.detail.class.domain.value" = "Eucariote";
+"insect.detail.char.adult_size.title" = "Dimensiune adult";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Forme de existență";
+"insect.detail.char.forms.value" = "Ou, Larva, Pupa, Adult";
+"insect.detail.char.colors.title" = "Culori";
+"insect.detail.char.colors.value" = "Maro-auriu cu dungi negre";
+"insect.detail.char.population.title" = "Populația";
+"insect.detail.char.population.value" = "Foarte răspândit și domesticit";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Pajiști, grădini, păduri, zone agricole";
+"insect.detail.char.diet.title" = "Dieta";
+"insect.detail.char.diet.value" = "Nectar și polen de la plante cu flori";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Popular în această săptămână";
+"home.popular.butterfly" = "Fluture";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "furnică";
+"home.popular.beetle" = "Gândacul";
+
+/* Home — articles */
+"home.articles_section_title" = "Articole utile";
+"home.article.identify.title" = "Cum identificăm insectele?";
+"home.article.identify.subtitle" = "Semne și instrumente de bază care ajută la deosebirea speciilor pe câmp sau dintr-o fotografie.";
+"home.article.habitats.title" = "Unde trăiesc insectele";
+"home.article.habitats.subtitle" = "De la sol și așternut de frunze până la flori și apă - habitate tipice pe care le puteți explora în siguranță.";
+"home.article.photography.title" = "Fotografii macro fără stres";
+"home.article.photography.subtitle" = "Lumină, distanță și răbdare: sfaturi scurte pentru imagini mai clare ale subiecților mici.";
+"home.article.identify.block1.title" = "La ce ne uităm mai întâi";
+"home.article.identify.block1.body" = "Forma corpului, aripile, antenele și picioarele îngustează adesea ordinea insectelor dintr-o privire. Modelele de culoare ajută, dar variază în funcție de specie - combină-le cu dimensiunea, postura și comportamentul. Când este posibil, rețineți unde ați văzut insecta: planta gazdă, suprafața solului sau marginea apei, toate adaugă context.";
+"home.article.identify.block2.title" = "Dintr-o fotografie";
+"home.article.identify.block2.body" = "O imagine clară, bine luminată o bate de fiecare dată pe una neclară. Capturați vederea de sus și, dacă puteți, profilul lateral. Includeți un sentiment de scară (o monedă sau un deget) atunci când dimensiunea contează. Mai multe unghiuri reduc presupunerile atunci când marcajele sunt subtile sau ascunse sub aripile îndoite.";
+"home.article.habitats.block1.title" = "Straturi ale unui habitat";
+"home.article.habitats.block1.body" = "Insectele folosesc spațiul vertical: baldachin, subteras, așternut de frunze, crăpături din scoarță și sol. Întoarcerea unui buștean sau ridicarea unei pietre dezvăluie o comunitate diferită de un cap de floare în plin soare. Deplasați-vă încet și înlocuiți capacele astfel încât microhabitatele să rămână intacte.";
+"home.article.habitats.block2.title" = "Apă și margini";
+"home.article.habitats.block2.body" = "Iazurile, pâraiele și pajiștile umede găzduiesc specialiști, cum ar fi libelule, damerici și mulți gândaci. Granița dintre pământ și apă - stuf, maluri noroioase - este adesea cea mai bogată zonă. Observați mai întâi de la distanță pentru a evita deranjarea insectelor care se odihnesc.";
+"home.article.photography.block1.title" = "Lumina si distanta";
+"home.article.photography.block1.body" = "Lumina difuză a zilei sau umbra deschisă oferă o iluminare uniformă, fără umbre dure. Apropiați-vă suficient pentru a umple cadrul, dar evitați să vă aruncați propria umbră peste subiect. Un reflector mic sau un card alb poate ridica detaliile în adâncituri de flori sau scoarță.";
+"home.article.photography.block2.title" = "Răbdare și respect";
+"home.article.photography.block2.body" = "Lăsați insectele să se așeze în loc să le urmăriți. Modul Burst ajută la fluturași supărați. Dacă utilizați blițul, păstrați sesiunile scurte și nu îl îndreptați niciodată direct în ochii vertebratelor din apropiere. Când ați terminat, lăsați habitatul așa cum l-ați găsit.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Setări";
+"settings.section.support" = "Sprijin";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Securitate";
+"settings.row.contact_us" = "Contactați-ne";
+"settings.row.restore" = "Restaurați";
+"settings.row.rate_app" = "Evaluează aplicația";
+"settings.row.share_app" = "Distribuiți aplicația";
+"settings.row.privacy" = "Politica de confidențialitate";
+"settings.row.terms" = "Termeni de utilizare";
+"settings.row.refund_consent" = "Consimțământul de rambursare";
+"settings.row.reset_consent" = "Resetați consimțământul";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Suport pentru aplicația Bugs";
+"settings.support.mail_body" = "Bună,";
+"settings.support.mail_unavailable_title" = "Contactați-ne prin e-mail";
+"settings.restore.message" = "Vă restabilește abonamentul din App Store pentru acest ID Apple.";
+"settings.refund_consent.message" = "Sunteți de acord cu prelucrarea datelor dumneavoastră în scopuri de rambursare?";
+"settings.refund_consent.allow" = "Permite";
+"settings.refund_consent.decline" = "Declin";
+"settings.reset_consent.message" = "Gestionarea consimțământului publicitar va fi disponibilă într-o actualizare viitoare.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

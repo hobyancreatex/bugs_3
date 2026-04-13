@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "完了";
+
+/* Onboarding */
+"onboarding.intro.title" = "こんにちは！私は昆虫の世界へのガイドです 🐞";
+"onboarding.intro.subtitle" = "このアプリでは次のことができます。";
+"onboarding.intro.benefit.identify" = "昆虫を数秒で識別";
+"onboarding.intro.benefit.collection" = "コレクションに保存します";
+"onboarding.intro.benefit.achievements" = "実績を獲得する";
+"onboarding.intro.benefit.ai" = "AI アシスタントとチャットする";
+"onboarding.intro.benefit.articles" = "役立つ記事を読む";
+"onboarding.button.next" = "次へ";
+"onboarding.button.start" = "始めましょう";
+
+/* Home */
+"home.title" = "ホーム";
+"home.search.placeholder" = "検索";
+"home.ai_banner.title" = "見つけた昆虫について AI に質問する";
+"home.ai_banner.button" = "質問する";
+
+/* AI chat */
+"ai_chat.title" = "AIコンサルタント";
+"ai_chat.input.placeholder" = "何か聞いてください…";
+"ai_chat.stub.ai" = "昆虫のことなら何でも詳しいので相談してください。";
+"ai_chat.stub.user" = "ミツバチについて教えてください";
+"ai_chat.seed_creation_message" = "あなたは誰ですか？";
+"ai_chat.error.bootstrap" = "チャットを開けませんでした。もう一度試してください。";
+"ai_chat.error.send" = "メッセージを送信できませんでした。もう一度試してください。";
+"ai_chat.alert.connection_lost.message" = "接続が失われました。後でもう一度試してください。";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "甲虫目";
+"home.category.scorpiones" = "スコーピオン";
+"home.category.hymenoptera" = "膜翅目";
+"home.category.araneae" = "クモ科";
+"home.category.lepidoptera" = "鱗翅目";
+"home.category.diptera" = "双翅目";
+"home.category.blattodea" = "ブラットデア";
+"home.category.hemiptera" = "半翅目";
+
+/* Main tab bar */
+"profile.title" = "プロフィール";
+"profile.segment.collection" = "私のコレクション";
+"profile.segment.achievements" = "私の功績";
+"profile.achievements.placeholder" = "ここに実績が表示されます。";
+"profile.collection.empty.title" = "昆虫採集を始めましょう";
+"profile.collection.empty.subtitle" = "昆虫の写真を撮り、コレクションを増やし、報酬を獲得し、進捗状況を追跡しましょう";
+"profile.achievement.close.accessibility" = "閉じる";
+"profile.achievement.unlock_heading" = "この実績を解除するには";
+"profile.achievement.completed_heading" = "おめでとうございます！";
+"profile.achievement.completed_body" = "あなたのコレクションに追加されました";
+"profile.achievement.identify_more" = "%lld をさらに %@ 特定する";
+"tab.home.accessibility" = "ホーム";
+"tab.library.accessibility" = "図書館";
+"tab.chat.accessibility" = "AIチャット";
+"tab.profile.accessibility" = "プロフィール";
+"tab.scan.accessibility" = "昆虫をスキャンする";
+
+/* Scanner */
+"scanner.close.accessibility" = "閉じる";
+"scanner.recognition_progress.message" = "データをロードしている間お待ちください…";
+"scanner.recognition_no_match.title" = "一致するものが見つかりませんでした";
+"scanner.recognition_no_match.subtitle" = "この写真では昆虫を特定できませんでした";
+"scanner.recognition_no_match.try_again" = "もう一度試してください";
+"scanner.recognition_match.title" = "一致が見つかりました!";
+"scanner.recognition_match.subtitle" = "一致する可能性のあるものを特定しました。引き続き、何の虫なのか調べてみましょう";
+"scanner.recognition_match.see_result" = "結果を見る";
+
+/* Paywall */
+"paywall.preview.species" = "ヒョウモン";
+"paywall.preview.family" = "家族: タテハチョウ科";
+"paywall.preview.harmless" = "無害";
+"paywall.close.accessibility" = "閉じる";
+"paywall.headline" = "昆虫の世界をすべて解き明かしましょう";
+"paywall.benefit.scans" = "無制限のスキャン";
+"paywall.benefit.collection" = "完全なコレクションへのアクセス";
+"paywall.benefit.ai" = "制限のないAIアシスタント";
+"paywall.benefit.achievements" = "独占的な実績";
+"paywall.product.prefix" = "3日間無料、その後は";
+"paywall.product.suffix" = "一週間";
+"paywall.cancel_anytime" = "いつでもキャンセルできます。自動更新あり。";
+"paywall.button.next" = "次へ";
+"paywall.footer.terms" = "利用規約";
+"paywall.footer.privacy" = "プライバシーポリシー";
+"paywall.footer.restore" = "復元";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "購入する";
+"subscription.error.product_unavailable" = "このサブスクリプションは現在ご利用いただけません。 App Store Connectをチェックするか、後でもう一度試してください。";
+"subscription.error.purchase_failed" = "購入を完了できませんでした。もう一度試してください。";
+"subscription.error.restore_failed" = "購入を復元できませんでした。接続を確認して、もう一度試してください。";
+"subscription.pending.title" = "保留中";
+"subscription.pending.message" = "購入は承認を待っています。アクセスが完了するとロックが解除されます。";
+"subscription.restore.title" = "復元";
+"subscription.restore.success" = "購入内容が復元されました。";
+"subscription.restore.nothing" = "この Apple ID の有効なサブスクリプションが見つかりませんでした。";
+
+"scanner.tips.title" = "ヒント";
+"scanner.tips.intro" = "鮮明な写真により認識精度が向上します。最良の結果を得るには、次のヒントに従ってください。";
+"scanner.tips.1.title" = "1. 昆虫にはっきりと焦点を合わせます";
+"scanner.tips.2.title" = "2. 昆虫をフレームの中央に配置します。はっきりと見えるようにしてください";
+"scanner.tips.3.title" = "3. 一度に捕獲できるのは 1 種のみ - 昆虫が複数いると精度が低下します";
+"scanner.tips.4.title" = "4. 適切な照明を使用する";
+
+/* Library */
+"library.title" = "図書館";
+"list.search_empty.title" = "結果はありません…";
+"list.search_empty.subtitle" = "もう一度試してください";
+
+/* Category insect list */
+"insect.hym.1.title" = "西洋ミツバチ";
+"insect.hym.1.subtitle" = "よくある園芸害虫";
+"insect.hym.2.title" = "ヨーロッパアシナガバチ";
+"insect.hym.2.subtitle" = "柵や軒先によく見られます";
+"insect.hym.3.title" = "バフテールマルハナバチ";
+"insect.hym.3.subtitle" = "早春の花粉媒介者";
+"insect.hym.4.title" = "メイソンビー";
+"insect.hym.4.subtitle" = "孤独な空洞ネスター";
+"insect.hym.5.title" = "イクネウモンワスプ";
+"insect.hym.5.subtitle" = "毛虫の寄生虫";
+"insect.default.1.title" = "サンプル昆虫A";
+"insect.default.1.subtitle" = "このカテゴリのプレースホルダ行";
+"insect.default.2.title" = "サンプル昆虫B";
+"insect.default.2.subtitle" = "後からAPIデータに置き換える";
+"insect.default.3.title" = "サンプル昆虫C";
+"insect.default.3.subtitle" = "このカテゴリのプレースホルダ行";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "無害";
+"insect.detail.status.poisonous" = "有毒";
+"insect.detail.status.toxic" = "有毒";
+"insect.detail.status.widespread" = "広く普及している";
+"insect.detail.widespread.api.yes" = "広く普及している";
+"insect.detail.widespread.api.no" = "珍しい";
+"insect.detail.also_known_prefix" = "別名:";
+"insect.detail.mock.scientific_title" = "セイヨウミツバチ";
+"insect.detail.mock.aliases" = "ヨーロッパミツバチ、西洋ミツバチ、ミツバチ";
+"insect.detail.section.description" = "説明";
+"insect.detail.read_more" = "続きを読む";
+"insect.detail.mock.description" = "西洋ミツバチ (Apis mellifera) は、農業や野生生態系において最も重要な管理された花粉媒介者の 1 つです。ヨーロッパ、西アジア、アフリカが原産で、蜂蜜の生産や作物の受粉のために養蜂家によって世界中に広まりました。\n\nコロニーは超生物です。1 羽の繁殖力のある女王バチが卵を産み、その一方で数千匹のメスの働きアリが餌を探し、幼虫の世話をし、巣を作り、巣を守ります。雄の雄蜂は季節ごとに出現し、他のコロニーの女王蜂と交尾します。労働者はワッグルダンスを通じて豊かな食料源までの方向や距離を伝え、触覚やフェロモンによって情報を共有する。\n\n採食者は多くの植物種を訪れ、移動しながら花粉を運びます。この行動は、果樹園やベリー類から油糧種子やメロンに至るまで、生物多様性と食用作物を支えています。養蜂家は蜂蜜の収穫とコロニーの健康のバランスを保つために巣箱を管理し、害虫、病気、栄養ストレスを監視します。\n\nミツバチは花に対しては通常おとなしいですが、脅威を感知すると巣を守ります。彼らの合図を理解すれば、刺されることは減ります。生息地の喪失、農薬、病原体、気候変動は、野生個体群と管理個体群の両方に課題をもたらしています。花資源を保護し、慎重に管理することで、これらの注目すべき昆虫を将来の季節に維持することができます。";
+"insect.detail.section.characteristics" = "特徴";
+"insect.detail.section.classification" = "科学的分類";
+"insect.detail.section.bites" = "噛みつき";
+"insect.detail.bites.intro" = "噛まれたり刺されたりした場合は、次の手順に従ってください。";
+"insect.detail.bites.first_aid" = "すぐにできる応急処置：";
+"insect.detail.add_to_collection" = "コレクションに追加";
+"insect.detail.add_to_collection.sheet.title" = "写真をコレクションに追加する";
+"insect.detail.add_to_collection.source.camera" = "写真を撮る";
+"insect.detail.add_to_collection.source.library" = "ライブラリから選ぶ";
+"insect.detail.add_to_collection.cancel" = "キャンセル";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "この画面は昆虫カタログにリンクされていないため、コレクションを更新できません。";
+"insect.detail.add_to_collection.error.network" = "コレクションに追加できませんでした。接続を確認して、もう一度試してください。";
+"insect.detail.remove_from_collection.confirm.title" = "コレクションから削除しますか?";
+"insect.detail.remove_from_collection.confirm.message" = "この昆虫はあなたのコレクションから削除されます。これを元に戻すことはできません。";
+"insect.detail.remove_from_collection.confirm.delete" = "削除";
+"insect.detail.remove_from_collection.confirm.cancel" = "キャンセル";
+"insect.detail.remove_from_collection.error.no_id" = "サーバー上に削除するコレクション エントリがありません。";
+"insect.detail.remove_from_collection.error.network" = "コレクションから削除できませんでした。接続を確認して、もう一度試してください。";
+"insect.detail.add_to_collection.success.title" = "成功!";
+"insect.detail.add_to_collection.success.subtitle" = "昆虫がコレクションに追加されました";
+"insect.detail.remove_from_collection.accessibility" = "コレクションから削除";
+"insect.detail.class.genus.title" = "属";
+"insect.detail.class.genus.value" = "アピス";
+"insect.detail.class.family.title" = "家族";
+"insect.detail.class.family.value" = "ハチ科";
+"insect.detail.class.order.title" = "注文";
+"insect.detail.class.order.value" = "膜翅目";
+"insect.detail.class.class.title" = "クラス名";
+"insect.detail.class.class.value" = "昆虫綱";
+"insect.detail.class.phylum.title" = "門";
+"insect.detail.class.phylum.value" = "節足動物";
+"insect.detail.class.kingdom.title" = "王国";
+"insect.detail.class.kingdom.value" = "動物界";
+"insect.detail.class.domain.title" = "ドメイン";
+"insect.detail.class.domain.value" = "真核生物";
+"insect.detail.char.adult_size.title" = "大人サイズ";
+"insect.detail.char.adult_size.value" = "1.2～1.5cm";
+"insect.detail.char.forms.title" = "存在の形態";
+"insect.detail.char.forms.value" = "卵、幼虫、蛹、成虫";
+"insect.detail.char.colors.title" = "色";
+"insect.detail.char.colors.value" = "黄金色に黒い縞模様が入った";
+"insect.detail.char.population.title" = "人口";
+"insect.detail.char.population.value" = "非常に広範囲に生息し、家畜化されている";
+"insect.detail.char.habitat.title" = "生息地";
+"insect.detail.char.habitat.value" = "牧草地、庭園、森林、農地";
+"insect.detail.char.diet.title" = "ダイエット";
+"insect.detail.char.diet.value" = "開花植物からの蜜と花粉";
+
+/* Home — popular this week */
+"home.popular_this_week" = "今週の人気";
+"home.popular.butterfly" = "蝶";
+"home.popular.mantis" = "カマキリ";
+"home.popular.ant" = "アリ";
+"home.popular.beetle" = "カブトムシ";
+
+/* Home — articles */
+"home.articles_section_title" = "役立つ記事";
+"home.article.identify.title" = "昆虫をどうやって識別するのでしょうか？";
+"home.article.identify.subtitle" = "野外や写真から種を区別するのに役立つ基本的な標識とツール。";
+"home.article.habitats.title" = "昆虫が住んでいる場所";
+"home.article.habitats.subtitle" = "土壌や落ち葉から花や水に至るまで、安全に探索できる典型的な生息地です。";
+"home.article.photography.title" = "ストレスなくマクロ撮影が可能";
+"home.article.photography.subtitle" = "光、距離、忍耐力: 小さな被写体をより鮮明に撮影するための短いヒント。";
+"home.article.identify.block1.title" = "最初に見るもの";
+"home.article.identify.block1.body" = "体、羽、触角、脚の形状によって、一見すると昆虫の順序が絞り込まれることがよくあります。色のパターンは役に立ちますが、種によって異なります。サイズ、姿勢、行動と組み合わせてください。可能であれば、昆虫を見た場所をメモしてください。寄主植物、土壌表面、水辺などはすべて状況を追加します。";
+"home.article.identify.block2.title" = "写真から";
+"home.article.identify.block2.body" = "鮮明で明るい画像は、常にぼやけた画像に勝ちます。上面図と、可能であれば側面図を撮影します。サイズが重要な場合は、スケール感 (コインまたは指) を含めます。マーキングが微妙な場合や折りたたまれた翼の下に隠れている場合に、いくつかの角度を使用することで推測を軽減します。";
+"home.article.habitats.block1.title" = "生息地の層";
+"home.article.habitats.block1.body" = "昆虫は樹冠、下層、落ち葉、樹皮の隙間、土壌などの垂直方向の空間を利用します。丸太を回したり、石を持ち上げたりすると、太陽が降り注ぐ花頭とは異なる群落が現れます。ゆっくりと移動し、微生物の生息地が損なわれないようにカバーを交換します。";
+"home.article.habitats.block2.title" = "水とエッジ";
+"home.article.habitats.block2.body" = "池、小川、湿った草原には、トンボ、イトトンボ、多くのカブトムシなどの専門家が生息しています。陸と水の境界、つまり葦や泥の土手は、最も豊かな地帯であることがよくあります。休んでいる昆虫の邪魔をしないように、最初は遠くから観察してください。";
+"home.article.photography.block1.title" = "光と距離";
+"home.article.photography.block1.body" = "拡散した日光またはオープンシェードにより、強い影を生じることなく均一な照明が得られます。フレームを満たすまで十分に近づきますが、被写体全体に自分の影が映らないようにしてください。小さな反射板や白いカードを使用すると、花や樹皮の深いくぼみの細部を浮き上がらせることができます。";
+"home.article.photography.block2.title" = "忍耐と敬意";
+"home.article.photography.block2.body" = "昆虫を追いかけるのではなく、定着させましょう。バースト モードは、気まぐれなフライヤーに役立ちます。フラッシュを使用する場合は、セッションを短くし、近くの脊椎動物の目に直接フラッシュを向けないでください。終わったら、生息地を見つけたままにしておきます。";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "設定";
+"settings.section.support" = "サポート";
+"settings.section.feedback" = "フィードバック";
+"settings.section.security" = "セキュリティ";
+"settings.row.contact_us" = "お問い合わせ";
+"settings.row.restore" = "復元";
+"settings.row.rate_app" = "アプリを評価する";
+"settings.row.share_app" = "アプリを共有する";
+"settings.row.privacy" = "プライバシーポリシー";
+"settings.row.terms" = "利用規約";
+"settings.row.refund_consent" = "払い戻しの同意";
+"settings.row.reset_consent" = "同意のリセット";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "バグアプリのサポート";
+"settings.support.mail_body" = "こんにちは。";
+"settings.support.mail_unavailable_title" = "メールでお問い合わせください";
+"settings.restore.message" = "この Apple ID の App Store からサブスクリプションを復元します。";
+"settings.refund_consent.message" = "返金を目的としたデータの処理に同意しますか?";
+"settings.refund_consent.allow" = "許可する";
+"settings.refund_consent.decline" = "辞退";
+"settings.reset_consent.message" = "広告の同意管理は将来のアップデートで利用できるようになる予定です。";
+"settings.link.privacy" = "https://bugs.app/プライバシー";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

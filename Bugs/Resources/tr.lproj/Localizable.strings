@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Tamamlamak";
+
+/* Onboarding */
+"onboarding.intro.title" = "MERHABA! Böcekler dünyasına rehberinizim 🐞";
+"onboarding.intro.subtitle" = "Bu uygulamada şunları yapabilirsiniz:";
+"onboarding.intro.benefit.identify" = "Böcekleri saniyeler içinde tanımlayın";
+"onboarding.intro.benefit.collection" = "Bunları koleksiyonunuza kaydedin";
+"onboarding.intro.benefit.achievements" = "Başarılar kazanın";
+"onboarding.intro.benefit.ai" = "Bir yapay zeka asistanıyla sohbet edin";
+"onboarding.intro.benefit.articles" = "Yararlı makaleleri okuyun";
+"onboarding.button.next" = "Sonraki";
+"onboarding.button.start" = "Başlayın";
+
+/* Home */
+"home.title" = "Ev";
+"home.search.placeholder" = "Aramak";
+"home.ai_banner.title" = "Bulduğunuz herhangi bir böcek hakkında yapay zekaya sorun";
+"home.ai_banner.button" = "Bir soru sor";
+
+/* AI chat */
+"ai_chat.title" = "Yapay zeka danışmanı";
+"ai_chat.input.placeholder" = "Bana bir şey sor…";
+"ai_chat.stub.ai" = "Böcekler hakkında her şeyi biliyorum, bana danışabilirsin.";
+"ai_chat.stub.user" = "Bana arılardan bahset";
+"ai_chat.seed_creation_message" = "Sen kimsin?";
+"ai_chat.error.bootstrap" = "Sohbet açılamadı. Lütfen tekrar deneyin.";
+"ai_chat.error.send" = "Mesaj gönderilemedi. Lütfen tekrar deneyin.";
+"ai_chat.alert.connection_lost.message" = "Bağlantı kesildi. Lütfen daha sonra tekrar deneyin.";
+"ai_chat.alert.connection_lost.action" = "TAMAM";
+
+/* Home — categories */
+"home.category.coleoptera" = "Kınkanatlılar";
+"home.category.scorpiones" = "Akrepler";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Koleksiyonum";
+"profile.segment.achievements" = "Başarılarım";
+"profile.achievements.placeholder" = "Başarılar burada görünecek.";
+"profile.collection.empty.title" = "Böcek koleksiyonunuza başlayın";
+"profile.collection.empty.subtitle" = "Böceklerin fotoğrafını çekin, koleksiyonunuzu büyütün, ödüller kazanın ve ilerlemenizi takip edin";
+"profile.achievement.close.accessibility" = "Kapalı";
+"profile.achievement.unlock_heading" = "Bu başarının kilidini açmak için";
+"profile.achievement.completed_heading" = "Tebrikler!";
+"profile.achievement.completed_body" = "Koleksiyonunuza eklendi";
+"profile.achievement.identify_more" = "%lld daha fazla %@ tanımlayın";
+"tab.home.accessibility" = "Ev";
+"tab.library.accessibility" = "Kütüphane";
+"tab.chat.accessibility" = "yapay zeka sohbeti";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Böcek tara";
+
+/* Scanner */
+"scanner.close.accessibility" = "Kapalı";
+"scanner.recognition_progress.message" = "Veriler yüklenirken lütfen bekleyin…";
+"scanner.recognition_no_match.title" = "Eşleşme bulunamadı";
+"scanner.recognition_no_match.subtitle" = "Bu fotoğraftaki böceği tespit edemedik";
+"scanner.recognition_no_match.try_again" = "Tekrar deneyin";
+"scanner.recognition_match.title" = "Eşleşme bulundu!";
+"scanner.recognition_match.subtitle" = "Olası eşleşmeleri belirledik. Hangi böcek olduğunu görmeye devam edin";
+"scanner.recognition_match.see_result" = "Sonucu görüntüle";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Aile: Nymphalidae";
+"paywall.preview.harmless" = "Zararsız";
+"paywall.close.accessibility" = "Kapalı";
+"paywall.headline" = "Tüm böcek dünyasının kilidini açın";
+"paywall.benefit.scans" = "Sınırsız tarama";
+"paywall.benefit.collection" = "Tam koleksiyon erişimi";
+"paywall.benefit.ai" = "Sınırsız yapay zeka asistanı";
+"paywall.benefit.achievements" = "Özel başarılar";
+"paywall.product.prefix" = "3 gün ücretsiz, o zaman";
+"paywall.product.suffix" = "bir hafta";
+"paywall.cancel_anytime" = "İstediğiniz zaman iptal edin. Otomatik yenileme ile.";
+"paywall.button.next" = "Sonraki";
+"paywall.footer.terms" = "Kullanım koşulları";
+"paywall.footer.privacy" = "Gizlilik politikası";
+"paywall.footer.restore" = "Eski haline getirmek";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Satın almak";
+"subscription.error.product_unavailable" = "Bu abonelik şu anda kullanılamıyor. App Store Connect'i kontrol edin veya daha sonra tekrar deneyin.";
+"subscription.error.purchase_failed" = "Satın alma işlemi tamamlanamadı. Lütfen tekrar deneyin.";
+"subscription.error.restore_failed" = "Satın alınanlar geri yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.";
+"subscription.pending.title" = "Askıda olması";
+"subscription.pending.message" = "Satın alma işleminiz onay bekliyor. Erişim tamamlandığında kilidi açılacaktır.";
+"subscription.restore.title" = "Eski haline getirmek";
+"subscription.restore.success" = "Satın alma işlemleriniz geri yüklendi.";
+"subscription.restore.nothing" = "Bu Apple Kimliği için etkin abonelik bulunamadı.";
+
+"scanner.tips.title" = "İpuçları";
+"scanner.tips.intro" = "Net bir fotoğraf, tanıma doğruluğunu artırır. En iyi sonuçları elde etmek için şu ipuçlarını izleyin:";
+"scanner.tips.1.title" = "1. Böceği net bir şekilde odakta tutun";
+"scanner.tips.2.title" = "2. Böceği çerçevede ortalayın. Açıkça görülebildiğinden emin olun";
+"scanner.tips.3.title" = "3. Aynı anda yalnızca bir türü yakalayın; birden fazla böcek doğruluğu azaltır";
+"scanner.tips.4.title" = "4. İyi aydınlatma kullanın";
+
+/* Library */
+"library.title" = "Kütüphane";
+"list.search_empty.title" = "Sonuç yok…";
+"list.search_empty.subtitle" = "Lütfen tekrar deneyin";
+
+/* Category insect list */
+"insect.hym.1.title" = "Batı Bal Arısı";
+"insect.hym.1.subtitle" = "Yaygın bahçe zararlıları";
+"insect.hym.2.title" = "Avrupa Kağıt Yaban Arısı";
+"insect.hym.2.subtitle" = "Çoğunlukla çitlerde ve saçaklarda görülür";
+"insect.hym.3.title" = "Devetüyü kuyruklu yaban arısı";
+"insect.hym.3.subtitle" = "Erken ilkbahar tozlaştırıcısı";
+"insect.hym.4.title" = "Mason Arı";
+"insect.hym.4.subtitle" = "Yalnız boşluk yuvası";
+"insect.hym.5.title" = "Ichneumon Yaban Arısı";
+"insect.hym.5.subtitle" = "Tırtılların parazitoidi";
+"insect.default.1.title" = "Örnek böcek A";
+"insect.default.1.subtitle" = "Bu kategori için yer tutucu satırı";
+"insect.default.2.title" = "Örnek böcek B";
+"insect.default.2.subtitle" = "Daha sonra API verileriyle değiştirin";
+"insect.default.3.title" = "Örnek böcek C";
+"insect.default.3.subtitle" = "Bu kategori için yer tutucu satırı";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Zararsız";
+"insect.detail.status.poisonous" = "Zehirli";
+"insect.detail.status.toxic" = "Zehirli";
+"insect.detail.status.widespread" = "Yaygın";
+"insect.detail.widespread.api.yes" = "Yaygın";
+"insect.detail.widespread.api.no" = "Yaygın olmayan";
+"insect.detail.also_known_prefix" = "Ayrıca şu şekilde de bilinir:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Avrupa Bal Arısı, Batı Bal Arısı, Bal Arısı";
+"insect.detail.section.description" = "Tanım";
+"insect.detail.read_more" = "Devamını oku";
+"insect.detail.mock.description" = "Batı bal arısı (Apis mellifera), tarımda ve yabani ekosistemlerde yönetilen en önemli tozlaştırıcılar arasındadır. Anavatanı Avrupa, Batı Asya ve Afrika'dır ve arıcılar tarafından bal üretimi ve mahsulün tozlaşması amacıyla dünya çapında yayılmıştır.\n\nKoloni bir süper organizmadır: Tek bir verimli kraliçe yumurta bırakır, binlerce kadın işçi ise yiyecek arar, larvaları besler, tarak yapar ve yuvayı savunur. Erkek erkek arılar mevsimsel olarak ortaya çıkar ve diğer kolonilerden kraliçelerle çiftleşir. İşçiler, sallanma dansı yoluyla zengin besin kaynaklarının yönünü ve mesafesini iletiyor ve dokunarak ve feromonlarla bilgi paylaşıyorlar.\n\nToplayıcılar birçok bitki türünü ziyaret ederek hareket ettikçe polen aktarırlar. Bu davranış, meyve bahçeleri ve meyvelerden yağlı tohumlara ve kavunlara kadar biyolojik çeşitliliği ve gıda ürünlerini destekler. Arıcılar, bal hasadını koloni sağlığıyla dengelemek, zararlıları, hastalıkları ve beslenme stresini izlemek için kovanları yönetir.\n\nBal arıları genellikle çiçekler konusunda uysal olsalar da bir tehdit algıladıklarında kovanlarını savunurlar; ipuçlarını anlamak sokmaları azaltır. Habitat kaybı, pestisitler, patojenler ve iklim değişiklikleri hem yabani hem de yönetilen popülasyonlara meydan okuyor. Çiçek kaynaklarının korunması ve dikkatli yönetimin benimsenmesi, bu olağanüstü böceklerin gelecek sezonlarda korunmasına yardımcı olur.";
+"insect.detail.section.characteristics" = "Özellikler";
+"insect.detail.section.classification" = "Bilimsel sınıflandırma";
+"insect.detail.section.bites" = "ısırıklar";
+"insect.detail.bites.intro" = "Eğer ısırıldıysanız veya sokulduysanız şu adımları izleyin:";
+"insect.detail.bites.first_aid" = "Acil ilk yardım:";
+"insect.detail.add_to_collection" = "Koleksiyona ekle";
+"insect.detail.add_to_collection.sheet.title" = "Koleksiyonunuza fotoğraf ekleyin";
+"insect.detail.add_to_collection.source.camera" = "Fotoğraf çek";
+"insect.detail.add_to_collection.source.library" = "Kütüphaneden seç";
+"insect.detail.add_to_collection.cancel" = "İptal etmek";
+"insect.detail.add_to_collection.alert.ok" = "TAMAM";
+"insect.detail.add_to_collection.error.no_insect" = "Bu ekran bir katalog böceğine bağlı olmadığından koleksiyon güncellenemez.";
+"insect.detail.add_to_collection.error.network" = "Koleksiyona eklenemedi. Bağlantınızı kontrol edip tekrar deneyin.";
+"insect.detail.remove_from_collection.confirm.title" = "Koleksiyondan kaldırılsın mı?";
+"insect.detail.remove_from_collection.confirm.message" = "Bu böcek koleksiyonunuzdan kaldırılacak. Bu geri alınamaz.";
+"insect.detail.remove_from_collection.confirm.delete" = "Kaldırmak";
+"insect.detail.remove_from_collection.confirm.cancel" = "İptal etmek";
+"insect.detail.remove_from_collection.error.no_id" = "Sunucuda kaldırılacak koleksiyon girişi yok.";
+"insect.detail.remove_from_collection.error.network" = "Koleksiyondan kaldırılamadı. Bağlantınızı kontrol edip tekrar deneyin.";
+"insect.detail.add_to_collection.success.title" = "Başarı!";
+"insect.detail.add_to_collection.success.subtitle" = "Böcek koleksiyonunuza başarıyla eklendi";
+"insect.detail.remove_from_collection.accessibility" = "Koleksiyondan kaldır";
+"insect.detail.class.genus.title" = "Cins";
+"insect.detail.class.genus.value" = "Apis'ler";
+"insect.detail.class.family.title" = "Aile";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Emir";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Sınıf adı";
+"insect.detail.class.class.value" = "Böcek";
+"insect.detail.class.phylum.title" = "Şube";
+"insect.detail.class.phylum.value" = "Eklembacaklılar";
+"insect.detail.class.kingdom.title" = "Krallık";
+"insect.detail.class.kingdom.value" = "Hayvanlar Alemi";
+"insect.detail.class.domain.title" = "İhtisas";
+"insect.detail.class.domain.value" = "Ökaryota";
+"insect.detail.char.adult_size.title" = "Yetişkin Boyutu";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Varoluş Formları";
+"insect.detail.char.forms.value" = "Yumurta, Larva, Pupa, Yetişkin";
+"insect.detail.char.colors.title" = "Renkler";
+"insect.detail.char.colors.value" = "Siyah çizgili altın-kahverengi";
+"insect.detail.char.population.title" = "Nüfus";
+"insect.detail.char.population.value" = "Oldukça yaygın ve evcilleştirilmiş";
+"insect.detail.char.habitat.title" = "Doğal ortam";
+"insect.detail.char.habitat.value" = "Çayırlar, bahçeler, ormanlar, tarım alanları";
+"insect.detail.char.diet.title" = "Diyet";
+"insect.detail.char.diet.value" = "Çiçekli bitkilerden nektar ve polen";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Bu hafta popüler";
+"home.popular.butterfly" = "Kelebek";
+"home.popular.mantis" = "Peygamber devesi";
+"home.popular.ant" = "Karınca";
+"home.popular.beetle" = "Böcek";
+
+/* Home — articles */
+"home.articles_section_title" = "Faydalı makaleler";
+"home.article.identify.title" = "Böcekleri nasıl tespit ederiz?";
+"home.article.identify.subtitle" = "Türleri tarlada veya bir fotoğraftan ayırmaya yardımcı olan temel işaretler ve araçlar.";
+"home.article.habitats.title" = "Böceklerin yaşadığı yer";
+"home.article.habitats.subtitle" = "Toprak ve yaprak döküntülerinden çiçeklere ve suya kadar, güvenle keşfedebileceğiniz tipik yaşam alanları.";
+"home.article.photography.title" = "Stressiz makro fotoğraflar";
+"home.article.photography.subtitle" = "Işık, mesafe ve sabır: küçük konuların daha net resimleri için kısa ipuçları.";
+"home.article.identify.block1.title" = "İlk olarak neye bakıyoruz";
+"home.article.identify.block1.body" = "Vücudun şekli, kanatları, antenleri ve bacakları genellikle bir bakışta böceklerin sırasını daraltır. Renk desenleri yardımcı olur, ancak türler arasında farklılık gösterirler; bunları boyut, duruş ve davranışla birleştirirler. Mümkün olduğunda böceği nerede gördüğünüzü not edin: konakçı bitki, toprak yüzeyi veya su kenarı, bunların hepsi bağlam katar.";
+"home.article.identify.block2.title" = "Bir fotoğraftan";
+"home.article.identify.block2.body" = "Keskin, iyi aydınlatılmış bir görüntü her zaman bulanık olanı yener. Üst görünümü ve mümkünse yan profili yakalayın. Boyut önemli olduğunda ölçek hissini (bir bozuk para veya parmağınız) ekleyin. İşaretler ince olduğunda veya katlanmış kanatların altında gizlendiğinde, çeşitli açılar tahminleri azaltır.";
+"home.article.habitats.block1.title" = "Bir habitatın katmanları";
+"home.article.habitats.block1.body" = "Böcekler dikey alanı kullanır: gölgelik, alt kat, yaprak döküntüsü, ağaç kabuğu yarıkları ve toprak. Bir kütüğü çevirmek veya bir taşı kaldırmak, tam güneş altındaki bir çiçek başından farklı bir topluluğu ortaya çıkarır. Mikro yaşam alanlarının bozulmadan kalması için yavaş hareket edin ve örtüleri değiştirin.";
+"home.article.habitats.block2.title" = "Su ve kenarlar";
+"home.article.habitats.block2.body" = "Göletler, dereler ve nemli çayırlar yusufçuk, kızböcekleri ve birçok böcek gibi uzmanlara ev sahipliği yapar. Kara ve su arasındaki sınır (sazlar, çamurlu kıyılar) genellikle en zengin bölgedir. Dinlenen böcekleri rahatsız etmekten kaçınmak için önce uzaktan gözlemleyin.";
+"home.article.photography.block1.title" = "Işık ve mesafe";
+"home.article.photography.block1.body" = "Dağınık gün ışığı veya açık gölge, sert gölgeler olmadan eşit aydınlatma sağlar. Çerçeveyi dolduracak kadar yaklaşın ancak nesnenin üzerine kendi gölgenizi düşürmekten kaçının. Küçük bir reflektör veya beyaz kart, çiçek veya ağaç kabuğunun derin girintilerindeki ayrıntıları ortaya çıkarabilir.";
+"home.article.photography.block2.title" = "Sabır ve saygı";
+"home.article.photography.block2.body" = "Böcekleri kovalamak yerine yerleşmelerine izin verin. Seri çekim modu, ürkek uçuşlara yardımcı olur. Flaş kullanıyorsanız, oturumları kısa tutun ve asla doğrudan yakındaki omurgalıların gözlerine doğrultmayın. İşiniz bittiğinde yaşam alanını bulduğunuz gibi bırakın.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Ayarlar";
+"settings.section.support" = "Destek";
+"settings.section.feedback" = "Geri bildirim";
+"settings.section.security" = "Güvenlik";
+"settings.row.contact_us" = "Bize Ulaşın";
+"settings.row.restore" = "Eski haline getirmek";
+"settings.row.rate_app" = "Uygulamayı derecelendirin";
+"settings.row.share_app" = "Uygulamayı paylaşın";
+"settings.row.privacy" = "Gizlilik politikası";
+"settings.row.terms" = "Kullanım Koşulları";
+"settings.row.refund_consent" = "Geri ödeme onayı";
+"settings.row.reset_consent" = "Onayı Sıfırla";
+"settings.support.email" = "destek@bugs.app";
+"settings.support.mail_subject" = "Hatalar uygulama desteği";
+"settings.support.mail_body" = "MERHABA,";
+"settings.support.mail_unavailable_title" = "Bize e-posta yoluyla ulaşın";
+"settings.restore.message" = "Bu Apple Kimliği için App Store aboneliğinizi geri yükler.";
+"settings.refund_consent.message" = "Verilerinizin geri ödeme amacıyla işlenmesine izin veriyor musunuz?";
+"settings.refund_consent.allow" = "İzin vermek";
+"settings.refund_consent.decline" = "Reddetmek";
+"settings.reset_consent.message" = "Reklam izin yönetimi gelecekteki bir güncellemeyle kullanıma sunulacaktır.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

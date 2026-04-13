@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Valmis";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hei! Olen oppaasi hyönteismaailmaan 🐞";
+"onboarding.intro.subtitle" = "Tässä sovelluksessa voit:";
+"onboarding.intro.benefit.identify" = "Tunnista hyönteiset sekunneissa";
+"onboarding.intro.benefit.collection" = "Tallenna ne kokoelmaasi";
+"onboarding.intro.benefit.achievements" = "Ansaitse saavutuksia";
+"onboarding.intro.benefit.ai" = "Keskustele tekoälyavustajan kanssa";
+"onboarding.intro.benefit.articles" = "Lue hyödyllisiä artikkeleita";
+"onboarding.button.next" = "Seuraavaksi";
+"onboarding.button.start" = "Aloita";
+
+/* Home */
+"home.title" = "Kotiin";
+"home.search.placeholder" = "Etsi";
+"home.ai_banner.title" = "Kysy tekoälystä kaikista löytämistäsi hyönteisistä";
+"home.ai_banner.button" = "Esitä kysymys";
+
+/* AI chat */
+"ai_chat.title" = "AI-konsultti";
+"ai_chat.input.placeholder" = "Kysy jotain…";
+"ai_chat.stub.ai" = "Tiedän kaiken hyönteisistä, voit kysyä minulta.";
+"ai_chat.stub.user" = "Kerro mehiläisistä";
+"ai_chat.seed_creation_message" = "kuka sinä olet?";
+"ai_chat.error.bootstrap" = "Keskustelua ei voitu avata. Yritä uudelleen.";
+"ai_chat.error.send" = "Viestiä ei voitu lähettää. Yritä uudelleen.";
+"ai_chat.alert.connection_lost.message" = "Yhteys katkesi. Yritä myöhemmin uudelleen.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpioneja";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profiili";
+"profile.segment.collection" = "Minun kokoelmani";
+"profile.segment.achievements" = "Minun saavutukseni";
+"profile.achievements.placeholder" = "Saavutukset näkyvät täällä.";
+"profile.collection.empty.title" = "Aloita hyönteiskokoelmasi";
+"profile.collection.empty.subtitle" = "Valokuvaa hyönteisiä, kasvata kokoelmaasi, ansaitse palkintoja ja seuraa edistymistäsi";
+"profile.achievement.close.accessibility" = "Sulje";
+"profile.achievement.unlock_heading" = "Voit avata tämän saavutuksen";
+"profile.achievement.completed_heading" = "Onnittelut!";
+"profile.achievement.completed_body" = "Lisätty kokoelmaasi";
+"profile.achievement.identify_more" = "Tunnista %lld lisää %@";
+"tab.home.accessibility" = "Kotiin";
+"tab.library.accessibility" = "Kirjasto";
+"tab.chat.accessibility" = "AI chat";
+"tab.profile.accessibility" = "Profiili";
+"tab.scan.accessibility" = "Skannaa hyönteinen";
+
+/* Scanner */
+"scanner.close.accessibility" = "Sulje";
+"scanner.recognition_progress.message" = "Odota, kun tiedot latautuvat…";
+"scanner.recognition_no_match.title" = "Vastaavaa ei löytynyt";
+"scanner.recognition_no_match.subtitle" = "Emme voineet tunnistaa tämän valokuvan hyönteistä";
+"scanner.recognition_no_match.try_again" = "Yritä uudelleen";
+"scanner.recognition_match.title" = "Ottelu löytynyt!";
+"scanner.recognition_match.subtitle" = "Olemme tunnistaneet mahdolliset ottelut. Jatka katsomista, mikä hyönteinen se on";
+"scanner.recognition_match.see_result" = "Katso tulos";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Heimo: Nymphalidae";
+"paywall.preview.harmless" = "Harmiton";
+"paywall.close.accessibility" = "Sulje";
+"paywall.headline" = "Avaa koko hyönteismaailma";
+"paywall.benefit.scans" = "Rajoittamaton skannaus";
+"paywall.benefit.collection" = "Täysi kokoelma pääsy";
+"paywall.benefit.ai" = "AI-avustaja ilman rajoja";
+"paywall.benefit.achievements" = "Ainutlaatuisia saavutuksia";
+"paywall.product.prefix" = "Siis 3 päivää ilmaiseksi";
+"paywall.product.suffix" = "viikko";
+"paywall.cancel_anytime" = "Peruuta milloin tahansa. Automaattisen uusimisen kanssa.";
+"paywall.button.next" = "Seuraavaksi";
+"paywall.footer.terms" = "Käyttöehdot";
+"paywall.footer.privacy" = "Tietosuojakäytäntö";
+"paywall.footer.restore" = "Palauta";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Osta";
+"subscription.error.product_unavailable" = "Tämä tilaus ei ole saatavilla juuri nyt. Tarkista App Store Connect tai yritä myöhemmin uudelleen.";
+"subscription.error.purchase_failed" = "Ostoa ei voitu suorittaa loppuun. Yritä uudelleen.";
+"subscription.error.restore_failed" = "Ostoksia ei voitu palauttaa. Tarkista yhteys ja yritä uudelleen.";
+"subscription.pending.title" = "Odottaa";
+"subscription.pending.message" = "Ostoksesi odottaa hyväksyntää. Pääsy avataan, kun se on valmis.";
+"subscription.restore.title" = "Palauta";
+"subscription.restore.success" = "Ostoksesi palautettiin.";
+"subscription.restore.nothing" = "Tälle Apple ID:lle ei löytynyt aktiivista tilausta.";
+
+"scanner.tips.title" = "Vinkkejä";
+"scanner.tips.intro" = "Selkeä valokuva parantaa tunnistustarkkuutta. Seuraa näitä vinkkejä saadaksesi parhaat tulokset:";
+"scanner.tips.1.title" = "1. Pidä hyönteinen terävänä";
+"scanner.tips.2.title" = "2. Keskitä hyönteis kehykseen. Varmista, että se on selvästi näkyvissä";
+"scanner.tips.3.title" = "3. Kaappaa vain yksi laji kerrallaan – useat hyönteiset heikentävät tarkkuutta";
+"scanner.tips.4.title" = "4. Käytä hyvää valaistusta";
+
+/* Library */
+"library.title" = "Kirjasto";
+"list.search_empty.title" = "Ei tuloksia…";
+"list.search_empty.subtitle" = "Yritä uudelleen";
+
+/* Category insect list */
+"insect.hym.1.title" = "Western Honey Bee";
+"insect.hym.1.subtitle" = "Yleiset puutarhan tuholaiset";
+"insect.hym.2.title" = "European Paper Wasp";
+"insect.hym.2.subtitle" = "Näkyy usein aidoilla ja räystäillä";
+"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.subtitle" = "Varhaisen kevään pölyttäjä";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Yksinäinen onkalopesä";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "Toukkien loistaidi";
+"insect.default.1.title" = "Esimerkki hyönteisestä A";
+"insect.default.1.subtitle" = "Paikkamerkkirivi tälle luokalle";
+"insect.default.2.title" = "Esimerkki hyönteestä B";
+"insect.default.2.subtitle" = "Korvaa myöhemmin API-tiedoilla";
+"insect.default.3.title" = "Esimerkki hyönteestä C";
+"insect.default.3.subtitle" = "Paikkamerkkirivi tälle luokalle";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Harmiton";
+"insect.detail.status.poisonous" = "myrkyllinen";
+"insect.detail.status.toxic" = "Myrkyllinen";
+"insect.detail.status.widespread" = "Laajalle levinnyt";
+"insect.detail.widespread.api.yes" = "Laajalle levinnyt";
+"insect.detail.widespread.api.no" = "Melko harvinaista";
+"insect.detail.also_known_prefix" = "Tunnetaan myös nimellä:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.section.description" = "Kuvaus";
+"insect.detail.read_more" = "Lue lisää";
+"insect.detail.mock.description" = "Länsimainen mehiläinen (Apis mellifera) on yksi tärkeimmistä hoidetuista pölyttäjistä maataloudessa ja luonnonvaraisissa ekosysteemeissä. Se on kotoisin Euroopasta, Länsi-Aasiasta ja Afrikasta, ja mehiläishoitajat ovat levittäneet sitä maailmanlaajuisesti hunajantuotantoa ja viljelykasvien pölytystä varten.\n\nPesäke on superorganismi: yksi hedelmällinen kuningatar munii, kun taas tuhannet naispuoliset työntekijät etsivät ruokaa, imevät toukkia, rakentavat kampaa ja puolustavat pesää. Urosdrooneja esiintyy kausiluontoisesti ja ne parittelevat muiden pesäkkeiden kuningattareiden kanssa. Työntekijät kommunikoivat suunnan ja etäisyyden runsaisiin ravinnonlähteisiin heilutustanssin avulla ja jakavat tietoa kosketuksen ja feromonien avulla.\n\nRehunhakijat vierailevat monissa kasvilajeissa siirtäen siitepölyä liikkuessaan. Tämä käyttäytyminen tukee biologista monimuotoisuutta ja ruokakasveja – hedelmätarhoista ja marjoista öljysiemeniin ja meloneihin. Mehiläishoitajat hoitavat mehiläispesiä tasapainottaakseen hunajasadon ja yhdyskuntien terveyden sekä tuholaisten, sairauksien ja ravitsemusstressin seurannan.\n\nVaikka mehiläiset ovat yleensä tottelevaisia ​​kukille, he puolustavat pesää, jos he havaitsevat uhan; niiden vihjeiden ymmärtäminen vähentää pistoja. Elinympäristön häviäminen, torjunta-aineet, taudinaiheuttajat ja ilmastonmuutokset haastavat sekä luonnonvaraiset että hoidetut populaatiot. Kukkavarojen suojeleminen ja huolellinen hoito auttavat säilyttämään nämä merkittävät hyönteiset tulevina vuodenaikoina.";
+"insect.detail.section.characteristics" = "Ominaisuudet";
+"insect.detail.section.classification" = "Tieteellinen luokitus";
+"insect.detail.section.bites" = "Puree";
+"insect.detail.bites.intro" = "Jos olet purrut tai pistetty, noudata näitä ohjeita:";
+"insect.detail.bites.first_aid" = "Välitön ensiapu:";
+"insect.detail.add_to_collection" = "Lisää kokoelmaan";
+"insect.detail.add_to_collection.sheet.title" = "Lisää valokuva kokoelmaasi";
+"insect.detail.add_to_collection.source.camera" = "Ota valokuva";
+"insect.detail.add_to_collection.source.library" = "Valitse kirjastosta";
+"insect.detail.add_to_collection.cancel" = "Peruuta";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Tätä näyttöä ei ole linkitetty luettelon hyönteiseen, joten kokoelmaa ei voi päivittää.";
+"insect.detail.add_to_collection.error.network" = "Ei voitu lisätä kokoelmaan. Tarkista yhteys ja yritä uudelleen.";
+"insect.detail.remove_from_collection.confirm.title" = "Poistetaanko kokoelmasta?";
+"insect.detail.remove_from_collection.confirm.message" = "Tämä hyönteinen poistetaan kokoelmastasi. Tätä ei voi kumota.";
+"insect.detail.remove_from_collection.confirm.delete" = "Poista";
+"insect.detail.remove_from_collection.confirm.cancel" = "Peruuta";
+"insect.detail.remove_from_collection.error.no_id" = "Palvelimella ei ole poistettavaa kokoelmamerkintää.";
+"insect.detail.remove_from_collection.error.network" = "Ei voitu poistaa kokoelmasta. Tarkista yhteys ja yritä uudelleen.";
+"insect.detail.add_to_collection.success.title" = "Menestystä!";
+"insect.detail.add_to_collection.success.subtitle" = "Hyönteinen on lisätty kokoelmaasi";
+"insect.detail.remove_from_collection.accessibility" = "Poista kokoelmasta";
+"insect.detail.class.genus.title" = "Suku";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Perhe";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Tilaa";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Luokan nimi";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Niveljalkaiset";
+"insect.detail.class.kingdom.title" = "kuningaskunta";
+"insect.detail.class.kingdom.value" = "Eläimet";
+"insect.detail.class.domain.title" = "Verkkotunnus";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Aikuisten koko";
+"insect.detail.char.adult_size.value" = "1,2-1,5 cm";
+"insect.detail.char.forms.title" = "Olemassaolomuodot";
+"insect.detail.char.forms.value" = "Muna, Toukka, Pupa, Aikuinen";
+"insect.detail.char.colors.title" = "värit";
+"insect.detail.char.colors.value" = "Kullanruskea mustilla raidoilla";
+"insect.detail.char.population.title" = "Väestö";
+"insect.detail.char.population.value" = "Erittäin laajalle levinnyt ja kesytetty";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Niityt, puutarhat, metsät, maatalousalueet";
+"insect.detail.char.diet.title" = "Ruokavalio";
+"insect.detail.char.diet.value" = "Kukkivien kasvien nektaria ja siitepölyä";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Suosittu tällä viikolla";
+"home.popular.butterfly" = "Perhonen";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Ant";
+"home.popular.beetle" = "Kovakuoriainen";
+
+/* Home — articles */
+"home.articles_section_title" = "Hyödyllisiä artikkeleita";
+"home.article.identify.title" = "Miten tunnistamme hyönteiset?";
+"home.article.identify.subtitle" = "Peruskyltit ja työkalut, jotka auttavat erottamaan lajit pellolla tai valokuvasta.";
+"home.article.habitats.title" = "Missä hyönteiset elävät";
+"home.article.habitats.subtitle" = "Maaperästä ja lehtipeitteestä kukkiin ja veteen – tyypillisiä elinympäristöjä, joita voit tutkia turvallisesti.";
+"home.article.photography.title" = "Makrokuvat ilman stressiä";
+"home.article.photography.subtitle" = "Valo, etäisyys ja kärsivällisyys: lyhyitä vinkkejä selkeämpien kuvien saamiseksi pienistä kohteista.";
+"home.article.identify.block1.title" = "Mitä katsomme ensin";
+"home.article.identify.block1.body" = "Kehon muoto, siivet, antennit ja jalat rajoittavat usein hyönteisten järjestystä yhdellä silmäyksellä. Värikuviot auttavat, mutta ne vaihtelevat lajin sisällä – yhdistä ne kokoon, asentoon ja käyttäytymiseen. Jos mahdollista, merkitse muistiin, missä näit hyönteisen: isäntäkasvi, maan pinta tai veden reuna lisäävät kontekstia.";
+"home.article.identify.block2.title" = "Valokuvasta";
+"home.article.identify.block2.body" = "Terävä, hyvin valaistu kuva voittaa sumean joka kerta. Kuvaa ylänäkymä ja, jos mahdollista, sivuprofiili. Ota mukaan mittakaava (kolikko tai sormi), kun koolla on väliä. Useat kulmat vähentävät arvailua, kun merkinnät ovat hienovaraisia ​​tai piilossa taitettujen siipien alle.";
+"home.article.habitats.block1.title" = "Elinympäristön kerrokset";
+"home.article.habitats.block1.body" = "Hyönteiset käyttävät pystysuoraa tilaa: katos, aluskasvi, lehtipeite, kuoren rakoja ja maaperää. Tukin kääntäminen tai kiven nostaminen paljastaa erilaisen yhteisön kuin kukanpää täydessä auringossa. Liiku hitaasti ja vaihda kannet, jotta mikroelinympäristöt pysyvät ehjinä.";
+"home.article.habitats.block2.title" = "Vesi ja reunat";
+"home.article.habitats.block2.body" = "Lammet, purot ja kosteat niityt isännöivät asiantuntijoita, kuten sudenkorentoja, emäkärpäsiä ja monia kovakuoriaisia. Maan ja veden välinen raja - ruoko, mutaiset ranteet - on usein rikkain vyöhyke. Tarkkaile ensin kaukaa välttääksesi häiritsevät lepäävät hyönteiset.";
+"home.article.photography.block1.title" = "Valo ja etäisyys";
+"home.article.photography.block1.body" = "Hajanainen päivänvalo tai avoin varjo antaa tasaisen valaistuksen ilman karkeita varjoja. Mene tarpeeksi lähelle täyttääksesi kehyksen, mutta vältä omaa varjoasi heittämästä kohteeseen. Pieni heijastin tai valkoinen kortti voi nostaa yksityiskohtia kukkien tai kuoren syviin syvennyksiin.";
+"home.article.photography.block2.title" = "Kärsivällisyys ja kunnioitus";
+"home.article.photography.block2.body" = "Anna hyönteisten asettua niiden jahtaamisen sijaan. Sarjakuvaustila auttaa surkeiden lentolehtisten kanssa. Jos käytät salamaa, pidä istunnot lyhyinä äläkä koskaan osoita sitä suoraan lähellä olevien selkärankaisten silmiin. Kun olet valmis, jätä elinympäristö sellaisena kuin löysit sen.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Asetukset";
+"settings.section.support" = "Tuki";
+"settings.section.feedback" = "Palaute";
+"settings.section.security" = "Turvallisuus";
+"settings.row.contact_us" = "Ota yhteyttä";
+"settings.row.restore" = "Palauta";
+"settings.row.rate_app" = "Arvioi sovellus";
+"settings.row.share_app" = "Jaa sovellus";
+"settings.row.privacy" = "Tietosuojakäytäntö";
+"settings.row.terms" = "Käyttöehdot";
+"settings.row.refund_consent" = "Hyvityksen suostumus";
+"settings.row.reset_consent" = "Nollaa suostumus";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Bugs-sovellustuki";
+"settings.support.mail_body" = "Hei,";
+"settings.support.mail_unavailable_title" = "Ota yhteyttä sähköpostitse";
+"settings.restore.message" = "Palauttaa tämän Apple ID:n tilauksesi App Storesta.";
+"settings.refund_consent.message" = "Hyväksytkö tietojesi käsittelyn hyvitystarkoituksiin?";
+"settings.refund_consent.allow" = "Salli";
+"settings.refund_consent.decline" = "Hylkää";
+"settings.reset_consent.message" = "Mainosten suostumuksen hallinta on saatavilla tulevassa päivityksessä.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

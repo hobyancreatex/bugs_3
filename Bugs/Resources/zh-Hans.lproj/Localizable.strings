@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "完成";
+
+/* Onboarding */
+"onboarding.intro.title" = "嗨！我是你昆虫世界的向导🐞";
+"onboarding.intro.subtitle" = "在此应用程序中，您可以：";
+"onboarding.intro.benefit.identify" = "在几秒钟内识别昆虫";
+"onboarding.intro.benefit.collection" = "将它们保存到您的收藏中";
+"onboarding.intro.benefit.achievements" = "获得成就";
+"onboarding.intro.benefit.ai" = "与 AI 助手聊天";
+"onboarding.intro.benefit.articles" = "阅读有用的文章";
+"onboarding.button.next" = "下一步";
+"onboarding.button.start" = "开始使用";
+
+/* Home */
+"home.title" = "首页";
+"home.search.placeholder" = "搜索";
+"home.ai_banner.title" = "向人工智能询问你发现的任何昆虫";
+"home.ai_banner.button" = "问一个问题";
+
+/* AI chat */
+"ai_chat.title" = "人工智能顾问";
+"ai_chat.input.placeholder" = "问我一些事情...";
+"ai_chat.stub.ai" = "我对昆虫很了解，你可以咨询我。";
+"ai_chat.stub.user" = "告诉我关于蜜蜂的事";
+"ai_chat.seed_creation_message" = "你是谁？";
+"ai_chat.error.bootstrap" = "无法打开聊天。请再试一次。";
+"ai_chat.error.send" = "无法发送消息。请再试一次。";
+"ai_chat.alert.connection_lost.message" = "连接丢失。请稍后重试。";
+"ai_chat.alert.connection_lost.action" = "好的";
+
+/* Home — categories */
+"home.category.coleoptera" = "鞘翅目";
+"home.category.scorpiones" = "蝎子";
+"home.category.hymenoptera" = "膜翅目";
+"home.category.araneae" = "蜘蛛目";
+"home.category.lepidoptera" = "鳞翅目";
+"home.category.diptera" = "双翅目";
+"home.category.blattodea" = "蜚蠊总科";
+"home.category.hemiptera" = "半翅目";
+
+/* Main tab bar */
+"profile.title" = "公司简介";
+"profile.segment.collection" = "我的收藏";
+"profile.segment.achievements" = "我的成就";
+"profile.achievements.placeholder" = "成就将出现在这里。";
+"profile.collection.empty.title" = "开始你的昆虫收藏";
+"profile.collection.empty.subtitle" = "拍摄昆虫、增加您的收藏、赚取奖励并跟踪您的进度";
+"profile.achievement.close.accessibility" = "关闭";
+"profile.achievement.unlock_heading" = "解锁此成就";
+"profile.achievement.completed_heading" = "恭喜！";
+"profile.achievement.completed_body" = "添加到您的收藏";
+"profile.achievement.identify_more" = "识别%lld更多%@";
+"tab.home.accessibility" = "首页";
+"tab.library.accessibility" = "图书馆";
+"tab.chat.accessibility" = "人工智能聊天";
+"tab.profile.accessibility" = "公司简介";
+"tab.scan.accessibility" = "扫描昆虫";
+
+/* Scanner */
+"scanner.close.accessibility" = "关闭";
+"scanner.recognition_progress.message" = "数据正在加载中，请稍候...";
+"scanner.recognition_no_match.title" = "未找到匹配项";
+"scanner.recognition_no_match.subtitle" = "我们无法识别这张照片中的昆虫";
+"scanner.recognition_no_match.try_again" = "再试一次";
+"scanner.recognition_match.title" = "找到匹配项！";
+"scanner.recognition_match.subtitle" = "我们已经确定了可能的匹配项。继续看看是什么昆虫";
+"scanner.recognition_match.see_result" = "查看结果";
+
+/* Paywall */
+"paywall.preview.species" = "贝母";
+"paywall.preview.family" = "科：蛱蝶科";
+"paywall.preview.harmless" = "无害";
+"paywall.close.accessibility" = "关闭";
+"paywall.headline" = "解锁完整的昆虫世界";
+"paywall.benefit.scans" = "无限次扫描";
+"paywall.benefit.collection" = "完整的馆藏访问权限";
+"paywall.benefit.ai" = "AI助手无极限";
+"paywall.benefit.achievements" = "独家成就";
+"paywall.product.prefix" = "3天免费，然后";
+"paywall.product.suffix" = "一周";
+"paywall.cancel_anytime" = "随时取消。具有自动续订功能。";
+"paywall.button.next" = "下一步";
+"paywall.footer.terms" = "使用条款";
+"paywall.footer.privacy" = "隐私政策";
+"paywall.footer.restore" = "恢复";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "购买";
+"subscription.error.product_unavailable" = "此订阅目前不可用。检查 App Store Connect 或稍后重试。";
+"subscription.error.purchase_failed" = "购买无法完成。请再试一次。";
+"subscription.error.restore_failed" = "无法恢复购买。检查您的连接并重试。";
+"subscription.pending.title" = "待定";
+"subscription.pending.message" = "您的购买正在等待批准。访问完成后将解锁。";
+"subscription.restore.title" = "恢复";
+"subscription.restore.success" = "您的购买已恢复。";
+"subscription.restore.nothing" = "未找到此 Apple ID 的有效订阅。";
+
+"scanner.tips.title" = "温馨提示";
+"scanner.tips.intro" = "清晰的照片可以提高识别准确率。请遵循以下提示以获得最佳效果：";
+"scanner.tips.1.title" = "1. 让昆虫保持清晰的焦点";
+"scanner.tips.2.title" = "2. 将昆虫置于框架中央。确保它清晰可见";
+"scanner.tips.3.title" = "3. 一次仅捕获一种昆虫——多种昆虫会降低准确性";
+"scanner.tips.4.title" = "4.使用良好的照明";
+
+/* Library */
+"library.title" = "图书馆";
+"list.search_empty.title" = "没有结果...";
+"list.search_empty.subtitle" = "请重试";
+
+/* Category insect list */
+"insect.hym.1.title" = "西方蜜蜂";
+"insect.hym.1.subtitle" = "常见园艺害虫";
+"insect.hym.2.title" = "欧洲纸黄蜂";
+"insect.hym.2.subtitle" = "经常出现在栅栏和屋檐上";
+"insect.hym.3.title" = "黄尾大黄蜂";
+"insect.hym.3.subtitle" = "早春传粉媒介";
+"insect.hym.4.title" = "梅森·比";
+"insect.hym.4.subtitle" = "独穴筑巢者";
+"insect.hym.5.title" = "姬蜂";
+"insect.hym.5.subtitle" = "毛毛虫的寄生蜂";
+"insect.default.1.title" = "昆虫样本A";
+"insect.default.1.subtitle" = "该类别的占位符行";
+"insect.default.2.title" = "昆虫样本B";
+"insect.default.2.subtitle" = "稍后替换为API数据";
+"insect.default.3.title" = "昆虫样本C";
+"insect.default.3.subtitle" = "该类别的占位符行";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "无害";
+"insect.detail.status.poisonous" = "有毒";
+"insect.detail.status.toxic" = "有毒";
+"insect.detail.status.widespread" = "广泛传播";
+"insect.detail.widespread.api.yes" = "广泛传播";
+"insect.detail.widespread.api.no" = "不常见";
+"insect.detail.also_known_prefix" = "也称为：";
+"insect.detail.mock.scientific_title" = "意大利蜜蜂";
+"insect.detail.mock.aliases" = "欧洲蜜蜂、西方蜜蜂、蜜蜂";
+"insect.detail.section.description" = "描述";
+"insect.detail.read_more" = "了解更多";
+"insect.detail.mock.description" = "西方蜜蜂 (Apis mellifera) 是农业和野生生态系统中最重要的受管理授粉媒介之一。它原产于欧洲、西亚和非洲，已被养蜂人传播到世界各地，用于蜂蜜生产和农作物授粉。\n\n蜂群是一个超级有机体：一只能育的蜂王产卵，而数以千计的雌性工蜂则觅食、哺育幼虫、筑巢并保卫巢穴。雄性雄蜂会季节性出现，并与其他蜂群的蜂王交配。工蚁通过摇摆舞传达丰富食物来源的方向和距离，并通过触摸和信息素分享信息。\n\n觅食者会拜访许多植物物种，并在它们移动时传播花粉。这种行为支持生物多样性和粮食作物——从果园和浆果到油籽和瓜类。养蜂人管理蜂箱，以平衡蜂蜜收获与蜂群健康，监测害虫、疾病和营养压力。\n\n虽然蜜蜂通常对花朵很温顺，但如果它们察觉到威胁，它们就会保卫自己的蜂巢。了解它们的暗示可以减少刺痛。栖息地丧失、杀虫剂、病原体和气候变化给野生和管理种群带来挑战。保护花卉资源并采取精心管理有助于在未来的季节里维持这些非凡的昆虫。";
+"insect.detail.section.characteristics" = "特点";
+"insect.detail.section.classification" = "科学分类";
+"insect.detail.section.bites" = "咬伤";
+"insect.detail.bites.intro" = "如果您被咬伤或蜇伤，请按照以下步骤操作：";
+"insect.detail.bites.first_aid" = "立即急救：";
+"insect.detail.add_to_collection" = "添加到收藏";
+"insect.detail.add_to_collection.sheet.title" = "将照片添加到您的收藏中";
+"insect.detail.add_to_collection.source.camera" = "拍照";
+"insect.detail.add_to_collection.source.library" = "从库中选择";
+"insect.detail.add_to_collection.cancel" = "取消";
+"insect.detail.add_to_collection.alert.ok" = "好的";
+"insect.detail.add_to_collection.error.no_insect" = "此屏幕未链接到目录昆虫，因此无法更新集合。";
+"insect.detail.add_to_collection.error.network" = "无法添加到集合中。检查您的连接并重试。";
+"insect.detail.remove_from_collection.confirm.title" = "从集合中删除？";
+"insect.detail.remove_from_collection.confirm.message" = "该昆虫将从您的收藏中删除。此操作无法撤消。";
+"insect.detail.remove_from_collection.confirm.delete" = "删除";
+"insect.detail.remove_from_collection.confirm.cancel" = "取消";
+"insect.detail.remove_from_collection.error.no_id" = "服务器上没有要删除的集合条目。";
+"insect.detail.remove_from_collection.error.network" = "无法从集合中删除。检查您的连接并重试。";
+"insect.detail.add_to_collection.success.title" = "成功了！";
+"insect.detail.add_to_collection.success.subtitle" = "该昆虫已成功添加到您的收藏中";
+"insect.detail.remove_from_collection.accessibility" = "从集合中删除";
+"insect.detail.class.genus.title" = "属";
+"insect.detail.class.genus.value" = "蜜蜂";
+"insect.detail.class.family.title" = "家庭";
+"insect.detail.class.family.value" = "蜜蜂科";
+"insect.detail.class.order.title" = "订单";
+"insect.detail.class.order.value" = "膜翅目";
+"insect.detail.class.class.title" = "班级名称";
+"insect.detail.class.class.value" = "昆虫纲";
+"insect.detail.class.phylum.title" = "门";
+"insect.detail.class.phylum.value" = "节肢动物门";
+"insect.detail.class.kingdom.title" = "王国";
+"insect.detail.class.kingdom.value" = "动物界";
+"insect.detail.class.domain.title" = "域名";
+"insect.detail.class.domain.value" = "真核生物";
+"insect.detail.char.adult_size.title" = "成人尺寸";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 厘米";
+"insect.detail.char.forms.title" = "存在形式";
+"insect.detail.char.forms.value" = "卵、幼虫、蛹、成虫";
+"insect.detail.char.colors.title" = "颜色";
+"insect.detail.char.colors.value" = "金棕色带黑色条纹";
+"insect.detail.char.population.title" = "人口";
+"insect.detail.char.population.value" = "广泛传播和驯化";
+"insect.detail.char.habitat.title" = "栖息地";
+"insect.detail.char.habitat.value" = "草地、花园、森林、农业区";
+"insect.detail.char.diet.title" = "饮食";
+"insect.detail.char.diet.value" = "开花植物的花蜜和花粉";
+
+/* Home — popular this week */
+"home.popular_this_week" = "本周热门";
+"home.popular.butterfly" = "蝴蝶";
+"home.popular.mantis" = "螳螂";
+"home.popular.ant" = "蚂蚁";
+"home.popular.beetle" = "甲虫";
+
+/* Home — articles */
+"home.articles_section_title" = "有用的文章";
+"home.article.identify.title" = "我们如何识别昆虫？";
+"home.article.identify.subtitle" = "帮助在野外或照片中区分物种的基本标志和工具。";
+"home.article.habitats.title" = "昆虫居住的地方";
+"home.article.habitats.subtitle" = "从土壤和落叶到花朵和水——您可以安全探索的典型栖息地。";
+"home.article.photography.title" = "微距照片无压力";
+"home.article.photography.subtitle" = "光线、距离和耐心：关于拍摄小物体的清晰照片的简短提示。";
+"home.article.identify.block1.title" = "我们首先看什么";
+"home.article.identify.block1.body" = "身体、翅膀、触角和腿的形状往往一眼就能缩小昆虫的目数。颜色图案有所帮助，但它们因物种而异——将它们与体型、姿势和行为结合起来。如果可能，请记下您在哪里看到昆虫：寄主植物、土壤表面或水边都可以添加背景信息。";
+"home.article.identify.block2.title" = "来自一张照片";
+"home.article.identify.block2.body" = "清晰、光线充足的图像每次都会击败模糊的图像。拍摄俯视图，如果可以的话，拍摄侧面轮廓。当尺寸很重要时，请包括比例感（硬币或手指）。当标记很微妙或隐藏在折叠机翼下时，多个角度可以减少猜测。";
+"home.article.habitats.block1.title" = "栖息地的层次";
+"home.article.habitats.block1.body" = "昆虫利用垂直空间：树冠、林下、落叶层、树皮缝隙和土壤。转动一根木头或举起一块石头，可以揭示出与阳光下的花头不同的群落。缓慢移动并更换覆盖物，以保持微生境完好无损。";
+"home.article.habitats.block2.title" = "水和边缘";
+"home.article.habitats.block2.body" = "池塘、溪流和潮湿的草地上栖息着蜻蜓、豆娘和许多甲虫等专家。陆地和水域之间的边界——芦苇、泥泞的河岸——往往是最富饶的地区。先远距离观察，以免打扰休息的昆虫。";
+"home.article.photography.block1.title" = "光与距离";
+"home.article.photography.block1.body" = "漫射日光或开放式阴影可提供均匀的照明，而不会产生刺眼的阴影。距离足够近以填充整个框架，但避免将自己的阴影投射到拍摄对象上。小反光板或白卡可以提升花朵或树皮深处的细节。";
+"home.article.photography.block2.title" = "耐心和尊重";
+"home.article.photography.block2.body" = "让昆虫安定下来，而不是追逐它们。突发模式有助于处理不稳定的传单。如果您使用闪光灯，请保持简短，并且切勿将其直接对准附近脊椎动物的眼睛。完成后，让栖息地保持原样。";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "设置";
+"settings.section.support" = "支持";
+"settings.section.feedback" = "反馈意见";
+"settings.section.security" = "安全";
+"settings.row.contact_us" = "联系我们";
+"settings.row.restore" = "恢复";
+"settings.row.rate_app" = "评价应用程序";
+"settings.row.share_app" = "分享应用程序";
+"settings.row.privacy" = "隐私政策";
+"settings.row.terms" = "使用条款";
+"settings.row.refund_consent" = "退款同意书";
+"settings.row.reset_consent" = "重置同意";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "错误应用程序支持";
+"settings.support.mail_body" = "嗨，";
+"settings.support.mail_unavailable_title" = "通过电子邮件联系我们";
+"settings.restore.message" = "恢复您从 App Store 对此 Apple ID 的订阅。";
+"settings.refund_consent.message" = "您是否同意出于退款目的处理您的数据？";
+"settings.refund_consent.allow" = "允许";
+"settings.refund_consent.decline" = "拒绝";
+"settings.reset_consent.message" = "广告同意管理将在未来的更新中提供。";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

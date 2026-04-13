@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Terminé";
+
+/* Onboarding */
+"onboarding.intro.title" = "Salut ! Je suis votre guide du monde des insectes 🐞";
+"onboarding.intro.subtitle" = "Dans cette application, vous pouvez :";
+"onboarding.intro.benefit.identify" = "Identifiez les insectes en quelques secondes";
+"onboarding.intro.benefit.collection" = "Enregistrez-les dans votre collection";
+"onboarding.intro.benefit.achievements" = "Gagnez des succès";
+"onboarding.intro.benefit.ai" = "Discutez avec un assistant IA";
+"onboarding.intro.benefit.articles" = "Lire des articles utiles";
+"onboarding.button.next" = "Suivant";
+"onboarding.button.start" = "Commencez";
+
+/* Home */
+"home.title" = "Accueil";
+"home.search.placeholder" = "Rechercher";
+"home.ai_banner.title" = "Interrogez l'IA sur tout insecte que vous trouvez";
+"home.ai_banner.button" = "Poser une question";
+
+/* AI chat */
+"ai_chat.title" = "Consultant en IA";
+"ai_chat.input.placeholder" = "Demandez-moi quelque chose…";
+"ai_chat.stub.ai" = "Je connais tout sur les insectes, vous pouvez me consulter.";
+"ai_chat.stub.user" = "Parle-moi des abeilles";
+"ai_chat.seed_creation_message" = "qui es-tu ?";
+"ai_chat.error.bootstrap" = "Impossible d'ouvrir le chat. Veuillez réessayer.";
+"ai_chat.error.send" = "Impossible d'envoyer le message. Veuillez réessayer.";
+"ai_chat.alert.connection_lost.message" = "La connexion a été perdue. Veuillez réessayer plus tard.";
+"ai_chat.alert.connection_lost.action" = "D'accord";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coléoptères";
+"home.category.scorpiones" = "Scorpions";
+"home.category.hymenoptera" = "Hyménoptères";
+"home.category.araneae" = "Araneées";
+"home.category.lepidoptera" = "Lépidoptères";
+"home.category.diptera" = "Diptères";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hémiptères";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Ma collection";
+"profile.segment.achievements" = "Mes réalisations";
+"profile.achievements.placeholder" = "Les réalisations apparaîtront ici.";
+"profile.collection.empty.title" = "Commencez votre collection d'insectes";
+"profile.collection.empty.subtitle" = "Photographiez des insectes, agrandissez votre collection, gagnez des récompenses et suivez vos progrès";
+"profile.achievement.close.accessibility" = "Fermer";
+"profile.achievement.unlock_heading" = "Pour débloquer ce succès";
+"profile.achievement.completed_heading" = "Félicitations !";
+"profile.achievement.completed_body" = "Ajouté à votre collection";
+"profile.achievement.identify_more" = "Identifiez %lld plus %@";
+"tab.home.accessibility" = "Accueil";
+"tab.library.accessibility" = "Bibliothèque";
+"tab.chat.accessibility" = "Chat IA";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Scanner l'insecte";
+
+/* Scanner */
+"scanner.close.accessibility" = "Fermer";
+"scanner.recognition_progress.message" = "Veuillez patienter pendant le chargement des données…";
+"scanner.recognition_no_match.title" = "Aucune correspondance trouvée";
+"scanner.recognition_no_match.subtitle" = "Nous n'avons pas pu identifier l'insecte sur cette photo";
+"scanner.recognition_no_match.try_again" = "Réessayez";
+"scanner.recognition_match.title" = "Correspondance trouvée !";
+"scanner.recognition_match.subtitle" = "Nous avons identifié des correspondances possibles. Continuez à voir de quel insecte il s'agit";
+"scanner.recognition_match.see_result" = "Voir le résultat";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillaire";
+"paywall.preview.family" = "Famille : Nymphalidés";
+"paywall.preview.harmless" = "Inoffensif";
+"paywall.close.accessibility" = "Fermer";
+"paywall.headline" = "Débloquez le monde complet des insectes";
+"paywall.benefit.scans" = "Analyses illimitées";
+"paywall.benefit.collection" = "Accès à la collection complète";
+"paywall.benefit.ai" = "Assistant IA sans limites";
+"paywall.benefit.achievements" = "Réalisations exclusives";
+"paywall.product.prefix" = "3 jours gratuits, puis";
+"paywall.product.suffix" = "une semaine";
+"paywall.cancel_anytime" = "Annulez à tout moment. Avec renouvellement automatique.";
+"paywall.button.next" = "Suivant";
+"paywall.footer.terms" = "Conditions d'utilisation";
+"paywall.footer.privacy" = "Politique de confidentialité";
+"paywall.footer.restore" = "Restaurer";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Acheter";
+"subscription.error.product_unavailable" = "Cet abonnement n'est pas disponible pour le moment. Vérifiez App Store Connect ou réessayez plus tard.";
+"subscription.error.purchase_failed" = "L'achat n'a pas pu être finalisé. Veuillez réessayer.";
+"subscription.error.restore_failed" = "Impossible de restaurer les achats. Vérifiez votre connexion et réessayez.";
+"subscription.pending.title" = "En attente";
+"subscription.pending.message" = "Votre achat est en attente d'approbation. L’accès se débloquera une fois terminé.";
+"subscription.restore.title" = "Restaurer";
+"subscription.restore.success" = "Vos achats ont été restaurés.";
+"subscription.restore.nothing" = "Aucun abonnement actif n'a été trouvé pour cet identifiant Apple.";
+
+"scanner.tips.title" = "Conseils";
+"scanner.tips.intro" = "Une photo claire améliore la précision de la reconnaissance. Suivez ces conseils pour de meilleurs résultats :";
+"scanner.tips.1.title" = "1. Gardez l’insecte bien au point";
+"scanner.tips.2.title" = "2. Centrez l'insecte dans le cadre. Assurez-vous qu'il est clairement visible";
+"scanner.tips.3.title" = "3. Capturez une seule espèce à la fois – plusieurs insectes réduisent la précision";
+"scanner.tips.4.title" = "4. Utilisez un bon éclairage";
+
+/* Library */
+"library.title" = "Bibliothèque";
+"list.search_empty.title" = "Aucun résultat…";
+"list.search_empty.subtitle" = "Veuillez réessayer";
+
+/* Category insect list */
+"insect.hym.1.title" = "Abeille occidentale";
+"insect.hym.1.subtitle" = "Ravageurs courants du jardinage";
+"insect.hym.2.title" = "Guêpe à papier européenne";
+"insect.hym.2.subtitle" = "Souvent vu sur les clôtures et les avant-toits";
+"insect.hym.3.title" = "Bourdon à queue chamoisée";
+"insect.hym.3.subtitle" = "Pollinisateur du début du printemps";
+"insect.hym.4.title" = "Abeille maçonne";
+"insect.hym.4.subtitle" = "Nicheur solitaire dans une cavité";
+"insect.hym.5.title" = "Guêpe ichneumon";
+"insect.hym.5.subtitle" = "Parasitoïde des chenilles";
+"insect.default.1.title" = "Échantillon d'insecte A";
+"insect.default.1.subtitle" = "Ligne d'espace réservé pour cette catégorie";
+"insect.default.2.title" = "Échantillon d'insecte B";
+"insect.default.2.subtitle" = "Remplacer par les données API plus tard";
+"insect.default.3.title" = "Échantillon d'insecte C";
+"insect.default.3.subtitle" = "Ligne d'espace réservé pour cette catégorie";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Inoffensif";
+"insect.detail.status.poisonous" = "Toxique";
+"insect.detail.status.toxic" = "Toxique";
+"insect.detail.status.widespread" = "Généralisé";
+"insect.detail.widespread.api.yes" = "Généralisé";
+"insect.detail.widespread.api.no" = "Peu fréquent";
+"insect.detail.also_known_prefix" = "Aussi connu sous le nom de :";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Abeille européenne, abeille occidentale, abeille domestique";
+"insect.detail.section.description" = "Descriptif";
+"insect.detail.read_more" = "Lire la suite";
+"insect.detail.mock.description" = "L’abeille domestique occidentale (Apis mellifera) fait partie des pollinisateurs gérés les plus importants dans l’agriculture et les écosystèmes sauvages. Originaire d'Europe, d'Asie occidentale et d'Afrique, il a été répandu dans le monde entier par les apiculteurs pour la production de miel et la pollinisation des cultures.\n\nUne colonie est un super-organisme : une seule reine fertile pond des œufs, tandis que des milliers d'ouvrières se nourrissent, nourrissent les larves, construisent des rayons et défendent le nid. Les faux-bourdons mâles apparaissent de façon saisonnière et s'accouplent avec des reines d'autres colonies. Les travailleurs communiquent la direction et la distance jusqu'aux sources de nourriture riches grâce à la danse frétillante et partagent des informations par le toucher et les phéromones.\n\nLes butineuses visitent de nombreuses espèces végétales et transfèrent du pollen au fur et à mesure de leurs déplacements. Ce comportement soutient la biodiversité et les cultures vivrières, depuis les vergers et les baies jusqu'aux graines oléagineuses et aux melons. Les apiculteurs gèrent les ruches pour équilibrer la récolte de miel avec la santé des colonies, en surveillant les ravageurs, les maladies et le stress nutritionnel.\n\nBien que généralement dociles sur les fleurs, les abeilles mellifères défendent leur ruche si elles perçoivent une menace ; comprendre leurs signaux réduit les piqûres. La perte d’habitat, les pesticides, les agents pathogènes et les changements climatiques mettent à l’épreuve les populations sauvages et gérées. La protection des ressources florales et l’adoption d’une gestion prudente contribuent à préserver ces insectes remarquables pour les saisons futures.";
+"insect.detail.section.characteristics" = "Caractéristiques";
+"insect.detail.section.classification" = "Classement scientifique";
+"insect.detail.section.bites" = "Bouchées";
+"insect.detail.bites.intro" = "Si vous avez été mordu ou piqué, suivez ces étapes :";
+"insect.detail.bites.first_aid" = "Premiers secours immédiats :";
+"insect.detail.add_to_collection" = "Ajouter à la collection";
+"insect.detail.add_to_collection.sheet.title" = "Ajoutez une photo à votre collection";
+"insect.detail.add_to_collection.source.camera" = "Prendre une photo";
+"insect.detail.add_to_collection.source.library" = "Choisissez dans la bibliothèque";
+"insect.detail.add_to_collection.cancel" = "Annuler";
+"insect.detail.add_to_collection.alert.ok" = "D'accord";
+"insect.detail.add_to_collection.error.no_insect" = "Cet écran n'est pas lié à un catalogue d'insectes, la collection ne peut donc pas être mise à jour.";
+"insect.detail.add_to_collection.error.network" = "Impossible d'ajouter à la collection. Vérifiez votre connexion et réessayez.";
+"insect.detail.remove_from_collection.confirm.title" = "Supprimer de la collection ?";
+"insect.detail.remove_from_collection.confirm.message" = "Cet insecte sera supprimé de votre collection. Cela ne peut pas être annulé.";
+"insect.detail.remove_from_collection.confirm.delete" = "Supprimer";
+"insect.detail.remove_from_collection.confirm.cancel" = "Annuler";
+"insect.detail.remove_from_collection.error.no_id" = "Il n'y a aucune entrée de collection à supprimer sur le serveur.";
+"insect.detail.remove_from_collection.error.network" = "Impossible de supprimer de la collection. Vérifiez votre connexion et réessayez.";
+"insect.detail.add_to_collection.success.title" = "Succès !";
+"insect.detail.add_to_collection.success.subtitle" = "L'insecte a été ajouté avec succès à votre collection";
+"insect.detail.remove_from_collection.accessibility" = "Supprimer de la collection";
+"insect.detail.class.genus.title" = "Genre";
+"insect.detail.class.genus.value" = "API";
+"insect.detail.class.family.title" = "Famille";
+"insect.detail.class.family.value" = "Apidés";
+"insect.detail.class.order.title" = "Commande";
+"insect.detail.class.order.value" = "Hyménoptères";
+"insect.detail.class.class.title" = "Nom de la classe";
+"insect.detail.class.class.value" = "Insecte";
+"insect.detail.class.phylum.title" = "Embranchement";
+"insect.detail.class.phylum.value" = "Arthropodes";
+"insect.detail.class.kingdom.title" = "Royaume";
+"insect.detail.class.kingdom.value" = "Animalie";
+"insect.detail.class.domain.title" = "Domaine";
+"insect.detail.class.domain.value" = "Eucaryote";
+"insect.detail.char.adult_size.title" = "Taille adulte";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Formes d'existence";
+"insect.detail.char.forms.value" = "Oeuf, Larve, Nymphe, Adulte";
+"insect.detail.char.colors.title" = "Couleurs";
+"insect.detail.char.colors.value" = "Brun doré avec des rayures noires";
+"insect.detail.char.population.title" = "Population";
+"insect.detail.char.population.value" = "Très répandu et domestiqué";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Prairies, jardins, forêts, zones agricoles";
+"insect.detail.char.diet.title" = "Régime";
+"insect.detail.char.diet.value" = "Nectar et pollen de plantes à fleurs";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populaire cette semaine";
+"home.popular.butterfly" = "Papillon";
+"home.popular.mantis" = "Mante";
+"home.popular.ant" = "Fourmi";
+"home.popular.beetle" = "Coléoptère";
+
+/* Home — articles */
+"home.articles_section_title" = "Articles utiles";
+"home.article.identify.title" = "Comment identifier les insectes ?";
+"home.article.identify.subtitle" = "Des panneaux et des outils de base qui aident à distinguer les espèces sur le terrain ou à partir d'une photo.";
+"home.article.habitats.title" = "Où vivent les insectes";
+"home.article.habitats.subtitle" = "Du sol et des feuilles mortes aux fleurs et à l'eau : des habitats typiques que vous pouvez explorer en toute sécurité.";
+"home.article.photography.title" = "Des photos macro sans stress";
+"home.article.photography.subtitle" = "Lumière, distance et patience : petits conseils pour des photos plus claires de petits sujets.";
+"home.article.identify.block1.title" = "Ce que nous regardons en premier";
+"home.article.identify.block1.body" = "La forme du corps, des ailes, des antennes et des pattes permet souvent de déterminer d'un seul coup d'œil l'ordre des insectes. Les motifs de couleur sont utiles, mais ils varient selon les espèces : combinez-les avec la taille, la posture et le comportement. Lorsque cela est possible, notez où vous avez vu l'insecte : la plante hôte, la surface du sol ou le bord de l'eau ajoutent du contexte.";
+"home.article.identify.block2.title" = "D'après une photo";
+"home.article.identify.block2.body" = "Une image nette et bien éclairée bat à chaque fois une image floue. Capturez la vue de dessus et, si vous le pouvez, le profil latéral. Incluez une idée de l'échelle (une pièce de monnaie ou votre doigt) lorsque la taille compte. Plusieurs angles réduisent les incertitudes lorsque les marques sont subtiles ou cachées sous les ailes repliées.";
+"home.article.habitats.block1.title" = "Couches d'un habitat";
+"home.article.habitats.block1.body" = "Les insectes utilisent l’espace vertical : canopée, sous-étage, litière de feuilles, crevasses de l’écorce et sol. Tourner une bûche ou soulever une pierre révèle une communauté différente de celle d'un capitule en plein soleil. Déplacez-vous lentement et remplacez les couvertures pour que les microhabitats restent intacts.";
+"home.article.habitats.block2.title" = "Eau et bords";
+"home.article.habitats.block2.body" = "Les étangs, les ruisseaux et les prairies humides abritent des spécialistes tels que des libellules, des demoiselles et de nombreux coléoptères. La frontière entre la terre et l'eau — roseaux, berges boueuses — est souvent la zone la plus riche. Observez d’abord à distance pour éviter de déranger les insectes au repos.";
+"home.article.photography.block1.title" = "Lumière et distance";
+"home.article.photography.block1.body" = "La lumière du jour diffuse ou l'ombre ouverte donnent un éclairage uniforme sans ombres dures. Rapprochez-vous suffisamment pour remplir le cadre, mais évitez de projeter votre propre ombre sur le sujet. Un petit réflecteur ou une carte blanche peut rehausser les détails des profondeurs des fleurs ou de l'écorce.";
+"home.article.photography.block2.title" = "Patience et respect";
+"home.article.photography.block2.body" = "Laissez les insectes s’installer au lieu de les chasser. Le mode rafale aide les voyageurs capricieux. Si vous utilisez le flash, gardez les séances courtes et ne le dirigez jamais directement vers les yeux des vertébrés à proximité. Lorsque vous avez terminé, quittez l’habitat tel que vous l’avez trouvé.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Paramètres";
+"settings.section.support" = "Assistance";
+"settings.section.feedback" = "Commentaires";
+"settings.section.security" = "Sécurité";
+"settings.row.contact_us" = "Contactez-nous";
+"settings.row.restore" = "Restaurer";
+"settings.row.rate_app" = "Évaluez l'application";
+"settings.row.share_app" = "Partager l'application";
+"settings.row.privacy" = "Politique de confidentialité";
+"settings.row.terms" = "Conditions d'utilisation";
+"settings.row.refund_consent" = "Consentement au remboursement";
+"settings.row.reset_consent" = "Réinitialiser le consentement";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Prise en charge de l'application Bugs";
+"settings.support.mail_body" = "Salut,";
+"settings.support.mail_unavailable_title" = "Contactez-nous par email";
+"settings.restore.message" = "Restaure votre abonnement depuis l'App Store pour cet identifiant Apple.";
+"settings.refund_consent.message" = "Consentez-vous au traitement de vos données à des fins de remboursement ?";
+"settings.refund_consent.allow" = "Autoriser";
+"settings.refund_consent.decline" = "Refuser";
+"settings.reset_consent.message" = "La gestion du consentement publicitaire sera disponible dans une prochaine mise à jour.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

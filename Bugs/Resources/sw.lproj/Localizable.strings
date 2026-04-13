@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Imekamilika";
+
+/* Onboarding */
+"onboarding.intro.title" = "Habari! Mimi ndiye mwongozo wako kwa ulimwengu wa wadudu 🐞";
+"onboarding.intro.subtitle" = "Katika programu hii, unaweza:";
+"onboarding.intro.benefit.identify" = "Tambua wadudu kwa sekunde";
+"onboarding.intro.benefit.collection" = "Zihifadhi kwenye mkusanyiko wako";
+"onboarding.intro.benefit.achievements" = "Pata mafanikio";
+"onboarding.intro.benefit.ai" = "Piga gumzo na msaidizi wa AI";
+"onboarding.intro.benefit.articles" = "Soma makala muhimu";
+"onboarding.button.next" = "Inayofuata";
+"onboarding.button.start" = "Anza";
+
+/* Home */
+"home.title" = "Nyumbani";
+"home.search.placeholder" = "Tafuta";
+"home.ai_banner.title" = "Uliza AI kuhusu wadudu wowote unaopata";
+"home.ai_banner.button" = "Uliza swali";
+
+/* AI chat */
+"ai_chat.title" = "Mshauri wa AI";
+"ai_chat.input.placeholder" = "Niulize kitu...";
+"ai_chat.stub.ai" = "Ninajua yote kuhusu wadudu, unaweza kunishauri.";
+"ai_chat.stub.user" = "Niambie kuhusu nyuki";
+"ai_chat.seed_creation_message" = "wewe ni nani?";
+"ai_chat.error.bootstrap" = "Haikuweza kufungua gumzo. Tafadhali jaribu tena.";
+"ai_chat.error.send" = "Haikuweza kutuma ujumbe. Tafadhali jaribu tena.";
+"ai_chat.alert.connection_lost.message" = "Muunganisho umepotea. Tafadhali jaribu tena baadaye.";
+"ai_chat.alert.connection_lost.action" = "Sawa";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Nge";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Wasifu";
+"profile.segment.collection" = "Mkusanyiko wangu";
+"profile.segment.achievements" = "Mafanikio yangu";
+"profile.achievements.placeholder" = "Mafanikio yataonekana hapa.";
+"profile.collection.empty.title" = "Anza mkusanyiko wako wa wadudu";
+"profile.collection.empty.subtitle" = "Piga picha wadudu, kukuza mkusanyiko wako, pata zawadi na ufuatilie maendeleo yako";
+"profile.achievement.close.accessibility" = "Funga";
+"profile.achievement.unlock_heading" = "Ili kufungua mafanikio haya";
+"profile.achievement.completed_heading" = "Hongera!";
+"profile.achievement.completed_body" = "Imeongezwa kwenye mkusanyiko wako";
+"profile.achievement.identify_more" = "Tambua %lld zaidi %@";
+"tab.home.accessibility" = "Nyumbani";
+"tab.library.accessibility" = "Maktaba";
+"tab.chat.accessibility" = "Soga ya AI";
+"tab.profile.accessibility" = "Wasifu";
+"tab.scan.accessibility" = "Scan wadudu";
+
+/* Scanner */
+"scanner.close.accessibility" = "Funga";
+"scanner.recognition_progress.message" = "Tafadhali subiri wakati data inapakia...";
+"scanner.recognition_no_match.title" = "Hakuna inayolingana iliyopatikana";
+"scanner.recognition_no_match.subtitle" = "Hatukuweza kutambua mdudu kwenye picha hii";
+"scanner.recognition_no_match.try_again" = "Jaribu tena";
+"scanner.recognition_match.title" = "Mechi imepatikana!";
+"scanner.recognition_match.subtitle" = "Tumetambua uwezekano wa mechi. Endelea kuona ni mdudu gani";
+"scanner.recognition_match.see_result" = "Tazama matokeo";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Familia: Nymphalidae";
+"paywall.preview.harmless" = "Isiyo na madhara";
+"paywall.close.accessibility" = "Funga";
+"paywall.headline" = "Fungua ulimwengu kamili wa wadudu";
+"paywall.benefit.scans" = "Uchanganuzi usio na kikomo";
+"paywall.benefit.collection" = "Ufikiaji kamili wa mkusanyiko";
+"paywall.benefit.ai" = "Msaidizi wa AI bila mipaka";
+"paywall.benefit.achievements" = "Mafanikio ya kipekee";
+"paywall.product.prefix" = "Siku 3 bila malipo, basi";
+"paywall.product.suffix" = "wiki";
+"paywall.cancel_anytime" = "Ghairi wakati wowote. Na usasishaji kiotomatiki.";
+"paywall.button.next" = "Inayofuata";
+"paywall.footer.terms" = "Masharti ya matumizi";
+"paywall.footer.privacy" = "Sera ya faragha";
+"paywall.footer.restore" = "Rejesha";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Nunua";
+"subscription.error.product_unavailable" = "Usajili huu haupatikani kwa sasa. Angalia App Store Connect au ujaribu tena baadaye.";
+"subscription.error.purchase_failed" = "Ununuzi haukuweza kukamilika. Tafadhali jaribu tena.";
+"subscription.error.restore_failed" = "Haikuweza kurejesha ununuzi. Angalia muunganisho wako na ujaribu tena.";
+"subscription.pending.title" = "Inasubiri";
+"subscription.pending.message" = "Ununuzi wako unasubiri idhini. Ufikiaji utafunguliwa utakapokamilika.";
+"subscription.restore.title" = "Rejesha";
+"subscription.restore.success" = "Ununuzi wako umerejeshwa.";
+"subscription.restore.nothing" = "Hakuna usajili unaoendelea uliopatikana kwa Kitambulisho hiki cha Apple.";
+
+"scanner.tips.title" = "Vidokezo";
+"scanner.tips.intro" = "Picha iliyo wazi huboresha usahihi wa utambuzi. Fuata vidokezo hivi kwa matokeo bora:";
+"scanner.tips.1.title" = "1. Weka wadudu katika mtazamo mkali";
+"scanner.tips.2.title" = "2. Weka wadudu kwenye fremu. Hakikisha kuwa inaonekana wazi";
+"scanner.tips.3.title" = "3. Kukamata aina moja tu kwa wakati - wadudu wengi hupunguza usahihi";
+"scanner.tips.4.title" = "4. Tumia taa nzuri";
+
+/* Library */
+"library.title" = "Maktaba";
+"list.search_empty.title" = "Hakuna matokeo...";
+"list.search_empty.subtitle" = "Tafadhali jaribu tena";
+
+/* Category insect list */
+"insect.hym.1.title" = "Nyuki ya Asali ya Magharibi";
+"insect.hym.1.subtitle" = "Wadudu wa kawaida wa bustani";
+"insect.hym.2.title" = "Nyota wa Karatasi ya Ulaya";
+"insect.hym.2.subtitle" = "Mara nyingi huonekana kwenye ua na eaves";
+"insect.hym.3.title" = "Bumblebee yenye mkia wa Buff";
+"insect.hym.3.subtitle" = "Mchavushaji wa mapema wa chemchemi";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Nester ya pekee ya cavity";
+"insect.hym.5.title" = "Nyigu wa Ichneumon";
+"insect.hym.5.subtitle" = "Vimelea vya viwavi";
+"insect.default.1.title" = "Mfano wa wadudu A";
+"insect.default.1.subtitle" = "Safu mlalo ya kishika nafasi kwa kategoria hii";
+"insect.default.2.title" = "Mfano wa wadudu B";
+"insect.default.2.subtitle" = "Badilisha na data ya API baadaye";
+"insect.default.3.title" = "Mfano wa wadudu C";
+"insect.default.3.subtitle" = "Safu mlalo ya kishika nafasi kwa kategoria hii";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Isiyo na madhara";
+"insect.detail.status.poisonous" = "Yenye sumu";
+"insect.detail.status.toxic" = "Sumu";
+"insect.detail.status.widespread" = "Imeenea";
+"insect.detail.widespread.api.yes" = "Imeenea";
+"insect.detail.widespread.api.no" = "Isiyo ya kawaida";
+"insect.detail.also_known_prefix" = "Pia inajulikana kama:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Nyuki ya Asali ya Ulaya, Nyuki ya Asali ya Magharibi, Nyuki ya Asali";
+"insect.detail.section.description" = "Maelezo";
+"insect.detail.read_more" = "Soma Zaidi";
+"insect.detail.mock.description" = "Nyuki wa asali wa magharibi (Apis mellifera) ni miongoni mwa wachavushaji muhimu wanaosimamiwa katika kilimo na mifumo ikolojia ya porini. Asili yake ni Ulaya, magharibi mwa Asia na Afrika, imeenezwa duniani kote na wafugaji nyuki kwa ajili ya uzalishaji wa asali na uchavushaji wa mazao.\n\nMakoloni ni viumbe hai: malkia mmoja mwenye rutuba hutaga mayai, wakati maelfu ya wafanyakazi wa kike hutafuta chakula, kunyonyesha mabuu, kujenga sega, na kulinda kiota. Ndege zisizo na rubani za kiume huonekana kwa msimu na kujamiiana na malkia kutoka makoloni mengine. Wafanyikazi huwasiliana mwelekeo na umbali wa vyanzo tajiri vya chakula kupitia densi ya kutembeza na kushiriki habari kwa kugusa na pheromones.\n\nWakulima hutembelea aina nyingi za mimea, wakihamisha chavua wanaposonga. Tabia hii inasaidia bayoanuwai na mazao ya chakula-kutoka bustani na matunda kwa mbegu za mafuta na matikiti. Wafugaji nyuki husimamia mizinga ili kusawazisha uvunaji wa asali na afya ya kundi, ufuatiliaji wa wadudu, magonjwa, na mkazo wa lishe.\n\nIngawa kwa ujumla wao ni watulivu kwenye maua, nyuki wa asali hulinda mizinga yao ikiwa wanaona tishio; kuelewa dalili zao hupunguza miiba. Upotevu wa makazi, dawa za kuua wadudu, vimelea vya magonjwa, na mabadiliko ya hali ya hewa changamoto kwa wakazi wa porini na wanaosimamiwa. Kulinda rasilimali za maua na kutumia usimamizi makini husaidia kudumisha wadudu hawa wa ajabu kwa misimu ijayo.";
+"insect.detail.section.characteristics" = "Sifa";
+"insect.detail.section.classification" = "Uainishaji wa kisayansi";
+"insect.detail.section.bites" = "Kuumwa";
+"insect.detail.bites.intro" = "Ikiwa umeumwa au kuumwa, fuata hatua hizi:";
+"insect.detail.bites.first_aid" = "Msaada wa kwanza wa haraka:";
+"insect.detail.add_to_collection" = "Ongeza kwenye mkusanyiko";
+"insect.detail.add_to_collection.sheet.title" = "Ongeza picha kwenye mkusanyiko wako";
+"insect.detail.add_to_collection.source.camera" = "Piga picha";
+"insect.detail.add_to_collection.source.library" = "Chagua kutoka kwa maktaba";
+"insect.detail.add_to_collection.cancel" = "Ghairi";
+"insect.detail.add_to_collection.alert.ok" = "Sawa";
+"insect.detail.add_to_collection.error.no_insect" = "Skrini hii haijaunganishwa na wadudu wa katalogi, kwa hivyo mkusanyiko hauwezi kusasishwa.";
+"insect.detail.add_to_collection.error.network" = "Haikuweza kuongeza kwenye mkusanyiko. Angalia muunganisho wako na ujaribu tena.";
+"insect.detail.remove_from_collection.confirm.title" = "Ungependa kuondoa kwenye mkusanyiko?";
+"insect.detail.remove_from_collection.confirm.message" = "Mdudu huyu ataondolewa kwenye mkusanyiko wako. Hili haliwezi kutenduliwa.";
+"insect.detail.remove_from_collection.confirm.delete" = "Ondoa";
+"insect.detail.remove_from_collection.confirm.cancel" = "Ghairi";
+"insect.detail.remove_from_collection.error.no_id" = "Hakuna ingizo la mkusanyiko la kuondoa kwenye seva.";
+"insect.detail.remove_from_collection.error.network" = "Haikuweza kuondoa kutoka kwenye mkusanyiko. Angalia muunganisho wako na ujaribu tena.";
+"insect.detail.add_to_collection.success.title" = "Mafanikio!";
+"insect.detail.add_to_collection.success.subtitle" = "Mdudu amefanikiwa kuongezwa kwenye mkusanyiko wako";
+"insect.detail.remove_from_collection.accessibility" = "Ondoa kwenye mkusanyiko";
+"insect.detail.class.genus.title" = "Jenasi";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familia";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Agizo";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Jina la darasa";
+"insect.detail.class.class.value" = "Mdudu";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Ufalme";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Kikoa";
+"insect.detail.class.domain.value" = "Eukaryota";
+"insect.detail.char.adult_size.title" = "Ukubwa wa Watu Wazima";
+"insect.detail.char.adult_size.value" = "1.2 - 1.5 cm";
+"insect.detail.char.forms.title" = "Fomu za Kuwepo";
+"insect.detail.char.forms.value" = "Yai, Lava, Pupa, Mtu mzima";
+"insect.detail.char.colors.title" = "Rangi";
+"insect.detail.char.colors.value" = "Dhahabu-kahawia na kupigwa nyeusi";
+"insect.detail.char.population.title" = "Idadi ya watu";
+"insect.detail.char.population.value" = "Imeenea sana na kufugwa";
+"insect.detail.char.habitat.title" = "Makazi";
+"insect.detail.char.habitat.value" = "Meadows, bustani, misitu, maeneo ya kilimo";
+"insect.detail.char.diet.title" = "Mlo";
+"insect.detail.char.diet.value" = "Nekta na poleni kutoka kwa mimea ya maua";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Maarufu wiki hii";
+"home.popular.butterfly" = "Kipepeo";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Mchwa";
+"home.popular.beetle" = "Mende";
+
+/* Home — articles */
+"home.articles_section_title" = "Makala muhimu";
+"home.article.identify.title" = "Je, tunatambuaje wadudu?";
+"home.article.identify.subtitle" = "Ishara na zana za kimsingi zinazosaidia kutofautisha spishi shambani au kutoka kwa picha.";
+"home.article.habitats.title" = "Ambapo wadudu wanaishi";
+"home.article.habitats.subtitle" = "Kutoka kwa udongo na majani hadi maua na maji - makazi ya kawaida unaweza kuchunguza kwa usalama.";
+"home.article.photography.title" = "Picha za jumla bila mafadhaiko";
+"home.article.photography.subtitle" = "Mwanga, umbali, na uvumilivu: vidokezo vifupi vya picha wazi za masomo madogo.";
+"home.article.identify.block1.title" = "Tunachoangalia kwanza";
+"home.article.identify.block1.body" = "Umbo la mwili, mbawa, antena, na miguu mara nyingi hupunguza utaratibu wa wadudu kwa mtazamo. Mitindo ya rangi husaidia, lakini inatofautiana kati ya spishi - ichanganye na saizi, mkao na tabia. Inapowezekana, kumbuka mahali ulipoona wadudu: mmea mwenyeji, uso wa udongo, au ukingo wa maji yote huongeza muktadha.";
+"home.article.identify.block2.title" = "Kutoka kwa picha";
+"home.article.identify.block2.body" = "Picha kali na yenye mwanga mzuri hushinda picha yenye ukungu kila wakati. Nasa mwonekano wa juu na, kama unaweza, wasifu wa kando. Jumuisha hisia ya mizani (sarafu au kidole chako) wakati saizi ni muhimu. Pembe kadhaa hupunguza kazi ya kubahatisha wakati alama ni ndogo au zimefichwa chini ya mbawa zilizokunjwa.";
+"home.article.habitats.block1.title" = "Layers of a habitat";
+"home.article.habitats.block1.body" = "Wadudu hutumia nafasi ya wima: dari, chini, takataka ya majani, nyufa za gome na udongo. Kugeuza logi au kuinua jiwe kunaonyesha jamii tofauti kuliko kichwa cha maua kwenye jua kamili. Sogeza polepole na ubadilishe vifuniko ili makazi madogo yabaki bila kubadilika.";
+"home.article.habitats.block2.title" = "Maji na kingo";
+"home.article.habitats.block2.body" = "Mabwawa, vijito na malisho yenye unyevunyevu hukaribisha wataalamu kama vile kereng’ende, damselflies na mbawakawa wengi. Mpaka kati ya ardhi na maji - mianzi, benki zenye matope - mara nyingi ndio eneo tajiri zaidi. Angalia kwa mbali kwanza ili kuepuka kuvuruga wadudu wanaopumzika.";
+"home.article.photography.block1.title" = "Mwanga na umbali";
+"home.article.photography.block1.body" = "Kueneza mchana au kivuli wazi hutoa hata mwanga bila vivuli vikali. Sogeza karibu vya kutosha ili kujaza fremu, lakini epuka kuweka kivuli chako kwenye mada. Kiakisi kidogo au kadi nyeupe inaweza kuinua maelezo katika mapumziko ya kina ya maua au gome.";
+"home.article.photography.block2.title" = "Uvumilivu na heshima";
+"home.article.photography.block2.body" = "Acha wadudu watulie badala ya kuwafukuza. Hali ya Kupasuka husaidia kwa vipeperushi vyema. Ikiwa unatumia mweko, fanya vipindi vifupi na usiwahi kuelekeza moja kwa moja kwenye macho ya wanyama wenye uti wa mgongo walio karibu. Ukimaliza, acha makazi kama ulivyoipata.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Mipangilio";
+"settings.section.support" = "Msaada";
+"settings.section.feedback" = "Maoni";
+"settings.section.security" = "Usalama";
+"settings.row.contact_us" = "Wasiliana nasi";
+"settings.row.restore" = "Rejesha";
+"settings.row.rate_app" = "Kadiria programu";
+"settings.row.share_app" = "Shiriki programu";
+"settings.row.privacy" = "Sera ya faragha";
+"settings.row.terms" = "Masharti ya Matumizi";
+"settings.row.refund_consent" = "Idhini ya kurejesha pesa";
+"settings.row.reset_consent" = "Weka Upya Idhini";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Msaada wa programu ya hitilafu";
+"settings.support.mail_body" = "Habari,";
+"settings.support.mail_unavailable_title" = "Wasiliana nasi kwa barua pepe";
+"settings.restore.message" = "Hurejesha usajili wako kutoka kwa Duka la Programu kwa Kitambulisho hiki cha Apple.";
+"settings.refund_consent.message" = "Je, unakubali data yako ichakatwe kwa madhumuni ya kurejesha pesa?";
+"settings.refund_consent.allow" = "Ruhusu";
+"settings.refund_consent.decline" = "Kataa";
+"settings.reset_consent.message" = "Udhibiti wa idhini ya utangazaji utapatikana katika sasisho la baadaye.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

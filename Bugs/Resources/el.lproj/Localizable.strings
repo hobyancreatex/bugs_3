@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Έγινε";
+
+/* Onboarding */
+"onboarding.intro.title" = "Γεια σου! Είμαι ο οδηγός σας στον κόσμο των εντόμων 🐞";
+"onboarding.intro.subtitle" = "Σε αυτήν την εφαρμογή, μπορείτε:";
+"onboarding.intro.benefit.identify" = "Αναγνωρίστε τα έντομα σε δευτερόλεπτα";
+"onboarding.intro.benefit.collection" = "Αποθηκεύστε τα στη συλλογή σας";
+"onboarding.intro.benefit.achievements" = "Κερδίστε επιτεύγματα";
+"onboarding.intro.benefit.ai" = "Συνομιλήστε με έναν βοηθό AI";
+"onboarding.intro.benefit.articles" = "Διαβάστε χρήσιμα άρθρα";
+"onboarding.button.next" = "Επόμενο";
+"onboarding.button.start" = "Ξεκινήστε";
+
+/* Home */
+"home.title" = "Σπίτι";
+"home.search.placeholder" = "Αναζήτηση";
+"home.ai_banner.title" = "Ρωτήστε AI για οποιοδήποτε έντομο βρείτε";
+"home.ai_banner.button" = "Κάντε μια ερώτηση";
+
+/* AI chat */
+"ai_chat.title" = "Σύμβουλος AI";
+"ai_chat.input.placeholder" = "Ρωτήστε με κάτι…";
+"ai_chat.stub.ai" = "Ξέρω τα πάντα για τα έντομα, μπορείτε να με συμβουλευτείτε.";
+"ai_chat.stub.user" = "Πες μου για τις μέλισσες";
+"ai_chat.seed_creation_message" = "ποιος εισαι";
+"ai_chat.error.bootstrap" = "Δεν ήταν δυνατό το άνοιγμα της συνομιλίας. Δοκιμάστε ξανά.";
+"ai_chat.error.send" = "Δεν ήταν δυνατή η αποστολή του μηνύματος. Δοκιμάστε ξανά.";
+"ai_chat.alert.connection_lost.message" = "Η σύνδεση χάθηκε. Δοκιμάστε ξανά αργότερα.";
+"ai_chat.alert.connection_lost.action" = "ΟΚ";
+
+/* Home — categories */
+"home.category.coleoptera" = "Κολεόπτερα";
+"home.category.scorpiones" = "Σκορπιοί";
+"home.category.hymenoptera" = "Υμενόπτερα";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Λεπιδόπτερα";
+"home.category.diptera" = "Δίπτερα";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Ημίπτερα";
+
+/* Main tab bar */
+"profile.title" = "Προφίλ";
+"profile.segment.collection" = "Η συλλογή μου";
+"profile.segment.achievements" = "Τα επιτεύγματά μου";
+"profile.achievements.placeholder" = "Τα επιτεύγματα θα εμφανιστούν εδώ.";
+"profile.collection.empty.title" = "Ξεκινήστε τη συλλογή εντόμων";
+"profile.collection.empty.subtitle" = "Φωτογραφίστε έντομα, αναπτύξτε τη συλλογή σας, κερδίστε ανταμοιβές και παρακολουθήστε την πρόοδό σας";
+"profile.achievement.close.accessibility" = "Κλείσιμο";
+"profile.achievement.unlock_heading" = "Για να ξεκλειδώσετε αυτό το επίτευγμα";
+"profile.achievement.completed_heading" = "Συγχαρητήρια!";
+"profile.achievement.completed_body" = "Προστέθηκε στη συλλογή σας";
+"profile.achievement.identify_more" = "Προσδιορίστε %lld περισσότερα %@";
+"tab.home.accessibility" = "Σπίτι";
+"tab.library.accessibility" = "Βιβλιοθήκη";
+"tab.chat.accessibility" = "AI συνομιλία";
+"tab.profile.accessibility" = "Προφίλ";
+"tab.scan.accessibility" = "Σάρωση εντόμου";
+
+/* Scanner */
+"scanner.close.accessibility" = "Κλείσιμο";
+"scanner.recognition_progress.message" = "Περιμένετε μέχρι τη φόρτωση των δεδομένων…";
+"scanner.recognition_no_match.title" = "Δεν βρέθηκε αντιστοιχία";
+"scanner.recognition_no_match.subtitle" = "Δεν μπορέσαμε να αναγνωρίσουμε το έντομο σε αυτή τη φωτογραφία";
+"scanner.recognition_no_match.try_again" = "Προσπαθήστε ξανά";
+"scanner.recognition_match.title" = "Ταίριασμα βρέθηκε!";
+"scanner.recognition_match.subtitle" = "Έχουμε εντοπίσει πιθανούς αγώνες. Συνεχίστε να βλέπετε ποιο έντομο είναι";
+"scanner.recognition_match.see_result" = "Δείτε το αποτέλεσμα";
+
+/* Paywall */
+"paywall.preview.species" = "Φριτιλάρικο";
+"paywall.preview.family" = "Οικογένεια: Nymphalidae";
+"paywall.preview.harmless" = "Αβλαβές";
+"paywall.close.accessibility" = "Κλείσιμο";
+"paywall.headline" = "Ξεκλειδώστε τον πλήρη κόσμο των εντόμων";
+"paywall.benefit.scans" = "Απεριόριστες σαρώσεις";
+"paywall.benefit.collection" = "Πλήρης πρόσβαση στη συλλογή";
+"paywall.benefit.ai" = "Βοηθός AI χωρίς όρια";
+"paywall.benefit.achievements" = "Αποκλειστικά επιτεύγματα";
+"paywall.product.prefix" = "3 μέρες δωρεάν λοιπόν";
+"paywall.product.suffix" = "μια εβδομάδα";
+"paywall.cancel_anytime" = "Ακύρωση ανά πάσα στιγμή. Με αυτόματη ανανέωση.";
+"paywall.button.next" = "Επόμενο";
+"paywall.footer.terms" = "Όροι χρήσης";
+"paywall.footer.privacy" = "Πολιτική απορρήτου";
+"paywall.footer.restore" = "Επαναφορά";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Αγορά";
+"subscription.error.product_unavailable" = "Αυτή η συνδρομή δεν είναι διαθέσιμη αυτήν τη στιγμή. Ελέγξτε το App Store Connect ή δοκιμάστε ξανά αργότερα.";
+"subscription.error.purchase_failed" = "Δεν ήταν δυνατή η ολοκλήρωση της αγοράς. Δοκιμάστε ξανά.";
+"subscription.error.restore_failed" = "Δεν ήταν δυνατή η επαναφορά των αγορών. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
+"subscription.pending.title" = "Σε εκκρεμότητα";
+"subscription.pending.message" = "Η αγορά σας περιμένει έγκριση. Η πρόσβαση θα ξεκλειδωθεί όταν ολοκληρωθεί.";
+"subscription.restore.title" = "Επαναφορά";
+"subscription.restore.success" = "Οι αγορές σας αποκαταστάθηκαν.";
+"subscription.restore.nothing" = "Δεν βρέθηκε ενεργή συνδρομή για αυτό το Apple ID.";
+
+"scanner.tips.title" = "Συμβουλές";
+"scanner.tips.intro" = "Μια καθαρή φωτογραφία βελτιώνει την ακρίβεια αναγνώρισης. Ακολουθήστε αυτές τις συμβουλές για καλύτερα αποτελέσματα:";
+"scanner.tips.1.title" = "1. Κρατήστε το έντομο σε έντονη εστίαση";
+"scanner.tips.2.title" = "2. Κεντράρετε το έντομο στο πλαίσιο. Βεβαιωθείτε ότι είναι καθαρά ορατό";
+"scanner.tips.3.title" = "3. Αιχμαλωτίστε μόνο ένα είδος κάθε φορά — πολλαπλά έντομα μειώνουν την ακρίβεια";
+"scanner.tips.4.title" = "4. Χρησιμοποιήστε καλό φωτισμό";
+
+/* Library */
+"library.title" = "Βιβλιοθήκη";
+"list.search_empty.title" = "Κανένα αποτέλεσμα…";
+"list.search_empty.subtitle" = "Δοκιμάστε ξανά";
+
+/* Category insect list */
+"insect.hym.1.title" = "Δυτική μέλισσα";
+"insect.hym.1.subtitle" = "Κοινά παράσιτα κηπουρικής";
+"insect.hym.2.title" = "European Paper Wasp";
+"insect.hym.2.subtitle" = "Συχνά εμφανίζεται σε φράχτες και μαρκίζες";
+"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.subtitle" = "Πρώιμος ανοιξιάτικος επικονιαστής";
+"insect.hym.4.title" = "Mason Bee";
+"insect.hym.4.subtitle" = "Φωλιά μονήρους κοιλότητας";
+"insect.hym.5.title" = "Σφήκα Ιχνεύμων";
+"insect.hym.5.subtitle" = "Παρασιτοειδές των κάμπιων";
+"insect.default.1.title" = "Δείγμα εντόμου Α";
+"insect.default.1.subtitle" = "Σειρά κράτησης θέσης για αυτήν την κατηγορία";
+"insect.default.2.title" = "Δείγμα εντόμου Β";
+"insect.default.2.subtitle" = "Αντικαταστήστε με δεδομένα API αργότερα";
+"insect.default.3.title" = "Δείγμα εντόμου Γ";
+"insect.default.3.subtitle" = "Σειρά κράτησης θέσης για αυτήν την κατηγορία";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Αβλαβές";
+"insect.detail.status.poisonous" = "Δηλητηριώδες";
+"insect.detail.status.toxic" = "Τοξικό";
+"insect.detail.status.widespread" = "Ευρέως διαδεδομένο";
+"insect.detail.widespread.api.yes" = "Ευρέως διαδεδομένο";
+"insect.detail.widespread.api.no" = "Ασυνήθιστο";
+"insect.detail.also_known_prefix" = "Επίσης γνωστό ως:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.section.description" = "Περιγραφή";
+"insect.detail.read_more" = "Διαβάστε περισσότερα";
+"insect.detail.mock.description" = "Η δυτική μέλισσα (Apis mellifera) είναι από τους πιο σημαντικούς διαχειριζόμενους επικονιαστές στη γεωργία και στα άγρια οικοσυστήματα. Ιθαγενής στην Ευρώπη, τη δυτική Ασία και την Αφρική, έχει διαδοθεί παγκοσμίως από μελισσοκόμους για την παραγωγή μελιού και την επικονίαση των καλλιεργειών.\n\nΜια αποικία είναι ένας υπεροργανισμός: μια μόνο γόνιμη βασίλισσα γεννά αυγά, ενώ χιλιάδες εργάτριες αναζητούν τροφή, θηλάζουν προνύμφες, χτίζουν χτένα και υπερασπίζονται τη φωλιά. Οι αρσενικοί κηφήνες εμφανίζονται εποχιακά και ζευγαρώνουν με βασίλισσες από άλλες αποικίες. Οι εργαζόμενοι επικοινωνούν την κατεύθυνση και την απόσταση από τις πλούσιες πηγές τροφίμων μέσω του χορού waggle και μοιράζονται πληροφορίες με το άγγιγμα και τις φερομόνες.\n\nΟι τροφοσυλλέκτες επισκέπτονται πολλά είδη φυτών, μεταφέροντας γύρη καθώς κινούνται. Αυτή η συμπεριφορά υποστηρίζει τη βιοποικιλότητα και τις καλλιέργειες τροφίμων—από οπωρώνες και μούρα μέχρι ελαιούχους σπόρους και πεπόνια. Οι μελισσοκόμοι διαχειρίζονται τις κυψέλες για να εξισορροπήσουν τη συγκομιδή του μελιού με την υγεία των αποικιών, την παρακολούθηση για παράσιτα, ασθένειες και διατροφικό στρες.\n\nΑν και γενικά υπάκουες στα λουλούδια, οι μέλισσες υπερασπίζονται την κυψέλη τους εάν αντιληφθούν μια απειλή. Η κατανόηση των ενδείξεων τους μειώνει τα τσιμπήματα. Η απώλεια οικοτόπων, τα φυτοφάρμακα, τα παθογόνα και οι κλιματικές αλλαγές προκαλούν τόσο τους άγριους όσο και τους διαχειριζόμενους πληθυσμούς. Η προστασία των φυτικών πόρων και η υιοθέτηση προσεκτικής διαχείρισης συμβάλλει στη διατήρηση αυτών των αξιοσημείωτων εντόμων για τις μελλοντικές εποχές.";
+"insect.detail.section.characteristics" = "Χαρακτηριστικά";
+"insect.detail.section.classification" = "Επιστημονική ταξινόμηση";
+"insect.detail.section.bites" = "Δαγκώματα";
+"insect.detail.bites.intro" = "Εάν σας έχουν δαγκώσει ή τσιμπήσει, ακολουθήστε τα παρακάτω βήματα:";
+"insect.detail.bites.first_aid" = "Άμεσες πρώτες βοήθειες:";
+"insect.detail.add_to_collection" = "Προσθήκη στη συλλογή";
+"insect.detail.add_to_collection.sheet.title" = "Προσθέστε μια φωτογραφία στη συλλογή σας";
+"insect.detail.add_to_collection.source.camera" = "Τραβήξτε φωτογραφία";
+"insect.detail.add_to_collection.source.library" = "Επιλέξτε από τη βιβλιοθήκη";
+"insect.detail.add_to_collection.cancel" = "Ακύρωση";
+"insect.detail.add_to_collection.alert.ok" = "ΟΚ";
+"insect.detail.add_to_collection.error.no_insect" = "Αυτή η οθόνη δεν είναι συνδεδεμένη με κάποιο έντομο καταλόγου, επομένως η συλλογή δεν μπορεί να ενημερωθεί.";
+"insect.detail.add_to_collection.error.network" = "Δεν ήταν δυνατή η προσθήκη στη συλλογή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
+"insect.detail.remove_from_collection.confirm.title" = "Κατάργηση από τη συλλογή;";
+"insect.detail.remove_from_collection.confirm.message" = "Αυτό το έντομο θα αφαιρεθεί από τη συλλογή σας. Αυτό δεν μπορεί να αναιρεθεί.";
+"insect.detail.remove_from_collection.confirm.delete" = "Αφαίρεση";
+"insect.detail.remove_from_collection.confirm.cancel" = "Ακύρωση";
+"insect.detail.remove_from_collection.error.no_id" = "Δεν υπάρχει καταχώρηση συλλογής προς κατάργηση στον διακομιστή.";
+"insect.detail.remove_from_collection.error.network" = "Δεν ήταν δυνατή η κατάργηση από τη συλλογή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
+"insect.detail.add_to_collection.success.title" = "Επιτυχία!";
+"insect.detail.add_to_collection.success.subtitle" = "Το έντομο προστέθηκε με επιτυχία στη συλλογή σας";
+"insect.detail.remove_from_collection.accessibility" = "Αφαίρεση από τη συλλογή";
+"insect.detail.class.genus.title" = "Γένος";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Οικογένεια";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Παραγγελία";
+"insect.detail.class.order.value" = "Υμενόπτερα";
+"insect.detail.class.class.title" = "Όνομα τάξης";
+"insect.detail.class.class.value" = "έντομο";
+"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.value" = "Αρθρόποδα";
+"insect.detail.class.kingdom.title" = "Βασίλειο";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Τομέας";
+"insect.detail.class.domain.value" = "Ευκαρυώτα";
+"insect.detail.char.adult_size.title" = "Μέγεθος για ενήλικες";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Μορφές Ύπαρξης";
+"insect.detail.char.forms.value" = "Αυγό, προνύμφη, νύμφη, ενήλικα";
+"insect.detail.char.colors.title" = "Χρώματα";
+"insect.detail.char.colors.value" = "Χρυσοκαφέ με μαύρες ρίγες";
+"insect.detail.char.population.title" = "Πληθυσμός";
+"insect.detail.char.population.value" = "Πολύ διαδεδομένο και εξημερωμένο";
+"insect.detail.char.habitat.title" = "Βιότοπος";
+"insect.detail.char.habitat.value" = "Λιβάδια, κήποι, δάση, αγροτικές εκτάσεις";
+"insect.detail.char.diet.title" = "δίαιτα";
+"insect.detail.char.diet.value" = "Νέκταρ και γύρη από ανθοφόρα φυτά";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Δημοφιλές αυτή την εβδομάδα";
+"home.popular.butterfly" = "πεταλούδα";
+"home.popular.mantis" = "Mantis";
+"home.popular.ant" = "Αντ";
+"home.popular.beetle" = "Σκαθάρι";
+
+/* Home — articles */
+"home.articles_section_title" = "Χρήσιμα άρθρα";
+"home.article.identify.title" = "Πώς αναγνωρίζουμε τα έντομα;";
+"home.article.identify.subtitle" = "Βασικές πινακίδες και εργαλεία που βοηθούν να ξεχωρίσετε τα είδη στο χωράφι ή από μια φωτογραφία.";
+"home.article.habitats.title" = "Όπου ζουν τα έντομα";
+"home.article.habitats.subtitle" = "Από χώμα και απορρίμματα φύλλων μέχρι λουλούδια και νερό — τυπικοί βιότοποι που μπορείτε να εξερευνήσετε με ασφάλεια.";
+"home.article.photography.title" = "Μακρο φωτογραφίες χωρίς άγχος";
+"home.article.photography.subtitle" = "Φως, απόσταση και υπομονή: σύντομες συμβουλές για πιο καθαρές εικόνες μικρών θεμάτων.";
+"home.article.identify.block1.title" = "Αυτό που κοιτάμε αρχικά";
+"home.article.identify.block1.body" = "Το σχήμα του σώματος, τα φτερά, οι κεραίες και τα πόδια συχνά περιορίζουν τη σειρά των εντόμων με μια ματιά. Τα χρωματικά μοτίβα βοηθούν, αλλά ποικίλλουν ανάλογα με το είδος - συνδυάστε τα με το μέγεθος, τη στάση και τη συμπεριφορά. Όταν είναι δυνατόν, σημειώστε πού είδατε το έντομο: το φυτό ξενιστή, η επιφάνεια του εδάφους ή η άκρη του νερού προσθέτουν περιεχόμενο.";
+"home.article.identify.block2.title" = "Από φωτογραφία";
+"home.article.identify.block2.body" = "Μια ευκρινής, καλά φωτισμένη εικόνα ξεπερνά μια θολή κάθε φορά. Καταγράψτε την κάτοψη και, αν μπορείτε, το πλευρικό προφίλ. Συμπεριλάβετε την αίσθηση της κλίμακας (ένα νόμισμα ή το δάχτυλό σας) όταν το μέγεθος έχει σημασία. Πολλές γωνίες μειώνουν τις εικασίες όταν τα σημάδια είναι διακριτικά ή κρύβονται κάτω από διπλωμένα φτερά.";
+"home.article.habitats.block1.title" = "Στρώματα ενός οικοτόπου";
+"home.article.habitats.block1.body" = "Τα έντομα χρησιμοποιούν κάθετο χώρο: θόλο, κάτω όροφο, απορρίμματα φύλλων, σχισμές φλοιού και χώμα. Γυρίζοντας ένα κούτσουρο ή σηκώνοντας μια πέτρα αποκαλύπτεται μια διαφορετική κοινότητα από ένα κεφάλι λουλουδιών στον ήλιο. Μετακινηθείτε αργά και αντικαταστήστε τα καλύμματα ώστε οι μικροβιότοποι να παραμείνουν άθικτοι.";
+"home.article.habitats.block2.title" = "Νερό και άκρες";
+"home.article.habitats.block2.body" = "Λίμνες, ρυάκια και υγρά λιβάδια φιλοξενούν ειδικούς όπως λιβελλούλες, νταούλια και πολλά σκαθάρια. Τα σύνορα μεταξύ ξηράς και νερού - καλάμια, λασπώδεις όχθες - είναι συχνά η πιο πλούσια ζώνη. Παρατηρήστε πρώτα από απόσταση για να αποφύγετε ενοχλητικά έντομα που ξεκουράζονται.";
+"home.article.photography.block1.title" = "Φως και απόσταση";
+"home.article.photography.block1.body" = "Το διάχυτο φως της ημέρας ή η ανοιχτή σκιά δίνουν ομοιόμορφο φωτισμό χωρίς σκληρές σκιές. Πλησιάστε αρκετά για να γεμίσετε το πλαίσιο, αλλά αποφύγετε να ρίξετε τη δική σας σκιά στο θέμα. Ένας μικρός ανακλαστήρας ή μια λευκή κάρτα μπορεί να ανυψώσει τη λεπτομέρεια σε βαθιές εσοχές λουλουδιών ή φλοιού.";
+"home.article.photography.block2.title" = "Υπομονή και σεβασμός";
+"home.article.photography.block2.body" = "Αφήστε τα έντομα να εγκατασταθούν αντί να τα κυνηγήσετε. Η λειτουργία ριπής βοηθάει με τα φυλλομετρικά φυλλάδια. Εάν χρησιμοποιείτε φλας, κρατήστε τις συνεδρίες σύντομες και μην το στρέφετε ποτέ απευθείας στα μάτια των σπονδυλωτών που βρίσκονται κοντά. Όταν τελειώσετε, αφήστε τον βιότοπο όπως τον βρήκατε.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Ρυθμίσεις";
+"settings.section.support" = "Υποστήριξη";
+"settings.section.feedback" = "Ανατροφοδότηση";
+"settings.section.security" = "Ασφάλεια";
+"settings.row.contact_us" = "Επικοινωνήστε μαζί μας";
+"settings.row.restore" = "Επαναφορά";
+"settings.row.rate_app" = "Βαθμολογήστε την εφαρμογή";
+"settings.row.share_app" = "Μοιραστείτε την εφαρμογή";
+"settings.row.privacy" = "Πολιτική απορρήτου";
+"settings.row.terms" = "Όροι Χρήσης";
+"settings.row.refund_consent" = "Συναίνεση επιστροφής χρημάτων";
+"settings.row.reset_consent" = "Επαναφορά συγκατάθεσης";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Υποστήριξη εφαρμογής Bugs";
+"settings.support.mail_body" = "Γεια,";
+"settings.support.mail_unavailable_title" = "Επικοινωνήστε μαζί μας μέσω email";
+"settings.restore.message" = "Επαναφέρει τη συνδρομή σας από το App Store για αυτό το Apple ID.";
+"settings.refund_consent.message" = "Συναινείτε στην επεξεργασία των δεδομένων σας για σκοπούς επιστροφής χρημάτων;";
+"settings.refund_consent.allow" = "Να επιτρέπεται";
+"settings.refund_consent.decline" = "Απόρριψη";
+"settings.reset_consent.message" = "Η διαχείριση της συναίνεσης διαφήμισης θα είναι διαθέσιμη σε μελλοντική ενημέρωση.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

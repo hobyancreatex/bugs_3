@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "ہو گیا";
+
+/* Onboarding */
+"onboarding.intro.title" = "ہائے! میں حشرات کی دنیا کے لیے آپ کا رہنما ہوں 🐞";
+"onboarding.intro.subtitle" = "اس ایپ میں، آپ یہ کر سکتے ہیں:";
+"onboarding.intro.benefit.identify" = "سیکنڈوں میں کیڑوں کی شناخت کریں۔";
+"onboarding.intro.benefit.collection" = "انہیں اپنے مجموعہ میں محفوظ کریں۔";
+"onboarding.intro.benefit.achievements" = "کامیابیاں حاصل کریں۔";
+"onboarding.intro.benefit.ai" = "AI اسسٹنٹ کے ساتھ چیٹ کریں۔";
+"onboarding.intro.benefit.articles" = "مفید مضامین پڑھیں";
+"onboarding.button.next" = "اگلا";
+"onboarding.button.start" = "شروع کریں";
+
+/* Home */
+"home.title" = "گھر";
+"home.search.placeholder" = "تلاش کریں۔";
+"home.ai_banner.title" = "آپ کو ملنے والے کسی بھی کیڑے کے بارے میں AI سے پوچھیں۔";
+"home.ai_banner.button" = "ایک سوال پوچھیں۔";
+
+/* AI chat */
+"ai_chat.title" = "اے آئی کنسلٹنٹ";
+"ai_chat.input.placeholder" = "مجھ سے کچھ پوچھو...";
+"ai_chat.stub.ai" = "میں کیڑوں کے بارے میں سب جانتا ہوں، آپ مجھ سے مشورہ کر سکتے ہیں۔";
+"ai_chat.stub.user" = "مجھے شہد کی مکھیوں کے بارے میں بتائیں";
+"ai_chat.seed_creation_message" = "تم کون ہو";
+"ai_chat.error.bootstrap" = "چیٹ نہیں کھول سکا۔ براہ کرم دوبارہ کوشش کریں۔";
+"ai_chat.error.send" = "پیغام نہیں بھیجا جا سکا۔ براہ کرم دوبارہ کوشش کریں۔";
+"ai_chat.alert.connection_lost.message" = "رابطہ منقطع ہوگیا۔ براہ کرم بعد میں دوبارہ کوشش کریں۔";
+"ai_chat.alert.connection_lost.action" = "ٹھیک ہے";
+
+/* Home — categories */
+"home.category.coleoptera" = "کولیوپٹیرا";
+"home.category.scorpiones" = "بچھو";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "لیپیڈوپٹیرا";
+"home.category.diptera" = "ڈپٹرا";
+"home.category.blattodea" = "بلاٹوڈیا";
+"home.category.hemiptera" = "ہیمپٹیرا";
+
+/* Main tab bar */
+"profile.title" = "پروفائل";
+"profile.segment.collection" = "میرا مجموعہ";
+"profile.segment.achievements" = "میری کامیابیاں";
+"profile.achievements.placeholder" = "کامیابیاں یہاں ظاہر ہوں گی۔";
+"profile.collection.empty.title" = "اپنے کیڑے جمع کرنا شروع کریں۔";
+"profile.collection.empty.subtitle" = "کیڑوں کی تصویر کھینچیں، اپنا مجموعہ بڑھائیں، انعامات حاصل کریں، اور اپنی پیشرفت کو ٹریک کریں۔";
+"profile.achievement.close.accessibility" = "بند";
+"profile.achievement.unlock_heading" = "اس کامیابی کو غیر مقفل کرنے کے لیے";
+"profile.achievement.completed_heading" = "مبارک ہو!";
+"profile.achievement.completed_body" = "آپ کے مجموعہ میں شامل کیا گیا۔";
+"profile.achievement.identify_more" = "%lld مزید %@ کی شناخت کریں";
+"tab.home.accessibility" = "گھر";
+"tab.library.accessibility" = "لائبریری";
+"tab.chat.accessibility" = "اے آئی چیٹ";
+"tab.profile.accessibility" = "پروفائل";
+"tab.scan.accessibility" = "کیڑے کو اسکین کریں۔";
+
+/* Scanner */
+"scanner.close.accessibility" = "بند";
+"scanner.recognition_progress.message" = "براہ کرم ڈیٹا لوڈ ہونے تک انتظار کریں…";
+"scanner.recognition_no_match.title" = "کوئی مماثلت نہیں ملی";
+"scanner.recognition_no_match.subtitle" = "ہم اس تصویر میں موجود کیڑے کی شناخت نہیں کر سکے۔";
+"scanner.recognition_no_match.try_again" = "دوبارہ کوشش کریں۔";
+"scanner.recognition_match.title" = "میچ ملا!";
+"scanner.recognition_match.subtitle" = "ہم نے ممکنہ میچوں کی نشاندہی کی ہے۔ یہ دیکھنا جاری رکھیں کہ یہ کون سا کیڑا ہے۔";
+"scanner.recognition_match.see_result" = "نتیجہ دیکھیں";
+
+/* Paywall */
+"paywall.preview.species" = "فرٹیلری";
+"paywall.preview.family" = "خاندان: Nymphalidae";
+"paywall.preview.harmless" = "بے ضرر";
+"paywall.close.accessibility" = "بند";
+"paywall.headline" = "کیڑوں کی پوری دنیا کو غیر مقفل کریں۔";
+"paywall.benefit.scans" = "لامحدود اسکینز";
+"paywall.benefit.collection" = "مکمل مجموعہ تک رسائی";
+"paywall.benefit.ai" = "بغیر کسی حد کے AI اسسٹنٹ";
+"paywall.benefit.achievements" = "خصوصی کامیابیاں";
+"paywall.product.prefix" = "پھر 3 دن مفت میں";
+"paywall.product.suffix" = "ایک ہفتہ";
+"paywall.cancel_anytime" = "کسی بھی وقت منسوخ کریں۔ خودکار تجدید کے ساتھ۔";
+"paywall.button.next" = "اگلا";
+"paywall.footer.terms" = "استعمال کی شرائط";
+"paywall.footer.privacy" = "رازداری کی پالیسی";
+"paywall.footer.restore" = "بحال کریں۔";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "خریداری";
+"subscription.error.product_unavailable" = "یہ سبسکرپشن ابھی دستیاب نہیں ہے۔ ایپ اسٹور کنیکٹ چیک کریں یا بعد میں دوبارہ کوشش کریں۔";
+"subscription.error.purchase_failed" = "خریداری مکمل نہیں ہو سکی۔ براہ کرم دوبارہ کوشش کریں۔";
+"subscription.error.restore_failed" = "خریداریوں کو بحال نہیں کیا جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔";
+"subscription.pending.title" = "زیر التواء";
+"subscription.pending.message" = "آپ کی خریداری کی منظوری کا انتظار ہے۔ اس کے مکمل ہونے پر رسائی غیر مقفل ہو جائے گی۔";
+"subscription.restore.title" = "بحال کریں۔";
+"subscription.restore.success" = "آپ کی خریداریاں بحال ہو گئیں۔";
+"subscription.restore.nothing" = "اس ایپل آئی ڈی کے لیے کوئی فعال رکنیت نہیں ملی۔";
+
+"scanner.tips.title" = "تجاویز";
+"scanner.tips.intro" = "ایک واضح تصویر شناخت کی درستگی کو بہتر بناتی ہے۔ بہترین نتائج کے لیے ان تجاویز پر عمل کریں:";
+"scanner.tips.1.title" = "1. کیڑے کو تیز فوکس میں رکھیں";
+"scanner.tips.2.title" = "2. فریم میں کیڑے کو مرکز کریں۔ یقینی بنائیں کہ یہ واضح طور پر دکھائی دے رہا ہے۔";
+"scanner.tips.3.title" = "3. ایک وقت میں صرف ایک پرجاتیوں پر قبضہ کریں - متعدد کیڑے درستگی کو کم کرتے ہیں۔";
+"scanner.tips.4.title" = "4. اچھی روشنی کا استعمال کریں۔";
+
+/* Library */
+"library.title" = "لائبریری";
+"list.search_empty.title" = "کوئی نتیجہ نہیں…";
+"list.search_empty.subtitle" = "براہ کرم دوبارہ کوشش کریں۔";
+
+/* Category insect list */
+"insect.hym.1.title" = "مغربی شہد کی مکھی";
+"insect.hym.1.subtitle" = "باغبانی کے عام کیڑے";
+"insect.hym.2.title" = "یورپی کاغذی تتییا";
+"insect.hym.2.subtitle" = "اکثر باڑ اور ایواس پر دیکھا جاتا ہے۔";
+"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.subtitle" = "ابتدائی موسم بہار کے پولینیٹر";
+"insect.hym.4.title" = "میسن مکھی";
+"insect.hym.4.subtitle" = "تنہا گہا نیسٹر";
+"insect.hym.5.title" = "Ichneumon Wasp";
+"insect.hym.5.subtitle" = "کیٹرپلرز کا پرجیوی";
+"insect.default.1.title" = "نمونہ کیڑے اے";
+"insect.default.1.subtitle" = "اس زمرے کے لیے پلیس ہولڈر قطار";
+"insect.default.2.title" = "نمونہ کیڑے B";
+"insect.default.2.subtitle" = "بعد میں API ڈیٹا سے تبدیل کریں۔";
+"insect.default.3.title" = "نمونہ کیڑے سی";
+"insect.default.3.subtitle" = "اس زمرے کے لیے پلیس ہولڈر قطار";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "بے ضرر";
+"insect.detail.status.poisonous" = "زہریلا";
+"insect.detail.status.toxic" = "زہریلا";
+"insect.detail.status.widespread" = "وسیع پیمانے پر";
+"insect.detail.widespread.api.yes" = "وسیع پیمانے پر";
+"insect.detail.widespread.api.no" = "غیر معمولی";
+"insect.detail.also_known_prefix" = "کے طور پر بھی جانا جاتا ہے:";
+"insect.detail.mock.scientific_title" = "ایپس میلیفرا";
+"insect.detail.mock.aliases" = "یورپی شہد کی مکھی، مغربی شہد کی مکھی، شہد کی مکھی";
+"insect.detail.section.description" = "تفصیل";
+"insect.detail.read_more" = "مزید پڑھیں";
+"insect.detail.mock.description" = "مغربی شہد کی مکھی (Apis mellifera) زراعت اور جنگلی ماحولیاتی نظام میں سب سے اہم منظم جرگوں میں سے ہے۔ یورپ، مغربی ایشیا اور افریقہ سے تعلق رکھنے والے، اسے شہد کی مکھیوں کے پالنے والوں نے شہد کی پیداوار اور فصلوں کے جرگن کے لیے دنیا بھر میں پھیلایا ہے۔\n\nکالونی ایک سپر آرگنزم ہے: ایک ہی زرخیز ملکہ انڈے دیتی ہے، جب کہ ہزاروں خواتین ورکرز چارہ دیتی ہیں، لاروا پالتی ہیں، کنگھی بناتی ہیں اور گھونسلے کا دفاع کرتی ہیں۔ مرد ڈرون موسمی طور پر ظاہر ہوتے ہیں اور دوسری کالونیوں کی ملکہ کے ساتھ مل جاتے ہیں۔ ورکرز ویگل ڈانس کے ذریعے خوراک کے امیر ذرائع تک سمت اور فاصلے کا پتہ لگاتے ہیں اور ٹچ اور فیرومونز کے ذریعے معلومات کا اشتراک کرتے ہیں۔\n\nچرانے والے پودوں کی بہت سی انواع کا دورہ کرتے ہیں، جب وہ حرکت کرتے ہیں تو جرگ منتقل کرتے ہیں۔ یہ رویہ حیاتیاتی تنوع اور کھانے کی فصلوں کو سپورٹ کرتا ہے - باغات اور بیریوں سے لے کر تیل کے بیجوں اور خربوزوں تک۔ شہد کی مکھیاں پالنے والے شہد کی کٹائی کو کالونی کی صحت کے ساتھ متوازن کرنے کے لیے چھتے کا انتظام کرتے ہیں، کیڑوں، بیماریوں اور غذائیت کے دباؤ کی نگرانی کرتے ہیں۔\n\nاگرچہ عام طور پر پھولوں پر نرم مزاج ہوتے ہیں، شہد کی مکھیاں اپنے چھتے کا دفاع کرتی ہیں اگر انہیں خطرہ محسوس ہوتا ہے۔ ان کے اشارے کو سمجھنے سے ڈنک کم ہو جاتے ہیں۔ رہائش گاہ کا نقصان، کیڑے مار ادویات، پیتھوجینز، اور موسمیاتی تبدیلیاں جنگلی اور منظم آبادی دونوں کو چیلنج کرتی ہیں۔ پھولوں کے وسائل کی حفاظت اور محتاط انتظام کو اپنانے سے مستقبل کے موسموں کے لیے ان قابل ذکر کیڑوں کو برقرار رکھنے میں مدد ملتی ہے۔";
+"insect.detail.section.characteristics" = "خصوصیات";
+"insect.detail.section.classification" = "سائنسی درجہ بندی";
+"insect.detail.section.bites" = "کاٹتے ہیں۔";
+"insect.detail.bites.intro" = "اگر آپ کو کاٹا یا ڈنک مارا گیا ہے، تو ان اقدامات پر عمل کریں:";
+"insect.detail.bites.first_aid" = "فوری ابتدائی طبی امداد:";
+"insect.detail.add_to_collection" = "مجموعہ میں شامل کریں۔";
+"insect.detail.add_to_collection.sheet.title" = "اپنے مجموعہ میں ایک تصویر شامل کریں۔";
+"insect.detail.add_to_collection.source.camera" = "تصویر کھینچو";
+"insect.detail.add_to_collection.source.library" = "لائبریری سے انتخاب کریں۔";
+"insect.detail.add_to_collection.cancel" = "منسوخ کریں۔";
+"insect.detail.add_to_collection.alert.ok" = "ٹھیک ہے";
+"insect.detail.add_to_collection.error.no_insect" = "یہ اسکرین کیٹلاگ کیڑے سے منسلک نہیں ہے، لہذا مجموعہ کو اپ ڈیٹ نہیں کیا جا سکتا۔";
+"insect.detail.add_to_collection.error.network" = "مجموعہ میں شامل نہیں کیا جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔";
+"insect.detail.remove_from_collection.confirm.title" = "مجموعہ سے ہٹائیں؟";
+"insect.detail.remove_from_collection.confirm.message" = "اس کیڑے کو آپ کے مجموعہ سے نکال دیا جائے گا۔ اسے کالعدم نہیں کیا جا سکتا۔";
+"insect.detail.remove_from_collection.confirm.delete" = "ہٹا دیں۔";
+"insect.detail.remove_from_collection.confirm.cancel" = "منسوخ کریں۔";
+"insect.detail.remove_from_collection.error.no_id" = "سرور پر ہٹانے کے لیے کوئی مجموعہ اندراج نہیں ہے۔";
+"insect.detail.remove_from_collection.error.network" = "مجموعہ سے ہٹایا نہیں جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔";
+"insect.detail.add_to_collection.success.title" = "کامیابی!";
+"insect.detail.add_to_collection.success.subtitle" = "کیڑے کو کامیابی کے ساتھ آپ کے مجموعہ میں شامل کیا گیا ہے۔";
+"insect.detail.remove_from_collection.accessibility" = "مجموعہ سے ہٹا دیں۔";
+"insect.detail.class.genus.title" = "جینس";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "خاندان";
+"insect.detail.class.family.value" = "اپیڈی";
+"insect.detail.class.order.title" = "آرڈر";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "کلاس کا نام";
+"insect.detail.class.class.value" = "کیڑے";
+"insect.detail.class.phylum.title" = "فیلم";
+"insect.detail.class.phylum.value" = "آرتھروپوڈا";
+"insect.detail.class.kingdom.title" = "بادشاہی";
+"insect.detail.class.kingdom.value" = "حیوانات";
+"insect.detail.class.domain.title" = "ڈومین";
+"insect.detail.class.domain.value" = "یوکریوٹا";
+"insect.detail.char.adult_size.title" = "بالغ سائز";
+"insect.detail.char.adult_size.value" = "1.2 - 1.5 سینٹی میٹر";
+"insect.detail.char.forms.title" = "وجود کی شکلیں";
+"insect.detail.char.forms.value" = "انڈا، لاروا، پپو، بالغ";
+"insect.detail.char.colors.title" = "رنگ";
+"insect.detail.char.colors.value" = "کالی دھاریوں کے ساتھ سنہری بھوری";
+"insect.detail.char.population.title" = "آبادی";
+"insect.detail.char.population.value" = "انتہائی وسیع اور گھریلو";
+"insect.detail.char.habitat.title" = "مسکن";
+"insect.detail.char.habitat.value" = "گھاس کا میدان، باغات، جنگلات، زرعی علاقے";
+"insect.detail.char.diet.title" = "خوراک";
+"insect.detail.char.diet.value" = "پھولدار پودوں سے امرت اور جرگ";
+
+/* Home — popular this week */
+"home.popular_this_week" = "اس ہفتے مقبول";
+"home.popular.butterfly" = "تتلی";
+"home.popular.mantis" = "مینٹیس";
+"home.popular.ant" = "چیونٹی";
+"home.popular.beetle" = "چقندر";
+
+/* Home — articles */
+"home.articles_section_title" = "مفید مضامین";
+"home.article.identify.title" = "ہم کیڑوں کی شناخت کیسے کریں؟";
+"home.article.identify.subtitle" = "بنیادی نشانیاں اور ٹولز جو انواع کو کھیت میں یا تصویر سے الگ بتانے میں مدد کرتے ہیں۔";
+"home.article.habitats.title" = "جہاں کیڑے مکوڑے رہتے ہیں۔";
+"home.article.habitats.subtitle" = "مٹی اور پتوں کے گندگی سے لے کر پھولوں اور پانی تک - عام رہائش گاہوں کو آپ محفوظ طریقے سے تلاش کر سکتے ہیں۔";
+"home.article.photography.title" = "دباؤ کے بغیر میکرو فوٹو";
+"home.article.photography.subtitle" = "روشنی، فاصلہ، اور صبر: چھوٹے مضامین کی واضح تصویروں کے لیے مختصر تجاویز۔";
+"home.article.identify.block1.title" = "جو ہم پہلے دیکھتے ہیں۔";
+"home.article.identify.block1.body" = "جسم کی شکل، پنکھ، اینٹینا، اور ٹانگیں اکثر ایک نظر میں کیڑوں کی ترتیب کو کم کر دیتی ہیں۔ رنگ کے نمونے مدد کرتے ہیں، لیکن وہ انواع کے اندر مختلف ہوتے ہیں — انہیں سائز، کرنسی اور رویے کے ساتھ جوڑیں۔ جب ممکن ہو، نوٹ کریں کہ آپ نے کیڑے کو کہاں دیکھا: میزبان پودا، مٹی کی سطح، یا پانی کے کنارے سبھی سیاق و سباق کو شامل کرتے ہیں۔";
+"home.article.identify.block2.title" = "ایک تصویر سے";
+"home.article.identify.block2.body" = "ایک تیز، اچھی طرح سے روشن تصویر ہر بار ایک دھندلی تصویر کو شکست دیتی ہے۔ اوپر والے منظر کو کیپچر کریں اور، اگر ہو سکے تو، سائیڈ پروفائل کو۔ جب سائز اہمیت رکھتا ہو تو پیمانے کا احساس (ایک سکہ یا آپ کی انگلی) شامل کریں۔ جب نشانات لطیف ہوتے ہیں یا فولڈ پروں کے نیچے چھپے ہوتے ہیں تو کئی زاویے اندازے کو کم کرتے ہیں۔";
+"home.article.habitats.block1.title" = "رہائش گاہ کی تہہ";
+"home.article.habitats.block1.body" = "کیڑے عمودی جگہ کا استعمال کرتے ہیں: چھتری، زیریں، پتوں کی گندگی، چھال کے دراڑوں، اور مٹی۔ لاگ موڑنا یا پتھر اٹھانا پوری دھوپ میں پھولوں کے سر سے مختلف کمیونٹی کو ظاہر کرتا ہے۔ آہستہ آہستہ حرکت کریں اور کور کو تبدیل کریں تاکہ مائیکرو ہیبیٹیٹس برقرار رہیں۔";
+"home.article.habitats.block2.title" = "پانی اور کنارے";
+"home.article.habitats.block2.body" = "تالاب، نہریں، اور نم گھاس کے میدان ماہرین کی میزبانی کرتے ہیں جیسے ڈریگن فلائیز، ڈیم فلائیز، اور بہت سے بیٹل۔ زمین اور پانی کے درمیان سرحد - سرکنڈے، کیچڑ والے کنارے - اکثر امیر ترین زون ہوتا ہے۔ آرام کرنے والے کیڑوں کو پریشان کرنے سے بچنے کے لیے پہلے دور سے مشاہدہ کریں۔";
+"home.article.photography.block1.title" = "روشنی اور فاصلہ";
+"home.article.photography.block1.body" = "پھیلا ہوا دن کی روشنی یا کھلا سایہ سخت سائے کے بغیر بھی روشنی دیتا ہے۔ فریم کو بھرنے کے لیے کافی قریب پہنچیں، لیکن موضوع پر اپنا سایہ ڈالنے سے گریز کریں۔ ایک چھوٹا ریفلیکٹر یا سفید کارڈ پھولوں یا چھال کی گہرائیوں میں تفصیل اٹھا سکتا ہے۔";
+"home.article.photography.block2.title" = "صبر اور احترام";
+"home.article.photography.block2.body" = "کیڑوں کو ان کا پیچھا کرنے کے بجائے آباد ہونے دیں۔ برسٹ موڈ سکیٹش فلائیرز کے ساتھ مدد کرتا ہے۔ اگر آپ فلیش کا استعمال کرتے ہیں تو سیشنز کو مختصر رکھیں اور اسے کبھی بھی قریبی ریڑھ کی ہڈیوں کی آنکھوں میں براہ راست اشارہ نہ کریں۔ جب آپ کام کر لیں تو رہائش گاہ کو جیسا کہ آپ نے پایا اسے چھوڑ دیں۔";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "ترتیبات";
+"settings.section.support" = "حمایت";
+"settings.section.feedback" = "تاثرات";
+"settings.section.security" = "سیکورٹی";
+"settings.row.contact_us" = "ہم سے رابطہ کریں۔";
+"settings.row.restore" = "بحال کریں۔";
+"settings.row.rate_app" = "ایپ کی درجہ بندی کریں۔";
+"settings.row.share_app" = "ایپ کا اشتراک کریں۔";
+"settings.row.privacy" = "رازداری کی پالیسی";
+"settings.row.terms" = "استعمال کی شرائط";
+"settings.row.refund_consent" = "رقم کی واپسی کی رضامندی۔";
+"settings.row.reset_consent" = "رضامندی کو دوبارہ ترتیب دیں۔";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "کیڑے ایپ سپورٹ";
+"settings.support.mail_body" = "ہیلو،";
+"settings.support.mail_unavailable_title" = "ای میل کے ذریعے ہم سے رابطہ کریں۔";
+"settings.restore.message" = "اس ایپل آئی ڈی کے لیے ایپ اسٹور سے آپ کی سبسکرپشن کو بحال کرتا ہے۔";
+"settings.refund_consent.message" = "کیا آپ رقم کی واپسی کے مقاصد کے لیے اپنے ڈیٹا کی پروسیسنگ کے لیے رضامند ہیں؟";
+"settings.refund_consent.allow" = "اجازت دیں۔";
+"settings.refund_consent.decline" = "رد کرنا";
+"settings.reset_consent.message" = "اشتہاری رضامندی کا انتظام مستقبل کی تازہ کاری میں دستیاب ہوگا۔";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

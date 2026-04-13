@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "हो गया";
+
+/* Onboarding */
+"onboarding.intro.title" = "नमस्ते! मैं कीड़ों की दुनिया के लिए आपका मार्गदर्शक हूं 🐞";
+"onboarding.intro.subtitle" = "इस ऐप में, आप यह कर सकते हैं:";
+"onboarding.intro.benefit.identify" = "सेकंड में कीड़ों की पहचान करें";
+"onboarding.intro.benefit.collection" = "उन्हें अपने संग्रह में सहेजें";
+"onboarding.intro.benefit.achievements" = "उपलब्धियाँ अर्जित करें";
+"onboarding.intro.benefit.ai" = "एआई सहायक के साथ चैट करें";
+"onboarding.intro.benefit.articles" = "उपयोगी लेख पढ़ें";
+"onboarding.button.next" = "अगला";
+"onboarding.button.start" = "आरंभ करें";
+
+/* Home */
+"home.title" = "घर";
+"home.search.placeholder" = "खोजें";
+"home.ai_banner.title" = "आपको मिलने वाले किसी भी कीट के बारे में एआई से पूछें";
+"home.ai_banner.button" = "एक प्रश्न पूछें";
+
+/* AI chat */
+"ai_chat.title" = "एआई सलाहकार";
+"ai_chat.input.placeholder" = "मुझसे कुछ पूछो...";
+"ai_chat.stub.ai" = "मैं कीड़ों के बारे में सब जानता हूं, आप मुझसे सलाह ले सकते हैं।";
+"ai_chat.stub.user" = "मुझे मधुमक्खियों के बारे में बताओ?";
+"ai_chat.seed_creation_message" = "आप कौन हैं?";
+"ai_chat.error.bootstrap" = "चैट नहीं खुल सकी. कृपया पुन: प्रयास करें।";
+"ai_chat.error.send" = "संदेश नहीं भेजा जा सका. कृपया पुन: प्रयास करें।";
+"ai_chat.alert.connection_lost.message" = "संपर्क टूट गया. कृपया बाद में पुन: प्रयास करें।";
+"ai_chat.alert.connection_lost.action" = "ठीक है";
+
+/* Home — categories */
+"home.category.coleoptera" = "कोलोप्टेरा";
+"home.category.scorpiones" = "बिच्छू";
+"home.category.hymenoptera" = "हाइमनोप्टेरा";
+"home.category.araneae" = "अरनेई";
+"home.category.lepidoptera" = "लेपिडोप्टेरा";
+"home.category.diptera" = "डिप्टेरा";
+"home.category.blattodea" = "ब्लाटोडिया";
+"home.category.hemiptera" = "हेमिप्टेरा";
+
+/* Main tab bar */
+"profile.title" = "प्रोफाइल";
+"profile.segment.collection" = "मेरा संग्रह";
+"profile.segment.achievements" = "मेरी उपलब्धियाँ";
+"profile.achievements.placeholder" = "उपलब्धियां यहां दिखाई देंगी.";
+"profile.collection.empty.title" = "अपना कीट संग्रह प्रारंभ करें";
+"profile.collection.empty.subtitle" = "कीड़ों की तस्वीरें खींचें, अपना संग्रह बढ़ाएं, पुरस्कार अर्जित करें और अपनी प्रगति को ट्रैक करें";
+"profile.achievement.close.accessibility" = "बंद करें";
+"profile.achievement.unlock_heading" = "इस उपलब्धि को अनलॉक करने के लिए";
+"profile.achievement.completed_heading" = "बधाई हो!";
+"profile.achievement.completed_body" = "आपके संग्रह में जोड़ा गया";
+"profile.achievement.identify_more" = "%lld और %@ को पहचानें";
+"tab.home.accessibility" = "घर";
+"tab.library.accessibility" = "पुस्तकालय";
+"tab.chat.accessibility" = "ऐ चैट";
+"tab.profile.accessibility" = "प्रोफाइल";
+"tab.scan.accessibility" = "कीट स्कैन करें";
+
+/* Scanner */
+"scanner.close.accessibility" = "बंद करें";
+"scanner.recognition_progress.message" = "कृपया डेटा लोड होने तक प्रतीक्षा करें...";
+"scanner.recognition_no_match.title" = "कोई मेल नहीं मिला";
+"scanner.recognition_no_match.subtitle" = "हम इस तस्वीर में कीट की पहचान नहीं कर सके";
+"scanner.recognition_no_match.try_again" = "पुनः प्रयास करें";
+"scanner.recognition_match.title" = "मिलान मिल गया!";
+"scanner.recognition_match.subtitle" = "हमने संभावित मैचों की पहचान कर ली है। देखना जारी रखें कि यह कौन सा कीट है";
+"scanner.recognition_match.see_result" = "परिणाम देखें";
+
+/* Paywall */
+"paywall.preview.species" = "फ्रिटिलरी";
+"paywall.preview.family" = "परिवार: निम्फालिडे";
+"paywall.preview.harmless" = "हानिरहित";
+"paywall.close.accessibility" = "बंद करें";
+"paywall.headline" = "संपूर्ण कीड़ों की दुनिया को अनलॉक करें";
+"paywall.benefit.scans" = "असीमित स्कैन";
+"paywall.benefit.collection" = "पूर्ण संग्रह पहुंच";
+"paywall.benefit.ai" = "एआई सहायक बिना किसी सीमा के";
+"paywall.benefit.achievements" = "विशिष्ट उपलब्धियाँ";
+"paywall.product.prefix" = "तो फिर 3 दिन मुफ़्त";
+"paywall.product.suffix" = "एक सप्ताह";
+"paywall.cancel_anytime" = "किसी भी समय रद्द करें. स्वत: नवीनीकरण के साथ.";
+"paywall.button.next" = "अगला";
+"paywall.footer.terms" = "उपयोग की शर्तें";
+"paywall.footer.privacy" = "गोपनीयता नीति";
+"paywall.footer.restore" = "पुनर्स्थापित करें";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "खरीद";
+"subscription.error.product_unavailable" = "यह सदस्यता अभी उपलब्ध नहीं है. ऐप स्टोर कनेक्ट जांचें या बाद में पुनः प्रयास करें।";
+"subscription.error.purchase_failed" = "खरीदारी पूरी नहीं हो सकी. कृपया पुन: प्रयास करें।";
+"subscription.error.restore_failed" = "खरीदारी बहाल नहीं की जा सकी. अपना कनेक्शन जांचें और पुनः प्रयास करें।";
+"subscription.pending.title" = "लंबित";
+"subscription.pending.message" = "आपकी खरीदारी अनुमोदन की प्रतीक्षा कर रही है. इसके पूरा होने पर एक्सेस अनलॉक हो जाएगा।";
+"subscription.restore.title" = "पुनर्स्थापित करें";
+"subscription.restore.success" = "आपकी खरीदारी बहाल कर दी गई.";
+"subscription.restore.nothing" = "इस Apple ID के लिए कोई सक्रिय सदस्यता नहीं मिली.";
+
+"scanner.tips.title" = "युक्तियाँ";
+"scanner.tips.intro" = "एक स्पष्ट फोटो पहचान सटीकता में सुधार करती है। सर्वोत्तम परिणामों के लिए इन युक्तियों का पालन करें:";
+"scanner.tips.1.title" = "1. कीट को तीव्र फोकस में रखें";
+"scanner.tips.2.title" = "2. कीट को फ्रेम में केन्द्रित करें। सुनिश्चित करें कि यह स्पष्ट रूप से दिखाई दे";
+"scanner.tips.3.title" = "3. एक समय में केवल एक ही प्रजाति को पकड़ें - कई कीड़े सटीकता को कम करते हैं";
+"scanner.tips.4.title" = "4. अच्छी रोशनी का प्रयोग करें";
+
+/* Library */
+"library.title" = "पुस्तकालय";
+"list.search_empty.title" = "कोई परिणाम नहीं...";
+"list.search_empty.subtitle" = "कृपया पुनः प्रयास करें";
+
+/* Category insect list */
+"insect.hym.1.title" = "पश्चिमी मधु मक्खी";
+"insect.hym.1.subtitle" = "सामान्य बागवानी कीट";
+"insect.hym.2.title" = "यूरोपीय कागज ततैया";
+"insect.hym.2.subtitle" = "अक्सर बाड़ और छज्जों पर देखा जाता है";
+"insect.hym.3.title" = "बफ़-टेल्ड भौंरा";
+"insect.hym.3.subtitle" = "प्रारंभिक वसंत परागणकर्ता";
+"insect.hym.4.title" = "मेसन बी";
+"insect.hym.4.subtitle" = "एकान्त गुहा घोंसला";
+"insect.hym.5.title" = "इचन्यूमोन ततैया";
+"insect.hym.5.subtitle" = "कैटरपिलर का परजीवी";
+"insect.default.1.title" = "नमूना कीट ए";
+"insect.default.1.subtitle" = "इस श्रेणी के लिए प्लेसहोल्डर पंक्ति";
+"insect.default.2.title" = "नमूना कीट बी";
+"insect.default.2.subtitle" = "बाद में एपीआई डेटा से बदलें";
+"insect.default.3.title" = "नमूना कीट सी";
+"insect.default.3.subtitle" = "इस श्रेणी के लिए प्लेसहोल्डर पंक्ति";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "हानिरहित";
+"insect.detail.status.poisonous" = "ज़हरीला";
+"insect.detail.status.toxic" = "विषैला";
+"insect.detail.status.widespread" = "व्यापक";
+"insect.detail.widespread.api.yes" = "व्यापक";
+"insect.detail.widespread.api.no" = "असामान्य";
+"insect.detail.also_known_prefix" = "इसके रूप में भी जाना जाता है:";
+"insect.detail.mock.scientific_title" = "एपिस मेलिफ़ेरा";
+"insect.detail.mock.aliases" = "यूरोपीय मधु मक्खी, पश्चिमी मधु मक्खी, मधु मक्खी";
+"insect.detail.section.description" = "विवरण";
+"insect.detail.read_more" = "और पढ़ें";
+"insect.detail.mock.description" = "पश्चिमी मधुमक्खी (एपिस मेलिफ़ेरा) कृषि और जंगली पारिस्थितिक तंत्र में सबसे महत्वपूर्ण प्रबंधित परागणकों में से एक है। यूरोप, पश्चिमी एशिया और अफ्रीका के मूल निवासी, इसे शहद उत्पादन और फसल परागण के लिए मधुमक्खी पालकों द्वारा दुनिया भर में फैलाया गया है।\n\nएक कॉलोनी एक सुपरऑर्गेनिज्म है: एक अकेली उपजाऊ रानी अंडे देती है, जबकि हजारों महिला श्रमिक चारा ढूंढती हैं, लार्वा की देखभाल करती हैं, छत्ते बनाती हैं और घोंसले की रक्षा करती हैं। नर ड्रोन मौसमी रूप से दिखाई देते हैं और अन्य उपनिवेशों की रानियों के साथ संभोग करते हैं। कार्यकर्ता वैगल नृत्य के माध्यम से समृद्ध खाद्य स्रोतों की दिशा और दूरी बताते हैं और स्पर्श और फेरोमोन द्वारा जानकारी साझा करते हैं।\n\nवनवासी कई पौधों की प्रजातियों का दौरा करते हैं, और चलते समय पराग को स्थानांतरित करते हैं। यह व्यवहार जैव विविधता और खाद्य फसलों का समर्थन करता है - बगीचों और जामुन से लेकर तिलहन और खरबूजे तक। मधुमक्खी पालक शहद की फसल को कॉलोनी के स्वास्थ्य, कीटों, बीमारियों की निगरानी और पोषण संबंधी तनाव के साथ संतुलित करने के लिए छत्ते का प्रबंधन करते हैं।\n\nहालाँकि मधुमक्खियाँ आम तौर पर फूलों के प्रति विनम्र होती हैं, लेकिन अगर उन्हें खतरा महसूस होता है तो मधुमक्खियाँ अपने छत्ते की रक्षा करती हैं; उनके संकेतों को समझने से चुभन कम हो जाती है। पर्यावास हानि, कीटनाशक, रोगज़नक़ और जलवायु परिवर्तन जंगली और प्रबंधित दोनों प्रकार की आबादी को चुनौती देते हैं। पुष्प संसाधनों की सुरक्षा और सावधानीपूर्वक प्रबंधन अपनाने से भविष्य के मौसमों के लिए इन उल्लेखनीय कीड़ों को बनाए रखने में मदद मिलती है।";
+"insect.detail.section.characteristics" = "विशेषताएँ";
+"insect.detail.section.classification" = "वैज्ञानिक वर्गीकरण";
+"insect.detail.section.bites" = "काटता है";
+"insect.detail.bites.intro" = "यदि आपको काट लिया गया है या डंक मार दिया गया है, तो इन चरणों का पालन करें:";
+"insect.detail.bites.first_aid" = "तत्काल प्राथमिक उपचार:";
+"insect.detail.add_to_collection" = "संग्रह में जोड़ें";
+"insect.detail.add_to_collection.sheet.title" = "अपने संग्रह में एक फ़ोटो जोड़ें";
+"insect.detail.add_to_collection.source.camera" = "फ़ोटो लें";
+"insect.detail.add_to_collection.source.library" = "लाइब्रेरी से चुनें";
+"insect.detail.add_to_collection.cancel" = "रद्द करें";
+"insect.detail.add_to_collection.alert.ok" = "ठीक है";
+"insect.detail.add_to_collection.error.no_insect" = "यह स्क्रीन कैटलॉग कीट से लिंक नहीं है, इसलिए संग्रह को अद्यतन नहीं किया जा सकता है।";
+"insect.detail.add_to_collection.error.network" = "संग्रह में जोड़ा नहीं जा सका. अपना कनेक्शन जांचें और पुनः प्रयास करें।";
+"insect.detail.remove_from_collection.confirm.title" = "संग्रह से हटाएं?";
+"insect.detail.remove_from_collection.confirm.message" = "यह कीट आपके संग्रह से हटा दिया जाएगा. इसे असंपादित नहीं किया जा सकता है।";
+"insect.detail.remove_from_collection.confirm.delete" = "हटाओ";
+"insect.detail.remove_from_collection.confirm.cancel" = "रद्द करें";
+"insect.detail.remove_from_collection.error.no_id" = "सर्वर पर हटाने के लिए कोई संग्रह प्रविष्टि नहीं है।";
+"insect.detail.remove_from_collection.error.network" = "संग्रह से हटाया नहीं जा सका. अपना कनेक्शन जांचें और पुनः प्रयास करें।";
+"insect.detail.add_to_collection.success.title" = "सफलता!";
+"insect.detail.add_to_collection.success.subtitle" = "कीट को आपके संग्रह में सफलतापूर्वक जोड़ दिया गया है";
+"insect.detail.remove_from_collection.accessibility" = "संग्रह से हटाएँ";
+"insect.detail.class.genus.title" = "जाति";
+"insect.detail.class.genus.value" = "एपिस";
+"insect.detail.class.family.title" = "परिवार";
+"insect.detail.class.family.value" = "एपिडे";
+"insect.detail.class.order.title" = "आदेश";
+"insect.detail.class.order.value" = "हाइमनोप्टेरा";
+"insect.detail.class.class.title" = "कक्षा का नाम";
+"insect.detail.class.class.value" = "कीट";
+"insect.detail.class.phylum.title" = "फाइलम";
+"insect.detail.class.phylum.value" = "आर्थ्रोपोडा";
+"insect.detail.class.kingdom.title" = "साम्राज्य";
+"insect.detail.class.kingdom.value" = "एनिमलिया";
+"insect.detail.class.domain.title" = "डोमेन";
+"insect.detail.class.domain.value" = "यूकेरियोटा";
+"insect.detail.char.adult_size.title" = "वयस्क आकार";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 सेमी";
+"insect.detail.char.forms.title" = "अस्तित्व स्वरूप";
+"insect.detail.char.forms.value" = "अंडा, लार्वा, प्यूपा, वयस्क";
+"insect.detail.char.colors.title" = "रंग";
+"insect.detail.char.colors.value" = "काली धारियों वाला सुनहरा-भूरा";
+"insect.detail.char.population.title" = "जनसंख्या";
+"insect.detail.char.population.value" = "अत्यधिक व्यापक और पालतू";
+"insect.detail.char.habitat.title" = "पर्यावास";
+"insect.detail.char.habitat.value" = "घास के मैदान, उद्यान, जंगल, कृषि क्षेत्र";
+"insect.detail.char.diet.title" = "आहार";
+"insect.detail.char.diet.value" = "फूल वाले पौधों से अमृत और पराग";
+
+/* Home — popular this week */
+"home.popular_this_week" = "इस सप्ताह लोकप्रिय";
+"home.popular.butterfly" = "तितली";
+"home.popular.mantis" = "मंटिस";
+"home.popular.ant" = "चींटी";
+"home.popular.beetle" = "भृंग";
+
+/* Home — articles */
+"home.articles_section_title" = "उपयोगी लेख";
+"home.article.identify.title" = "हम कीड़ों की पहचान कैसे करते हैं?";
+"home.article.identify.subtitle" = "बुनियादी संकेत और उपकरण जो खेत में या फोटो से प्रजातियों को अलग बताने में मदद करते हैं।";
+"home.article.habitats.title" = "जहां कीड़े रहते हैं";
+"home.article.habitats.subtitle" = "मिट्टी और पत्ती के कूड़े से लेकर फूल और पानी तक - विशिष्ट आवास जिन्हें आप सुरक्षित रूप से देख सकते हैं।";
+"home.article.photography.title" = "बिना तनाव के मैक्रो तस्वीरें";
+"home.article.photography.subtitle" = "प्रकाश, दूरी और धैर्य: छोटे विषयों की स्पष्ट तस्वीरों के लिए संक्षिप्त युक्तियाँ।";
+"home.article.identify.block1.title" = "हम पहले क्या देखते हैं";
+"home.article.identify.block1.body" = "शरीर का आकार, पंख, एंटीना और पैर अक्सर एक नज़र में कीड़ों के क्रम को सीमित कर देते हैं। रंग पैटर्न मदद करते हैं, लेकिन वे प्रजातियों के भीतर भिन्न होते हैं - उन्हें आकार, मुद्रा और व्यवहार के साथ जोड़ते हैं। जब संभव हो, ध्यान दें कि आपने कीट को कहाँ देखा: मेजबान पौधा, मिट्टी की सतह, या पानी का किनारा सभी संदर्भ जोड़ते हैं।";
+"home.article.identify.block2.title" = "एक फोटो से";
+"home.article.identify.block2.body" = "एक तेज़, अच्छी रोशनी वाली छवि हर बार धुंधली छवि को मात देती है। शीर्ष दृश्य और, यदि आप कर सकते हैं, तो पार्श्व प्रोफ़ाइल कैप्चर करें। जब आकार मायने रखता है तो पैमाने की भावना (एक सिक्का या अपनी उंगली) शामिल करें। जब निशान सूक्ष्म होते हैं या मुड़े हुए पंखों के नीचे छिपे होते हैं तो कई कोण अनुमान लगाना कम कर देते हैं।";
+"home.article.habitats.block1.title" = "आवास की परतें";
+"home.article.habitats.block1.body" = "कीड़े ऊर्ध्वाधर स्थान का उपयोग करते हैं: चंदवा, अंडरस्टोरी, पत्ती कूड़े, छाल दरारें, और मिट्टी। लट्ठे को मोड़ने या पत्थर उठाने से पूर्ण सूर्य में फूल के सिर की तुलना में एक अलग समुदाय का पता चलता है। धीरे-धीरे आगे बढ़ें और कवर बदलें ताकि सूक्ष्म आवास बरकरार रहें।";
+"home.article.habitats.block2.title" = "पानी और किनारा";
+"home.article.habitats.block2.body" = "तालाब, नदियाँ और नम घास के मैदान ड्रैगनफ़्लाइज़, डैम्फ़्लाइज़ और कई बीटल जैसे विशेषज्ञों की मेजबानी करते हैं। ज़मीन और पानी के बीच की सीमा - नरकट, कीचड़ भरे किनारे - अक्सर सबसे समृद्ध क्षेत्र होता है। आराम कर रहे कीड़ों को परेशान करने से बचने के लिए पहले दूर से निरीक्षण करें।";
+"home.article.photography.block1.title" = "प्रकाश और दूरी";
+"home.article.photography.block1.body" = "विसरित दिन का प्रकाश या खुली छाया कठोर छाया के बिना भी समान रोशनी देती है। फ़्रेम को भरने के लिए पर्याप्त करीब आएँ, लेकिन विषय पर अपनी छाया डालने से बचें। एक छोटा परावर्तक या सफेद कार्ड फूलों या छाल के गहरे अंतराल में विवरण उठा सकता है।";
+"home.article.photography.block2.title" = "धैर्य और सम्मान";
+"home.article.photography.block2.body" = "कीड़ों का पीछा करने के बजाय उन्हें बसने दें। बर्स्ट मोड स्किटिश फ़्लायर्स के साथ मदद करता है। यदि आप फ़्लैश का उपयोग करते हैं, तो सत्र छोटा रखें और इसे सीधे पास के कशेरुकी जीवों की आँखों में न डालें। जब आपका काम पूरा हो जाए, तो निवास स्थान को वैसे ही छोड़ दें जैसा आपने पाया था।";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "सेटिंग्स";
+"settings.section.support" = "समर्थन";
+"settings.section.feedback" = "प्रतिक्रिया";
+"settings.section.security" = "सुरक्षा";
+"settings.row.contact_us" = "हमसे संपर्क करें";
+"settings.row.restore" = "पुनर्स्थापित करें";
+"settings.row.rate_app" = "ऐप को रेट करें";
+"settings.row.share_app" = "ऐप साझा करें";
+"settings.row.privacy" = "गोपनीयता नीति";
+"settings.row.terms" = "उपयोग की शर्तें";
+"settings.row.refund_consent" = "सहमति वापस करें";
+"settings.row.reset_consent" = "सहमति रीसेट करें";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "बग ऐप समर्थन";
+"settings.support.mail_body" = "नमस्ते,";
+"settings.support.mail_unavailable_title" = "ईमेल द्वारा हमसे संपर्क करें";
+"settings.restore.message" = "इस ऐप्पल आईडी के लिए ऐप स्टोर से आपकी सदस्यता पुनर्स्थापित करता है।";
+"settings.refund_consent.message" = "क्या आप धनवापसी उद्देश्यों के लिए अपने डेटा के प्रसंस्करण के लिए सहमति देते हैं?";
+"settings.refund_consent.allow" = "अनुमति दें";
+"settings.refund_consent.decline" = "अस्वीकार";
+"settings.reset_consent.message" = "विज्ञापन सहमति प्रबंधन भविष्य के अपडेट में उपलब्ध होगा।";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

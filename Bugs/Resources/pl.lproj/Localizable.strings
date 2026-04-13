@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Gotowe";
+
+/* Onboarding */
+"onboarding.intro.title" = "Cześć! Jestem Twoim przewodnikiem po świecie owadów 🐞";
+"onboarding.intro.subtitle" = "W tej aplikacji możesz:";
+"onboarding.intro.benefit.identify" = "Zidentyfikuj owady w ciągu kilku sekund";
+"onboarding.intro.benefit.collection" = "Zapisz je w swojej kolekcji";
+"onboarding.intro.benefit.achievements" = "Zdobywaj osiągnięcia";
+"onboarding.intro.benefit.ai" = "Czatuj z asystentem AI";
+"onboarding.intro.benefit.articles" = "Przeczytaj pomocne artykuły";
+"onboarding.button.next" = "Następny";
+"onboarding.button.start" = "Zacznij";
+
+/* Home */
+"home.title" = "Dom";
+"home.search.placeholder" = "Szukaj";
+"home.ai_banner.title" = "Zapytaj AI o każdego znalezionego owada";
+"home.ai_banner.button" = "Zadaj pytanie";
+
+/* AI chat */
+"ai_chat.title" = "Konsultant AI";
+"ai_chat.input.placeholder" = "Zapytaj mnie o coś…";
+"ai_chat.stub.ai" = "Wiem wszystko o owadach, możesz się ze mną skonsultować.";
+"ai_chat.stub.user" = "Opowiedz mi o pszczołach";
+"ai_chat.seed_creation_message" = "kim jesteś?";
+"ai_chat.error.bootstrap" = "Nie udało się otworzyć czatu. Spróbuj ponownie.";
+"ai_chat.error.send" = "Nie udało się wysłać wiadomości. Spróbuj ponownie.";
+"ai_chat.alert.connection_lost.message" = "Połączenie zostało utracone. Spróbuj ponownie później.";
+"ai_chat.alert.connection_lost.action" = "OK";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Skorpiony";
+"home.category.hymenoptera" = "Błonkoskrzydłowe";
+"home.category.araneae" = "Aranee";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Muchówki";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Moja kolekcja";
+"profile.segment.achievements" = "Moje osiągnięcia";
+"profile.achievements.placeholder" = "Tutaj pojawią się osiągnięcia.";
+"profile.collection.empty.title" = "Rozpocznij swoją kolekcję owadów";
+"profile.collection.empty.subtitle" = "Fotografuj owady, powiększaj swoją kolekcję, zdobywaj nagrody i śledź swoje postępy";
+"profile.achievement.close.accessibility" = "Zamknij";
+"profile.achievement.unlock_heading" = "Aby odblokować to osiągnięcie";
+"profile.achievement.completed_heading" = "Gratulacje!";
+"profile.achievement.completed_body" = "Dodano do Twojej kolekcji";
+"profile.achievement.identify_more" = "Zidentyfikuj %lld więcej %@";
+"tab.home.accessibility" = "Dom";
+"tab.library.accessibility" = "Biblioteka";
+"tab.chat.accessibility" = "Czat AI";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Zeskanuj owada";
+
+/* Scanner */
+"scanner.close.accessibility" = "Zamknij";
+"scanner.recognition_progress.message" = "Proszę czekać, trwa ładowanie danych…";
+"scanner.recognition_no_match.title" = "Nie znaleziono dopasowania";
+"scanner.recognition_no_match.subtitle" = "Nie udało nam się zidentyfikować owada na tym zdjęciu";
+"scanner.recognition_no_match.try_again" = "Spróbuj ponownie";
+"scanner.recognition_match.title" = "Znaleziono dopasowanie!";
+"scanner.recognition_match.subtitle" = "Zidentyfikowaliśmy możliwe dopasowania. Kontynuuj sprawdzanie, który to owad";
+"scanner.recognition_match.see_result" = "Zobacz wynik";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillar";
+"paywall.preview.family" = "Rodzina: Nymphalidae";
+"paywall.preview.harmless" = "Nieszkodliwy";
+"paywall.close.accessibility" = "Zamknij";
+"paywall.headline" = "Odblokuj pełny świat owadów";
+"paywall.benefit.scans" = "Nieograniczone skanowanie";
+"paywall.benefit.collection" = "Pełny dostęp do kolekcji";
+"paywall.benefit.ai" = "Asystent AI bez ograniczeń";
+"paywall.benefit.achievements" = "Ekskluzywne osiągnięcia";
+"paywall.product.prefix" = "W takim razie 3 dni za darmo";
+"paywall.product.suffix" = "tydzień";
+"paywall.cancel_anytime" = "Anuluj w dowolnym momencie. Z automatycznym odnawianiem.";
+"paywall.button.next" = "Następny";
+"paywall.footer.terms" = "Warunki użytkowania";
+"paywall.footer.privacy" = "Polityka prywatności";
+"paywall.footer.restore" = "Przywróć";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Zakup";
+"subscription.error.product_unavailable" = "Ta subskrypcja nie jest obecnie dostępna. Sprawdź App Store Connect lub spróbuj ponownie później.";
+"subscription.error.purchase_failed" = "Nie udało się sfinalizować zakupu. Spróbuj ponownie.";
+"subscription.error.restore_failed" = "Nie udało się przywrócić zakupów. Sprawdź połączenie i spróbuj ponownie.";
+"subscription.pending.title" = "Oczekujące";
+"subscription.pending.message" = "Twój zakup oczekuje na zatwierdzenie. Dostęp zostanie odblokowany po zakończeniu.";
+"subscription.restore.title" = "Przywróć";
+"subscription.restore.success" = "Twoje zakupy zostały przywrócone.";
+"subscription.restore.nothing" = "Nie znaleziono aktywnej subskrypcji dla tego Apple ID.";
+
+"scanner.tips.title" = "Wskazówki";
+"scanner.tips.intro" = "Wyraźne zdjęcie poprawia dokładność rozpoznawania. Aby uzyskać najlepsze rezultaty, postępuj zgodnie z poniższymi wskazówkami:";
+"scanner.tips.1.title" = "1. Trzymaj owada w ostrej ostrości";
+"scanner.tips.2.title" = "2. Wyśrodkuj owada w ramce. Upewnij się, że jest dobrze widoczny";
+"scanner.tips.3.title" = "3. Łap tylko jeden gatunek na raz — wiele owadów zmniejsza dokładność";
+"scanner.tips.4.title" = "4. Używaj dobrego oświetlenia";
+
+/* Library */
+"library.title" = "Biblioteka";
+"list.search_empty.title" = "Brak wyników…";
+"list.search_empty.subtitle" = "Spróbuj ponownie";
+
+/* Category insect list */
+"insect.hym.1.title" = "Zachodnia pszczoła miodna";
+"insect.hym.1.subtitle" = "Powszechne szkodniki ogrodnicze";
+"insect.hym.2.title" = "Europejska osa papierowa";
+"insect.hym.2.subtitle" = "Często spotykany na płotach i okapach";
+"insect.hym.3.title" = "Trzmiel płowoogoniasty";
+"insect.hym.3.subtitle" = "Zapylacz wczesnowiosenny";
+"insect.hym.4.title" = "Pszczoła murarka";
+"insect.hym.4.subtitle" = "Samotny gniazdujący jamnik";
+"insect.hym.5.title" = "Osa Ichneumona";
+"insect.hym.5.subtitle" = "Parazytoid gąsienic";
+"insect.default.1.title" = "Przykładowy owad A";
+"insect.default.1.subtitle" = "Wiersz zastępczy dla tej kategorii";
+"insect.default.2.title" = "Próbka owada B";
+"insect.default.2.subtitle" = "Zastąp później danymi API";
+"insect.default.3.title" = "Próbka owada C";
+"insect.default.3.subtitle" = "Wiersz zastępczy dla tej kategorii";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Nieszkodliwy";
+"insect.detail.status.poisonous" = "Trujący";
+"insect.detail.status.toxic" = "Toksyczny";
+"insect.detail.status.widespread" = "Powszechne";
+"insect.detail.widespread.api.yes" = "Powszechne";
+"insect.detail.widespread.api.no" = "Niezbyt często";
+"insect.detail.also_known_prefix" = "Znany również jako:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Europejska pszczoła miodna, pszczoła zachodnia, pszczoła miodna";
+"insect.detail.section.description" = "Opis";
+"insect.detail.read_more" = "Przeczytaj więcej";
+"insect.detail.mock.description" = "Pszczoła miodna zachodnia (Apis mellifera) jest jednym z najważniejszych zapylaczy zarządzanych w rolnictwie i dzikich ekosystemach. Pochodzi z Europy, zachodniej Azji i Afryki, został rozprzestrzeniony na całym świecie przez pszczelarzy w celu produkcji miodu i zapylania roślin.\n\nKolonia to superorganizm: pojedyncza płodna królowa składa jaja, podczas gdy tysiące robotnic żeruje, karmi larwy, buduje grzebień i broni gniazda. Samce trutni pojawiają się sezonowo i kojarzą się z królowymi z innych kolonii. Pracownicy komunikują kierunek i odległość do bogatych źródeł pożywienia za pomocą machania i przekazują informacje za pomocą dotyku i feromonów.\n\nZbieracze odwiedzają wiele gatunków roślin, przenosząc pyłek podczas ruchu. Takie zachowanie wspiera różnorodność biologiczną i uprawy spożywcze — od sadów i jagód po nasiona oleiste i melony. Pszczelarze zarządzają ulami, aby zrównoważyć zbiory miodu ze zdrowiem rodziny, monitorując szkodniki, choroby i stres żywieniowy.\n\nChociaż pszczoły miodne są generalnie łagodne w stosunku do kwiatów, bronią swojego ula, jeśli zauważą zagrożenie; zrozumienie ich wskazówek zmniejsza użądlenia. Utrata siedlisk, pestycydy, patogeny i zmiany klimatyczne stanowią wyzwanie zarówno dla populacji dzikich, jak i zarządzanych. Ochrona zasobów kwiatowych i ostrożne zarządzanie pomaga utrzymać te niezwykłe owady w przyszłych porach roku.";
+"insect.detail.section.characteristics" = "Charakterystyka";
+"insect.detail.section.classification" = "Klasyfikacja naukowa";
+"insect.detail.section.bites" = "Ukąszenia";
+"insect.detail.bites.intro" = "Jeśli zostałeś ugryziony lub użądlony, wykonaj następujące kroki:";
+"insect.detail.bites.first_aid" = "Natychmiastowa pierwsza pomoc:";
+"insect.detail.add_to_collection" = "Dodaj do kolekcji";
+"insect.detail.add_to_collection.sheet.title" = "Dodaj zdjęcie do swojej kolekcji";
+"insect.detail.add_to_collection.source.camera" = "Zrób zdjęcie";
+"insect.detail.add_to_collection.source.library" = "Wybierz z biblioteki";
+"insect.detail.add_to_collection.cancel" = "Anuluj";
+"insect.detail.add_to_collection.alert.ok" = "OK";
+"insect.detail.add_to_collection.error.no_insect" = "Ten ekran nie jest powiązany z owadem z katalogu, dlatego nie można zaktualizować kolekcji.";
+"insect.detail.add_to_collection.error.network" = "Nie udało się dodać do kolekcji. Sprawdź połączenie i spróbuj ponownie.";
+"insect.detail.remove_from_collection.confirm.title" = "Usunąć z kolekcji?";
+"insect.detail.remove_from_collection.confirm.message" = "Ten owad zostanie usunięty z Twojej kolekcji. Tego nie można cofnąć.";
+"insect.detail.remove_from_collection.confirm.delete" = "Usuń";
+"insect.detail.remove_from_collection.confirm.cancel" = "Anuluj";
+"insect.detail.remove_from_collection.error.no_id" = "Na serwerze nie ma wpisu kolekcji do usunięcia.";
+"insect.detail.remove_from_collection.error.network" = "Nie można usunąć z kolekcji. Sprawdź połączenie i spróbuj ponownie.";
+"insect.detail.add_to_collection.success.title" = "Sukces!";
+"insect.detail.add_to_collection.success.subtitle" = "Owad został pomyślnie dodany do Twojej kolekcji";
+"insect.detail.remove_from_collection.accessibility" = "Usuń z kolekcji";
+"insect.detail.class.genus.title" = "Rodzaj";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Rodzina";
+"insect.detail.class.family.value" = "Apidy";
+"insect.detail.class.order.title" = "Zamów";
+"insect.detail.class.order.value" = "Błonkoskrzydłowe";
+"insect.detail.class.class.title" = "Nazwa klasy";
+"insect.detail.class.class.value" = "Owad";
+"insect.detail.class.phylum.title" = "Gromada";
+"insect.detail.class.phylum.value" = "Stawonogi";
+"insect.detail.class.kingdom.title" = "Królestwo";
+"insect.detail.class.kingdom.value" = "Zwierzęta";
+"insect.detail.class.domain.title" = "Domena";
+"insect.detail.class.domain.value" = "Eukariont";
+"insect.detail.char.adult_size.title" = "Rozmiar dla dorosłych";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Formy istnienia";
+"insect.detail.char.forms.value" = "Jajko, larwa, poczwarka, postać dorosła";
+"insect.detail.char.colors.title" = "Kolory";
+"insect.detail.char.colors.value" = "Złocistobrązowy z czarnymi paskami";
+"insect.detail.char.population.title" = "Ludność";
+"insect.detail.char.population.value" = "Bardzo rozpowszechniony i udomowiony";
+"insect.detail.char.habitat.title" = "Siedlisko";
+"insect.detail.char.habitat.value" = "Łąki, ogrody, lasy, tereny rolnicze";
+"insect.detail.char.diet.title" = "Dieta";
+"insect.detail.char.diet.value" = "Nektar i pyłek roślin kwiatowych";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Popularne w tym tygodniu";
+"home.popular.butterfly" = "Motyl";
+"home.popular.mantis" = "Modliszka";
+"home.popular.ant" = "Mrówka";
+"home.popular.beetle" = "Chrząszcz";
+
+/* Home — articles */
+"home.articles_section_title" = "Przydatne artykuły";
+"home.article.identify.title" = "Jak identyfikujemy owady?";
+"home.article.identify.subtitle" = "Podstawowe znaki i narzędzia pomagające odróżnić gatunki w terenie lub na zdjęciu.";
+"home.article.habitats.title" = "Gdzie żyją owady";
+"home.article.habitats.subtitle" = "Od gleby i liści po kwiaty i wodę — typowe siedliska, które możesz bezpiecznie eksplorować.";
+"home.article.photography.title" = "Zdjęcia makro bez stresu";
+"home.article.photography.subtitle" = "Światło, odległość i cierpliwość: krótkie wskazówki dotyczące wyraźniejszych zdjęć małych obiektów.";
+"home.article.identify.block1.title" = "Na co patrzymy w pierwszej kolejności";
+"home.article.identify.block1.body" = "Kształt ciała, skrzydeł, czułków i nóg często już na pierwszy rzut oka zawęża kolejność owadów. Wzory kolorów są pomocne, ale różnią się w zależności od gatunku — połącz je z rozmiarem, postawą i zachowaniem. Jeśli to możliwe, zanotuj, gdzie widziałeś owada: roślina żywicielska, powierzchnia gleby lub brzeg wody – wszystko to dodaje kontekstu.";
+"home.article.identify.block2.title" = "Ze zdjęcia";
+"home.article.identify.block2.body" = "Ostry, dobrze oświetlony obraz za każdym razem wygrywa z rozmazanym. Uchwyć widok z góry i, jeśli to możliwe, profil boczny. Jeśli rozmiar ma znaczenie, uwzględnij poczucie skali (moneta lub palec). Kilka kątów zmniejsza ryzyko zgadywania, gdy oznaczenia są subtelne lub ukryte pod złożonymi skrzydłami.";
+"home.article.habitats.block1.title" = "Warstwy siedliska";
+"home.article.habitats.block1.body" = "Owady wykorzystują przestrzeń pionową: baldachim, podszyt, ściółkę z liści, szczeliny kory i glebę. Obracanie kłody lub podnoszenie kamienia ujawnia inną społeczność niż główka kwiatu w pełnym słońcu. Poruszaj się powoli i załóż osłony, aby mikrosiedliska pozostały nienaruszone.";
+"home.article.habitats.block2.title" = "Woda i krawędzie";
+"home.article.habitats.block2.body" = "Stawy, strumienie i wilgotne łąki goszczą specjalistów, takich jak ważki, samice i wiele chrząszczy. Granica lądu i wody – trzciny, błotniste brzegi – to często najbogatsza strefa. Najpierw obserwuj z daleka, aby uniknąć niepokojenia odpoczywających owadów.";
+"home.article.photography.block1.title" = "Światło i dystans";
+"home.article.photography.block1.body" = "Rozproszone światło dzienne lub otwarty cień zapewniają równomierne oświetlenie bez ostrych cieni. Podejdź wystarczająco blisko, aby wypełnić kadr, ale unikaj rzucania własnego cienia na obiekt. Mały reflektor lub biała kartka mogą uwydatnić szczegóły w głębokich zakamarkach kwiatów lub kory.";
+"home.article.photography.block2.title" = "Cierpliwość i szacunek";
+"home.article.photography.block2.body" = "Pozwól owadom osiedlić się, zamiast je gonić. Tryb serii pomaga przy płochliwych lotnikach. Jeśli używasz lampy błyskowej, sesje powinny być krótkie i nigdy nie kieruj jej bezpośrednio w oczy kręgowców w pobliżu. Kiedy skończysz, opuść siedlisko w takim stanie, w jakim je zastałeś.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Ustawienia";
+"settings.section.support" = "Wsparcie";
+"settings.section.feedback" = "Informacje zwrotne";
+"settings.section.security" = "Bezpieczeństwo";
+"settings.row.contact_us" = "Skontaktuj się z nami";
+"settings.row.restore" = "Przywróć";
+"settings.row.rate_app" = "Oceń aplikację";
+"settings.row.share_app" = "Udostępnij aplikację";
+"settings.row.privacy" = "Polityka prywatności";
+"settings.row.terms" = "Warunki użytkowania";
+"settings.row.refund_consent" = "Zgoda na zwrot pieniędzy";
+"settings.row.reset_consent" = "Zresetuj zgodę";
+"settings.support.email" = "wsparcie@bugs.app";
+"settings.support.mail_subject" = "Obsługa aplikacji błędów";
+"settings.support.mail_body" = "Cześć,";
+"settings.support.mail_unavailable_title" = "Skontaktuj się z nami e-mailem";
+"settings.restore.message" = "Przywraca subskrypcję z App Store dla tego Apple ID.";
+"settings.refund_consent.message" = "Czy wyrażasz zgodę na przetwarzanie Twoich danych w celu zwrotu pieniędzy?";
+"settings.refund_consent.allow" = "Zezwól";
+"settings.refund_consent.decline" = "Odmów";
+"settings.reset_consent.message" = "Zarządzanie zgodami na reklamy będzie dostępne w przyszłej aktualizacji.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

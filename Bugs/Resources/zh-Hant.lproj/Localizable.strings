@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "完成";
+
+/* Onboarding */
+"onboarding.intro.title" = "嗨！我是你昆蟲世界的嚮導🐞";
+"onboarding.intro.subtitle" = "在此應用程式中，您可以：";
+"onboarding.intro.benefit.identify" = "在幾秒鐘內識別昆蟲";
+"onboarding.intro.benefit.collection" = "將它們保存到您的收藏中";
+"onboarding.intro.benefit.achievements" = "獲得成就";
+"onboarding.intro.benefit.ai" = "與 AI 助理聊天";
+"onboarding.intro.benefit.articles" = "閱讀有用的文章";
+"onboarding.button.next" = "下一步";
+"onboarding.button.start" = "開始使用";
+
+/* Home */
+"home.title" = "首頁";
+"home.search.placeholder" = "搜尋";
+"home.ai_banner.title" = "向人工智慧詢問你發現的任何昆蟲";
+"home.ai_banner.button" = "問一個問題";
+
+/* AI chat */
+"ai_chat.title" = "人工智慧顧問";
+"ai_chat.input.placeholder" = "問我一些事情...";
+"ai_chat.stub.ai" = "我對昆蟲很了解，你可以諮詢我。";
+"ai_chat.stub.user" = "告訴我關於蜜蜂的事";
+"ai_chat.seed_creation_message" = "你是誰？";
+"ai_chat.error.bootstrap" = "無法打開聊天。請再試一次。";
+"ai_chat.error.send" = "無法發送訊息。請再試一次。";
+"ai_chat.alert.connection_lost.message" = "連線遺失。請稍後重試。";
+"ai_chat.alert.connection_lost.action" = "好的";
+
+/* Home — categories */
+"home.category.coleoptera" = "鞘翅目";
+"home.category.scorpiones" = "蠍子";
+"home.category.hymenoptera" = "膜翅目";
+"home.category.araneae" = "蜘蛛目";
+"home.category.lepidoptera" = "鱗翅目";
+"home.category.diptera" = "雙翅目";
+"home.category.blattodea" = "蜚蠊總科";
+"home.category.hemiptera" = "半翅目";
+
+/* Main tab bar */
+"profile.title" = "公司簡介";
+"profile.segment.collection" = "我的收藏";
+"profile.segment.achievements" = "我的成就";
+"profile.achievements.placeholder" = "成就將出現在這裡。";
+"profile.collection.empty.title" = "開始你的昆蟲收藏";
+"profile.collection.empty.subtitle" = "拍攝昆蟲、增加您的收藏、賺取獎勵並追蹤您的進度";
+"profile.achievement.close.accessibility" = "關閉";
+"profile.achievement.unlock_heading" = "解鎖此成就";
+"profile.achievement.completed_heading" = "恭喜！";
+"profile.achievement.completed_body" = "加入您的收藏";
+"profile.achievement.identify_more" = "識別%lld更多%@";
+"tab.home.accessibility" = "首頁";
+"tab.library.accessibility" = "圖書館";
+"tab.chat.accessibility" = "人工智慧聊天";
+"tab.profile.accessibility" = "公司簡介";
+"tab.scan.accessibility" = "掃描昆蟲";
+
+/* Scanner */
+"scanner.close.accessibility" = "關閉";
+"scanner.recognition_progress.message" = "資料正在載入中，請稍候...";
+"scanner.recognition_no_match.title" = "未找到匹配項";
+"scanner.recognition_no_match.subtitle" = "我們無法辨識這張照片中的昆蟲";
+"scanner.recognition_no_match.try_again" = "再試一次";
+"scanner.recognition_match.title" = "找到匹配項！";
+"scanner.recognition_match.subtitle" = "我們已經確定了可能的匹配項。繼續看看是什麼昆蟲";
+"scanner.recognition_match.see_result" = "查看結果";
+
+/* Paywall */
+"paywall.preview.species" = "貝母";
+"paywall.preview.family" = "科：蛺蝶科";
+"paywall.preview.harmless" = "無害";
+"paywall.close.accessibility" = "關閉";
+"paywall.headline" = "解鎖完整的昆蟲世界";
+"paywall.benefit.scans" = "無限次掃描";
+"paywall.benefit.collection" = "完整的館藏存取權限";
+"paywall.benefit.ai" = "AI助手無極限";
+"paywall.benefit.achievements" = "獨家成就";
+"paywall.product.prefix" = "3天免費，然後";
+"paywall.product.suffix" = "一週";
+"paywall.cancel_anytime" = "隨時取消。具有自動續訂功能。";
+"paywall.button.next" = "下一步";
+"paywall.footer.terms" = "使用條款";
+"paywall.footer.privacy" = "隱私權政策";
+"paywall.footer.restore" = "恢復";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "購買";
+"subscription.error.product_unavailable" = "此訂閱目前無法使用。檢查 App Store Connect 或稍後再試一次。";
+"subscription.error.purchase_failed" = "購買無法完成。請再試一次。";
+"subscription.error.restore_failed" = "無法恢復購買。檢查您的連線並重試。";
+"subscription.pending.title" = "待定";
+"subscription.pending.message" = "您的購買正在等待批准。訪問完成後將解鎖。";
+"subscription.restore.title" = "恢復";
+"subscription.restore.success" = "您的購買已恢復。";
+"subscription.restore.nothing" = "找不到此 Apple ID 的有效訂閱。";
+
+"scanner.tips.title" = "溫馨提示";
+"scanner.tips.intro" = "清晰的照片可以提高辨識準確率。請遵循以下提示以獲得最佳效果：";
+"scanner.tips.1.title" = "1. 讓昆蟲保持清晰的焦點";
+"scanner.tips.2.title" = "2. 將昆蟲置於框架中央。確保它清晰可見";
+"scanner.tips.3.title" = "3. 一次只捕獲一種昆蟲－多種昆蟲會降低準確性";
+"scanner.tips.4.title" = "4.使用良好的照明";
+
+/* Library */
+"library.title" = "圖書館";
+"list.search_empty.title" = "沒有結果...";
+"list.search_empty.subtitle" = "請重試";
+
+/* Category insect list */
+"insect.hym.1.title" = "西方蜜蜂";
+"insect.hym.1.subtitle" = "常見園藝害蟲";
+"insect.hym.2.title" = "歐洲紙黃蜂";
+"insect.hym.2.subtitle" = "常出現在柵欄和屋簷上";
+"insect.hym.3.title" = "黃尾大黃蜂";
+"insect.hym.3.subtitle" = "早春傳粉媒介";
+"insect.hym.4.title" = "梅森·比";
+"insect.hym.4.subtitle" = "獨穴築巢者";
+"insect.hym.5.title" = "姬蜂";
+"insect.hym.5.subtitle" = "毛毛蟲的寄生蜂";
+"insect.default.1.title" = "昆蟲樣本A";
+"insect.default.1.subtitle" = "此類別的佔位符行";
+"insect.default.2.title" = "昆蟲樣本B";
+"insect.default.2.subtitle" = "稍後替換為API數據";
+"insect.default.3.title" = "昆蟲樣本C";
+"insect.default.3.subtitle" = "此類別的佔位符行";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "無害";
+"insect.detail.status.poisonous" = "有毒";
+"insect.detail.status.toxic" = "有毒";
+"insect.detail.status.widespread" = "廣泛傳播";
+"insect.detail.widespread.api.yes" = "廣泛傳播";
+"insect.detail.widespread.api.no" = "不常見";
+"insect.detail.also_known_prefix" = "也稱為：";
+"insect.detail.mock.scientific_title" = "義大利蜜蜂";
+"insect.detail.mock.aliases" = "歐洲蜜蜂、西方蜜蜂、蜜蜂";
+"insect.detail.section.description" = "描述";
+"insect.detail.read_more" = "了解更多";
+"insect.detail.mock.description" = "西方蜜蜂 (Apis mellifera) 是農業和野生生態系統中最重要的受管理授粉媒介之一。它原產於歐洲、西亞和非洲，已被養蜂人傳播到世界各地，用於蜂蜜生產和農作物授粉。\n\n蜂群是超級有機體：一隻能育的蜂王產卵，而數以千計的雌性工蜂則覓食、哺育幼蟲、築巢並保衛巢穴。雄性雄蜂會季節性出現，並與其他蜂群的蜂王交配。工蟻透過搖擺舞傳達豐富食物來源的方向和距離，並透過觸摸和費洛蒙分享訊息。\n\n覓食者會拜訪許多植物物種，並在它們移動時傳播花粉。這種行為支持生物多樣性和糧食作物——從果園和漿果到油籽和瓜類。養蜂人管理蜂箱，以平衡蜂蜜收穫與蜂群健康，監測害蟲、疾病和營養壓力。\n\n雖然蜜蜂通常對花朵很溫順，但如果它們察覺到威脅，它們就會保衛自己的蜂巢。了解它們的暗示可以減少刺痛。棲息地喪失、殺蟲劑、病原體和氣候變遷對野生和管理族群帶來挑戰。保護花卉資源並採取精心管理有助於在未來的季節維持這些非凡的昆蟲。";
+"insect.detail.section.characteristics" = "特點";
+"insect.detail.section.classification" = "科學分類";
+"insect.detail.section.bites" = "咬傷";
+"insect.detail.bites.intro" = "如果您被咬傷或蜇傷，請按照以下步驟：";
+"insect.detail.bites.first_aid" = "立即急救：";
+"insect.detail.add_to_collection" = "加入收藏";
+"insect.detail.add_to_collection.sheet.title" = "將照片加入您的收藏中";
+"insect.detail.add_to_collection.source.camera" = "拍照";
+"insect.detail.add_to_collection.source.library" = "從庫中選擇";
+"insect.detail.add_to_collection.cancel" = "取消";
+"insect.detail.add_to_collection.alert.ok" = "好的";
+"insect.detail.add_to_collection.error.no_insect" = "此畫面未連結到目錄昆蟲，因此無法更新集合。";
+"insect.detail.add_to_collection.error.network" = "無法新增到集合中。檢查您的連線並重試。";
+"insect.detail.remove_from_collection.confirm.title" = "從集合中刪除？";
+"insect.detail.remove_from_collection.confirm.message" = "該昆蟲將從您的收藏中刪除。此操作無法撤銷。";
+"insect.detail.remove_from_collection.confirm.delete" = "刪除";
+"insect.detail.remove_from_collection.confirm.cancel" = "取消";
+"insect.detail.remove_from_collection.error.no_id" = "伺服器上沒有要刪除的集合條目。";
+"insect.detail.remove_from_collection.error.network" = "無法從集合中刪除。檢查您的連線並重試。";
+"insect.detail.add_to_collection.success.title" = "成功了！";
+"insect.detail.add_to_collection.success.subtitle" = "該昆蟲已成功添加到您的收藏中";
+"insect.detail.remove_from_collection.accessibility" = "從集合中刪除";
+"insect.detail.class.genus.title" = "屬";
+"insect.detail.class.genus.value" = "蜜蜂";
+"insect.detail.class.family.title" = "家庭";
+"insect.detail.class.family.value" = "蜜蜂科";
+"insect.detail.class.order.title" = "訂單";
+"insect.detail.class.order.value" = "膜翅目";
+"insect.detail.class.class.title" = "班級名稱";
+"insect.detail.class.class.value" = "昆蟲綱";
+"insect.detail.class.phylum.title" = "門";
+"insect.detail.class.phylum.value" = "節肢動物門";
+"insect.detail.class.kingdom.title" = "王國";
+"insect.detail.class.kingdom.value" = "動物界";
+"insect.detail.class.domain.title" = "網域";
+"insect.detail.class.domain.value" = "真核生物";
+"insect.detail.char.adult_size.title" = "成人尺寸";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 厘米";
+"insect.detail.char.forms.title" = "存在形式";
+"insect.detail.char.forms.value" = "卵、幼蟲、蛹、成蟲";
+"insect.detail.char.colors.title" = "顏色";
+"insect.detail.char.colors.value" = "金棕色帶黑色條紋";
+"insect.detail.char.population.title" = "人口";
+"insect.detail.char.population.value" = "廣泛傳播與馴化";
+"insect.detail.char.habitat.title" = "棲息地";
+"insect.detail.char.habitat.value" = "草地、花園、森林、農業區";
+"insect.detail.char.diet.title" = "飲食";
+"insect.detail.char.diet.value" = "開花植物的花蜜和花粉";
+
+/* Home — popular this week */
+"home.popular_this_week" = "本週熱門";
+"home.popular.butterfly" = "蝴蝶";
+"home.popular.mantis" = "螳螂";
+"home.popular.ant" = "螞蟻";
+"home.popular.beetle" = "甲蟲";
+
+/* Home — articles */
+"home.articles_section_title" = "有用的文章";
+"home.article.identify.title" = "我們如何辨識昆蟲？";
+"home.article.identify.subtitle" = "幫助在野外或照片中區分物種的基本標誌和工具。";
+"home.article.habitats.title" = "昆蟲居住的地方";
+"home.article.habitats.subtitle" = "從土壤和落葉到花朵和水—您可以安全探索的典型棲息地。";
+"home.article.photography.title" = "微距照片無壓力";
+"home.article.photography.subtitle" = "光線、距離和耐心：關於拍攝小物體的清晰照片的簡短提示。";
+"home.article.identify.block1.title" = "我們首先看什麼";
+"home.article.identify.block1.body" = "身體、翅膀、觸角和腿的形狀往往一眼就能縮小昆蟲的目數。顏色圖案有所幫助，但它們因物種而異——將它們與體型、姿勢和行為結合。如果可能，請記下您在哪裡看到昆蟲：寄主植物、土壤表面或水邊都可以添加背景資訊。";
+"home.article.identify.block2.title" = "來自一張照片";
+"home.article.identify.block2.body" = "清晰、光線充足的影像每次都會擊敗模糊的影像。拍攝俯視圖，如果可以的話，請拍攝側面輪廓。當尺寸很重要時，請包括比例感（硬幣或手指）。當標記很微妙或隱藏在折疊機翼下時，多個角度可以減少猜測。";
+"home.article.habitats.block1.title" = "棲息地的層次";
+"home.article.habitats.block1.body" = "昆蟲利用垂直空間：樹冠、林下、落葉層、樹皮縫隙和土壤。轉動一根木頭或舉起一塊石頭，可以揭示與陽光下的花頭不同的群落。緩慢移動並更換覆蓋物，以保持微生境完好無損。";
+"home.article.habitats.block2.title" = "水和邊緣";
+"home.article.habitats.block2.body" = "池塘、溪流和潮濕的草地上棲息著蜻蜓、豆娘和許多甲蟲等專家。陸地和水域之間的邊界——蘆葦、泥濘的河岸——往往是最富饒的地區。先遠距離觀察，以免打擾休息的昆蟲。";
+"home.article.photography.block1.title" = "光與距離";
+"home.article.photography.block1.body" = "漫射日光或開放式陰影可提供均勻的照明，而不會產生刺眼的陰影。距離足夠近以填充整個框架，但避免將自己的陰影投射到拍攝對像上。小反光板或白卡可以提升花朵或樹皮深處的細節。";
+"home.article.photography.block2.title" = "耐心和尊重";
+"home.article.photography.block2.body" = "讓昆蟲安定下來，而不是追逐它們。突發模式有助於處理不穩定的傳單。如果您使用閃光燈，請保持簡短，並且切勿將其直接對準附近脊椎動物的眼睛。完成後，讓棲息地保持原樣。";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "設定";
+"settings.section.support" = "支援";
+"settings.section.feedback" = "回饋意見";
+"settings.section.security" = "安全";
+"settings.row.contact_us" = "聯絡我們";
+"settings.row.restore" = "恢復";
+"settings.row.rate_app" = "評價應用程式";
+"settings.row.share_app" = "分享應用程式";
+"settings.row.privacy" = "隱私權政策";
+"settings.row.terms" = "使用條款";
+"settings.row.refund_consent" = "退款同意書";
+"settings.row.reset_consent" = "重置同意";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "錯誤應用程式支援";
+"settings.support.mail_body" = "嗨，";
+"settings.support.mail_unavailable_title" = "透過電子郵件聯絡我們";
+"settings.restore.message" = "恢復您從 App Store 對此 Apple ID 的訂閱。";
+"settings.refund_consent.message" = "您是否同意為退款目的處理您的資料？";
+"settings.refund_consent.allow" = "允許";
+"settings.refund_consent.decline" = "拒絕";
+"settings.reset_consent.message" = "廣告同意管理將在未來的更新中提供。";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

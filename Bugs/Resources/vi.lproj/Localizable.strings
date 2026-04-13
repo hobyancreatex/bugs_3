@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Xong";
+
+/* Onboarding */
+"onboarding.intro.title" = "CHÀO! Tôi là người dẫn đường cho bạn đến với thế giới côn trùng 🐞";
+"onboarding.intro.subtitle" = "Trong ứng dụng này, bạn có thể:";
+"onboarding.intro.benefit.identify" = "Xác định côn trùng trong vài giây";
+"onboarding.intro.benefit.collection" = "Lưu chúng vào bộ sưu tập của bạn";
+"onboarding.intro.benefit.achievements" = "Kiếm thành tích";
+"onboarding.intro.benefit.ai" = "Trò chuyện với trợ lý AI";
+"onboarding.intro.benefit.articles" = "Đọc các bài viết hữu ích";
+"onboarding.button.next" = "Kế tiếp";
+"onboarding.button.start" = "Bắt đầu";
+
+/* Home */
+"home.title" = "Trang chủ";
+"home.search.placeholder" = "Tìm kiếm";
+"home.ai_banner.title" = "Hỏi AI về bất kỳ loài côn trùng nào bạn tìm thấy";
+"home.ai_banner.button" = "Đặt một câu hỏi";
+
+/* AI chat */
+"ai_chat.title" = "tư vấn AI";
+"ai_chat.input.placeholder" = "Hỏi tôi điều gì đó…";
+"ai_chat.stub.ai" = "Tôi biết tất cả về côn trùng, bạn có thể tham khảo ý kiến ​​của tôi.";
+"ai_chat.stub.user" = "Kể cho tôi nghe về những con ong";
+"ai_chat.seed_creation_message" = "bạn là ai?";
+"ai_chat.error.bootstrap" = "Không thể mở cuộc trò chuyện. Vui lòng thử lại.";
+"ai_chat.error.send" = "Không thể gửi tin nhắn. Vui lòng thử lại.";
+"ai_chat.alert.connection_lost.message" = "Kết nối đã bị mất. Vui lòng thử lại sau.";
+"ai_chat.alert.connection_lost.action" = "ĐƯỢC RỒI";
+
+/* Home — categories */
+"home.category.coleoptera" = "Bộ cánh cứng";
+"home.category.scorpiones" = "bọ cạp";
+"home.category.hymenoptera" = "màng trinh";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Bộ cánh vẩy";
+"home.category.diptera" = "bộ đôi";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "bộ cánh nửa";
+
+/* Main tab bar */
+"profile.title" = "Hồ sơ";
+"profile.segment.collection" = "Bộ sưu tập của tôi";
+"profile.segment.achievements" = "Thành tựu của tôi";
+"profile.achievements.placeholder" = "Thành tích sẽ xuất hiện ở đây.";
+"profile.collection.empty.title" = "Bắt đầu bộ sưu tập côn trùng của bạn";
+"profile.collection.empty.subtitle" = "Chụp ảnh côn trùng, phát triển bộ sưu tập của bạn, kiếm phần thưởng và theo dõi tiến trình của bạn";
+"profile.achievement.close.accessibility" = "Đóng";
+"profile.achievement.unlock_heading" = "Để mở khóa thành tích này";
+"profile.achievement.completed_heading" = "Chúc mừng!";
+"profile.achievement.completed_body" = "Đã thêm vào bộ sưu tập của bạn";
+"profile.achievement.identify_more" = "Xác định %lld thêm %@";
+"tab.home.accessibility" = "Trang chủ";
+"tab.library.accessibility" = "Thư viện";
+"tab.chat.accessibility" = "Trò chuyện AI";
+"tab.profile.accessibility" = "Hồ sơ";
+"tab.scan.accessibility" = "Quét côn trùng";
+
+/* Scanner */
+"scanner.close.accessibility" = "Đóng";
+"scanner.recognition_progress.message" = "Vui lòng đợi trong khi dữ liệu đang tải…";
+"scanner.recognition_no_match.title" = "Không tìm thấy kết quả phù hợp";
+"scanner.recognition_no_match.subtitle" = "Chúng tôi không thể xác định được loài côn trùng trong bức ảnh này";
+"scanner.recognition_no_match.try_again" = "Thử lại";
+"scanner.recognition_match.title" = "Đã tìm thấy kết quả phù hợp!";
+"scanner.recognition_match.subtitle" = "Chúng tôi đã xác định các trận đấu có thể xảy ra. Tiếp tục xem đó là loài côn trùng nào";
+"scanner.recognition_match.see_result" = "Xem kết quả";
+
+/* Paywall */
+"paywall.preview.species" = "fritillary";
+"paywall.preview.family" = "Họ: Nymphalidae";
+"paywall.preview.harmless" = "vô hại";
+"paywall.close.accessibility" = "Đóng";
+"paywall.headline" = "Mở khóa toàn bộ thế giới côn trùng";
+"paywall.benefit.scans" = "Quét không giới hạn";
+"paywall.benefit.collection" = "Truy cập bộ sưu tập đầy đủ";
+"paywall.benefit.ai" = "Trợ lý AI không giới hạn";
+"paywall.benefit.achievements" = "Thành tích độc quyền";
+"paywall.product.prefix" = "Vậy thì 3 ngày miễn phí";
+"paywall.product.suffix" = "một tuần";
+"paywall.cancel_anytime" = "Hủy bỏ bất cứ lúc nào. Với tính năng tự động gia hạn.";
+"paywall.button.next" = "Kế tiếp";
+"paywall.footer.terms" = "Điều khoản sử dụng";
+"paywall.footer.privacy" = "Chính sách bảo mật";
+"paywall.footer.restore" = "Khôi phục";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Mua";
+"subscription.error.product_unavailable" = "Đăng ký này hiện không có sẵn. Kiểm tra Kết nối App Store hoặc thử lại sau.";
+"subscription.error.purchase_failed" = "Việc mua hàng không thể hoàn tất. Vui lòng thử lại.";
+"subscription.error.restore_failed" = "Không thể khôi phục giao dịch mua hàng. Hãy kiểm tra kết nối của bạn và thử lại.";
+"subscription.pending.title" = "Chưa giải quyết";
+"subscription.pending.message" = "Giao dịch mua hàng của bạn đang chờ phê duyệt. Quyền truy cập sẽ mở khóa khi hoàn tất.";
+"subscription.restore.title" = "Khôi phục";
+"subscription.restore.success" = "Giao dịch mua hàng của bạn đã được khôi phục.";
+"subscription.restore.nothing" = "Không tìm thấy đăng ký hoạt động nào cho ID Apple này.";
+
+"scanner.tips.title" = "Mẹo";
+"scanner.tips.intro" = "Một bức ảnh rõ ràng sẽ cải thiện độ chính xác của nhận dạng. Hãy làm theo những lời khuyên sau để có kết quả tốt nhất:";
+"scanner.tips.1.title" = "1. Giữ côn trùng ở tiêu điểm sắc nét";
+"scanner.tips.2.title" = "2. Căn giữa con côn trùng vào khung. Hãy chắc chắn rằng nó có thể nhìn thấy rõ ràng";
+"scanner.tips.3.title" = "3. Mỗi lần chỉ bắt một loài — nhiều côn trùng làm giảm độ chính xác";
+"scanner.tips.4.title" = "4. Sử dụng ánh sáng tốt";
+
+/* Library */
+"library.title" = "Thư viện";
+"list.search_empty.title" = "Không có kết quả…";
+"list.search_empty.subtitle" = "Vui lòng thử lại";
+
+/* Category insect list */
+"insect.hym.1.title" = "Ong Mật Miền Tây";
+"insect.hym.1.subtitle" = "Các loài gây hại làm vườn phổ biến";
+"insect.hym.2.title" = "Ong Giấy Châu Âu";
+"insect.hym.2.subtitle" = "Thường thấy trên hàng rào, mái hiên";
+"insect.hym.3.title" = "Bumblebee đuôi bò";
+"insect.hym.3.subtitle" = "Thụ phấn đầu xuân";
+"insect.hym.4.title" = "ong thợ nề";
+"insect.hym.4.subtitle" = "Nester khoang đơn độc";
+"insect.hym.5.title" = "Ong Ichneumon";
+"insect.hym.5.subtitle" = "Ký sinh trùng của sâu bướm";
+"insect.default.1.title" = "Mẫu côn trùng A";
+"insect.default.1.subtitle" = "Hàng giữ chỗ cho danh mục này";
+"insect.default.2.title" = "Mẫu côn trùng B";
+"insect.default.2.subtitle" = "Thay thế bằng dữ liệu API sau";
+"insect.default.3.title" = "Mẫu côn trùng C";
+"insect.default.3.subtitle" = "Hàng giữ chỗ cho danh mục này";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "vô hại";
+"insect.detail.status.poisonous" = "Độc";
+"insect.detail.status.toxic" = "Độc hại";
+"insect.detail.status.widespread" = "Phổ biến rộng rãi";
+"insect.detail.widespread.api.yes" = "Phổ biến rộng rãi";
+"insect.detail.widespread.api.no" = "không phổ biến";
+"insect.detail.also_known_prefix" = "Còn được gọi là:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Ong Mật Châu Âu, Ong Mật Miền Tây, Ong Mật";
+"insect.detail.section.description" = "Sự miêu tả";
+"insect.detail.read_more" = "Đọc thêm";
+"insect.detail.mock.description" = "Ong mật phương Tây (Apis mellifera) là một trong những loài thụ phấn được quản lý quan trọng nhất trong nông nghiệp và hệ sinh thái hoang dã. Có nguồn gốc từ Châu Âu, Tây Á và Châu Phi, nó đã được những người nuôi ong phổ biến trên toàn thế giới để sản xuất mật ong và thụ phấn cho cây trồng.\n\nMột đàn là một siêu sinh vật: một con chúa màu mỡ duy nhất đẻ trứng, trong khi hàng nghìn con kiến ​​thợ kiếm ăn, nuôi dưỡng ấu trùng, xây tổ và bảo vệ tổ. Những con ong đực xuất hiện theo mùa và giao phối với ong chúa từ các thuộc địa khác. Công nhân truyền đạt phương hướng và khoảng cách tới các nguồn thực phẩm phong phú thông qua điệu nhảy lắc lư và chia sẻ thông tin bằng cách chạm và kích thích tố.\n\nNhững kẻ kiếm ăn đến thăm nhiều loài thực vật, chuyển phấn hoa khi chúng di chuyển. Hành vi này hỗ trợ đa dạng sinh học và cây lương thực - từ vườn cây ăn quả và quả mọng đến hạt có dầu và dưa. Người nuôi ong quản lý tổ ong để cân bằng việc thu hoạch mật ong với sức khỏe của đàn ong, theo dõi sâu bệnh, bệnh tật và căng thẳng về dinh dưỡng.\n\nMặc dù nhìn chung rất ngoan ngoãn với hoa nhưng ong mật vẫn bảo vệ tổ nếu chúng nhận thấy mối đe dọa; hiểu được tín hiệu của chúng sẽ làm giảm vết đốt. Mất môi trường sống, thuốc trừ sâu, mầm bệnh và biến đổi khí hậu thách thức cả quần thể hoang dã và quần thể được quản lý. Bảo vệ tài nguyên hoa và áp dụng biện pháp quản lý cẩn thận sẽ giúp duy trì loài côn trùng đáng chú ý này cho các mùa trong tương lai.";
+"insect.detail.section.characteristics" = "Đặc trưng";
+"insect.detail.section.classification" = "Phân loại khoa học";
+"insect.detail.section.bites" = "vết cắn";
+"insect.detail.bites.intro" = "Nếu bạn bị cắn hoặc đốt, hãy làm theo các bước sau:";
+"insect.detail.bites.first_aid" = "Sơ cứu ngay lập tức:";
+"insect.detail.add_to_collection" = "Thêm vào bộ sưu tập";
+"insect.detail.add_to_collection.sheet.title" = "Thêm ảnh vào bộ sưu tập của bạn";
+"insect.detail.add_to_collection.source.camera" = "Chụp ảnh";
+"insect.detail.add_to_collection.source.library" = "Chọn từ thư viện";
+"insect.detail.add_to_collection.cancel" = "Hủy bỏ";
+"insect.detail.add_to_collection.alert.ok" = "ĐƯỢC RỒI";
+"insect.detail.add_to_collection.error.no_insect" = "Màn hình này không được liên kết với danh mục côn trùng nên không thể cập nhật bộ sưu tập.";
+"insect.detail.add_to_collection.error.network" = "Không thể thêm vào bộ sưu tập. Hãy kiểm tra kết nối của bạn và thử lại.";
+"insect.detail.remove_from_collection.confirm.title" = "Xóa khỏi bộ sưu tập?";
+"insect.detail.remove_from_collection.confirm.message" = "Loài côn trùng này sẽ bị xóa khỏi bộ sưu tập của bạn. Điều này không thể hoàn tác được.";
+"insect.detail.remove_from_collection.confirm.delete" = "Di dời";
+"insect.detail.remove_from_collection.confirm.cancel" = "Hủy bỏ";
+"insect.detail.remove_from_collection.error.no_id" = "Không có mục thu thập nào để xóa trên máy chủ.";
+"insect.detail.remove_from_collection.error.network" = "Không thể xóa khỏi bộ sưu tập. Hãy kiểm tra kết nối của bạn và thử lại.";
+"insect.detail.add_to_collection.success.title" = "Thành công!";
+"insect.detail.add_to_collection.success.subtitle" = "Côn trùng đã được thêm thành công vào bộ sưu tập của bạn";
+"insect.detail.remove_from_collection.accessibility" = "Xóa khỏi bộ sưu tập";
+"insect.detail.class.genus.title" = "Chi";
+"insect.detail.class.genus.value" = "API";
+"insect.detail.class.family.title" = "Gia đình";
+"insect.detail.class.family.value" = "Họ Apidae";
+"insect.detail.class.order.title" = "Đặt hàng";
+"insect.detail.class.order.value" = "màng trinh";
+"insect.detail.class.class.title" = "Tên lớp";
+"insect.detail.class.class.value" = "côn trùng";
+"insect.detail.class.phylum.title" = "ngành";
+"insect.detail.class.phylum.value" = "Động vật chân đốt";
+"insect.detail.class.kingdom.title" = "Vương quốc";
+"insect.detail.class.kingdom.value" = "giới động vật";
+"insect.detail.class.domain.title" = "Lãnh địa";
+"insect.detail.class.domain.value" = "Sinh vật nhân chuẩn";
+"insect.detail.char.adult_size.title" = "Kích thước người lớn";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Các dạng tồn tại";
+"insect.detail.char.forms.value" = "Trứng, Ấu trùng, Nhộng, Trưởng thành";
+"insect.detail.char.colors.title" = "Màu sắc";
+"insect.detail.char.colors.value" = "Màu nâu vàng có sọc đen";
+"insect.detail.char.population.title" = "Dân số";
+"insect.detail.char.population.value" = "Rất phổ biến và được thuần hóa";
+"insect.detail.char.habitat.title" = "Môi trường sống";
+"insect.detail.char.habitat.value" = "Đồng cỏ, vườn, rừng, khu vực nông nghiệp";
+"insect.detail.char.diet.title" = "Ăn kiêng";
+"insect.detail.char.diet.value" = "Mật hoa và phấn hoa từ thực vật có hoa";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Phổ biến trong tuần này";
+"home.popular.butterfly" = "Bươm bướm";
+"home.popular.mantis" = "bọ ngựa";
+"home.popular.ant" = "Kiến";
+"home.popular.beetle" = "Bọ cánh cứng";
+
+/* Home — articles */
+"home.articles_section_title" = "bài viết hữu ích";
+"home.article.identify.title" = "Làm thế nào để chúng ta xác định côn trùng?";
+"home.article.identify.subtitle" = "Các dấu hiệu và công cụ cơ bản giúp phân biệt các loài trên thực địa hoặc từ ảnh.";
+"home.article.habitats.title" = "Nơi côn trùng sống";
+"home.article.habitats.subtitle" = "Từ đất và lá rụng đến hoa và nước — những môi trường sống điển hình mà bạn có thể khám phá một cách an toàn.";
+"home.article.photography.title" = "Ảnh macro không bị căng thẳng";
+"home.article.photography.subtitle" = "Ánh sáng, khoảng cách và sự kiên nhẫn: các mẹo ngắn để có được những bức ảnh rõ nét hơn về các đối tượng nhỏ.";
+"home.article.identify.block1.title" = "Những gì chúng ta nhìn vào đầu tiên";
+"home.article.identify.block1.body" = "Hình dạng cơ thể, cánh, râu và chân thường thu hẹp thứ tự của côn trùng trong nháy mắt. Các mẫu màu sắc có ích nhưng chúng khác nhau tùy theo loài - kết hợp chúng với kích thước, tư thế và hành vi. Khi có thể, hãy ghi lại nơi bạn nhìn thấy côn trùng: cây ký chủ, bề mặt đất hoặc mép nước, tất cả đều bổ sung thêm bối cảnh.";
+"home.article.identify.block2.title" = "Từ một bức ảnh";
+"home.article.identify.block2.body" = "Một hình ảnh sắc nét, đủ ánh sáng luôn đánh bại một hình ảnh mờ. Chụp góc nhìn từ trên xuống và nếu có thể, hãy chụp mặt cắt bên. Bao gồm cảm giác về tỷ lệ (đồng xu hoặc ngón tay của bạn) khi kích thước quan trọng. Một số góc làm giảm khả năng phỏng đoán khi các dấu hiệu tinh tế hoặc ẩn dưới các cánh gấp.";
+"home.article.habitats.block1.title" = "Các lớp của môi trường sống";
+"home.article.habitats.block1.body" = "Côn trùng sử dụng không gian theo chiều dọc: tán, tầng dưới, lớp lá, kẽ hở vỏ cây và đất. Việc lật một khúc gỗ hay nhấc một hòn đá sẽ bộc lộ một cộng đồng khác với một đầu hoa dưới ánh nắng đầy đủ. Di chuyển chậm và đậy nắp lại để môi trường sống vi mô vẫn nguyên vẹn.";
+"home.article.habitats.block2.title" = "Nước và các cạnh";
+"home.article.habitats.block2.body" = "Ao, suối và đồng cỏ ẩm ướt là nơi cư trú của các chuyên gia như chuồn chuồn, chuồn chuồn kim và nhiều loài bọ cánh cứng. Biên giới giữa đất và nước - lau sậy, bờ bùn - thường là vùng giàu có nhất. Quan sát từ xa trước để tránh làm phiền côn trùng đang nghỉ ngơi.";
+"home.article.photography.block1.title" = "Ánh sáng và khoảng cách";
+"home.article.photography.block1.body" = "Ánh sáng ban ngày khuếch tán hoặc bóng râm mở mang lại ánh sáng đều mà không có bóng gắt. Đến đủ gần để lấp đầy khung hình nhưng tránh đổ bóng của chính bạn lên đối tượng. Một tấm phản xạ nhỏ hoặc tấm bìa màu trắng có thể làm nổi bật chi tiết ở những hốc sâu của hoa hoặc vỏ cây.";
+"home.article.photography.block2.title" = "Kiên nhẫn và tôn trọng";
+"home.article.photography.block2.body" = "Hãy để côn trùng định cư thay vì đuổi theo chúng. Chế độ Burst giúp phát tờ rơi nhanh. Nếu bạn sử dụng đèn flash, hãy duy trì thời gian chụp ngắn và không bao giờ chĩa thẳng vào mắt các loài động vật có xương sống ở gần. Khi bạn đã hoàn tất, hãy rời khỏi môi trường sống như bạn đã tìm thấy.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Cài đặt";
+"settings.section.support" = "Ủng hộ";
+"settings.section.feedback" = "Nhận xét";
+"settings.section.security" = "Bảo vệ";
+"settings.row.contact_us" = "Liên hệ với chúng tôi";
+"settings.row.restore" = "Khôi phục";
+"settings.row.rate_app" = "Đánh giá ứng dụng";
+"settings.row.share_app" = "Chia sẻ ứng dụng";
+"settings.row.privacy" = "Chính sách bảo mật";
+"settings.row.terms" = "Điều khoản sử dụng";
+"settings.row.refund_consent" = "Đồng ý hoàn tiền";
+"settings.row.reset_consent" = "Đặt lại sự đồng ý";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Hỗ trợ ứng dụng lỗi";
+"settings.support.mail_body" = "CHÀO,";
+"settings.support.mail_unavailable_title" = "Liên hệ với chúng tôi qua email";
+"settings.restore.message" = "Khôi phục đăng ký của bạn từ App Store cho ID Apple này.";
+"settings.refund_consent.message" = "Bạn có đồng ý xử lý dữ liệu của mình cho mục đích hoàn tiền không?";
+"settings.refund_consent.allow" = "Cho phép";
+"settings.refund_consent.decline" = "Sự suy sụp";
+"settings.reset_consent.message" = "Tính năng quản lý sự đồng ý quảng cáo sẽ có trong bản cập nhật trong tương lai.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

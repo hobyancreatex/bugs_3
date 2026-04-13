@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "בוצע";
+
+/* Onboarding */
+"onboarding.intro.title" = "היי! אני המדריך שלך לעולם החרקים 🐞";
+"onboarding.intro.subtitle" = "In this app, you can:";
+"onboarding.intro.benefit.identify" = "זיהוי חרקים בשניות";
+"onboarding.intro.benefit.collection" = "שמור אותם באוסף שלך";
+"onboarding.intro.benefit.achievements" = "להרוויח הישגים";
+"onboarding.intro.benefit.ai" = "צ'אט עם עוזר AI";
+"onboarding.intro.benefit.articles" = "Read helpful articles";
+"onboarding.button.next" = "הבא";
+"onboarding.button.start" = "התחל";
+
+/* Home */
+"home.title" = "בית";
+"home.search.placeholder" = "חפש";
+"home.ai_banner.title" = "שאל AI על כל חרק שתמצא";
+"home.ai_banner.button" = "שאל שאלה";
+
+/* AI chat */
+"ai_chat.title" = "AI consultant";
+"ai_chat.input.placeholder" = "תשאל אותי משהו…";
+"ai_chat.stub.ai" = "אני יודע הכל על חרקים, אתה יכול להתייעץ איתי.";
+"ai_chat.stub.user" = "ספר לי על הדבורים";
+"ai_chat.seed_creation_message" = "מי אתה";
+"ai_chat.error.bootstrap" = "לא ניתן היה לפתוח את הצ'אט. אנא נסה שוב.";
+"ai_chat.error.send" = "לא ניתן לשלוח את ההודעה. אנא נסה שוב.";
+"ai_chat.alert.connection_lost.message" = "החיבור אבד. אנא נסה שוב מאוחר יותר.";
+"ai_chat.alert.connection_lost.action" = "בסדר";
+
+/* Home — categories */
+"home.category.coleoptera" = "קולאופטרה";
+"home.category.scorpiones" = "עקרבים";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "דיפטרה";
+"home.category.blattodea" = "בלטודיאה";
+"home.category.hemiptera" = "המיפטרה";
+
+/* Main tab bar */
+"profile.title" = "פרופיל";
+"profile.segment.collection" = "האוסף שלי";
+"profile.segment.achievements" = "ההישגים שלי";
+"profile.achievements.placeholder" = "הישגים יופיעו כאן.";
+"profile.collection.empty.title" = "התחל את אוסף החרקים שלך";
+"profile.collection.empty.subtitle" = "צלם חרקים, הגדל את האוסף שלך, זכה בפרסים ועקוב אחר ההתקדמות שלך";
+"profile.achievement.close.accessibility" = "סגור";
+"profile.achievement.unlock_heading" = "כדי לפתוח את ההישג הזה";
+"profile.achievement.completed_heading" = "מזל טוב!";
+"profile.achievement.completed_body" = "נוסף לאוסף שלך";
+"profile.achievement.identify_more" = "זהה %lld עוד %@";
+"tab.home.accessibility" = "בית";
+"tab.library.accessibility" = "ספריה";
+"tab.chat.accessibility" = "צ'אט בינה מלאכותית";
+"tab.profile.accessibility" = "פרופיל";
+"tab.scan.accessibility" = "סרוק חרק";
+
+/* Scanner */
+"scanner.close.accessibility" = "סגור";
+"scanner.recognition_progress.message" = "אנא המתן בזמן שהנתונים נטענים...";
+"scanner.recognition_no_match.title" = "לא נמצאה התאמה";
+"scanner.recognition_no_match.subtitle" = "לא הצלחנו לזהות את החרק בתמונה הזו";
+"scanner.recognition_no_match.try_again" = "נסה שוב";
+"scanner.recognition_match.title" = "נמצאה התאמה!";
+"scanner.recognition_match.subtitle" = "זיהינו התאמות אפשריות. המשך לראות באיזה חרק מדובר";
+"scanner.recognition_match.see_result" = "ראה תוצאה";
+
+/* Paywall */
+"paywall.preview.species" = "פריטילרי";
+"paywall.preview.family" = "משפחה: Nymphalidae";
+"paywall.preview.harmless" = "לא מזיק";
+"paywall.close.accessibility" = "סגור";
+"paywall.headline" = "פתח את עולם החרקים המלא";
+"paywall.benefit.scans" = "סריקות ללא הגבלה";
+"paywall.benefit.collection" = "גישה מלאה לאיסוף";
+"paywall.benefit.ai" = "AI assistant without limits";
+"paywall.benefit.achievements" = "הישגים בלעדיים";
+"paywall.product.prefix" = "אז 3 ימים בחינם";
+"paywall.product.suffix" = "שבוע";
+"paywall.cancel_anytime" = "בטל בכל עת. עם חידוש אוטומטי.";
+"paywall.button.next" = "הבא";
+"paywall.footer.terms" = "תנאי שימוש";
+"paywall.footer.privacy" = "מדיניות הפרטיות";
+"paywall.footer.restore" = "שחזר";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "רכישה";
+"subscription.error.product_unavailable" = "מנוי זה אינו זמין כעת. בדוק את App Store Connect או נסה שוב מאוחר יותר.";
+"subscription.error.purchase_failed" = "לא ניתן היה להשלים את הרכישה. אנא נסה שוב.";
+"subscription.error.restore_failed" = "לא ניתן לשחזר רכישות. בדוק את החיבור שלך ונסה שוב.";
+"subscription.pending.title" = "בהמתנה";
+"subscription.pending.message" = "Your purchase is waiting for approval. הגישה תיפתח כאשר היא תושלם.";
+"subscription.restore.title" = "שחזר";
+"subscription.restore.success" = "הרכישות שלך שוחזרו.";
+"subscription.restore.nothing" = "לא נמצא מנוי פעיל עבור Apple ID זה.";
+
+"scanner.tips.title" = "טיפים";
+"scanner.tips.intro" = "צילום ברור משפר את דיוק הזיהוי. פעל לפי הטיפים הבאים לקבלת התוצאות הטובות ביותר:";
+"scanner.tips.1.title" = "1. שמור את החרק בפוקוס חד";
+"scanner.tips.2.title" = "2. מרכז את החרק במסגרת. ודא שזה נראה בבירור";
+"scanner.tips.3.title" = "3. ללכוד רק מין אחד בכל פעם - מספר חרקים מפחיתים את הדיוק";
+"scanner.tips.4.title" = "4. השתמש בתאורה טובה";
+
+/* Library */
+"library.title" = "ספריה";
+"list.search_empty.title" = "אין תוצאות…";
+"list.search_empty.subtitle" = "אנא נסה שוב";
+
+/* Category insect list */
+"insect.hym.1.title" = "דבורת דבש מערבית";
+"insect.hym.1.subtitle" = "מזיקים גינון נפוצים";
+"insect.hym.2.title" = "צרעה נייר אירופאית";
+"insect.hym.2.subtitle" = "נראה לעתים קרובות על גדרות ומרזבים";
+"insect.hym.3.title" = "דבורת זנב שחורה";
+"insect.hym.3.subtitle" = "מאביק מוקדם באביב";
+"insect.hym.4.title" = "מייסון בי";
+"insect.hym.4.subtitle" = "מקנן חלל בודד";
+"insect.hym.5.title" = "צרעה איכנומון";
+"insect.hym.5.subtitle" = "טפיל של זחלים";
+"insect.default.1.title" = "חרק לדוגמא א";
+"insect.default.1.subtitle" = "שורת מציין מיקום עבור קטגוריה זו";
+"insect.default.2.title" = "חרק ב' לדוגמה";
+"insect.default.2.subtitle" = "החלף בנתוני API מאוחר יותר";
+"insect.default.3.title" = "חרק לדוגמה C";
+"insect.default.3.subtitle" = "שורת מציין מיקום עבור קטגוריה זו";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "לא מזיק";
+"insect.detail.status.poisonous" = "רעיל";
+"insect.detail.status.toxic" = "רעיל";
+"insect.detail.status.widespread" = "נפוץ";
+"insect.detail.widespread.api.yes" = "נפוץ";
+"insect.detail.widespread.api.no" = "לא שכיח";
+"insect.detail.also_known_prefix" = "ידוע גם בשם:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "דבורת דבש אירופאית, דבורת דבש מערבית, דבורת דבש";
+"insect.detail.section.description" = "תיאור";
+"insect.detail.read_more" = "קרא עוד";
+"insect.detail.mock.description" = "דבורת הדבש המערבית (Apis mellifera) היא בין המאביקים המנוהלים החשובים ביותר בחקלאות ובמערכות אקולוגיות פראיות. יליד אירופה, מערב אסיה ואפריקה, הוא הופץ ברחבי העולם על ידי כוורנים לייצור דבש והאבקת יבולים.\n\nמושבה היא סופר-אורגניזם: מלכה פורייה יחידה מטילה ביצים, בעוד שאלפי פועלות מחפשות מזון, מניחות זחלים, בונות מסרק ומגנות על הקן. מזל\"טים זכרים מופיעים עונתיים ומזדווגים עם מלכות ממושבות אחרות. עובדים מתקשרים את הכיוון והמרחק למקורות מזון עשירים באמצעות ריקוד הכשושים ומשתפים מידע באמצעות מגע ופרומונים.\n\nאוכלי מזון מבקרים במיני צמחים רבים, ומעבירים אבקה תוך כדי תנועה. התנהגות זו תומכת במגוון הביולוגי ובגידולי מזון - ממטעים ופירות יער ועד זרעי שמן ומלונים. כוורנים מנהלים כוורות כדי לאזן את קציר הדבש עם בריאות המושבה, מעקב אחר מזיקים, מחלות ומתח תזונתי.\n\nלמרות שבדרך כלל צייתניות לפרחים, דבורי הדבש מגנות על הכוורת שלהן אם הן תופסות איום; הבנת הרמזים שלהם מפחיתה עקיצות. אובדן בתי גידול, חומרי הדברה, פתוגנים ושינויי אקלים מאתגרים אוכלוסיות פראיות ומנוהלות כאחד. הגנה על משאבי פרחים ואימוץ ניהול קפדני מסייעים לקיים את החרקים המדהימים הללו לעונות הבאות.";
+"insect.detail.section.characteristics" = "מאפיינים";
+"insect.detail.section.classification" = "סיווג מדעי";
+"insect.detail.section.bites" = "נשיכות";
+"insect.detail.bites.intro" = "אם ננשכת או נעקצת, בצע את השלבים הבאים:";
+"insect.detail.bites.first_aid" = "עזרה ראשונה מיידית:";
+"insect.detail.add_to_collection" = "הוסף לאוסף";
+"insect.detail.add_to_collection.sheet.title" = "הוסף תמונה לאוסף שלך";
+"insect.detail.add_to_collection.source.camera" = "צלם תמונה";
+"insect.detail.add_to_collection.source.library" = "בחר מתוך הספרייה";
+"insect.detail.add_to_collection.cancel" = "בטל";
+"insect.detail.add_to_collection.alert.ok" = "בסדר";
+"insect.detail.add_to_collection.error.no_insect" = "מסך זה אינו מקושר לחרק קטלוגי, כך שלא ניתן לעדכן את האוסף.";
+"insect.detail.add_to_collection.error.network" = "לא ניתן להוסיף לאוסף. בדוק את החיבור שלך ונסה שוב.";
+"insect.detail.remove_from_collection.confirm.title" = "להסיר מהאוסף?";
+"insect.detail.remove_from_collection.confirm.message" = "חרק זה יוסר מהאוסף שלך. לא ניתן לבטל זאת.";
+"insect.detail.remove_from_collection.confirm.delete" = "הסר";
+"insect.detail.remove_from_collection.confirm.cancel" = "בטל";
+"insect.detail.remove_from_collection.error.no_id" = "אין ערך אוסף להסרה בשרת.";
+"insect.detail.remove_from_collection.error.network" = "לא ניתן להסיר מהאוסף. בדוק את החיבור שלך ונסה שוב.";
+"insect.detail.add_to_collection.success.title" = "הצלחה!";
+"insect.detail.add_to_collection.success.subtitle" = "החרק נוסף בהצלחה לאוסף שלך";
+"insect.detail.remove_from_collection.accessibility" = "הסר מהאוסף";
+"insect.detail.class.genus.title" = "סוג";
+"insect.detail.class.genus.value" = "אפיס";
+"insect.detail.class.family.title" = "משפחה";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "סדר";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "שם הכיתה";
+"insect.detail.class.class.value" = "חרקים";
+"insect.detail.class.phylum.title" = "פילום";
+"insect.detail.class.phylum.value" = "ארתרופודה";
+"insect.detail.class.kingdom.title" = "ממלכה";
+"insect.detail.class.kingdom.value" = "אנימליה";
+"insect.detail.class.domain.title" = "דומיין";
+"insect.detail.class.domain.value" = "איקריוטה";
+"insect.detail.char.adult_size.title" = "גודל למבוגרים";
+"insect.detail.char.adult_size.value" = "1.2 - 1.5 ס\"מ";
+"insect.detail.char.forms.title" = "טפסי קיום";
+"insect.detail.char.forms.value" = "ביצה, זחל, גולם, בוגר";
+"insect.detail.char.colors.title" = "צבעים";
+"insect.detail.char.colors.value" = "חום-זהוב עם פסים שחורים";
+"insect.detail.char.population.title" = "אוכלוסייה";
+"insect.detail.char.population.value" = "נפוץ מאוד ומבוית";
+"insect.detail.char.habitat.title" = "בית גידול";
+"insect.detail.char.habitat.value" = "כרי דשא, גנים, יערות, שטחים חקלאיים";
+"insect.detail.char.diet.title" = "דיאטה";
+"insect.detail.char.diet.value" = "צוף ואבקה מצמחים פורחים";
+
+/* Home — popular this week */
+"home.popular_this_week" = "פופולרי השבוע";
+"home.popular.butterfly" = "פרפר";
+"home.popular.mantis" = "גמל שלמה";
+"home.popular.ant" = "נמלה";
+"home.popular.beetle" = "חיפושית";
+
+/* Home — articles */
+"home.articles_section_title" = "מאמרים שימושיים";
+"home.article.identify.title" = "כיצד נזהה חרקים?";
+"home.article.identify.subtitle" = "סימנים וכלים בסיסיים שעוזרים להבדיל בין מינים בשטח או מתמונה.";
+"home.article.habitats.title" = "היכן שחרקים חיים";
+"home.article.habitats.subtitle" = "החל מאדמה ועלים ועד פרחים ומים - בתי גידול אופייניים שתוכלו לחקור בבטחה.";
+"home.article.photography.title" = "תמונות מאקרו ללא לחץ";
+"home.article.photography.subtitle" = "אור, מרחק וסבלנות: עצות קצרות לתמונות ברורות יותר של נושאים קטנים.";
+"home.article.identify.block1.title" = "מה שאנחנו מסתכלים עליו קודם";
+"home.article.identify.block1.body" = "צורת הגוף, הכנפיים, האנטנות והרגליים מצמצמים לעתים קרובות את סדר החרקים במבט חטוף. דפוסי צבע עוזרים, אבל הם משתנים בין המינים - משלבים אותם עם גודל, יציבה והתנהגות. במידת האפשר, שים לב היכן ראית את החרק: צמח מארח, פני האדמה או קצה המים מוסיפים הקשר.";
+"home.article.identify.block2.title" = "מתוך תמונה";
+"home.article.identify.block2.body" = "תמונה חדה ומוארת היטב מנצחת תמונה מטושטשת בכל פעם. צלם את התצוגה העליונה, ואם אתה יכול, את פרופיל הצד. כלול תחושת קנה מידה (מטבע או אצבע שלך) כאשר הגודל חשוב. כמה זוויות מפחיתות ניחושים כאשר הסימונים עדינים או מוסתרים מתחת לכנפיים מקופלות.";
+"home.article.habitats.block1.title" = "שכבות של בית גידול";
+"home.article.habitats.block1.body" = "חרקים משתמשים בחלל אנכי: חופה, תת קרקע, פסולת עלים, חריצי קליפה ואדמה. הפיכת בול עץ או הרמת אבן חושפת קהילה אחרת מאשר ראש פרח בשמש מלאה. זזו באיטיות והחליפו כיסויים כך שבתי גידול יישארו שלמים.";
+"home.article.habitats.block2.title" = "מים וקצוות";
+"home.article.habitats.block2.body" = "בריכות, נחלים וכרי דשא לחים מארחים מומחים כמו שפיריות, דפנות וחיפושיות רבות. הגבול בין אדמה למים - קנים, גדות בוציות - הוא לרוב האזור העשיר ביותר. תחילה התבוננו מרחוק כדי להימנע מחרקים נחים.";
+"home.article.photography.block1.title" = "אור ומרחק";
+"home.article.photography.block1.body" = "אור יום מפוזר או גוון פתוח מעניק תאורה אחידה ללא צללים קשים. התקרב מספיק כדי למלא את הפריים, אך הימנע מהטלת צל משלך על הנושא. רפלקטור קטן או כרטיס לבן יכולים להרים פרטים בשקעים עמוקים של פרחים או קליפה.";
+"home.article.photography.block2.title" = "סבלנות וכבוד";
+"home.article.photography.block2.body" = "תן לחרקים להתיישב במקום לרדוף אחריהם. מצב פרץ עוזר עם עלונים עצבניים. אם אתה משתמש בפלאש, הקפד על הפעלות קצרות ולעולם אל תכוון אותו ישירות לעיניים של חולייתנים בקרבת מקום. כשתסיים, עזוב את בית הגידול כפי שמצאת אותו.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "הגדרות";
+"settings.section.support" = "תמיכה";
+"settings.section.feedback" = "משוב";
+"settings.section.security" = "אבטחה";
+"settings.row.contact_us" = "צור איתנו קשר";
+"settings.row.restore" = "שחזר";
+"settings.row.rate_app" = "דרג את האפליקציה";
+"settings.row.share_app" = "שתף את האפליקציה";
+"settings.row.privacy" = "מדיניות הפרטיות";
+"settings.row.terms" = "תנאי שימוש";
+"settings.row.refund_consent" = "הסכמה להחזר";
+"settings.row.reset_consent" = "אפס הסכמה";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "תמיכה באפליקציית באגים";
+"settings.support.mail_body" = "היי,";
+"settings.support.mail_unavailable_title" = "צור איתנו קשר במייל";
+"settings.restore.message" = "משחזר את המנוי שלך מ-App Store עבור מזהה Apple זה.";
+"settings.refund_consent.message" = "האם אתה מסכים לעיבוד הנתונים שלך למטרות החזר?";
+"settings.refund_consent.allow" = "אפשר";
+"settings.refund_consent.decline" = "דחה";
+"settings.reset_consent.message" = "ניהול הסכמת פרסום יהיה זמין בעדכון עתידי.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

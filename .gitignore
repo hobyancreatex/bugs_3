@@ -8,3 +8,6 @@ build/
 
 # macOS
 .DS_Store
+
+# Localization generator cache
+Scripts/.l10n_cache.json

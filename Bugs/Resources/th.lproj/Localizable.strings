@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "เสร็จแล้ว";
+
+/* Onboarding */
+"onboarding.intro.title" = "สวัสดี! ฉันเป็นไกด์ของคุณสู่โลกแมลง 🐞";
+"onboarding.intro.subtitle" = "ในแอพนี้คุณสามารถ:";
+"onboarding.intro.benefit.identify" = "ระบุแมลงในไม่กี่วินาที";
+"onboarding.intro.benefit.collection" = "บันทึกไว้ในคอลเลกชันของคุณ";
+"onboarding.intro.benefit.achievements" = "รับความสำเร็จ";
+"onboarding.intro.benefit.ai" = "สนทนากับผู้ช่วย AI";
+"onboarding.intro.benefit.articles" = "อ่านบทความที่เป็นประโยชน์";
+"onboarding.button.next" = "ต่อไป";
+"onboarding.button.start" = "เริ่มต้นเลย";
+
+/* Home */
+"home.title" = "บ้าน";
+"home.search.placeholder" = "ค้นหา";
+"home.ai_banner.title" = "ถาม AI เกี่ยวกับแมลงที่คุณพบ";
+"home.ai_banner.button" = "ถามคำถาม";
+
+/* AI chat */
+"ai_chat.title" = "ที่ปรึกษาด้านเอไอ";
+"ai_chat.input.placeholder" = "ถามฉันบางอย่าง…";
+"ai_chat.stub.ai" = "ฉันรู้เรื่องแมลงปรึกษาฉันได้";
+"ai_chat.stub.user" = "บอกฉันเกี่ยวกับผึ้ง";
+"ai_chat.seed_creation_message" = "คุณเป็นใคร?";
+"ai_chat.error.bootstrap" = "ไม่สามารถเปิดแชทได้ โปรดลองอีกครั้ง";
+"ai_chat.error.send" = "ไม่สามารถส่งข้อความได้ โปรดลองอีกครั้ง";
+"ai_chat.alert.connection_lost.message" = "การเชื่อมต่อขาดหายไป โปรดลองอีกครั้งในภายหลัง";
+"ai_chat.alert.connection_lost.action" = "ตกลง";
+
+/* Home — categories */
+"home.category.coleoptera" = "โคเลออปเทรา";
+"home.category.scorpiones" = "แมงป่อง";
+"home.category.hymenoptera" = "ไฮเมนอปเทรา";
+"home.category.araneae" = "อาราเน่";
+"home.category.lepidoptera" = "ผีเสื้อกลางคืน";
+"home.category.diptera" = "ดิปเทรา";
+"home.category.blattodea" = "แบลตโตเดีย";
+"home.category.hemiptera" = "เฮมมิเทรา";
+
+/* Main tab bar */
+"profile.title" = "ประวัติโดยย่อ";
+"profile.segment.collection" = "คอลเลกชันของฉัน";
+"profile.segment.achievements" = "ความสำเร็จของฉัน";
+"profile.achievements.placeholder" = "ความสำเร็จจะปรากฏที่นี่";
+"profile.collection.empty.title" = "เริ่มสะสมแมลงของคุณ";
+"profile.collection.empty.subtitle" = "ถ่ายภาพแมลง ปลูกคอลเลกชันของคุณ รับรางวัล และติดตามความคืบหน้าของคุณ";
+"profile.achievement.close.accessibility" = "ปิด";
+"profile.achievement.unlock_heading" = "เพื่อปลดล็อคความสำเร็จนี้";
+"profile.achievement.completed_heading" = "ยินดีด้วย!";
+"profile.achievement.completed_body" = "เพิ่มไปยังคอลเลกชันของคุณแล้ว";
+"profile.achievement.identify_more" = "ระบุ %lld เพิ่มเติม %@";
+"tab.home.accessibility" = "บ้าน";
+"tab.library.accessibility" = "ห้องสมุด";
+"tab.chat.accessibility" = "เอไอแชท";
+"tab.profile.accessibility" = "ประวัติโดยย่อ";
+"tab.scan.accessibility" = "สแกนแมลง";
+
+/* Scanner */
+"scanner.close.accessibility" = "ปิด";
+"scanner.recognition_progress.message" = "กรุณารอสักครู่ในขณะที่กำลังโหลดข้อมูล...";
+"scanner.recognition_no_match.title" = "ไม่พบรายการที่ตรงกัน";
+"scanner.recognition_no_match.subtitle" = "เราไม่สามารถระบุแมลงในภาพนี้ได้";
+"scanner.recognition_no_match.try_again" = "ลองอีกครั้ง";
+"scanner.recognition_match.title" = "พบการแข่งขัน!";
+"scanner.recognition_match.subtitle" = "เราได้ระบุการแข่งขันที่เป็นไปได้ มาดูกันต่อว่าเป็นแมลงตัวไหน";
+"scanner.recognition_match.see_result" = "เห็นผล";
+
+/* Paywall */
+"paywall.preview.species" = "ฟริติลลารี";
+"paywall.preview.family" = "ครอบครัว: Nymphalidae";
+"paywall.preview.harmless" = "ไม่เป็นอันตราย";
+"paywall.close.accessibility" = "ปิด";
+"paywall.headline" = "ปลดล็อกโลกแมลงเต็มรูปแบบ";
+"paywall.benefit.scans" = "สแกนได้ไม่จำกัด";
+"paywall.benefit.collection" = "การเข้าถึงคอลเลกชันเต็มรูปแบบ";
+"paywall.benefit.ai" = "ผู้ช่วย AI ไร้ขีดจำกัด";
+"paywall.benefit.achievements" = "ความสำเร็จพิเศษ";
+"paywall.product.prefix" = "ฟรี 3 วัน แล้วกัน";
+"paywall.product.suffix" = "หนึ่งสัปดาห์";
+"paywall.cancel_anytime" = "ยกเลิกได้ตลอดเวลา ด้วยการต่ออายุอัตโนมัติ";
+"paywall.button.next" = "ต่อไป";
+"paywall.footer.terms" = "เงื่อนไขการใช้งาน";
+"paywall.footer.privacy" = "นโยบายความเป็นส่วนตัว";
+"paywall.footer.restore" = "คืนค่า";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "ซื้อ";
+"subscription.error.product_unavailable" = "การสมัครรับข้อมูลนี้ไม่สามารถใช้ได้ในขณะนี้ ตรวจสอบ App Store Connect หรือลองอีกครั้งในภายหลัง";
+"subscription.error.purchase_failed" = "ไม่สามารถดำเนินการซื้อให้เสร็จสิ้นได้ โปรดลองอีกครั้ง";
+"subscription.error.restore_failed" = "ไม่สามารถกู้คืนการซื้อได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง";
+"subscription.pending.title" = "รอดำเนินการ";
+"subscription.pending.message" = "การซื้อของคุณกำลังรอการอนุมัติ การเข้าถึงจะปลดล็อคเมื่อเสร็จสิ้น";
+"subscription.restore.title" = "คืนค่า";
+"subscription.restore.success" = "การซื้อของคุณได้รับการกู้คืนแล้ว";
+"subscription.restore.nothing" = "ไม่พบการสมัครสมาชิกที่ใช้งานอยู่สำหรับ Apple ID นี้";
+
+"scanner.tips.title" = "เคล็ดลับ";
+"scanner.tips.intro" = "ภาพถ่ายที่ชัดเจนช่วยเพิ่มความแม่นยำในการจดจำ ปฏิบัติตามเคล็ดลับเหล่านี้เพื่อผลลัพธ์ที่ดีที่สุด:";
+"scanner.tips.1.title" = "1. จับแมลงให้อยู่ในโฟกัสที่คมชัด";
+"scanner.tips.2.title" = "2. จัดแมลงให้อยู่ในกรอบภาพ ตรวจสอบให้แน่ใจว่ามองเห็นได้ชัดเจน";
+"scanner.tips.3.title" = "3. จับได้ครั้งละหนึ่งสายพันธุ์ — แมลงหลายตัวลดความแม่นยำลง";
+"scanner.tips.4.title" = "4. ใช้แสงสว่างที่ดี";
+
+/* Library */
+"library.title" = "ห้องสมุด";
+"list.search_empty.title" = "ไม่มีผลลัพธ์...";
+"list.search_empty.subtitle" = "โปรดลองอีกครั้ง";
+
+/* Category insect list */
+"insect.hym.1.title" = "ผึ้งน้ำผึ้งตะวันตก";
+"insect.hym.1.subtitle" = "ศัตรูพืชสวนทั่วไป";
+"insect.hym.2.title" = "ตัวต่อกระดาษยุโรป";
+"insect.hym.2.subtitle" = "มักพบเห็นตามรั้วและชายคา";
+"insect.hym.3.title" = "บัมเบิ้ลบีหางควาย";
+"insect.hym.3.subtitle" = "แมลงผสมเกสรต้นฤดูใบไม้ผลิ";
+"insect.hym.4.title" = "เมสัน บี";
+"insect.hym.4.subtitle" = "รังโพรงเดี่ยว";
+"insect.hym.5.title" = "อิชนิวมอน วอสพ์";
+"insect.hym.5.subtitle" = "ปรสิตอยด์ของหนอนผีเสื้อ";
+"insect.default.1.title" = "ตัวอย่างแมลง A";
+"insect.default.1.subtitle" = "แถวตัวยึดตำแหน่งสำหรับหมวดหมู่นี้";
+"insect.default.2.title" = "ตัวอย่างแมลง B";
+"insect.default.2.subtitle" = "แทนที่ด้วยข้อมูล API ในภายหลัง";
+"insect.default.3.title" = "ตัวอย่างแมลง C";
+"insect.default.3.subtitle" = "แถวตัวยึดตำแหน่งสำหรับหมวดหมู่นี้";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "ไม่เป็นอันตราย";
+"insect.detail.status.poisonous" = "เป็นพิษ";
+"insect.detail.status.toxic" = "พิษ";
+"insect.detail.status.widespread" = "แพร่หลาย";
+"insect.detail.widespread.api.yes" = "แพร่หลาย";
+"insect.detail.widespread.api.no" = "ไม่ธรรมดา";
+"insect.detail.also_known_prefix" = "ยังเป็นที่รู้จักกันในนาม:";
+"insect.detail.mock.scientific_title" = "อาปิส เมลลิเฟรา";
+"insect.detail.mock.aliases" = "ผึ้งน้ำผึ้งยุโรป, ผึ้งตะวันตก, ผึ้งน้ำผึ้ง";
+"insect.detail.section.description" = "คำอธิบาย";
+"insect.detail.read_more" = "อ่านเพิ่มเติม";
+"insect.detail.mock.description" = "ผึ้งน้ำผึ้งตะวันตก (Apis mellifera) เป็นหนึ่งในแมลงผสมเกสรที่มีการจัดการที่สำคัญที่สุดในการเกษตรและระบบนิเวศป่า มีถิ่นกำเนิดในยุโรป เอเชียตะวันตก และแอฟริกา มีการแพร่กระจายไปทั่วโลกโดยผู้เลี้ยงผึ้งเพื่อการผลิตน้ำผึ้งและการผสมเกสรพืช\n\nอาณานิคมถือเป็นสิ่งมีชีวิตเหนือธรรมชาติ โดยราชินีที่อุดมสมบูรณ์เพียงตัวเดียวจะวางไข่ ในขณะที่คนงานหญิงหลายพันคนหาอาหาร เลี้ยงลูกน้ำ สร้างหวี และปกป้องรัง โดรนตัวผู้จะปรากฏขึ้นตามฤดูกาลและผสมพันธุ์กับราชินีจากอาณานิคมอื่นๆ พนักงานสื่อสารทิศทางและระยะทางไปยังแหล่งอาหารที่อุดมสมบูรณ์ผ่านการเต้นโยกเยก และแบ่งปันข้อมูลด้วยการสัมผัสและฟีโรโมน\n\nผู้หาอาหารจะไปเยี่ยมชมพืชหลายชนิด โดยถ่ายละอองเรณูในขณะที่พวกมันเคลื่อนไหว พฤติกรรมนี้สนับสนุนความหลากหลายทางชีวภาพและพืชอาหาร ตั้งแต่สวนผลไม้และผลเบอร์รี่ไปจนถึงเมล็ดพืชน้ำมันและแตง คนเลี้ยงผึ้งจัดการลมพิษเพื่อสร้างสมดุลระหว่างการเก็บเกี่ยวน้ำผึ้งกับสุขภาพของโคโลนี การเฝ้าระวังแมลงศัตรูพืช โรค และความเครียดทางโภชนาการ\n\nแม้ว่าโดยทั่วไปแล้วจะเชื่อฟังดอกไม้ แต่ผึ้งก็ปกป้องรังของพวกมันหากพวกมันรับรู้ถึงภัยคุกคาม การทำความเข้าใจสัญญาณของพวกเขาช่วยลดการถูกต่อย การสูญเสียถิ่นที่อยู่ ยาฆ่าแมลง เชื้อโรค และการเปลี่ยนแปลงสภาพภูมิอากาศท้าทายทั้งประชากรในป่าและประชากรที่ได้รับการจัดการ การปกป้องทรัพยากรดอกไม้และการจัดการอย่างระมัดระวังจะช่วยรักษาแมลงที่น่าทึ่งเหล่านี้ไว้สำหรับฤดูกาลหน้า";
+"insect.detail.section.characteristics" = "ลักษณะเฉพาะ";
+"insect.detail.section.classification" = "การจำแนกประเภททางวิทยาศาสตร์";
+"insect.detail.section.bites" = "กัด";
+"insect.detail.bites.intro" = "หากคุณถูกกัดหรือต่อย ให้ทำตามขั้นตอนเหล่านี้:";
+"insect.detail.bites.first_aid" = "การปฐมพยาบาลทันที:";
+"insect.detail.add_to_collection" = "เพิ่มไปยังคอลเลกชัน";
+"insect.detail.add_to_collection.sheet.title" = "เพิ่มรูปภาพในคอลเลกชันของคุณ";
+"insect.detail.add_to_collection.source.camera" = "ถ่ายรูป";
+"insect.detail.add_to_collection.source.library" = "เลือกจากห้องสมุด";
+"insect.detail.add_to_collection.cancel" = "ยกเลิก";
+"insect.detail.add_to_collection.alert.ok" = "ตกลง";
+"insect.detail.add_to_collection.error.no_insect" = "หน้าจอนี้ไม่ได้เชื่อมโยงกับแมลงในแคตตาล็อก ดังนั้นจึงไม่สามารถอัปเดตคอลเลกชันได้";
+"insect.detail.add_to_collection.error.network" = "ไม่สามารถเพิ่มลงในคอลเลกชันได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง";
+"insect.detail.remove_from_collection.confirm.title" = "ลบออกจากคอลเล็กชันใช่ไหม";
+"insect.detail.remove_from_collection.confirm.message" = "แมลงชนิดนี้จะถูกลบออกจากคอลเลกชันของคุณ สิ่งนี้ไม่สามารถยกเลิกได้";
+"insect.detail.remove_from_collection.confirm.delete" = "ลบ";
+"insect.detail.remove_from_collection.confirm.cancel" = "ยกเลิก";
+"insect.detail.remove_from_collection.error.no_id" = "ไม่มีรายการคอลเลกชันที่จะลบบนเซิร์ฟเวอร์";
+"insect.detail.remove_from_collection.error.network" = "ไม่สามารถลบออกจากคอลเลกชันได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง";
+"insect.detail.add_to_collection.success.title" = "ความสำเร็จ!";
+"insect.detail.add_to_collection.success.subtitle" = "เพิ่มแมลงในคอลเลกชันของคุณเรียบร้อยแล้ว";
+"insect.detail.remove_from_collection.accessibility" = "ลบออกจากคอลเลกชัน";
+"insect.detail.class.genus.title" = "ประเภท";
+"insect.detail.class.genus.value" = "เอปิส";
+"insect.detail.class.family.title" = "ตระกูล";
+"insect.detail.class.family.value" = "อาพิแด";
+"insect.detail.class.order.title" = "คำสั่ง";
+"insect.detail.class.order.value" = "ไฮเมนอปเทรา";
+"insect.detail.class.class.title" = "ชื่อชั้นเรียน";
+"insect.detail.class.class.value" = "แมลง";
+"insect.detail.class.phylum.title" = "ไฟลัม";
+"insect.detail.class.phylum.value" = "สัตว์ขาปล้อง";
+"insect.detail.class.kingdom.title" = "ราชอาณาจักร";
+"insect.detail.class.kingdom.value" = "สัตว์";
+"insect.detail.class.domain.title" = "โดเมน";
+"insect.detail.class.domain.value" = "ยูคาริโอต";
+"insect.detail.char.adult_size.title" = "ขนาดผู้ใหญ่";
+"insect.detail.char.adult_size.value" = "1.2 – 1.5 ซม";
+"insect.detail.char.forms.title" = "แบบฟอร์มการดำรงอยู่";
+"insect.detail.char.forms.value" = "ไข่ ตัวอ่อน ดักแด้ ตัวเต็มวัย";
+"insect.detail.char.colors.title" = "สี";
+"insect.detail.char.colors.value" = "สีน้ำตาลทองมีแถบสีดำ";
+"insect.detail.char.population.title" = "ประชากร";
+"insect.detail.char.population.value" = "แพร่หลายและแพร่หลายมาก";
+"insect.detail.char.habitat.title" = "ที่อยู่อาศัย";
+"insect.detail.char.habitat.value" = "ทุ่งหญ้า สวน ป่าไม้ พื้นที่เกษตรกรรม";
+"insect.detail.char.diet.title" = "อาหาร";
+"insect.detail.char.diet.value" = "น้ำหวานและเกสรจากไม้ดอก";
+
+/* Home — popular this week */
+"home.popular_this_week" = "ยอดนิยมสัปดาห์นี้";
+"home.popular.butterfly" = "ผีเสื้อ";
+"home.popular.mantis" = "ตั๊กแตนตำข้าว";
+"home.popular.ant" = "มด";
+"home.popular.beetle" = "ด้วง";
+
+/* Home — articles */
+"home.articles_section_title" = "บทความที่เป็นประโยชน์";
+"home.article.identify.title" = "เราจะระบุแมลงได้อย่างไร?";
+"home.article.identify.subtitle" = "ป้ายและเครื่องมือพื้นฐานที่ช่วยแยกชนิดพันธุ์ในทุ่งนาหรือจากภาพถ่าย";
+"home.article.habitats.title" = "ที่ซึ่งแมลงอาศัยอยู่";
+"home.article.habitats.subtitle" = "จากเศษดินและใบไม้ไปจนถึงดอกไม้และน้ำ - แหล่งที่อยู่อาศัยทั่วไปที่คุณสามารถสำรวจได้อย่างปลอดภัย";
+"home.article.photography.title" = "ภาพมาโครโดยไม่ต้องเครียด";
+"home.article.photography.subtitle" = "แสง ระยะทาง และความอดทน: เคล็ดลับสั้นๆ เพื่อให้ถ่ายภาพวัตถุขนาดเล็กได้ชัดเจนยิ่งขึ้น";
+"home.article.identify.block1.title" = "สิ่งที่เรามองเป็นอันดับแรก";
+"home.article.identify.block1.body" = "รูปร่างของร่างกาย ปีก หนวด และขามักจะจำกัดลำดับของแมลงให้แคบลงเมื่อมองแวบเดียว รูปแบบสีช่วยได้ แต่จะแตกต่างกันไปตามสายพันธุ์ เมื่อรวมกับขนาด ท่าทาง และพฤติกรรม เมื่อเป็นไปได้ ให้สังเกตว่าคุณเห็นแมลงที่ไหน: พืชอาศัย ผิวดิน หรือขอบน้ำล้วนเพิ่มบริบท";
+"home.article.identify.block2.title" = "จากภาพถ่าย";
+"home.article.identify.block2.body" = "ภาพที่คมชัดและมีแสงสว่างเพียงพอจะเอาชนะภาพเบลอทุกครั้ง จับภาพมุมมองด้านบนและหากทำได้ เก็บภาพโปรไฟล์ด้านข้าง ใส่ความรู้สึกถึงขนาด (เหรียญหรือนิ้วของคุณ) เมื่อขนาดมีความสำคัญ หลายมุมช่วยลดการคาดเดาเมื่อมีการทำเครื่องหมายที่ละเอียดอ่อนหรือซ่อนอยู่ใต้ปีกที่พับ";
+"home.article.habitats.block1.title" = "ชั้นของที่อยู่อาศัย";
+"home.article.habitats.block1.body" = "แมลงใช้พื้นที่แนวตั้ง: ทรงพุ่ม ด้านล่าง เศษใบไม้ รอยแยกของเปลือกไม้ และดิน การพลิกท่อนไม้หรือยกหินเผยให้เห็นชุมชนที่แตกต่างจากหัวดอกไม้ท่ามกลางแสงแดด เคลื่อนที่ช้าๆ และเปลี่ยนที่กำบังเพื่อให้ที่อยู่อาศัยขนาดเล็กไม่เสียหาย";
+"home.article.habitats.block2.title" = "น้ำและขอบ";
+"home.article.habitats.block2.body" = "บ่อน้ำ ลำธาร และทุ่งหญ้าชื้นเป็นที่อาศัยของผู้เชี่ยวชาญ เช่น แมลงปอ แมลงปอ และแมลงเต่าทองหลายชนิด เขตแดนระหว่างผืนดินและผืนน้ำ เช่น ต้นอ้อ ริมฝั่งโคลน มักเป็นเขตที่ร่ำรวยที่สุด สังเกตจากระยะไกลก่อนเพื่อหลีกเลี่ยงการรบกวนแมลงที่มารบกวน";
+"home.article.photography.block1.title" = "แสงและระยะทาง";
+"home.article.photography.block1.body" = "การกระจายแสงตอนกลางวันหรือร่มเงาแบบเปิดช่วยให้แสงสว่างสม่ำเสมอโดยไม่มีเงาที่รุนแรง เข้าไปใกล้พอที่จะเติมเต็มเฟรม แต่หลีกเลี่ยงการทอดเงาของคุณเองข้ามวัตถุ แผ่นสะท้อนแสงหรือการ์ดสีขาวขนาดเล็กสามารถยกรายละเอียดในส่วนลึกของดอกไม้หรือเปลือกไม้ได้";
+"home.article.photography.block2.title" = "ความอดทนและความเคารพ";
+"home.article.photography.block2.body" = "ปล่อยให้แมลงอยู่อาศัยแทนที่จะไล่ตาม โหมดถ่ายต่อเนื่องช่วยเรื่องใบปลิวที่ขี้ระแวง หากคุณใช้แฟลช ให้แบ่งเซสชันให้สั้นและอย่าชี้แฟลชไปที่ดวงตาของสัตว์มีกระดูกสันหลังในบริเวณใกล้เคียงโดยตรง เมื่อเสร็จแล้วให้ออกจากแหล่งที่อยู่อาศัยตามที่คุณพบ";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "การตั้งค่า";
+"settings.section.support" = "สนับสนุน";
+"settings.section.feedback" = "ข้อเสนอแนะ";
+"settings.section.security" = "ความปลอดภัย";
+"settings.row.contact_us" = "ติดต่อเรา";
+"settings.row.restore" = "คืนค่า";
+"settings.row.rate_app" = "ให้คะแนนแอป";
+"settings.row.share_app" = "แชร์แอป";
+"settings.row.privacy" = "นโยบายความเป็นส่วนตัว";
+"settings.row.terms" = "เงื่อนไขการใช้งาน";
+"settings.row.refund_consent" = "ยินยอมคืนเงิน";
+"settings.row.reset_consent" = "รีเซ็ตความยินยอม";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "การสนับสนุนแอปข้อบกพร่อง";
+"settings.support.mail_body" = "สวัสดี,";
+"settings.support.mail_unavailable_title" = "ติดต่อเราทางอีเมล";
+"settings.restore.message" = "คืนค่าการสมัครสมาชิกของคุณจาก App Store สำหรับ Apple ID นี้";
+"settings.refund_consent.message" = "คุณยินยอมให้ประมวลผลข้อมูลของคุณเพื่อวัตถุประสงค์ในการคืนเงินหรือไม่?";
+"settings.refund_consent.allow" = "อนุญาต";
+"settings.refund_consent.decline" = "ปฏิเสธ";
+"settings.reset_consent.message" = "การจัดการความยินยอมในการโฆษณาจะพร้อมใช้งานในการอัปเดตในอนาคต";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

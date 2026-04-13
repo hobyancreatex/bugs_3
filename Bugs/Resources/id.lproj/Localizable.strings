@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Selesai";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hai! Saya pemandu Anda ke dunia serangga 🐞";
+"onboarding.intro.subtitle" = "Di aplikasi ini, Anda dapat:";
+"onboarding.intro.benefit.identify" = "Identifikasi serangga dalam hitungan detik";
+"onboarding.intro.benefit.collection" = "Simpan ke koleksi Anda";
+"onboarding.intro.benefit.achievements" = "Hasilkan prestasi";
+"onboarding.intro.benefit.ai" = "Ngobrol dengan asisten AI";
+"onboarding.intro.benefit.articles" = "Baca artikel bermanfaat";
+"onboarding.button.next" = "Berikutnya";
+"onboarding.button.start" = "Mulailah";
+
+/* Home */
+"home.title" = "Rumah";
+"home.search.placeholder" = "Mencari";
+"home.ai_banner.title" = "Tanyakan AI tentang serangga apa pun yang Anda temukan";
+"home.ai_banner.button" = "Ajukan pertanyaan";
+
+/* AI chat */
+"ai_chat.title" = "Konsultan AI";
+"ai_chat.input.placeholder" = "Tanyakan padaku sesuatu…";
+"ai_chat.stub.ai" = "Saya tahu semua tentang serangga, Anda bisa berkonsultasi dengan saya.";
+"ai_chat.stub.user" = "Ceritakan padaku tentang lebah";
+"ai_chat.seed_creation_message" = "siapa kamu?";
+"ai_chat.error.bootstrap" = "Tidak dapat membuka obrolan. Silakan coba lagi.";
+"ai_chat.error.send" = "Tidak dapat mengirim pesan. Silakan coba lagi.";
+"ai_chat.alert.connection_lost.message" = "Koneksi terputus. Silakan coba lagi nanti.";
+"ai_chat.alert.connection_lost.action" = "OKE";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "kalajengking";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Araneae";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Diptera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profil";
+"profile.segment.collection" = "Koleksi saya";
+"profile.segment.achievements" = "Prestasi saya";
+"profile.achievements.placeholder" = "Prestasi akan muncul di sini.";
+"profile.collection.empty.title" = "Mulai koleksi serangga Anda";
+"profile.collection.empty.subtitle" = "Potret serangga, kembangkan koleksi Anda, dapatkan hadiah, dan lacak kemajuan Anda";
+"profile.achievement.close.accessibility" = "Menutup";
+"profile.achievement.unlock_heading" = "Untuk membuka pencapaian ini";
+"profile.achievement.completed_heading" = "Selamat!";
+"profile.achievement.completed_body" = "Ditambahkan ke koleksi Anda";
+"profile.achievement.identify_more" = "Identifikasi %lld lebih lanjut %@";
+"tab.home.accessibility" = "Rumah";
+"tab.library.accessibility" = "Perpustakaan";
+"tab.chat.accessibility" = "obrolan AI";
+"tab.profile.accessibility" = "Profil";
+"tab.scan.accessibility" = "Pindai serangga";
+
+/* Scanner */
+"scanner.close.accessibility" = "Menutup";
+"scanner.recognition_progress.message" = "Harap tunggu sementara data sedang dimuat…";
+"scanner.recognition_no_match.title" = "Tidak ada kecocokan yang ditemukan";
+"scanner.recognition_no_match.subtitle" = "Kami tidak dapat mengidentifikasi serangga di foto ini";
+"scanner.recognition_no_match.try_again" = "Coba lagi";
+"scanner.recognition_match.title" = "Kecocokan ditemukan!";
+"scanner.recognition_match.subtitle" = "Kami telah mengidentifikasi kemungkinan kecocokan. Lanjutkan untuk melihat serangga apa itu";
+"scanner.recognition_match.see_result" = "Lihat hasilnya";
+
+/* Paywall */
+"paywall.preview.species" = "Fritillary";
+"paywall.preview.family" = "Keluarga: Nymphalidae";
+"paywall.preview.harmless" = "Tidak berbahaya";
+"paywall.close.accessibility" = "Menutup";
+"paywall.headline" = "Buka kunci dunia serangga seutuhnya";
+"paywall.benefit.scans" = "Pemindaian tanpa batas";
+"paywall.benefit.collection" = "Akses koleksi penuh";
+"paywall.benefit.ai" = "Asisten AI tanpa batas";
+"paywall.benefit.achievements" = "Prestasi eksklusif";
+"paywall.product.prefix" = "Kalau begitu, gratis 3 hari";
+"paywall.product.suffix" = "seminggu";
+"paywall.cancel_anytime" = "Batalkan kapan saja. Dengan perpanjangan otomatis.";
+"paywall.button.next" = "Berikutnya";
+"paywall.footer.terms" = "Ketentuan penggunaan";
+"paywall.footer.privacy" = "Kebijakan privasi";
+"paywall.footer.restore" = "Memulihkan";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Pembelian";
+"subscription.error.product_unavailable" = "Langganan ini tidak tersedia saat ini. Periksa App Store Connect atau coba lagi nanti.";
+"subscription.error.purchase_failed" = "Pembelian tidak dapat diselesaikan. Silakan coba lagi.";
+"subscription.error.restore_failed" = "Tidak dapat memulihkan pembelian. Periksa koneksi Anda dan coba lagi.";
+"subscription.pending.title" = "Tertunda";
+"subscription.pending.message" = "Pembelian Anda sedang menunggu persetujuan. Akses akan terbuka setelah selesai.";
+"subscription.restore.title" = "Memulihkan";
+"subscription.restore.success" = "Pembelian Anda telah dipulihkan.";
+"subscription.restore.nothing" = "Tidak ditemukan langganan aktif untuk ID Apple ini.";
+
+"scanner.tips.title" = "Kiat";
+"scanner.tips.intro" = "Foto yang jelas meningkatkan akurasi pengenalan. Ikuti tip berikut untuk hasil terbaik:";
+"scanner.tips.1.title" = "1. Pertahankan fokus serangga yang tajam";
+"scanner.tips.2.title" = "2. Tempatkan serangga di tengah bingkai. Pastikan itu terlihat jelas";
+"scanner.tips.3.title" = "3. Tangkap hanya satu spesies dalam satu waktu — banyak serangga mengurangi akurasi";
+"scanner.tips.4.title" = "4. Gunakan pencahayaan yang baik";
+
+/* Library */
+"library.title" = "Perpustakaan";
+"list.search_empty.title" = "Tidak ada hasil…";
+"list.search_empty.subtitle" = "Silakan coba lagi";
+
+/* Category insect list */
+"insect.hym.1.title" = "Lebah Madu Barat";
+"insect.hym.1.subtitle" = "Hama berkebun yang umum";
+"insect.hym.2.title" = "Tawon Kertas Eropa";
+"insect.hym.2.subtitle" = "Sering terlihat di pagar dan atap";
+"insect.hym.3.title" = "Bumblebee berekor buff";
+"insect.hym.3.subtitle" = "Penyerbuk awal musim semi";
+"insect.hym.4.title" = "Lebah Mason";
+"insect.hym.4.subtitle" = "Sarang rongga soliter";
+"insect.hym.5.title" = "Tawon Ichneumon";
+"insect.hym.5.subtitle" = "Parasitoid ulat";
+"insect.default.1.title" = "Contoh serangga A";
+"insect.default.1.subtitle" = "Baris placeholder untuk kategori ini";
+"insect.default.2.title" = "Contoh seranggaB";
+"insect.default.2.subtitle" = "Ganti dengan data API nanti";
+"insect.default.3.title" = "Contoh serangga C";
+"insect.default.3.subtitle" = "Baris placeholder untuk kategori ini";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Tidak berbahaya";
+"insect.detail.status.poisonous" = "Beracun";
+"insect.detail.status.toxic" = "Beracun";
+"insect.detail.status.widespread" = "Tersebar luas";
+"insect.detail.widespread.api.yes" = "Tersebar luas";
+"insect.detail.widespread.api.no" = "Luar biasa";
+"insect.detail.also_known_prefix" = "Juga dikenal sebagai:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Lebah Madu Eropa, Lebah Madu Barat, Lebah Madu";
+"insect.detail.section.description" = "Keterangan";
+"insect.detail.read_more" = "Baca selengkapnya";
+"insect.detail.mock.description" = "Lebah madu barat (Apis mellifera) merupakan salah satu penyerbuk terkelola yang paling penting dalam pertanian dan ekosistem liar. Berasal dari Eropa, Asia Barat, dan Afrika, tanaman ini telah disebarkan ke seluruh dunia oleh peternak lebah untuk produksi madu dan penyerbukan tanaman.\n\nSebuah koloni adalah sebuah superorganisme: seekor ratu subur bertelur, sementara ribuan pekerja betina mencari makan, merawat larva, membuat sisir, dan mempertahankan sarang. Drone jantan muncul secara musiman dan kawin dengan ratu dari koloni lain. Para pekerja mengkomunikasikan arah dan jarak ke sumber makanan yang kaya melalui waggle dance dan berbagi informasi melalui sentuhan dan feromon.\n\nPenjelajah mengunjungi banyak spesies tumbuhan, memindahkan serbuk sari saat mereka bergerak. Perilaku ini mendukung keanekaragaman hayati dan tanaman pangan—mulai dari kebun buah-buahan dan buah beri hingga biji minyak dan melon. Peternak lebah mengelola sarangnya untuk menyeimbangkan panen madu dengan kesehatan koloni, memantau hama, penyakit, dan tekanan nutrisi.\n\nMeski umumnya jinak pada bunga, lebah madu mempertahankan sarangnya jika merasa ada ancaman; memahami isyarat mereka mengurangi sengatan. Hilangnya habitat, pestisida, patogen, dan perubahan iklim menjadi tantangan bagi populasi liar dan populasi yang dikelola. Melindungi sumber daya bunga dan menerapkan pengelolaan yang hati-hati membantu melestarikan serangga luar biasa ini untuk musim-musim mendatang.";
+"insect.detail.section.characteristics" = "Karakteristik";
+"insect.detail.section.classification" = "Klasifikasi ilmiah";
+"insect.detail.section.bites" = "Gigitan";
+"insect.detail.bites.intro" = "Jika Anda pernah digigit atau disengat, ikuti langkah-langkah berikut:";
+"insect.detail.bites.first_aid" = "Pertolongan pertama segera:";
+"insect.detail.add_to_collection" = "Tambahkan ke koleksi";
+"insect.detail.add_to_collection.sheet.title" = "Tambahkan foto ke koleksi Anda";
+"insect.detail.add_to_collection.source.camera" = "Ambil foto";
+"insect.detail.add_to_collection.source.library" = "Pilih dari perpustakaan";
+"insect.detail.add_to_collection.cancel" = "Membatalkan";
+"insect.detail.add_to_collection.alert.ok" = "OKE";
+"insect.detail.add_to_collection.error.no_insect" = "Layar ini tidak terhubung dengan serangga katalog, sehingga koleksinya tidak dapat diperbarui.";
+"insect.detail.add_to_collection.error.network" = "Tidak dapat menambah koleksi. Periksa koneksi Anda dan coba lagi.";
+"insect.detail.remove_from_collection.confirm.title" = "Hapus dari koleksi?";
+"insect.detail.remove_from_collection.confirm.message" = "Serangga ini akan dihapus dari koleksi Anda. Hal ini tidak dapat dibatalkan.";
+"insect.detail.remove_from_collection.confirm.delete" = "Menghapus";
+"insect.detail.remove_from_collection.confirm.cancel" = "Membatalkan";
+"insect.detail.remove_from_collection.error.no_id" = "Tidak ada entri koleksi untuk dihapus di server.";
+"insect.detail.remove_from_collection.error.network" = "Tidak dapat menghapus dari koleksi. Periksa koneksi Anda dan coba lagi.";
+"insect.detail.add_to_collection.success.title" = "Kesuksesan!";
+"insect.detail.add_to_collection.success.subtitle" = "Serangga telah berhasil ditambahkan ke koleksi Anda";
+"insect.detail.remove_from_collection.accessibility" = "Hapus dari koleksi";
+"insect.detail.class.genus.title" = "Marga";
+"insect.detail.class.genus.value" = "Lebah";
+"insect.detail.class.family.title" = "Keluarga";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Memesan";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Nama kelas";
+"insect.detail.class.class.value" = "Serangga";
+"insect.detail.class.phylum.title" = "Divisi";
+"insect.detail.class.phylum.value" = "Arthropoda";
+"insect.detail.class.kingdom.title" = "Kerajaan";
+"insect.detail.class.kingdom.value" = "Hewan";
+"insect.detail.class.domain.title" = "Domain";
+"insect.detail.class.domain.value" = "Eukariota";
+"insect.detail.char.adult_size.title" = "Ukuran Dewasa";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
+"insect.detail.char.forms.title" = "Bentuk Keberadaan";
+"insect.detail.char.forms.value" = "Telur, Larva, Pupa, Dewasa";
+"insect.detail.char.colors.title" = "Warna";
+"insect.detail.char.colors.value" = "Coklat keemasan dengan garis-garis hitam";
+"insect.detail.char.population.title" = "Populasi";
+"insect.detail.char.population.value" = "Sangat tersebar luas dan didomestikasi";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Padang rumput, kebun, hutan, kawasan pertanian";
+"insect.detail.char.diet.title" = "Diet";
+"insect.detail.char.diet.value" = "Nektar dan serbuk sari dari tumbuhan berbunga";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populer minggu ini";
+"home.popular.butterfly" = "kupu-kupu";
+"home.popular.mantis" = "belalang sembah";
+"home.popular.ant" = "Semut";
+"home.popular.beetle" = "Kumbang";
+
+/* Home — articles */
+"home.articles_section_title" = "Artikel yang bermanfaat";
+"home.article.identify.title" = "Bagaimana kita mengidentifikasi serangga?";
+"home.article.identify.subtitle" = "Tanda dan alat dasar yang membantu membedakan spesies di lapangan atau dari foto.";
+"home.article.habitats.title" = "Tempat tinggal serangga";
+"home.article.habitats.subtitle" = "Dari tanah dan serasah daun hingga bunga dan air — habitat khas yang dapat Anda jelajahi dengan aman.";
+"home.article.photography.title" = "Foto makro tanpa stres";
+"home.article.photography.subtitle" = "Cahaya, jarak, dan kesabaran: tip singkat untuk gambar subjek kecil yang lebih jelas.";
+"home.article.identify.block1.title" = "Apa yang kita lihat pertama kali";
+"home.article.identify.block1.body" = "Bentuk tubuh, sayap, antena, dan kaki sering kali mempersempit urutan serangga secara sekilas. Pola warna memang membantu, tetapi polanya berbeda-beda pada setiap spesies — dipadukan dengan ukuran, postur, dan perilaku. Jika memungkinkan, catat di mana Anda melihat serangga tersebut: tanaman inang, permukaan tanah, atau tepi air, semuanya menambah konteks.";
+"home.article.identify.block2.title" = "Dari sebuah foto";
+"home.article.identify.block2.body" = "Gambar yang tajam dan terang selalu mengalahkan gambar buram. Tangkap tampilan atas dan, jika bisa, profil samping. Sertakan skala (koin atau jari Anda) ketika ukuran penting. Beberapa sudut mengurangi dugaan ketika tanda tidak kentara atau tersembunyi di bawah sayap terlipat.";
+"home.article.habitats.block1.title" = "Lapisan suatu habitat";
+"home.article.habitats.block1.body" = "Serangga memanfaatkan ruang vertikal: kanopi, tumbuhan bawah, serasah daun, celah kulit kayu, dan tanah. Membalik batang kayu atau mengangkat batu memperlihatkan komunitas yang berbeda dari kepala bunga di bawah sinar matahari penuh. Bergerak perlahan dan ganti penutup agar habitat mikro tetap utuh.";
+"home.article.habitats.block2.title" = "Air dan tepiannya";
+"home.article.habitats.block2.body" = "Kolam, sungai, dan padang rumput yang lembap menjadi tuan rumah bagi spesialis seperti capung, damselflies, dan banyak kumbang. Perbatasan antara tanah dan air – alang-alang, tepian sungai yang berlumpur – seringkali merupakan zona terkaya. Amati dari kejauhan terlebih dahulu agar tidak mengganggu serangga yang sedang istirahat.";
+"home.article.photography.block1.title" = "Cahaya dan jarak";
+"home.article.photography.block1.body" = "Sinar matahari yang tersebar atau naungan terbuka memberikan penerangan yang merata tanpa bayangan yang tajam. Dapatkan jarak yang cukup dekat untuk memenuhi bingkai, namun hindari membuat bayangan Anda sendiri melintasi subjek. Reflektor kecil atau kartu putih dapat mengangkat detail di dalam ceruk bunga atau kulit kayu.";
+"home.article.photography.block2.title" = "Kesabaran dan rasa hormat";
+"home.article.photography.block2.body" = "Biarkan serangga menetap daripada mengejarnya. Mode burst membantu mengatasi selebaran yang gelisah. Jika Anda menggunakan flash, buat sesinya singkat dan jangan pernah mengarahkannya langsung ke mata vertebrata di sekitar. Setelah selesai, tinggalkan habitat seperti yang Anda temukan.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Pengaturan";
+"settings.section.support" = "Mendukung";
+"settings.section.feedback" = "Masukan";
+"settings.section.security" = "Keamanan";
+"settings.row.contact_us" = "Hubungi kami";
+"settings.row.restore" = "Memulihkan";
+"settings.row.rate_app" = "Nilai aplikasinya";
+"settings.row.share_app" = "Bagikan aplikasinya";
+"settings.row.privacy" = "Kebijakan privasi";
+"settings.row.terms" = "Ketentuan Penggunaan";
+"settings.row.refund_consent" = "Persetujuan pengembalian dana";
+"settings.row.reset_consent" = "Setel Ulang Persetujuan";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Dukungan aplikasi bug";
+"settings.support.mail_body" = "Hai,";
+"settings.support.mail_unavailable_title" = "Hubungi kami melalui email";
+"settings.restore.message" = "Memulihkan langganan Anda dari App Store untuk ID Apple ini.";
+"settings.refund_consent.message" = "Apakah Anda menyetujui pemrosesan data Anda untuk tujuan pengembalian dana?";
+"settings.refund_consent.allow" = "Mengizinkan";
+"settings.refund_consent.decline" = "Menolak";
+"settings.reset_consent.message" = "Manajemen izin periklanan akan tersedia dalam pembaruan mendatang.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";

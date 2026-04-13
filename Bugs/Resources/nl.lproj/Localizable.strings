@@ -1,0 +1,244 @@
+/* Common */
+"common.done" = "Klaar";
+
+/* Onboarding */
+"onboarding.intro.title" = "Hallo! Ik ben jouw gids in de insectenwereld 🐞";
+"onboarding.intro.subtitle" = "In deze app kun je:";
+"onboarding.intro.benefit.identify" = "Identificeer insecten binnen enkele seconden";
+"onboarding.intro.benefit.collection" = "Bewaar ze in uw verzameling";
+"onboarding.intro.benefit.achievements" = "Verdien prestaties";
+"onboarding.intro.benefit.ai" = "Chat met een AI-assistent";
+"onboarding.intro.benefit.articles" = "Lees nuttige artikelen";
+"onboarding.button.next" = "Volgende";
+"onboarding.button.start" = "Ga aan de slag";
+
+/* Home */
+"home.title" = "Thuis";
+"home.search.placeholder" = "Zoeken";
+"home.ai_banner.title" = "Vraag AI naar elk insect dat je tegenkomt";
+"home.ai_banner.button" = "Stel een vraag";
+
+/* AI chat */
+"ai_chat.title" = "AI-consulent";
+"ai_chat.input.placeholder" = "Vraag mij iets…";
+"ai_chat.stub.ai" = "Ik weet alles van insecten, u kunt mij raadplegen.";
+"ai_chat.stub.user" = "Vertel me over de bijen";
+"ai_chat.seed_creation_message" = "wie ben jij?";
+"ai_chat.error.bootstrap" = "Kan de chat niet openen. Probeer het opnieuw.";
+"ai_chat.error.send" = "Kan het bericht niet verzenden. Probeer het opnieuw.";
+"ai_chat.alert.connection_lost.message" = "De verbinding is verbroken. Probeer het later opnieuw.";
+"ai_chat.alert.connection_lost.action" = "Oké";
+
+/* Home — categories */
+"home.category.coleoptera" = "Coleoptera";
+"home.category.scorpiones" = "Schorpioenen";
+"home.category.hymenoptera" = "Hymenoptera";
+"home.category.araneae" = "Aranea";
+"home.category.lepidoptera" = "Lepidoptera";
+"home.category.diptera" = "Tweetera";
+"home.category.blattodea" = "Blattodea";
+"home.category.hemiptera" = "Hemiptera";
+
+/* Main tab bar */
+"profile.title" = "Profiel";
+"profile.segment.collection" = "Mijn collectie";
+"profile.segment.achievements" = "Mijn prestaties";
+"profile.achievements.placeholder" = "Prestaties verschijnen hier.";
+"profile.collection.empty.title" = "Begin met je insectenverzameling";
+"profile.collection.empty.subtitle" = "Fotografeer insecten, breid je verzameling uit, verdien beloningen en houd je voortgang bij";
+"profile.achievement.close.accessibility" = "Sluiten";
+"profile.achievement.unlock_heading" = "Om deze prestatie te ontgrendelen";
+"profile.achievement.completed_heading" = "Gefeliciteerd!";
+"profile.achievement.completed_body" = "Toegevoegd aan je collectie";
+"profile.achievement.identify_more" = "Identificeer %lld meer %@";
+"tab.home.accessibility" = "Thuis";
+"tab.library.accessibility" = "Bibliotheek";
+"tab.chat.accessibility" = "AI-chat";
+"tab.profile.accessibility" = "Profiel";
+"tab.scan.accessibility" = "Insect scannen";
+
+/* Scanner */
+"scanner.close.accessibility" = "Sluiten";
+"scanner.recognition_progress.message" = "Een ogenblik geduld terwijl de gegevens worden geladen...";
+"scanner.recognition_no_match.title" = "Geen overeenkomst gevonden";
+"scanner.recognition_no_match.subtitle" = "We konden het insect op deze foto niet identificeren";
+"scanner.recognition_no_match.try_again" = "Probeer het opnieuw";
+"scanner.recognition_match.title" = "Match gevonden!";
+"scanner.recognition_match.subtitle" = "We hebben mogelijke overeenkomsten geïdentificeerd. Kijk verder welk insect het is";
+"scanner.recognition_match.see_result" = "Zie resultaat";
+
+/* Paywall */
+"paywall.preview.species" = "parelmoervlinder";
+"paywall.preview.family" = "Familie: Nymphalidae";
+"paywall.preview.harmless" = "Onschadelijk";
+"paywall.close.accessibility" = "Sluiten";
+"paywall.headline" = "Ontgrendel de volledige insectenwereld";
+"paywall.benefit.scans" = "Onbeperkte scans";
+"paywall.benefit.collection" = "Volledige toegang tot de collectie";
+"paywall.benefit.ai" = "AI-assistent zonder grenzen";
+"paywall.benefit.achievements" = "Exclusieve prestaties";
+"paywall.product.prefix" = "3 dagen gratis dus";
+"paywall.product.suffix" = "een week";
+"paywall.cancel_anytime" = "Annuleer op elk gewenst moment. Met automatische verlenging.";
+"paywall.button.next" = "Volgende";
+"paywall.footer.terms" = "Gebruiksvoorwaarden";
+"paywall.footer.privacy" = "Privacybeleid";
+"paywall.footer.restore" = "Herstellen";
+
+/* Subscription (StoreKit) */
+"subscription.error.title" = "Aankoop";
+"subscription.error.product_unavailable" = "Dit abonnement is momenteel niet beschikbaar. Controleer App Store Connect of probeer het later opnieuw.";
+"subscription.error.purchase_failed" = "De aankoop kon niet worden voltooid. Probeer het opnieuw.";
+"subscription.error.restore_failed" = "Kon aankopen niet herstellen. Controleer uw verbinding en probeer het opnieuw.";
+"subscription.pending.title" = "In behandeling";
+"subscription.pending.message" = "Uw aankoop wacht op goedkeuring. De toegang wordt ontgrendeld wanneer deze is voltooid.";
+"subscription.restore.title" = "Herstellen";
+"subscription.restore.success" = "Je aankopen zijn hersteld.";
+"subscription.restore.nothing" = "Er is geen actief abonnement gevonden voor deze Apple ID.";
+
+"scanner.tips.title" = "Tips";
+"scanner.tips.intro" = "Een duidelijke foto verbetert de herkenningsnauwkeurigheid. Volg deze tips voor het beste resultaat:";
+"scanner.tips.1.title" = "1. Houd het insect scherp in beeld";
+"scanner.tips.2.title" = "2. Centreer het insect in het frame. Zorg ervoor dat het duidelijk zichtbaar is";
+"scanner.tips.3.title" = "3. Vang slechts één soort tegelijk; meerdere insecten verminderen de nauwkeurigheid";
+"scanner.tips.4.title" = "4. Gebruik goede verlichting";
+
+/* Library */
+"library.title" = "Bibliotheek";
+"list.search_empty.title" = "Geen resultaten…";
+"list.search_empty.subtitle" = "Probeer het opnieuw";
+
+/* Category insect list */
+"insect.hym.1.title" = "Westerse honingbij";
+"insect.hym.1.subtitle" = "Veel voorkomende tuinplagen";
+"insect.hym.2.title" = "Europese Papierwesp";
+"insect.hym.2.subtitle" = "Vaak te zien op hekken en dakranden";
+"insect.hym.3.title" = "Buffelstaarthommel";
+"insect.hym.3.subtitle" = "Bestuiver in het vroege voorjaar";
+"insect.hym.4.title" = "Metselaar Bij";
+"insect.hym.4.subtitle" = "Eenzame holtenester";
+"insect.hym.5.title" = "Sluipwesp";
+"insect.hym.5.subtitle" = "Parasitoïde van rupsen";
+"insect.default.1.title" = "Monsterinsect A";
+"insect.default.1.subtitle" = "Tijdelijke rij voor deze categorie";
+"insect.default.2.title" = "Voorbeeldinsect B";
+"insect.default.2.subtitle" = "Vervang dit later door API-gegevens";
+"insect.default.3.title" = "Monster insect C";
+"insect.default.3.subtitle" = "Tijdelijke rij voor deze categorie";
+
+/* Insect detail */
+"insect.detail.status.harmless" = "Onschadelijk";
+"insect.detail.status.poisonous" = "Giftig";
+"insect.detail.status.toxic" = "Giftig";
+"insect.detail.status.widespread" = "Wijdverbreid";
+"insect.detail.widespread.api.yes" = "Wijdverbreid";
+"insect.detail.widespread.api.no" = "Soms";
+"insect.detail.also_known_prefix" = "Ook bekend als:";
+"insect.detail.mock.scientific_title" = "Apis mellifera";
+"insect.detail.mock.aliases" = "Europese honingbij, westerse honingbij, honingbij";
+"insect.detail.section.description" = "Beschrijving";
+"insect.detail.read_more" = "Lees meer";
+"insect.detail.mock.description" = "De westerse honingbij (Apis mellifera) is een van de belangrijkste beheerde bestuivers in de landbouw en wilde ecosystemen. Inheems in Europa, West-Azië en Afrika, is het door imkers wereldwijd verspreid voor de honingproductie en bestuiving van gewassen.\n\nEen kolonie is een superorganisme: een enkele vruchtbare koningin legt eieren, terwijl duizenden vrouwelijke werksters foerageren, larven verzorgen, raat bouwen en het nest verdedigen. Mannelijke drones verschijnen seizoensgebonden en paren met koninginnen uit andere kolonies. Werknemers communiceren de richting en afstand tot rijke voedselbronnen via de kwispeldans en delen informatie via aanraking en feromonen.\n\nFoeragers bezoeken veel plantensoorten en brengen stuifmeel over terwijl ze bewegen. Dit gedrag ondersteunt de biodiversiteit en voedselgewassen – van boomgaarden en bessen tot oliehoudende zaden en meloenen. Imkers beheren de bijenkorven om de honingoogst in evenwicht te brengen met de gezondheid van de kolonies, waarbij ze toezicht houden op plagen, ziekten en voedingsstress.\n\nHoewel honingbijen over het algemeen volgzaam zijn op het gebied van bloemen, verdedigen ze hun bijenkorf als ze een bedreiging waarnemen; het begrijpen van hun signalen vermindert steken. Habitatverlies, pesticiden, ziekteverwekkers en klimaatveranderingen vormen een uitdaging voor zowel wilde als beheerde populaties. Het beschermen van bloemenbronnen en het toepassen van zorgvuldig beheer helpt deze opmerkelijke insecten voor toekomstige seizoenen in stand te houden.";
+"insect.detail.section.characteristics" = "Kenmerken";
+"insect.detail.section.classification" = "Wetenschappelijke classificatie";
+"insect.detail.section.bites" = "Bijten";
+"insect.detail.bites.intro" = "Als u bent gebeten of gestoken, volgt u deze stappen:";
+"insect.detail.bites.first_aid" = "Onmiddellijke eerste hulp:";
+"insect.detail.add_to_collection" = "Toevoegen aan collectie";
+"insect.detail.add_to_collection.sheet.title" = "Voeg een foto toe aan je verzameling";
+"insect.detail.add_to_collection.source.camera" = "Maak een foto";
+"insect.detail.add_to_collection.source.library" = "Keuze uit bibliotheek";
+"insect.detail.add_to_collection.cancel" = "Annuleer";
+"insect.detail.add_to_collection.alert.ok" = "Oké";
+"insect.detail.add_to_collection.error.no_insect" = "Dit scherm is niet gekoppeld aan een catalogusinsect, de collectie kan dus niet worden bijgewerkt.";
+"insect.detail.add_to_collection.error.network" = "Kan niet toevoegen aan collectie. Controleer uw verbinding en probeer het opnieuw.";
+"insect.detail.remove_from_collection.confirm.title" = "Uit collectie verwijderen?";
+"insect.detail.remove_from_collection.confirm.message" = "Dit insect wordt uit je collectie verwijderd. Dit kan niet ongedaan worden gemaakt.";
+"insect.detail.remove_from_collection.confirm.delete" = "Verwijderen";
+"insect.detail.remove_from_collection.confirm.cancel" = "Annuleer";
+"insect.detail.remove_from_collection.error.no_id" = "Er is geen collectie-item dat op de server kan worden verwijderd.";
+"insect.detail.remove_from_collection.error.network" = "Kan niet uit de collectie verwijderen. Controleer uw verbinding en probeer het opnieuw.";
+"insect.detail.add_to_collection.success.title" = "Succes!";
+"insect.detail.add_to_collection.success.subtitle" = "Het insect is succesvol toegevoegd aan je collectie";
+"insect.detail.remove_from_collection.accessibility" = "Verwijderen uit collectie";
+"insect.detail.class.genus.title" = "Geslacht";
+"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.family.title" = "Familie";
+"insect.detail.class.family.value" = "Apidae";
+"insect.detail.class.order.title" = "Bestel";
+"insect.detail.class.order.value" = "Hymenoptera";
+"insect.detail.class.class.title" = "Naam van de klas";
+"insect.detail.class.class.value" = "Insecta";
+"insect.detail.class.phylum.title" = "Stam";
+"insect.detail.class.phylum.value" = "Geleedpotigen";
+"insect.detail.class.kingdom.title" = "Koninkrijk";
+"insect.detail.class.kingdom.value" = "Animalia";
+"insect.detail.class.domain.title" = "Domein";
+"insect.detail.class.domain.value" = "Eukaryoten";
+"insect.detail.char.adult_size.title" = "Volwassen maat";
+"insect.detail.char.adult_size.value" = "1,2 – 1,5cm";
+"insect.detail.char.forms.title" = "Bestaansvormen";
+"insect.detail.char.forms.value" = "Ei, larve, pop, volwassene";
+"insect.detail.char.colors.title" = "Kleuren";
+"insect.detail.char.colors.value" = "Goudbruin met zwarte strepen";
+"insect.detail.char.population.title" = "Bevolking";
+"insect.detail.char.population.value" = "Zeer wijdverspreid en gedomesticeerd";
+"insect.detail.char.habitat.title" = "Habitat";
+"insect.detail.char.habitat.value" = "Weiden, tuinen, bossen, landbouwgebieden";
+"insect.detail.char.diet.title" = "Dieet";
+"insect.detail.char.diet.value" = "Nectar en stuifmeel van bloeiende planten";
+
+/* Home — popular this week */
+"home.popular_this_week" = "Populair deze week";
+"home.popular.butterfly" = "Vlinder";
+"home.popular.mantis" = "Bidsprinkhaan";
+"home.popular.ant" = "Mier";
+"home.popular.beetle" = "Kever";
+
+/* Home — articles */
+"home.articles_section_title" = "Nuttige artikelen";
+"home.article.identify.title" = "Hoe identificeren we insecten?";
+"home.article.identify.subtitle" = "Basistekens en hulpmiddelen waarmee u soorten in het veld of vanaf een foto van elkaar kunt onderscheiden.";
+"home.article.habitats.title" = "Waar insecten leven";
+"home.article.habitats.subtitle" = "Van grond en bladafval tot bloemen en water: typische habitats die u veilig kunt verkennen.";
+"home.article.photography.title" = "Macrofoto's zonder stress";
+"home.article.photography.subtitle" = "Licht, afstand en geduld: korte tips voor duidelijkere foto's van kleine onderwerpen.";
+"home.article.identify.block1.title" = "Waar we eerst naar kijken";
+"home.article.identify.block1.body" = "Vorm van het lichaam, vleugels, antennes en poten bepalen vaak in één oogopslag de volgorde van insecten. Kleurpatronen helpen, maar ze variëren per soort – combineer ze met grootte, houding en gedrag. Noteer indien mogelijk waar je het insect hebt gezien: waardplant, bodemoppervlak of waterrand voegen allemaal context toe.";
+"home.article.identify.block2.title" = "Van een foto";
+"home.article.identify.block2.body" = "Een scherp, goed belicht beeld verslaat elke keer een wazig beeld. Leg het bovenaanzicht vast en, indien mogelijk, het zijprofiel. Voeg een gevoel voor schaal toe (een munt of je vinger) als de maat ertoe doet. Verschillende hoeken verminderen het giswerk wanneer de markeringen subtiel zijn of verborgen zijn onder gevouwen vleugels.";
+"home.article.habitats.block1.title" = "Lagen van een habitat";
+"home.article.habitats.block1.body" = "Insecten gebruiken verticale ruimte: bladerdak, ondergroei, bladafval, schorsspleten en aarde. Als je een boomstam omdraait of een steen optilt, zie je een andere gemeenschap dan een bloemhoofd in de volle zon. Beweeg langzaam en plaats de deksels terug, zodat microhabitats intact blijven.";
+"home.article.habitats.block2.title" = "Water en randen";
+"home.article.habitats.block2.body" = "Vijvers, beken en vochtige weilanden herbergen specialisten zoals libellen, waterjuffers en vele kevers. De grens tussen land en water – riet, modderige oevers – is vaak de rijkste zone. Observeer eerst vanaf een afstand om rustende insecten niet te storen.";
+"home.article.photography.block1.title" = "Licht en afstand";
+"home.article.photography.block1.body" = "Diffuus daglicht of open schaduw zorgt voor een gelijkmatige verlichting zonder harde schaduwen. Kom dichtbij genoeg om het kader te vullen, maar vermijd dat u uw eigen schaduw over het onderwerp werpt. Een kleine reflector of witte kaart kan details in diepe uitsparingen van bloemen of schors naar voren halen.";
+"home.article.photography.block2.title" = "Geduld en respect";
+"home.article.photography.block2.body" = "Laat insecten zich vestigen in plaats van ze te achtervolgen. Burst-modus helpt bij schichtige vliegers. Als u de flitser gebruikt, houd de sessies dan kort en richt deze nooit rechtstreeks in de ogen van gewervelde dieren in de buurt. Als je klaar bent, laat je het leefgebied achter zoals je het hebt aangetroffen.";
+
+/* Settings (same groups as CoinRecognizer) */
+"settings.title" = "Instellingen";
+"settings.section.support" = "Ondersteuning";
+"settings.section.feedback" = "Feedback";
+"settings.section.security" = "Beveiliging";
+"settings.row.contact_us" = "Neem contact met ons op";
+"settings.row.restore" = "Herstellen";
+"settings.row.rate_app" = "Beoordeel de app";
+"settings.row.share_app" = "Deel de app";
+"settings.row.privacy" = "Privacybeleid";
+"settings.row.terms" = "Gebruiksvoorwaarden";
+"settings.row.refund_consent" = "Toestemming terugbetalen";
+"settings.row.reset_consent" = "Toestemming opnieuw instellen";
+"settings.support.email" = "support@bugs.app";
+"settings.support.mail_subject" = "Ondersteuning voor Bugs-apps";
+"settings.support.mail_body" = "Hallo,";
+"settings.support.mail_unavailable_title" = "Neem contact met ons op via e-mail";
+"settings.restore.message" = "Herstelt uw abonnement uit de App Store voor deze Apple ID.";
+"settings.refund_consent.message" = "Geeft u toestemming voor de verwerking van uw gegevens voor terugbetalingsdoeleinden?";
+"settings.refund_consent.allow" = "Toestaan";
+"settings.refund_consent.decline" = "Weigeren";
+"settings.reset_consent.message" = "Beheer van advertentietoestemming zal beschikbaar zijn in een toekomstige update.";
+"settings.link.privacy" = "https://bugs.app/privacy";
+"settings.link.terms" = "https://bugs.app/terms";
+"settings.link.app_store" = "https://apps.apple.com";
+"settings.link.share" = "https://apps.apple.com";
