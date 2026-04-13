@@ -52,24 +52,32 @@ final class PaywallViewController: UIViewController {
     private func performPurchase() async {
         contentView.setPurchaseInProgress(true)
         showCenterLoadingOverlay()
-        defer {
-            hideCenterLoadingOverlay()
-            contentView.setPurchaseInProgress(false)
-        }
 
         do {
             let products = try await SubscriptionManager.shared.loadSubscriptionProducts()
             guard let product = products.first else {
+                hideCenterLoadingOverlay()
+                contentView.setPurchaseInProgress(false)
                 presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.product_unavailable")
                 return
             }
             try await SubscriptionManager.shared.purchase(product)
-            dismiss(animated: true)
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
+            EventsManager.shared.recordSubscriptionPurchase(product: product, source: .inAppPaywall)
+            RefundConsentFlow.present(from: self) { [weak self] in
+                self?.dismiss(animated: true)
+            }
         } catch SubscriptionManagerError.userCancelled {
-            return
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
         } catch SubscriptionManagerError.pending {
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
             presentAlert(titleKey: "subscription.pending.title", messageKey: "subscription.pending.message")
         } catch {
+            hideCenterLoadingOverlay()
+            contentView.setPurchaseInProgress(false)
             presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.purchase_failed")
         }
     }

@@ -11,6 +11,10 @@
 		D876E4752F8CDF3100964BA9 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = D876E4742F8CDF3100964BA9 /* Starscream */; };
 		D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE864D2F83B8D5008EB485 /* MessageKit */; };
 		D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D8EE9CE92F87994C008EB485 /* Lottie */; };
+		D9FB00012F90000100964BA9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D9FB00022F90000100964BA9 /* FirebaseAnalytics */; };
+		D9FB00032F90000100964BA9 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9FB00042F90000100964BA9 /* FirebaseCore */; };
+		D9FB00242F90000200964BA0 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = D9FB00232F90000200964BA0 /* AppsFlyerLib */; };
+		D9FB00252F90000200964BA0 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9FB00222F90000200964BA0 /* SwiftyStoreKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9FB00242F90000200964BA0 /* AppsFlyerLib in Frameworks */,
+				D9FB00252F90000200964BA0 /* SwiftyStoreKit in Frameworks */,
+				D9FB00012F90000100964BA9 /* FirebaseAnalytics in Frameworks */,
+				D9FB00032F90000100964BA9 /* FirebaseCore in Frameworks */,
 				D876E37D2F88E7A800964BA9 /* Kingfisher in Frameworks */,
 				D8EE864E2F83B8D5008EB485 /* MessageKit in Frameworks */,
 				D8EE9CEA2F87994C008EB485 /* Lottie in Frameworks */,
@@ -89,6 +97,10 @@
 			);
 			name = Bugs;
 			packageProductDependencies = (
+				D9FB00232F90000200964BA0 /* AppsFlyerLib */,
+				D9FB00222F90000200964BA0 /* SwiftyStoreKit */,
+				D9FB00022F90000100964BA9 /* FirebaseAnalytics */,
+				D9FB00042F90000100964BA9 /* FirebaseCore */,
 				D8EE864D2F83B8D5008EB485 /* MessageKit */,
 				D8EE9CE92F87994C008EB485 /* Lottie */,
 				D876E37C2F88E7A800964BA9 /* Kingfisher */,
@@ -158,6 +170,9 @@
 			mainGroup = D85FEA052F7E92ED009BB95B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				D9FB00212F90000200964BA0 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+				D9FB00202F90000200964BA0 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				D9FB00052F90000100964BA9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D8EE864C2F83B8D5008EB485 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				D8EE9CE82F87994C008EB485 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				D876E37B2F88E7A800964BA9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -435,6 +450,30 @@
 				minimumVersion = 4.6.0;
 			};
 		};
+		D9FB00052F90000100964BA9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+		D9FB00202F90000200964BA0 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.4;
+			};
+		};
+		D9FB00212F90000200964BA0 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -457,6 +496,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D8EE9CE82F87994C008EB485 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		D9FB00022F90000100964BA9 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9FB00052F90000100964BA9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		D9FB00042F90000100964BA9 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9FB00052F90000100964BA9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		D9FB00222F90000200964BA0 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9FB00202F90000200964BA0 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+		D9FB00232F90000200964BA0 /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9FB00212F90000200964BA0 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

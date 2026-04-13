@@ -1,20 +1,20 @@
 /* Common */
-"common.done" = "Έγινε";
+"common.done" = "Γινώμενος";
 
 /* Onboarding */
-"onboarding.intro.title" = "Γεια σου! Είμαι ο οδηγός σας στον κόσμο των εντόμων 🐞";
+"onboarding.intro.title" = "Γεια! Είμαι ο οδηγός σας στον κόσμο των εντόμων 🐞";
 "onboarding.intro.subtitle" = "Σε αυτήν την εφαρμογή, μπορείτε:";
 "onboarding.intro.benefit.identify" = "Αναγνωρίστε τα έντομα σε δευτερόλεπτα";
 "onboarding.intro.benefit.collection" = "Αποθηκεύστε τα στη συλλογή σας";
 "onboarding.intro.benefit.achievements" = "Κερδίστε επιτεύγματα";
 "onboarding.intro.benefit.ai" = "Συνομιλήστε με έναν βοηθό AI";
 "onboarding.intro.benefit.articles" = "Διαβάστε χρήσιμα άρθρα";
-"onboarding.button.next" = "Επόμενο";
+"onboarding.button.next" = "Επόμενος";
 "onboarding.button.start" = "Ξεκινήστε";
 
 /* Home */
 "home.title" = "Σπίτι";
-"home.search.placeholder" = "Αναζήτηση";
+"home.search.placeholder" = "Ερευνα";
 "home.ai_banner.title" = "Ρωτήστε AI για οποιοδήποτε έντομο βρείτε";
 "home.ai_banner.button" = "Κάντε μια ερώτηση";
 
@@ -27,7 +27,7 @@
 "ai_chat.error.bootstrap" = "Δεν ήταν δυνατό το άνοιγμα της συνομιλίας. Δοκιμάστε ξανά.";
 "ai_chat.error.send" = "Δεν ήταν δυνατή η αποστολή του μηνύματος. Δοκιμάστε ξανά.";
 "ai_chat.alert.connection_lost.message" = "Η σύνδεση χάθηκε. Δοκιμάστε ξανά αργότερα.";
-"ai_chat.alert.connection_lost.action" = "ΟΚ";
+"ai_chat.alert.connection_lost.action" = "ΕΝΤΑΞΕΙ";
 
 /* Home — categories */
 "home.category.coleoptera" = "Κολεόπτερα";
@@ -46,7 +46,7 @@
 "profile.achievements.placeholder" = "Τα επιτεύγματα θα εμφανιστούν εδώ.";
 "profile.collection.empty.title" = "Ξεκινήστε τη συλλογή εντόμων";
 "profile.collection.empty.subtitle" = "Φωτογραφίστε έντομα, αναπτύξτε τη συλλογή σας, κερδίστε ανταμοιβές και παρακολουθήστε την πρόοδό σας";
-"profile.achievement.close.accessibility" = "Κλείσιμο";
+"profile.achievement.close.accessibility" = "Κοντά";
 "profile.achievement.unlock_heading" = "Για να ξεκλειδώσετε αυτό το επίτευγμα";
 "profile.achievement.completed_heading" = "Συγχαρητήρια!";
 "profile.achievement.completed_body" = "Προστέθηκε στη συλλογή σας";
@@ -58,7 +58,7 @@
 "tab.scan.accessibility" = "Σάρωση εντόμου";
 
 /* Scanner */
-"scanner.close.accessibility" = "Κλείσιμο";
+"scanner.close.accessibility" = "Κοντά";
 "scanner.recognition_progress.message" = "Περιμένετε μέχρι τη φόρτωση των δεδομένων…";
 "scanner.recognition_no_match.title" = "Δεν βρέθηκε αντιστοιχία";
 "scanner.recognition_no_match.subtitle" = "Δεν μπορέσαμε να αναγνωρίσουμε το έντομο σε αυτή τη φωτογραφία";
@@ -70,8 +70,8 @@
 /* Paywall */
 "paywall.preview.species" = "Φριτιλάρικο";
 "paywall.preview.family" = "Οικογένεια: Nymphalidae";
-"paywall.preview.harmless" = "Αβλαβές";
-"paywall.close.accessibility" = "Κλείσιμο";
+"paywall.preview.harmless" = "Αβλαβής";
+"paywall.close.accessibility" = "Κοντά";
 "paywall.headline" = "Ξεκλειδώστε τον πλήρη κόσμο των εντόμων";
 "paywall.benefit.scans" = "Απεριόριστες σαρώσεις";
 "paywall.benefit.collection" = "Πλήρης πρόσβαση στη συλλογή";
@@ -80,19 +80,19 @@
 "paywall.product.prefix" = "3 μέρες δωρεάν λοιπόν";
 "paywall.product.suffix" = "μια εβδομάδα";
 "paywall.cancel_anytime" = "Ακύρωση ανά πάσα στιγμή. Με αυτόματη ανανέωση.";
-"paywall.button.next" = "Επόμενο";
+"paywall.button.next" = "Επόμενος";
 "paywall.footer.terms" = "Όροι χρήσης";
 "paywall.footer.privacy" = "Πολιτική απορρήτου";
-"paywall.footer.restore" = "Επαναφορά";
+"paywall.footer.restore" = "Επαναφέρω";
 
 /* Subscription (StoreKit) */
 "subscription.error.title" = "Αγορά";
 "subscription.error.product_unavailable" = "Αυτή η συνδρομή δεν είναι διαθέσιμη αυτήν τη στιγμή. Ελέγξτε το App Store Connect ή δοκιμάστε ξανά αργότερα.";
 "subscription.error.purchase_failed" = "Δεν ήταν δυνατή η ολοκλήρωση της αγοράς. Δοκιμάστε ξανά.";
 "subscription.error.restore_failed" = "Δεν ήταν δυνατή η επαναφορά των αγορών. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
-"subscription.pending.title" = "Σε εκκρεμότητα";
+"subscription.pending.title" = "Εκκρεμής";
 "subscription.pending.message" = "Η αγορά σας περιμένει έγκριση. Η πρόσβαση θα ξεκλειδωθεί όταν ολοκληρωθεί.";
-"subscription.restore.title" = "Επαναφορά";
+"subscription.restore.title" = "Επαναφέρω";
 "subscription.restore.success" = "Οι αγορές σας αποκαταστάθηκαν.";
 "subscription.restore.nothing" = "Δεν βρέθηκε ενεργή συνδρομή για αυτό το Apple ID.";
 
@@ -127,18 +127,18 @@
 "insect.default.3.subtitle" = "Σειρά κράτησης θέσης για αυτήν την κατηγορία";
 
 /* Insect detail */
-"insect.detail.status.harmless" = "Αβλαβές";
-"insect.detail.status.poisonous" = "Δηλητηριώδες";
-"insect.detail.status.toxic" = "Τοξικό";
-"insect.detail.status.widespread" = "Ευρέως διαδεδομένο";
-"insect.detail.widespread.api.yes" = "Ευρέως διαδεδομένο";
-"insect.detail.widespread.api.no" = "Ασυνήθιστο";
+"insect.detail.status.harmless" = "Αβλαβής";
+"insect.detail.status.poisonous" = "Δηλητηριώδης";
+"insect.detail.status.toxic" = "Τοξικός";
+"insect.detail.status.widespread" = "Εκτενής";
+"insect.detail.widespread.api.yes" = "Εκτενής";
+"insect.detail.widespread.api.no" = "Ασυνήθης";
 "insect.detail.also_known_prefix" = "Επίσης γνωστό ως:";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
 "insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
 "insect.detail.section.description" = "Περιγραφή";
 "insect.detail.read_more" = "Διαβάστε περισσότερα";
-"insect.detail.mock.description" = "Η δυτική μέλισσα (Apis mellifera) είναι από τους πιο σημαντικούς διαχειριζόμενους επικονιαστές στη γεωργία και στα άγρια οικοσυστήματα. Ιθαγενής στην Ευρώπη, τη δυτική Ασία και την Αφρική, έχει διαδοθεί παγκοσμίως από μελισσοκόμους για την παραγωγή μελιού και την επικονίαση των καλλιεργειών.\n\nΜια αποικία είναι ένας υπεροργανισμός: μια μόνο γόνιμη βασίλισσα γεννά αυγά, ενώ χιλιάδες εργάτριες αναζητούν τροφή, θηλάζουν προνύμφες, χτίζουν χτένα και υπερασπίζονται τη φωλιά. Οι αρσενικοί κηφήνες εμφανίζονται εποχιακά και ζευγαρώνουν με βασίλισσες από άλλες αποικίες. Οι εργαζόμενοι επικοινωνούν την κατεύθυνση και την απόσταση από τις πλούσιες πηγές τροφίμων μέσω του χορού waggle και μοιράζονται πληροφορίες με το άγγιγμα και τις φερομόνες.\n\nΟι τροφοσυλλέκτες επισκέπτονται πολλά είδη φυτών, μεταφέροντας γύρη καθώς κινούνται. Αυτή η συμπεριφορά υποστηρίζει τη βιοποικιλότητα και τις καλλιέργειες τροφίμων—από οπωρώνες και μούρα μέχρι ελαιούχους σπόρους και πεπόνια. Οι μελισσοκόμοι διαχειρίζονται τις κυψέλες για να εξισορροπήσουν τη συγκομιδή του μελιού με την υγεία των αποικιών, την παρακολούθηση για παράσιτα, ασθένειες και διατροφικό στρες.\n\nΑν και γενικά υπάκουες στα λουλούδια, οι μέλισσες υπερασπίζονται την κυψέλη τους εάν αντιληφθούν μια απειλή. Η κατανόηση των ενδείξεων τους μειώνει τα τσιμπήματα. Η απώλεια οικοτόπων, τα φυτοφάρμακα, τα παθογόνα και οι κλιματικές αλλαγές προκαλούν τόσο τους άγριους όσο και τους διαχειριζόμενους πληθυσμούς. Η προστασία των φυτικών πόρων και η υιοθέτηση προσεκτικής διαχείρισης συμβάλλει στη διατήρηση αυτών των αξιοσημείωτων εντόμων για τις μελλοντικές εποχές.";
+"insect.detail.mock.description" = "Η δυτική μέλισσα (Apis mellifera) είναι από τους πιο σημαντικούς διαχειριζόμενους επικονιαστές στη γεωργία και στα άγρια ​​οικοσυστήματα. Ιθαγενής στην Ευρώπη, τη δυτική Ασία και την Αφρική, έχει διαδοθεί παγκοσμίως από μελισσοκόμους για την παραγωγή μελιού και την επικονίαση των καλλιεργειών.\n\nΜια αποικία είναι ένας υπεροργανισμός: μια μόνο γόνιμη βασίλισσα γεννά αυγά, ενώ χιλιάδες εργάτριες αναζητούν τροφή, θηλάζουν προνύμφες, χτίζουν χτένα και υπερασπίζονται τη φωλιά. Οι αρσενικοί κηφήνες εμφανίζονται εποχιακά και ζευγαρώνουν με βασίλισσες από άλλες αποικίες. Οι εργαζόμενοι επικοινωνούν την κατεύθυνση και την απόσταση από τις πλούσιες πηγές τροφίμων μέσω του χορού waggle και μοιράζονται πληροφορίες με το άγγιγμα και τις φερομόνες.\n\nΟι τροφοσυλλέκτες επισκέπτονται πολλά είδη φυτών, μεταφέροντας γύρη καθώς κινούνται. Αυτή η συμπεριφορά υποστηρίζει τη βιοποικιλότητα και τις καλλιέργειες τροφίμων—από οπωρώνες και μούρα μέχρι ελαιόσπορους και πεπόνια. Οι μελισσοκόμοι διαχειρίζονται τις κυψέλες για να εξισορροπήσουν τη συγκομιδή του μελιού με την υγεία των αποικιών, την παρακολούθηση για παράσιτα, ασθένειες και διατροφικό στρες.\n\nΑν και γενικά υπάκουες στα λουλούδια, οι μέλισσες υπερασπίζονται την κυψέλη τους εάν αντιληφθούν μια απειλή. Η κατανόηση των ενδείξεων τους μειώνει τα τσιμπήματα. Η απώλεια οικοτόπων, τα φυτοφάρμακα, τα παθογόνα και οι κλιματικές αλλαγές προκαλούν τόσο τους άγριους όσο και τους διαχειριζόμενους πληθυσμούς. Η προστασία των φυτικών πόρων και η υιοθέτηση προσεκτικής διαχείρισης συμβάλλει στη διατήρηση αυτών των αξιοσημείωτων εντόμων για τις μελλοντικές εποχές.";
 "insect.detail.section.characteristics" = "Χαρακτηριστικά";
 "insect.detail.section.classification" = "Επιστημονική ταξινόμηση";
 "insect.detail.section.bites" = "Δαγκώματα";
@@ -148,14 +148,14 @@
 "insect.detail.add_to_collection.sheet.title" = "Προσθέστε μια φωτογραφία στη συλλογή σας";
 "insect.detail.add_to_collection.source.camera" = "Τραβήξτε φωτογραφία";
 "insect.detail.add_to_collection.source.library" = "Επιλέξτε από τη βιβλιοθήκη";
-"insect.detail.add_to_collection.cancel" = "Ακύρωση";
-"insect.detail.add_to_collection.alert.ok" = "ΟΚ";
+"insect.detail.add_to_collection.cancel" = "Ματαίωση";
+"insect.detail.add_to_collection.alert.ok" = "ΕΝΤΑΞΕΙ";
 "insect.detail.add_to_collection.error.no_insect" = "Αυτή η οθόνη δεν είναι συνδεδεμένη με κάποιο έντομο καταλόγου, επομένως η συλλογή δεν μπορεί να ενημερωθεί.";
 "insect.detail.add_to_collection.error.network" = "Δεν ήταν δυνατή η προσθήκη στη συλλογή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
 "insect.detail.remove_from_collection.confirm.title" = "Κατάργηση από τη συλλογή;";
 "insect.detail.remove_from_collection.confirm.message" = "Αυτό το έντομο θα αφαιρεθεί από τη συλλογή σας. Αυτό δεν μπορεί να αναιρεθεί.";
-"insect.detail.remove_from_collection.confirm.delete" = "Αφαίρεση";
-"insect.detail.remove_from_collection.confirm.cancel" = "Ακύρωση";
+"insect.detail.remove_from_collection.confirm.delete" = "Αφαιρώ";
+"insect.detail.remove_from_collection.confirm.cancel" = "Ματαίωση";
 "insect.detail.remove_from_collection.error.no_id" = "Δεν υπάρχει καταχώρηση συλλογής προς κατάργηση στον διακομιστή.";
 "insect.detail.remove_from_collection.error.network" = "Δεν ήταν δυνατή η κατάργηση από τη συλλογή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
 "insect.detail.add_to_collection.success.title" = "Επιτυχία!";
@@ -169,30 +169,30 @@
 "insect.detail.class.order.value" = "Υμενόπτερα";
 "insect.detail.class.class.title" = "Όνομα τάξης";
 "insect.detail.class.class.value" = "έντομο";
-"insect.detail.class.phylum.title" = "Phylum";
+"insect.detail.class.phylum.title" = "Ζωολογική διαίρεσις";
 "insect.detail.class.phylum.value" = "Αρθρόποδα";
 "insect.detail.class.kingdom.title" = "Βασίλειο";
 "insect.detail.class.kingdom.value" = "Animalia";
-"insect.detail.class.domain.title" = "Τομέας";
+"insect.detail.class.domain.title" = "Πεδίο ορισμού";
 "insect.detail.class.domain.value" = "Ευκαρυώτα";
 "insect.detail.char.adult_size.title" = "Μέγεθος για ενήλικες";
 "insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
 "insect.detail.char.forms.title" = "Μορφές Ύπαρξης";
 "insect.detail.char.forms.value" = "Αυγό, προνύμφη, νύμφη, ενήλικα";
-"insect.detail.char.colors.title" = "Χρώματα";
+"insect.detail.char.colors.title" = "Χρωματιστά";
 "insect.detail.char.colors.value" = "Χρυσοκαφέ με μαύρες ρίγες";
 "insect.detail.char.population.title" = "Πληθυσμός";
 "insect.detail.char.population.value" = "Πολύ διαδεδομένο και εξημερωμένο";
-"insect.detail.char.habitat.title" = "Βιότοπος";
+"insect.detail.char.habitat.title" = "Ενδιαίτημα";
 "insect.detail.char.habitat.value" = "Λιβάδια, κήποι, δάση, αγροτικές εκτάσεις";
-"insect.detail.char.diet.title" = "δίαιτα";
+"insect.detail.char.diet.title" = "Διατροφή";
 "insect.detail.char.diet.value" = "Νέκταρ και γύρη από ανθοφόρα φυτά";
 
 /* Home — popular this week */
 "home.popular_this_week" = "Δημοφιλές αυτή την εβδομάδα";
-"home.popular.butterfly" = "πεταλούδα";
-"home.popular.mantis" = "Mantis";
-"home.popular.ant" = "Αντ";
+"home.popular.butterfly" = "Πεταλούδα";
+"home.popular.mantis" = "Αλογάκι της παναγίας";
+"home.popular.ant" = "Μυρμήγκι";
 "home.popular.beetle" = "Σκαθάρι";
 
 /* Home — articles */
@@ -222,7 +222,7 @@
 "settings.section.feedback" = "Ανατροφοδότηση";
 "settings.section.security" = "Ασφάλεια";
 "settings.row.contact_us" = "Επικοινωνήστε μαζί μας";
-"settings.row.restore" = "Επαναφορά";
+"settings.row.restore" = "Επαναφέρω";
 "settings.row.rate_app" = "Βαθμολογήστε την εφαρμογή";
 "settings.row.share_app" = "Μοιραστείτε την εφαρμογή";
 "settings.row.privacy" = "Πολιτική απορρήτου";
@@ -235,8 +235,8 @@
 "settings.support.mail_unavailable_title" = "Επικοινωνήστε μαζί μας μέσω email";
 "settings.restore.message" = "Επαναφέρει τη συνδρομή σας από το App Store για αυτό το Apple ID.";
 "settings.refund_consent.message" = "Συναινείτε στην επεξεργασία των δεδομένων σας για σκοπούς επιστροφής χρημάτων;";
-"settings.refund_consent.allow" = "Να επιτρέπεται";
-"settings.refund_consent.decline" = "Απόρριψη";
+"settings.refund_consent.allow" = "Επιτρέπω";
+"settings.refund_consent.decline" = "Πτώση";
 "settings.reset_consent.message" = "Η διαχείριση της συναίνεσης διαφήμισης θα είναι διαθέσιμη σε μελλοντική ενημέρωση.";
 "settings.link.privacy" = "https://bugs.app/privacy";
 "settings.link.terms" = "https://bugs.app/terms";

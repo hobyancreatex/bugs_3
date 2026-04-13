@@ -234,7 +234,7 @@
 "settings.support.mail_body" = "Здравствуйте,\n\n";
 "settings.support.mail_unavailable_title" = "Напишите нам на почту";
 "settings.restore.message" = "Восстанавливает подписку из App Store для этого Apple ID.";
-"settings.refund_consent.message" = "Даёте ли вы согласие на обработку данных в целях возврата средств?";
+"settings.refund_consent.message" = "Для обработки возвратов мы поделимся данными о вашей покупке с Apple. Вы можете отказаться или отозвать свое согласие в любое время в настройках.";
 "settings.refund_consent.allow" = "Разрешить";
 "settings.refund_consent.decline" = "Отклонить";
 "settings.reset_consent.message" = "Управление рекламным согласием появится в следующих версиях.";

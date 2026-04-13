@@ -37,7 +37,6 @@ final class SettingsViewController: UIViewController {
         case privacy
         case terms
         case refundConsent
-        case resetConsent
     }
 
     private let tableView: UITableView = {
@@ -81,7 +80,6 @@ final class SettingsViewController: UIViewController {
         if SubscriptionAccess.shared.isPremiumActive {
             rows.append(.refundConsent)
         }
-        rows.append(.resetConsent)
         return rows
     }
 
@@ -209,38 +207,12 @@ final class SettingsViewController: UIViewController {
     }
 
     private func showRefundConsentAlert() {
-        let alert = UIAlertController(
-            title: nil,
-            message: L10n.string("settings.refund_consent.message"),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: L10n.string("settings.refund_consent.allow"), style: .default) { _ in
-            UserDefaults.standard.set(true, forKey: Self.refundConsentKey)
-        })
-        alert.addAction(UIAlertAction(title: L10n.string("settings.refund_consent.decline"), style: .cancel) { _ in
-            UserDefaults.standard.set(false, forKey: Self.refundConsentKey)
-        })
-        present(alert, animated: true)
-    }
-
-    private static let refundConsentKey = "bugs.settings.refundConsent"
-
-    private func resetConsent() {
-        presentStubAlert(
-            title: L10n.string("settings.row.reset_consent"),
-            message: L10n.string("settings.reset_consent.message")
-        )
+        RefundConsentFlow.present(from: self) {}
     }
 
     private func openURLString(_ string: String) {
         guard let url = URL(string: string), UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-
-    private func presentStubAlert(title: String, message: String) {
-        let a = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        a.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
-        present(a, animated: true)
     }
 }
 
@@ -284,8 +256,6 @@ extension SettingsViewController: UITableViewDataSource {
                 configureCell(cell, titleKey: "settings.row.terms", symbolName: "doc.text")
             case .refundConsent:
                 configureCell(cell, titleKey: "settings.row.refund_consent", symbolName: "checkmark.shield.fill")
-            case .resetConsent:
-                configureCell(cell, titleKey: "settings.row.reset_consent", symbolName: "arrow.counterclockwise")
             }
         }
         return cell
@@ -330,7 +300,6 @@ extension SettingsViewController: UITableViewDelegate {
             case .privacy: privacyPolicy()
             case .terms: termsOfUse()
             case .refundConsent: showRefundConsentAlert()
-            case .resetConsent: resetConsent()
             }
         }
     }

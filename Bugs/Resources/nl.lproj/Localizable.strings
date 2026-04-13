@@ -2,7 +2,7 @@
 "common.done" = "Klaar";
 
 /* Onboarding */
-"onboarding.intro.title" = "Hallo! Ik ben jouw gids in de insectenwereld 🐞";
+"onboarding.intro.title" = "Hoi! Ik ben jouw gids in de insectenwereld 🐞";
 "onboarding.intro.subtitle" = "In deze app kun je:";
 "onboarding.intro.benefit.identify" = "Identificeer insecten binnen enkele seconden";
 "onboarding.intro.benefit.collection" = "Bewaar ze in uw verzameling";
@@ -14,7 +14,7 @@
 
 /* Home */
 "home.title" = "Thuis";
-"home.search.placeholder" = "Zoeken";
+"home.search.placeholder" = "Zoekopdracht";
 "home.ai_banner.title" = "Vraag AI naar elk insect dat je tegenkomt";
 "home.ai_banner.button" = "Stel een vraag";
 
@@ -23,11 +23,11 @@
 "ai_chat.input.placeholder" = "Vraag mij iets…";
 "ai_chat.stub.ai" = "Ik weet alles van insecten, u kunt mij raadplegen.";
 "ai_chat.stub.user" = "Vertel me over de bijen";
-"ai_chat.seed_creation_message" = "wie ben jij?";
+"ai_chat.seed_creation_message" = "wie ben je?";
 "ai_chat.error.bootstrap" = "Kan de chat niet openen. Probeer het opnieuw.";
 "ai_chat.error.send" = "Kan het bericht niet verzenden. Probeer het opnieuw.";
 "ai_chat.alert.connection_lost.message" = "De verbinding is verbroken. Probeer het later opnieuw.";
-"ai_chat.alert.connection_lost.action" = "Oké";
+"ai_chat.alert.connection_lost.action" = "OK";
 
 /* Home — categories */
 "home.category.coleoptera" = "Coleoptera";
@@ -46,7 +46,7 @@
 "profile.achievements.placeholder" = "Prestaties verschijnen hier.";
 "profile.collection.empty.title" = "Begin met je insectenverzameling";
 "profile.collection.empty.subtitle" = "Fotografeer insecten, breid je verzameling uit, verdien beloningen en houd je voortgang bij";
-"profile.achievement.close.accessibility" = "Sluiten";
+"profile.achievement.close.accessibility" = "Dichtbij";
 "profile.achievement.unlock_heading" = "Om deze prestatie te ontgrendelen";
 "profile.achievement.completed_heading" = "Gefeliciteerd!";
 "profile.achievement.completed_body" = "Toegevoegd aan je collectie";
@@ -58,7 +58,7 @@
 "tab.scan.accessibility" = "Insect scannen";
 
 /* Scanner */
-"scanner.close.accessibility" = "Sluiten";
+"scanner.close.accessibility" = "Dichtbij";
 "scanner.recognition_progress.message" = "Een ogenblik geduld terwijl de gegevens worden geladen...";
 "scanner.recognition_no_match.title" = "Geen overeenkomst gevonden";
 "scanner.recognition_no_match.subtitle" = "We konden het insect op deze foto niet identificeren";
@@ -71,7 +71,7 @@
 "paywall.preview.species" = "parelmoervlinder";
 "paywall.preview.family" = "Familie: Nymphalidae";
 "paywall.preview.harmless" = "Onschadelijk";
-"paywall.close.accessibility" = "Sluiten";
+"paywall.close.accessibility" = "Dichtbij";
 "paywall.headline" = "Ontgrendel de volledige insectenwereld";
 "paywall.benefit.scans" = "Onbeperkte scans";
 "paywall.benefit.collection" = "Volledige toegang tot de collectie";
@@ -132,7 +132,7 @@
 "insect.detail.status.toxic" = "Giftig";
 "insect.detail.status.widespread" = "Wijdverbreid";
 "insect.detail.widespread.api.yes" = "Wijdverbreid";
-"insect.detail.widespread.api.no" = "Soms";
+"insect.detail.widespread.api.no" = "Ongewoon";
 "insect.detail.also_known_prefix" = "Ook bekend als:";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
 "insect.detail.mock.aliases" = "Europese honingbij, westerse honingbij, honingbij";
@@ -148,14 +148,14 @@
 "insect.detail.add_to_collection.sheet.title" = "Voeg een foto toe aan je verzameling";
 "insect.detail.add_to_collection.source.camera" = "Maak een foto";
 "insect.detail.add_to_collection.source.library" = "Keuze uit bibliotheek";
-"insect.detail.add_to_collection.cancel" = "Annuleer";
-"insect.detail.add_to_collection.alert.ok" = "Oké";
+"insect.detail.add_to_collection.cancel" = "Annuleren";
+"insect.detail.add_to_collection.alert.ok" = "OK";
 "insect.detail.add_to_collection.error.no_insect" = "Dit scherm is niet gekoppeld aan een catalogusinsect, de collectie kan dus niet worden bijgewerkt.";
 "insect.detail.add_to_collection.error.network" = "Kan niet toevoegen aan collectie. Controleer uw verbinding en probeer het opnieuw.";
 "insect.detail.remove_from_collection.confirm.title" = "Uit collectie verwijderen?";
 "insect.detail.remove_from_collection.confirm.message" = "Dit insect wordt uit je collectie verwijderd. Dit kan niet ongedaan worden gemaakt.";
 "insect.detail.remove_from_collection.confirm.delete" = "Verwijderen";
-"insect.detail.remove_from_collection.confirm.cancel" = "Annuleer";
+"insect.detail.remove_from_collection.confirm.cancel" = "Annuleren";
 "insect.detail.remove_from_collection.error.no_id" = "Er is geen collectie-item dat op de server kan worden verwijderd.";
 "insect.detail.remove_from_collection.error.network" = "Kan niet uit de collectie verwijderen. Controleer uw verbinding en probeer het opnieuw.";
 "insect.detail.add_to_collection.success.title" = "Succes!";
@@ -165,7 +165,7 @@
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familie";
 "insect.detail.class.family.value" = "Apidae";
-"insect.detail.class.order.title" = "Bestel";
+"insect.detail.class.order.title" = "Volgorde";
 "insect.detail.class.order.value" = "Hymenoptera";
 "insect.detail.class.class.title" = "Naam van de klas";
 "insect.detail.class.class.value" = "Insecta";
@@ -218,7 +218,7 @@
 
 /* Settings (same groups as CoinRecognizer) */
 "settings.title" = "Instellingen";
-"settings.section.support" = "Ondersteuning";
+"settings.section.support" = "Steun";
 "settings.section.feedback" = "Feedback";
 "settings.section.security" = "Beveiliging";
 "settings.row.contact_us" = "Neem contact met ons op";
@@ -231,12 +231,12 @@
 "settings.row.reset_consent" = "Toestemming opnieuw instellen";
 "settings.support.email" = "support@bugs.app";
 "settings.support.mail_subject" = "Ondersteuning voor Bugs-apps";
-"settings.support.mail_body" = "Hallo,";
+"settings.support.mail_body" = "Hoi,";
 "settings.support.mail_unavailable_title" = "Neem contact met ons op via e-mail";
 "settings.restore.message" = "Herstelt uw abonnement uit de App Store voor deze Apple ID.";
 "settings.refund_consent.message" = "Geeft u toestemming voor de verwerking van uw gegevens voor terugbetalingsdoeleinden?";
 "settings.refund_consent.allow" = "Toestaan";
-"settings.refund_consent.decline" = "Weigeren";
+"settings.refund_consent.decline" = "Afwijzen";
 "settings.reset_consent.message" = "Beheer van advertentietoestemming zal beschikbaar zijn in een toekomstige update.";
 "settings.link.privacy" = "https://bugs.app/privacy";
 "settings.link.terms" = "https://bugs.app/terms";

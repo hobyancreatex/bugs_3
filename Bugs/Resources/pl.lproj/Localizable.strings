@@ -1,5 +1,5 @@
 /* Common */
-"common.done" = "Gotowe";
+"common.done" = "Zrobione";
 
 /* Onboarding */
 "onboarding.intro.title" = "Cześć! Jestem Twoim przewodnikiem po świecie owadów 🐞";
@@ -46,7 +46,7 @@
 "profile.achievements.placeholder" = "Tutaj pojawią się osiągnięcia.";
 "profile.collection.empty.title" = "Rozpocznij swoją kolekcję owadów";
 "profile.collection.empty.subtitle" = "Fotografuj owady, powiększaj swoją kolekcję, zdobywaj nagrody i śledź swoje postępy";
-"profile.achievement.close.accessibility" = "Zamknij";
+"profile.achievement.close.accessibility" = "Zamknąć";
 "profile.achievement.unlock_heading" = "Aby odblokować to osiągnięcie";
 "profile.achievement.completed_heading" = "Gratulacje!";
 "profile.achievement.completed_body" = "Dodano do Twojej kolekcji";
@@ -58,7 +58,7 @@
 "tab.scan.accessibility" = "Zeskanuj owada";
 
 /* Scanner */
-"scanner.close.accessibility" = "Zamknij";
+"scanner.close.accessibility" = "Zamknąć";
 "scanner.recognition_progress.message" = "Proszę czekać, trwa ładowanie danych…";
 "scanner.recognition_no_match.title" = "Nie znaleziono dopasowania";
 "scanner.recognition_no_match.subtitle" = "Nie udało nam się zidentyfikować owada na tym zdjęciu";
@@ -70,8 +70,8 @@
 /* Paywall */
 "paywall.preview.species" = "Fritillar";
 "paywall.preview.family" = "Rodzina: Nymphalidae";
-"paywall.preview.harmless" = "Nieszkodliwy";
-"paywall.close.accessibility" = "Zamknij";
+"paywall.preview.harmless" = "Niegroźny";
+"paywall.close.accessibility" = "Zamknąć";
 "paywall.headline" = "Odblokuj pełny świat owadów";
 "paywall.benefit.scans" = "Nieograniczone skanowanie";
 "paywall.benefit.collection" = "Pełny dostęp do kolekcji";
@@ -83,20 +83,20 @@
 "paywall.button.next" = "Następny";
 "paywall.footer.terms" = "Warunki użytkowania";
 "paywall.footer.privacy" = "Polityka prywatności";
-"paywall.footer.restore" = "Przywróć";
+"paywall.footer.restore" = "Przywrócić";
 
 /* Subscription (StoreKit) */
 "subscription.error.title" = "Zakup";
 "subscription.error.product_unavailable" = "Ta subskrypcja nie jest obecnie dostępna. Sprawdź App Store Connect lub spróbuj ponownie później.";
 "subscription.error.purchase_failed" = "Nie udało się sfinalizować zakupu. Spróbuj ponownie.";
 "subscription.error.restore_failed" = "Nie udało się przywrócić zakupów. Sprawdź połączenie i spróbuj ponownie.";
-"subscription.pending.title" = "Oczekujące";
+"subscription.pending.title" = "Aż do";
 "subscription.pending.message" = "Twój zakup oczekuje na zatwierdzenie. Dostęp zostanie odblokowany po zakończeniu.";
-"subscription.restore.title" = "Przywróć";
+"subscription.restore.title" = "Przywrócić";
 "subscription.restore.success" = "Twoje zakupy zostały przywrócone.";
 "subscription.restore.nothing" = "Nie znaleziono aktywnej subskrypcji dla tego Apple ID.";
 
-"scanner.tips.title" = "Wskazówki";
+"scanner.tips.title" = "Porady";
 "scanner.tips.intro" = "Wyraźne zdjęcie poprawia dokładność rozpoznawania. Aby uzyskać najlepsze rezultaty, postępuj zgodnie z poniższymi wskazówkami:";
 "scanner.tips.1.title" = "1. Trzymaj owada w ostrej ostrości";
 "scanner.tips.2.title" = "2. Wyśrodkuj owada w ramce. Upewnij się, że jest dobrze widoczny";
@@ -127,12 +127,12 @@
 "insect.default.3.subtitle" = "Wiersz zastępczy dla tej kategorii";
 
 /* Insect detail */
-"insect.detail.status.harmless" = "Nieszkodliwy";
+"insect.detail.status.harmless" = "Niegroźny";
 "insect.detail.status.poisonous" = "Trujący";
 "insect.detail.status.toxic" = "Toksyczny";
-"insect.detail.status.widespread" = "Powszechne";
-"insect.detail.widespread.api.yes" = "Powszechne";
-"insect.detail.widespread.api.no" = "Niezbyt często";
+"insect.detail.status.widespread" = "Rozpowszechniony";
+"insect.detail.widespread.api.yes" = "Rozpowszechniony";
+"insect.detail.widespread.api.no" = "Niezwykły";
 "insect.detail.also_known_prefix" = "Znany również jako:";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
 "insect.detail.mock.aliases" = "Europejska pszczoła miodna, pszczoła zachodnia, pszczoła miodna";
@@ -148,24 +148,24 @@
 "insect.detail.add_to_collection.sheet.title" = "Dodaj zdjęcie do swojej kolekcji";
 "insect.detail.add_to_collection.source.camera" = "Zrób zdjęcie";
 "insect.detail.add_to_collection.source.library" = "Wybierz z biblioteki";
-"insect.detail.add_to_collection.cancel" = "Anuluj";
+"insect.detail.add_to_collection.cancel" = "Anulować";
 "insect.detail.add_to_collection.alert.ok" = "OK";
 "insect.detail.add_to_collection.error.no_insect" = "Ten ekran nie jest powiązany z owadem z katalogu, dlatego nie można zaktualizować kolekcji.";
 "insect.detail.add_to_collection.error.network" = "Nie udało się dodać do kolekcji. Sprawdź połączenie i spróbuj ponownie.";
 "insect.detail.remove_from_collection.confirm.title" = "Usunąć z kolekcji?";
 "insect.detail.remove_from_collection.confirm.message" = "Ten owad zostanie usunięty z Twojej kolekcji. Tego nie można cofnąć.";
-"insect.detail.remove_from_collection.confirm.delete" = "Usuń";
-"insect.detail.remove_from_collection.confirm.cancel" = "Anuluj";
+"insect.detail.remove_from_collection.confirm.delete" = "Usunąć";
+"insect.detail.remove_from_collection.confirm.cancel" = "Anulować";
 "insect.detail.remove_from_collection.error.no_id" = "Na serwerze nie ma wpisu kolekcji do usunięcia.";
 "insect.detail.remove_from_collection.error.network" = "Nie można usunąć z kolekcji. Sprawdź połączenie i spróbuj ponownie.";
 "insect.detail.add_to_collection.success.title" = "Sukces!";
 "insect.detail.add_to_collection.success.subtitle" = "Owad został pomyślnie dodany do Twojej kolekcji";
 "insect.detail.remove_from_collection.accessibility" = "Usuń z kolekcji";
 "insect.detail.class.genus.title" = "Rodzaj";
-"insect.detail.class.genus.value" = "Apis";
+"insect.detail.class.genus.value" = "Pszczoła";
 "insect.detail.class.family.title" = "Rodzina";
 "insect.detail.class.family.value" = "Apidy";
-"insect.detail.class.order.title" = "Zamów";
+"insect.detail.class.order.title" = "Zamówienie";
 "insect.detail.class.order.value" = "Błonkoskrzydłowe";
 "insect.detail.class.class.title" = "Nazwa klasy";
 "insect.detail.class.class.value" = "Owad";
@@ -179,9 +179,9 @@
 "insect.detail.char.adult_size.value" = "1,2 – 1,5 cm";
 "insect.detail.char.forms.title" = "Formy istnienia";
 "insect.detail.char.forms.value" = "Jajko, larwa, poczwarka, postać dorosła";
-"insect.detail.char.colors.title" = "Kolory";
+"insect.detail.char.colors.title" = "Zabarwienie";
 "insect.detail.char.colors.value" = "Złocistobrązowy z czarnymi paskami";
-"insect.detail.char.population.title" = "Ludność";
+"insect.detail.char.population.title" = "Populacja";
 "insect.detail.char.population.value" = "Bardzo rozpowszechniony i udomowiony";
 "insect.detail.char.habitat.title" = "Siedlisko";
 "insect.detail.char.habitat.value" = "Łąki, ogrody, lasy, tereny rolnicze";
@@ -219,10 +219,10 @@
 /* Settings (same groups as CoinRecognizer) */
 "settings.title" = "Ustawienia";
 "settings.section.support" = "Wsparcie";
-"settings.section.feedback" = "Informacje zwrotne";
+"settings.section.feedback" = "Informacja zwrotna";
 "settings.section.security" = "Bezpieczeństwo";
 "settings.row.contact_us" = "Skontaktuj się z nami";
-"settings.row.restore" = "Przywróć";
+"settings.row.restore" = "Przywrócić";
 "settings.row.rate_app" = "Oceń aplikację";
 "settings.row.share_app" = "Udostępnij aplikację";
 "settings.row.privacy" = "Polityka prywatności";
@@ -235,8 +235,8 @@
 "settings.support.mail_unavailable_title" = "Skontaktuj się z nami e-mailem";
 "settings.restore.message" = "Przywraca subskrypcję z App Store dla tego Apple ID.";
 "settings.refund_consent.message" = "Czy wyrażasz zgodę na przetwarzanie Twoich danych w celu zwrotu pieniędzy?";
-"settings.refund_consent.allow" = "Zezwól";
-"settings.refund_consent.decline" = "Odmów";
+"settings.refund_consent.allow" = "Umożliwić";
+"settings.refund_consent.decline" = "Spadek";
 "settings.reset_consent.message" = "Zarządzanie zgodami na reklamy będzie dostępne w przyszłej aktualizacji.";
 "settings.link.privacy" = "https://bugs.app/privacy";
 "settings.link.terms" = "https://bugs.app/terms";

@@ -234,7 +234,7 @@
 "settings.support.mail_body" = "Hi,\n\n";
 "settings.support.mail_unavailable_title" = "Contact us by email";
 "settings.restore.message" = "Restores your subscription from the App Store for this Apple ID.";
-"settings.refund_consent.message" = "Do you consent to the processing of your data for refund purposes?";
+"settings.refund_consent.message" = "To process refunds, we will share your purchase data with Apple. You can decline or revoke your consent at any time in settings.";
 "settings.refund_consent.allow" = "Allow";
 "settings.refund_consent.decline" = "Decline";
 "settings.reset_consent.message" = "Advertising consent management will be available in a future update.";

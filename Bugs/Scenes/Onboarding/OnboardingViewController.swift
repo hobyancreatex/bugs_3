@@ -3,6 +3,7 @@
 //  Bugs
 //
 
+import StoreKit
 import UIKit
 
 /// Общая геометрия плавающей CTA и встроенной кнопки пейвола на втором шаге онбординга.
@@ -147,7 +148,10 @@ final class OnboardingViewController: UIViewController {
                 return
             }
             try await SubscriptionManager.shared.purchase(product)
-            completeOnboardingAndGoMain()
+            EventsManager.shared.recordSubscriptionPurchase(product: product, source: .onboarding)
+            RefundConsentFlow.present(from: self) { [weak self] in
+                self?.completeOnboardingAndGoMain()
+            }
         } catch SubscriptionManagerError.userCancelled {
             return
         } catch SubscriptionManagerError.pending {
