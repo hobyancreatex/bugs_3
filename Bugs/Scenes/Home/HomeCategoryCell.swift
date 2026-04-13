@@ -72,8 +72,22 @@ final class HomeCategoryCell: UICollectionViewCell {
     func configure(with viewModel: Home.CategoryCellViewModel) {
         contentView.alpha = 1
         isUserInteractionEnabled = true
+        circleView.backgroundColor = .appCategoryCircle
+        titleLabel.textColor = .appTextPrimary
         titleLabel.text = viewModel.title
         RemoteImageLoader.load(into: iconView, url: viewModel.imageURL)
+    }
+
+    /// Вкладка «Достижения»: как категории на главной; невыполненные — приглушённый фон подписи и ч/б иконка (см. `RemoteImageLoader.applyGrayscale`).
+    func configureAchievement(title: String, imageURL: URL?, isCompleted: Bool) {
+        contentView.alpha = 1
+        isUserInteractionEnabled = true
+        titleLabel.text = title
+        circleView.backgroundColor = isCompleted
+            ? .appCategoryCircle
+            : UIColor(red: 232 / 255, green: 232 / 255, blue: 230 / 255, alpha: 1)
+        titleLabel.textColor = isCompleted ? .appTextPrimary : .appTextSecondary
+        RemoteImageLoader.load(into: iconView, url: imageURL, animatedTransition: true, applyGrayscale: !isCompleted)
     }
 
     /// Invisible cell that keeps grid slot (Library incomplete rows).
@@ -90,6 +104,8 @@ final class HomeCategoryCell: UICollectionViewCell {
         RemoteImageLoader.cancelLoad(for: iconView)
         contentView.alpha = 1
         isUserInteractionEnabled = true
+        circleView.backgroundColor = .appCategoryCircle
+        titleLabel.textColor = .appTextPrimary
         titleLabel.text = nil
         iconView.image = nil
     }

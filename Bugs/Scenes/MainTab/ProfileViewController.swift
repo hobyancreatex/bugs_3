@@ -11,6 +11,16 @@ final class ProfileViewController: UIViewController {
     /// Пустой массив — показывается заглушка коллекции. Для превью списка временно добавьте элементы.
     private var collectionRows: [CategoryInsects.InsectCellViewModel] = []
 
+    private struct ProfileAchievementGridItem {
+        let title: String
+        let imageURL: URL?
+        let isCompleted: Bool
+        let currentCount: Int
+        let maxCount: Int
+    }
+
+    private var achievementRows: [ProfileAchievementGridItem] = []
+
     private let collectionEmptyStateView: ListSearchEmptyStateView = {
         let v = ListSearchEmptyStateView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +84,28 @@ final class ProfileViewController: UIViewController {
         return cv
     }()
 
+    private lazy var achievementsGridLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .vertical
+        l.minimumLineSpacing = 16
+        l.minimumInteritemSpacing = 12
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
+    private lazy var achievementsCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: achievementsGridLayout)
+        cv.backgroundColor = .clear
+        cv.alwaysBounceVertical = true
+        cv.dataSource = self
+        cv.delegate = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.contentInsetAdjustmentBehavior = .always
+        cv.register(HomeCategoryCell.self, forCellWithReuseIdentifier: HomeCategoryCell.reuseIdentifier)
+        cv.isHidden = true
+        return cv
+    }()
+
     private let achievementsPlaceholder: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +120,7 @@ final class ProfileViewController: UIViewController {
     private var lastCollectionWidthForLayout: CGFloat = 0
 
     private var collectionFetchTask: Task<Void, Never>?
+    private var achievementsFetchTask: Task<Void, Never>?
 
     private let collectionLoadingIndicator: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView(style: .large)
@@ -128,6 +161,9 @@ final class ProfileViewController: UIViewController {
         updatePremiumNavBarChrome()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         fetchCollectionFromAPI()
+        if segmentControl.selectedIndex == 1 {
+            fetchAchievementsFromAPI()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -143,6 +179,7 @@ final class ProfileViewController: UIViewController {
         if abs(w - lastCollectionWidthForLayout) > 0.5 {
             lastCollectionWidthForLayout = w
             collectionView.collectionViewLayout.invalidateLayout()
+            achievementsCollectionView.collectionViewLayout.invalidateLayout()
         }
     }
 
@@ -200,6 +237,93 @@ final class ProfileViewController: UIViewController {
         }
     }
 
+    private func fetchAchievementsFromAPI() {
+        guard segmentControl.selectedIndex == 1 else { return }
+        achievementsFetchTask?.cancel()
+
+        collectionLoadingIndicator.startAnimating()
+        view.bringSubviewToFront(collectionLoadingIndicator)
+        achievementsPlaceholder.isHidden = true
+        achievementsCollectionView.isHidden = true
+        applyCollectionTabContentVisibility()
+
+        achievementsFetchTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                let data = try await CollectAPIClient.shared.get(path: "classification/achievements/")
+                try Task.checkCancellation()
+                Self.logAchievementsResponseToConsole(data)
+                let dtos = try CollectAchievementsParser.results(from: data)
+                try Task.checkCancellation()
+                let rows = Self.sortedAchievementGridItems(from: dtos)
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.achievementRows = rows
+                    self.applyCollectionTabContentVisibility()
+                    self.achievementsCollectionView.reloadData()
+                }
+            } catch is CancellationError {
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.applyCollectionTabContentVisibility()
+                }
+            } catch {
+                print("[Profile achievements GET classification/achievements/] error: \(error)")
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.achievementRows = []
+                    self.applyCollectionTabContentVisibility()
+                }
+            }
+        }
+    }
+
+    /// Сначала выполненные (`current_count >= max_count`), затем по имени. Иконка всегда с цветного `image`; ч/б — в `HomeCategoryCell` через фильтр.
+    private static func sortedAchievementGridItems(from dtos: [CollectAchievementItemDTO]) -> [ProfileAchievementGridItem] {
+        let sorted = dtos.sorted { a, b in
+            let ac = a.currentCount >= a.maxCount
+            let bc = b.currentCount >= b.maxCount
+            if ac != bc { return ac && !bc }
+            return a.name.localizedCaseInsensitiveCompare(b.name) == .orderedAscending
+        }
+        return sorted.map { dto in
+            ProfileAchievementGridItem(
+                title: dto.name,
+                imageURL: URL(string: dto.image),
+                isCompleted: dto.currentCount >= dto.maxCount,
+                currentCount: dto.currentCount,
+                maxCount: dto.maxCount
+            )
+        }
+    }
+
+    private static func logAchievementsResponseToConsole(_ data: Data) {
+        let tag = "[Profile achievements] GET classification/achievements/ response:"
+        if let obj = try? JSONSerialization.jsonObject(with: data),
+           let pretty = try? JSONSerialization.data(withJSONObject: obj, options: [.sortedKeys, .prettyPrinted]),
+           let s = String(data: pretty, encoding: .utf8)
+        {
+            print("\(tag)\n\(s)")
+        } else if let s = String(data: data, encoding: .utf8) {
+            print("\(tag)\n\(s)")
+        } else {
+            print("\(tag) <\(data.count) bytes, not UTF-8>")
+        }
+    }
+
+    private func presentAchievementDetail(for item: ProfileAchievementGridItem) {
+        let vm = AchievementDetailViewModel(
+            title: item.title,
+            categoryName: item.title,
+            imageURL: item.imageURL,
+            currentCount: item.currentCount,
+            maxCount: item.maxCount,
+            isCompleted: item.isCompleted
+        )
+        let sheet = AchievementDetailViewController(viewModel: vm)
+        present(sheet, animated: true)
+    }
+
     private func buildHierarchy() {
         view.addSubview(navBarContainer)
         navBarContainer.addSubview(titleLabel)
@@ -208,6 +332,7 @@ final class ProfileViewController: UIViewController {
 
         view.addSubview(segmentControl)
         view.addSubview(collectionView)
+        view.addSubview(achievementsCollectionView)
         view.addSubview(collectionEmptyStateView)
         view.addSubview(collectionLoadingIndicator)
         view.addSubview(achievementsPlaceholder)
@@ -244,6 +369,11 @@ final class ProfileViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+
+            achievementsCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 16),
+            achievementsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            achievementsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            achievementsCollectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
 
             achievementsPlaceholder.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             achievementsPlaceholder.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -299,7 +429,11 @@ final class ProfileViewController: UIViewController {
             collectionFetchTask?.cancel()
             collectionLoadingIndicator.stopAnimating()
             collectionView.isUserInteractionEnabled = true
+            if segmentControl.selectedIndex == 1 {
+                fetchAchievementsFromAPI()
+            }
         } else {
+            achievementsFetchTask?.cancel()
             fetchCollectionFromAPI()
         }
         applyCollectionTabContentVisibility()
@@ -307,12 +441,17 @@ final class ProfileViewController: UIViewController {
 
     private func applyCollectionTabContentVisibility() {
         let onCollection = segmentControl.selectedIndex == 0
-        achievementsPlaceholder.isHidden = onCollection
         guard onCollection else {
             collectionView.isHidden = true
             collectionEmptyStateView.isHidden = true
+            let loadingAchievements = collectionLoadingIndicator.isAnimating
+            let hasAchievements = !achievementRows.isEmpty
+            achievementsPlaceholder.isHidden = hasAchievements || loadingAchievements
+            achievementsCollectionView.isHidden = !hasAchievements
             return
         }
+        achievementsPlaceholder.isHidden = true
+        achievementsCollectionView.isHidden = true
         if collectionLoadingIndicator.isAnimating {
             if collectionRows.isEmpty {
                 collectionView.isHidden = true
@@ -335,10 +474,24 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionRows.count
+        if collectionView === achievementsCollectionView {
+            return achievementRows.count
+        }
+        return collectionRows.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView === achievementsCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: HomeCategoryCell.reuseIdentifier,
+                for: indexPath
+            ) as? HomeCategoryCell else {
+                return UICollectionViewCell()
+            }
+            let item = achievementRows[indexPath.item]
+            cell.configureAchievement(title: item.title, imageURL: item.imageURL, isCompleted: item.isCompleted)
+            return cell
+        }
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CategoryInsectsCell.reuseIdentifier,
             for: indexPath
@@ -357,6 +510,16 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
+        if collectionView === achievementsCollectionView {
+            let sectionInset: CGFloat = 32
+            let interItem: CGFloat = 12
+            let columns: CGFloat = 3
+            let contentW = collectionView.bounds.width
+            let totalInter = interItem * (columns - 1)
+            let w = floor((contentW - sectionInset - totalInter) / max(columns, 1))
+            let rowHeight: CGFloat = 82
+            return CGSize(width: max(0, w), height: rowHeight)
+        }
         let horizontalInset: CGFloat = 32
         let w = max(0, collectionView.bounds.width - horizontalInset)
         return CGSize(width: w, height: 104)
@@ -367,6 +530,10 @@ extension ProfileViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        if collectionView === achievementsCollectionView {
+            presentAchievementDetail(for: achievementRows[indexPath.item])
+            return
+        }
         let row = collectionRows[indexPath.item]
         let detail = InsectDetailConfigurator.assemble(
             heroImageAssetName: row.imageAssetName,

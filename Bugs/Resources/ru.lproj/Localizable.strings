@@ -46,6 +46,11 @@
 "profile.achievements.placeholder" = "Здесь появятся достижения.";
 "profile.collection.empty.title" = "Начните коллекцию насекомых";
 "profile.collection.empty.subtitle" = "Фотографируйте насекомых, пополняйте коллекцию, получайте награды и следите за прогрессом";
+"profile.achievement.close.accessibility" = "Закрыть";
+"profile.achievement.unlock_heading" = "Чтобы открыть это достижение";
+"profile.achievement.completed_heading" = "Поздравляем!";
+"profile.achievement.completed_body" = "Добавлено в вашу коллекцию";
+"profile.achievement.identify_more" = "Определите ещё %lld %@";
 "tab.home.accessibility" = "Главная";
 "tab.library.accessibility" = "Библиотека";
 "tab.chat.accessibility" = "ИИ-чат";

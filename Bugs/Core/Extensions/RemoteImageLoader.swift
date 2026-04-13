@@ -11,7 +11,8 @@ enum RemoteImageLoader {
     static func load(
         into imageView: UIImageView,
         url: URL?,
-        animatedTransition: Bool = true
+        animatedTransition: Bool = true,
+        applyGrayscale: Bool = false
     ) {
         imageView.kf.cancelDownloadTask()
         imageView.kf.indicatorType = .activity
@@ -22,7 +23,7 @@ enum RemoteImageLoader {
         }
 
         var options: KingfisherOptionsInfo = [.cacheOriginalImage]
-        if animatedTransition {
+        if animatedTransition, !applyGrayscale {
             options.append(.transition(.fade(0.2)))
         }
         imageView.kf.setImage(
@@ -30,7 +31,12 @@ enum RemoteImageLoader {
             placeholder: nil,
             options: options
         ) { result in
-            if case .failure = result {
+            switch result {
+            case .success(let value):
+                if applyGrayscale, let gray = value.image.applyingAchievementGrayscale() {
+                    imageView.image = gray
+                }
+            case .failure:
                 imageView.image = nil
             }
         }

@@ -46,6 +46,11 @@
 "profile.achievements.placeholder" = "Achievements will appear here.";
 "profile.collection.empty.title" = "Start your insect collection";
 "profile.collection.empty.subtitle" = "Photograph insects, grow your collection, earn rewards, and track your progress";
+"profile.achievement.close.accessibility" = "Close";
+"profile.achievement.unlock_heading" = "To unlock this achievement";
+"profile.achievement.completed_heading" = "Congratulations!";
+"profile.achievement.completed_body" = "Added to your collection";
+"profile.achievement.identify_more" = "Identify %lld more %@";
 "tab.home.accessibility" = "Home";
 "tab.library.accessibility" = "Library";
 "tab.chat.accessibility" = "AI chat";
