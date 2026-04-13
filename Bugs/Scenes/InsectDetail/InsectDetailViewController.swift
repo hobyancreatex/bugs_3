@@ -8,6 +8,8 @@ import UIKit
 protocol InsectDetailDisplayLogic: AnyObject {
     func displayLoading(_ active: Bool)
     func displayDetail(viewModel: InsectDetail.Load.ViewModel)
+    func displayAddToCollectionResult(_ viewModel: InsectDetail.AddToCollection.ViewModel)
+    func displayRemoveFromCollectionResult(_ viewModel: InsectDetail.RemoveFromCollection.ViewModel)
 }
 
 final class InsectDetailViewController: UIViewController, InsectDetailDisplayLogic {
@@ -19,6 +21,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     /// Если true — скрываем свою кнопку «назад» (например, в горизонтальном пейджере результатов).
     var suppressesBackButton = false
+
+    /// JPEG с распознавания (тот же запрос, что и `classification/`): «В коллекцию» без повторного выбора фото.
+    var prefilledCollectionJPEG: Data?
 
     /// Число страниц в пейджере распознавания; при > 1 показываем индикатор на герое.
     var recognitionPagerPageCount: Int = 0 {
@@ -36,8 +41,12 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var heroPageIndicator: InsectDetailHeroPageIndicatorView?
 
     private var isPresentingAddToCollectionFlow = false
+    private var isRemovingFromCollection = false
+    /// Есть id вида с API — можно вызывать `POST collection` / `collection/upload`.
+    private var isAddToCollectionAvailableFromAPI = false
+    /// Коллекция по этому виду есть (ответ `GET insects/` или только что создали).
+    private var isListedInUserCollection = false
     private var addToCollectionLoadingView: UIView?
-    private var addToCollectionPendingWorkItem: DispatchWorkItem?
     private var addToCollectionSuccessOverlay: InsectDetailAddToCollectionSuccessOverlay?
 
     private var galleryAssetNames: [String] = []
@@ -53,7 +62,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setImage(.insectDetailDeleteFromCollection(), for: .normal)
-        b.tintColor = .appTextPrimary
+        b.tintColor = .appCollectionDelete
         b.adjustsImageWhenHighlighted = true
         b.accessibilityLabel = L10n.string("insect.detail.remove_from_collection.accessibility")
         return b
@@ -533,13 +542,10 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     }
 
     private func applyCollectionChrome() {
-        if isInCollection {
-            deleteFromCollectionButton.isHidden = false
-            addToCollectionControl.isHidden = true
-        } else {
-            deleteFromCollectionButton.isHidden = true
-            addToCollectionControl.isHidden = false
-        }
+        let showRemove = isInCollection || isListedInUserCollection
+        let showAdd = isAddToCollectionAvailableFromAPI && !isListedInUserCollection && !isInCollection
+        deleteFromCollectionButton.isHidden = !showRemove
+        addToCollectionControl.isHidden = !showAdd
         updateScrollInsetForAddToCollectionButton()
     }
 
@@ -565,13 +571,103 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     }
 
     @objc
-    private func deleteFromCollectionTapped() {}
+    private func deleteFromCollectionTapped() {
+        guard isInCollection || isListedInUserCollection else { return }
+        guard presentedViewController == nil else { return }
+        guard !isRemovingFromCollection, !isPresentingAddToCollectionFlow else { return }
+
+        let alert = UIAlertController(
+            title: L10n.string("insect.detail.remove_from_collection.confirm.title"),
+            message: L10n.string("insect.detail.remove_from_collection.confirm.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: L10n.string("insect.detail.remove_from_collection.confirm.cancel"),
+                style: .cancel
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: L10n.string("insect.detail.remove_from_collection.confirm.delete"),
+                style: .destructive
+            ) { [weak self] _ in
+                self?.performRemoveFromCollectionAfterConfirmation()
+            }
+        )
+        present(alert, animated: true)
+    }
+
+    private func performRemoveFromCollectionAfterConfirmation() {
+        guard isInCollection || isListedInUserCollection else { return }
+        guard presentedViewController == nil else { return }
+        guard !isRemovingFromCollection else { return }
+        isRemovingFromCollection = true
+        installAddToCollectionLoadingDim()
+        interactor?.removeFromCollection(request: .init())
+    }
 
     @objc
     private func addToCollectionTapped() {
+        guard isAddToCollectionAvailableFromAPI, !isInCollection else { return }
+        guard presentedViewController == nil else { return }
         guard !isPresentingAddToCollectionFlow else { return }
-        isPresentingAddToCollectionFlow = true
 
+        if let jpeg = prefilledCollectionJPEG, !jpeg.isEmpty {
+            isPresentingAddToCollectionFlow = true
+            installAddToCollectionLoadingDim()
+            interactor?.addToCollection(request: .init(jpegData: jpeg))
+            return
+        }
+
+        let sheet = UIAlertController(
+            title: L10n.string("insect.detail.add_to_collection.sheet.title"),
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            sheet.addAction(
+                UIAlertAction(
+                    title: L10n.string("insect.detail.add_to_collection.source.camera"),
+                    style: .default
+                ) { [weak self] _ in
+                    self?.presentImagePickerForCollection(sourceType: .camera)
+                }
+            )
+        }
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            sheet.addAction(
+                UIAlertAction(
+                    title: L10n.string("insect.detail.add_to_collection.source.library"),
+                    style: .default
+                ) { [weak self] _ in
+                    self?.presentImagePickerForCollection(sourceType: .photoLibrary)
+                }
+            )
+        }
+        sheet.addAction(
+            UIAlertAction(
+                title: L10n.string("insect.detail.add_to_collection.cancel"),
+                style: .cancel
+            )
+        )
+        if let pop = sheet.popoverPresentationController {
+            pop.sourceView = addToCollectionControl
+            pop.sourceRect = addToCollectionControl.bounds
+        }
+        present(sheet, animated: true)
+    }
+
+    private func presentImagePickerForCollection(sourceType: UIImagePickerController.SourceType) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = sourceType
+        picker.modalPresentationStyle = .fullScreen
+        present(picker, animated: true)
+    }
+
+    private func installAddToCollectionLoadingDim() {
+        removeAddToCollectionLoading()
         let dim = UIView()
         dim.translatesAutoresizingMaskIntoConstraints = false
         dim.backgroundColor = UIColor.black.withAlphaComponent(0.35)
@@ -592,16 +688,6 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         ])
         host.bringSubviewToFront(dim)
         addToCollectionLoadingView = dim
-
-        let work = DispatchWorkItem { [weak self] in
-            guard let self else { return }
-            self.addToCollectionPendingWorkItem = nil
-            self.removeAddToCollectionLoading()
-            guard self.isPresentingAddToCollectionFlow else { return }
-            self.presentAddToCollectionSuccessOverlay()
-        }
-        addToCollectionPendingWorkItem = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: work)
     }
 
     private func removeAddToCollectionLoading() {
@@ -610,8 +696,6 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     }
 
     private func cancelAddToCollectionFlow() {
-        addToCollectionPendingWorkItem?.cancel()
-        addToCollectionPendingWorkItem = nil
         removeAddToCollectionLoading()
         if let overlay = addToCollectionSuccessOverlay {
             overlay.cancelAutoDismiss()
@@ -619,13 +703,14 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             addToCollectionSuccessOverlay = nil
         }
         isPresentingAddToCollectionFlow = false
+        isRemovingFromCollection = false
     }
 
     private func presentAddToCollectionSuccessOverlay() {
         let overlay = InsectDetailAddToCollectionSuccessOverlay(
             title: L10n.string("insect.detail.add_to_collection.success.title"),
             subtitle: L10n.string("insect.detail.add_to_collection.success.subtitle"),
-            imageAssetName: "profile_collection_empty",
+            imageAssetName: "bug_happy",
             imageSide: 120
         )
         overlay.onDismiss = { [weak self] in
@@ -658,9 +743,56 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         scrollView.isHidden = active
     }
 
+    func displayAddToCollectionResult(_ viewModel: InsectDetail.AddToCollection.ViewModel) {
+        removeAddToCollectionLoading()
+        switch viewModel {
+        case .success:
+            prefilledCollectionJPEG = nil
+            isListedInUserCollection = true
+            isAddToCollectionAvailableFromAPI = false
+            applyCollectionChrome()
+            presentAddToCollectionSuccessOverlay()
+        case .failure(let message):
+            isPresentingAddToCollectionFlow = false
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(
+                UIAlertAction(
+                    title: L10n.string("insect.detail.add_to_collection.alert.ok"),
+                    style: .default
+                )
+            )
+            present(alert, animated: true)
+        }
+    }
+
+    func displayRemoveFromCollectionResult(_ viewModel: InsectDetail.RemoveFromCollection.ViewModel) {
+        removeAddToCollectionLoading()
+        isRemovingFromCollection = false
+        switch viewModel {
+        case .success:
+            isListedInUserCollection = false
+            if !isInCollection {
+                isAddToCollectionAvailableFromAPI = true
+            }
+            applyCollectionChrome()
+        case .failure(let message):
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(
+                UIAlertAction(
+                    title: L10n.string("insect.detail.add_to_collection.alert.ok"),
+                    style: .default
+                )
+            )
+            present(alert, animated: true)
+        }
+    }
+
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
         contentLoadingOverlay.setActive(false)
         scrollView.isHidden = false
+        isListedInUserCollection = viewModel.isInUserCollection
+        isAddToCollectionAvailableFromAPI = viewModel.isAddToCollectionAvailable
+        applyCollectionChrome()
         heroAssetName = viewModel.heroImageAssetName
         heroImageURL = viewModel.heroImageURL
         RemoteImageLoader.load(
@@ -905,6 +1037,29 @@ extension InsectDetailViewController: UITableViewDataSource {
 }
 
 extension InsectDetailViewController: UITableViewDelegate {}
+
+extension InsectDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage
+        picker.dismiss(animated: true) { [weak self] in
+            guard let self else { return }
+            guard let image, let jpeg = image.jpegData(compressionQuality: 0.3), !jpeg.isEmpty else {
+                return
+            }
+            self.isPresentingAddToCollectionFlow = true
+            self.installAddToCollectionLoadingDim()
+            self.interactor?.addToCollection(request: .init(jpegData: jpeg))
+        }
+    }
+}
 
 extension InsectDetailViewController: UITextViewDelegate {
 

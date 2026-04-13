@@ -12,10 +12,12 @@ enum InsectDetailConfigurator {
         heroImageURL: URL? = nil,
         insectId: String? = nil,
         leftHazardStatus: InsectDetail.LeftHazardStatus = .harmless,
-        isInCollection: Bool = false
+        isInCollection: Bool = false,
+        prefilledCollectionJPEG: Data? = nil
     ) -> UIViewController {
         let viewController = InsectDetailViewController()
         viewController.isInCollection = isInCollection
+        viewController.prefilledCollectionJPEG = prefilledCollectionJPEG
         let interactor = InsectDetailInteractor(
             insectId: insectId,
             heroImageAssetName: heroImageAssetName,

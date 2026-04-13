@@ -11,6 +11,8 @@ final class RecognitionResultsPagerViewController: UIViewController {
     private static let fallbackHeroAssetName = "home_popular_insect"
 
     private let candidates: [RecognitionClassificationCandidate]
+    /// Тот же JPEG, что ушёл в `classification/` — для «В коллекцию» без повторного выбора.
+    private let classificationSourceJPEG: Data?
 
     private let scrollView: UIScrollView = {
         let s = UIScrollView()
@@ -41,20 +43,23 @@ final class RecognitionResultsPagerViewController: UIViewController {
         return b
     }()
 
-    /// - Parameter candidates: Результаты классификации (URL + id) или заглушки с `thumbnailAssetName`.
-    init(candidates: [RecognitionClassificationCandidate]) {
+    /// - Parameters:
+    ///   - candidates: Результаты классификации (URL + id) или заглушки с `thumbnailAssetName`.
+    ///   - classificationSourceJPEG: Данные фото с распознавания; передаются в карточку вида для коллекции.
+    init(candidates: [RecognitionClassificationCandidate], classificationSourceJPEG: Data? = nil) {
         if candidates.isEmpty {
             self.candidates = RecognitionClassificationCandidate.fromLegacyAssetNames([Self.fallbackHeroAssetName])
         } else {
             self.candidates = candidates
         }
+        self.classificationSourceJPEG = classificationSourceJPEG
         super.init(nibName: nil, bundle: nil)
     }
 
     /// Заглушка: только имена ассетов героя для каждого результата.
     convenience init(heroImageAssetNames: [String]) {
         let names = heroImageAssetNames.isEmpty ? [Self.fallbackHeroAssetName] : heroImageAssetNames
-        self.init(candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(names))
+        self.init(candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(names), classificationSourceJPEG: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -99,7 +104,8 @@ final class RecognitionResultsPagerViewController: UIViewController {
                 heroImageAssetName: assetName,
                 heroImageURL: candidate.heroImageURL,
                 insectId: insectId.isEmpty ? nil : insectId,
-                isInCollection: false
+                isInCollection: false,
+                prefilledCollectionJPEG: classificationSourceJPEG
             )
             if let insectDetail = detail as? InsectDetailViewController {
                 insectDetail.suppressesBackButton = true

@@ -145,7 +145,7 @@ final class RecognitionProgressViewController: UIViewController {
             }
             do {
                 let data = try await CollectAPIClient.shared.postClassification(imageJPEGData: jpeg)
-                await MainActor.run { self.navigateAfterSuccess(responseData: data) }
+                await MainActor.run { self.navigateAfterSuccess(responseData: data, sourceJPEG: jpeg) }
             } catch is CancellationError {
                 return
             } catch {
@@ -154,7 +154,7 @@ final class RecognitionProgressViewController: UIViewController {
         }
     }
 
-    private func navigateAfterSuccess(responseData: Data) {
+    private func navigateAfterSuccess(responseData: Data, sourceJPEG: Data) {
         let candidates: [RecognitionClassificationCandidate]
         do {
             let root = try CollectClassificationParsing.decode(responseData)
@@ -170,11 +170,18 @@ final class RecognitionProgressViewController: UIViewController {
         guard let nav = navigationController, nav.topViewController === self else { return }
         _ = SubscriptionManager.shared.checkSubscriptionStatus()
         if SubscriptionAccess.shared.isPremiumActive {
-            let pager = RecognitionResultsPagerViewController(candidates: candidates)
+            let pager = RecognitionResultsPagerViewController(
+                candidates: candidates,
+                classificationSourceJPEG: sourceJPEG
+            )
             nav.pushViewController(pager, animated: true)
             return
         }
-        let match = RecognitionMatchFoundViewController(userPhoto: backgroundImage, candidates: candidates)
+        let match = RecognitionMatchFoundViewController(
+            userPhoto: backgroundImage,
+            candidates: candidates,
+            classificationSourceJPEG: sourceJPEG
+        )
         nav.pushViewController(match, animated: true)
     }
 

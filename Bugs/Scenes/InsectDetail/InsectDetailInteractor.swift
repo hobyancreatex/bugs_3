@@ -7,6 +7,8 @@ import Foundation
 
 protocol InsectDetailBusinessLogic: AnyObject {
     func loadDetail(request: InsectDetail.Load.Request)
+    func addToCollection(request: InsectDetail.AddToCollection.Request)
+    func removeFromCollection(request: InsectDetail.RemoveFromCollection.Request)
 }
 
 final class InsectDetailInteractor: InsectDetailBusinessLogic {
@@ -14,6 +16,8 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
     var presenter: InsectDetailPresentationLogic?
 
     private let insectId: String?
+    /// Id коллекции на сервере после `GET insects/{id}/` или после первого успешного `POST collection/`.
+    private var userCollectionId: Int?
     private let heroImageAssetName: String
     private let heroImageURL: URL?
     private let leftHazardStatus: InsectDetail.LeftHazardStatus
@@ -55,11 +59,14 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
 
     func loadDetail(request: InsectDetail.Load.Request) {
         let trimmedId = insectId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        userCollectionId = nil
         guard !trimmedId.isEmpty else {
             presenter?.presentDetail(response: Self.stubResponse(
                 heroImageAssetName: heroImageAssetName,
                 heroImageURL: heroImageURL,
-                leftHazardStatus: leftHazardStatus
+                leftHazardStatus: leftHazardStatus,
+                isAddToCollectionAvailable: false,
+                isInUserCollection: false
             ))
             return
         }
@@ -76,28 +83,40 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                 let mapped = CollectInsectDetailMapper.map(root)
                 let response: InsectDetail.Load.Response
                 if let mapped {
-                    response = Self.response(from: mapped, fallbackHeroURL: self.heroImageURL)
+                    response = Self.response(
+                        from: mapped,
+                        fallbackHeroURL: self.heroImageURL,
+                        referenceInsectId: trimmedId
+                    )
                 } else {
                     response = Self.stubResponse(
                         heroImageAssetName: self.heroImageAssetName,
                         heroImageURL: self.heroImageURL,
-                        leftHazardStatus: self.leftHazardStatus
+                        leftHazardStatus: self.leftHazardStatus,
+                        isAddToCollectionAvailable: true
                     )
                 }
                 await MainActor.run { [weak self] in
                     guard let self else { return }
+                    if let mapped {
+                        self.userCollectionId = mapped.userCollectionId
+                    } else {
+                        self.userCollectionId = nil
+                    }
                     self.presenter?.presentLoading(false)
                     self.presenter?.presentDetail(response: response)
                 }
             } catch {
                 await MainActor.run { [weak self] in
                     guard let self else { return }
+                    self.userCollectionId = nil
                     self.presenter?.presentLoading(false)
                     self.presenter?.presentDetail(
                         response: Self.stubResponse(
                             heroImageAssetName: self.heroImageAssetName,
                             heroImageURL: self.heroImageURL,
-                            leftHazardStatus: self.leftHazardStatus
+                            leftHazardStatus: self.leftHazardStatus,
+                            isAddToCollectionAvailable: true
                         )
                     )
                 }
@@ -105,7 +124,80 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         }
     }
 
-    private static func response(from mapped: CollectInsectDetailMapper.Mapped, fallbackHeroURL: URL?) -> InsectDetail.Load.Response {
+    func addToCollection(request: InsectDetail.AddToCollection.Request) {
+        let ref = insectId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        guard !ref.isEmpty else {
+            presenter?.presentAddToCollection(
+                response: .failure(messageKey: "insect.detail.add_to_collection.error.no_insect")
+            )
+            return
+        }
+        Task { [weak self] in
+            guard let self else { return }
+            let existingCollectionId = self.userCollectionId
+            do {
+                let data: Data
+                if let existingCollectionId {
+                    data = try await CollectAPIClient.shared.postAddPhotoToCollection(
+                        collectionId: existingCollectionId,
+                        imageJPEGData: request.jpegData
+                    )
+                } else {
+                    data = try await CollectAPIClient.shared.postCreateCollection(
+                        insectReference: ref,
+                        imageJPEGData: request.jpegData
+                    )
+                }
+                if let parsedId = CollectCollectionResponseParser.collectionId(from: data) {
+                    await MainActor.run { [weak self] in
+                        self?.userCollectionId = parsedId
+                    }
+                }
+                await MainActor.run { [weak self] in
+                    self?.presenter?.presentAddToCollection(response: .success)
+                }
+            } catch {
+                await MainActor.run { [weak self] in
+                    self?.presenter?.presentAddToCollection(
+                        response: .failure(messageKey: "insect.detail.add_to_collection.error.network")
+                    )
+                }
+            }
+        }
+    }
+
+    func removeFromCollection(request: InsectDetail.RemoveFromCollection.Request) {
+        _ = request
+        guard let cid = userCollectionId else {
+            presenter?.presentRemoveFromCollection(
+                response: .failure(messageKey: "insect.detail.remove_from_collection.error.no_id")
+            )
+            return
+        }
+        Task { [weak self] in
+            guard let self else { return }
+            do {
+                try await CollectAPIClient.shared.deleteCollection(id: cid)
+                await MainActor.run { [weak self] in
+                    guard let self else { return }
+                    self.userCollectionId = nil
+                    self.presenter?.presentRemoveFromCollection(response: .success)
+                }
+            } catch {
+                await MainActor.run { [weak self] in
+                    self?.presenter?.presentRemoveFromCollection(
+                        response: .failure(messageKey: "insect.detail.remove_from_collection.error.network")
+                    )
+                }
+            }
+        }
+    }
+
+    private static func response(
+        from mapped: CollectInsectDetailMapper.Mapped,
+        fallbackHeroURL: URL?,
+        referenceInsectId: String
+    ) -> InsectDetail.Load.Response {
         let heroURL = mapped.heroImageURL ?? fallbackHeroURL
         let galleryURLs = mapped.galleryImageURLs
         let galleryNames = Array(repeating: "home_popular_insect", count: galleryURLs.count)
@@ -120,6 +212,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                 : L10n.string("insect.detail.widespread.api.no")
         }
         let biteText = mapped.biteDescription.flatMap { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0 }
+        let inCollection = mapped.userCollectionId != nil
         return InsectDetail.Load.Response(
             heroImageAssetName: "home_popular_insect",
             heroImageURL: heroURL,
@@ -145,14 +238,18 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             classificationRowsResolved: classResolved,
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: biteText,
-            bitePhotoURLs: mapped.bitePhotoURLs
+            bitePhotoURLs: mapped.bitePhotoURLs,
+            isAddToCollectionAvailable: !referenceInsectId.isEmpty && !inCollection,
+            isInUserCollection: inCollection
         )
     }
 
     private static func stubResponse(
         heroImageAssetName: String,
         heroImageURL: URL?,
-        leftHazardStatus: InsectDetail.LeftHazardStatus
+        leftHazardStatus: InsectDetail.LeftHazardStatus,
+        isAddToCollectionAvailable: Bool,
+        isInUserCollection: Bool = false
     ) -> InsectDetail.Load.Response {
         var gallery = stubGalleryAssetNames
         if !gallery.contains(heroImageAssetName) {
@@ -184,7 +281,9 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             classificationRowsResolved: nil,
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: nil,
-            bitePhotoURLs: []
+            bitePhotoURLs: [],
+            isAddToCollectionAvailable: isAddToCollectionAvailable,
+            isInUserCollection: isInUserCollection
         )
     }
 

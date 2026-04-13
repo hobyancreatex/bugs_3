@@ -60,24 +60,35 @@ final class CollectAuthService {
         let payload = try jsonEncoder.encode(body)
         request.httpBody = payload
 
+        CollectAPILogger.logRequest(
+            method: "POST",
+            url: url,
+            headers: CollectAPILogger.redactedHTTPHeaders(request.allHTTPHeaderFields),
+            body: payload
+        )
+
         let (data, response): (Data, URLResponse)
         do {
             (data, response) = try await session.data(for: request)
         } catch {
+            CollectAPILogger.logHTTPTransportFailure(method: "POST", url: url, error: error)
             CollectAPILogger.logAuthFailure(authOperation, error: error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
-        let status = http?.statusCode
+        let status = http?.statusCode ?? -1
 
-        guard let status, (200 ..< 300).contains(status) else {
+        guard (200 ..< 300).contains(status) else {
+            CollectAPILogger.logAuthHTTPResponse(url: url, statusCode: status, body: data)
             CollectAPILogger.logAuthFailure(
                 authOperation,
-                error: CollectAuthServiceError.badStatus(status ?? -1, data.isEmpty ? nil : data)
+                error: CollectAuthServiceError.badStatus(status, data.isEmpty ? nil : data)
             )
-            throw CollectAuthServiceError.badStatus(status ?? -1, data.isEmpty ? nil : data)
+            throw CollectAuthServiceError.badStatus(status, data.isEmpty ? nil : data)
         }
+
+        CollectAPILogger.logAuthHTTPResponse(url: url, statusCode: status, body: data)
 
         let decoded = try? jsonDecoder.decode(CollectAuthAPIResponse.self, from: data)
         guard let token = decoded?.authToken else {

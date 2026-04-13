@@ -212,7 +212,6 @@ final class ArticleDetailViewController: UIViewController {
         do {
             let data = try await CollectAPIClient.shared.get(path: "articles/insects/\(id)/")
             try Task.checkCancellation()
-            CollectAPILogger.logArticleDetailSuccess(articleId: id, data: data)
             let dict = try CollectHomeListPayload.singleJSONObject(from: data)
             try Task.checkCancellation()
             guard let item = CollectHomeDTOMapper.article(dict) else {
@@ -230,7 +229,6 @@ final class ArticleDetailViewController: UIViewController {
             await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
         } catch {
             await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
-            CollectAPILogger.logArticleDetailFailure(articleId: id, error: error)
         }
     }
 

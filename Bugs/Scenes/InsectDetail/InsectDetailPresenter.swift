@@ -8,6 +8,8 @@ import Foundation
 protocol InsectDetailPresentationLogic: AnyObject {
     func presentLoading(_ active: Bool)
     func presentDetail(response: InsectDetail.Load.Response)
+    func presentAddToCollection(response: InsectDetail.AddToCollection.Response)
+    func presentRemoveFromCollection(response: InsectDetail.RemoveFromCollection.Response)
 }
 
 final class InsectDetailPresenter: InsectDetailPresentationLogic {
@@ -70,8 +72,32 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
                 bitesIntro: showsBites ? L10n.string("insect.detail.bites.intro") : "",
                 bitesFirstAidTitle: showsBites ? L10n.string("insect.detail.bites.first_aid") : "",
                 bitesBulletLines: biteBullets,
-                bitePhotoURLs: bitePhotos
+                bitePhotoURLs: bitePhotos,
+                isAddToCollectionAvailable: response.isAddToCollectionAvailable,
+                isInUserCollection: response.isInUserCollection
             )
         )
+    }
+
+    func presentAddToCollection(response: InsectDetail.AddToCollection.Response) {
+        let viewModel: InsectDetail.AddToCollection.ViewModel
+        switch response {
+        case .success:
+            viewModel = .success
+        case .failure(let key):
+            viewModel = .failure(message: L10n.string(key))
+        }
+        viewController?.displayAddToCollectionResult(viewModel)
+    }
+
+    func presentRemoveFromCollection(response: InsectDetail.RemoveFromCollection.Response) {
+        let viewModel: InsectDetail.RemoveFromCollection.ViewModel
+        switch response {
+        case .success:
+            viewModel = .success
+        case .failure(let key):
+            viewModel = .failure(message: L10n.string(key))
+        }
+        viewController?.displayRemoveFromCollectionResult(viewModel)
     }
 }

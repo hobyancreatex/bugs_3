@@ -43,14 +43,17 @@ final class CollectAPIClient {
         do {
             (data, response) = try await session.data(for: request)
         } catch {
+            CollectAPILogger.logHTTPTransportFailure(method: "GET", url: url, error: error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
-        let status = http?.statusCode
+        let status = http?.statusCode ?? -1
 
-        guard let status, (200 ..< 300).contains(status) else {
-            throw CollectAPIError.badStatus(status ?? -1, data.isEmpty ? nil : data)
+        CollectAPILogger.logHTTPResponse(method: "GET", url: url, statusCode: status, body: data)
+
+        guard (200 ..< 300).contains(status) else {
+            throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
         }
         return data
     }
@@ -62,19 +65,98 @@ final class CollectAPIClient {
         fileName: String = "insect.jpg",
         mimeType: String = "image/jpeg"
     ) async throws -> Data {
+        try await postMultipart(
+            path: "classification/",
+            parts: [
+                MultipartPart(name: fieldName, filename: fileName, mimeType: mimeType, data: imageJPEGData),
+            ],
+            partsDescription: "fields=[\(fieldName)(file \(fileName) \(imageJPEGData.count) bytes)]"
+        )
+    }
+
+    /// POST `collection/` — новая коллекция по виду: `image` + `reference` (id/slug насекомого), как в legacy `createNewCollection`.
+    func postCreateCollection(insectReference: String, imageJPEGData: Data) async throws -> Data {
+        let refData = Data(insectReference.utf8)
+        return try await postMultipart(
+            path: "collection/",
+            parts: [
+                MultipartPart(name: "image", filename: "photo.jpg", mimeType: "image/jpeg", data: imageJPEGData),
+                MultipartPart(name: "reference", filename: nil, mimeType: nil, data: refData),
+            ],
+            partsDescription:
+                "fields=[image(photo.jpg \(imageJPEGData.count) bytes), reference(utf8 \(refData.count) bytes)]"
+        )
+    }
+
+    /// DELETE `collection/{id}/` — удалить коллекцию по этому виду (все пользовательские фото).
+    func deleteCollection(id: Int) async throws {
         let base = APIConfiguration.collectBaseURL
-        guard let url = URL(string: "classification/", relativeTo: base)?.absoluteURL else {
+        guard let url = URL(string: "collection/\(id)/", relativeTo: base)?.absoluteURL else {
+            throw CollectAPIError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if let token = CollectAPIAuthState.token {
+            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+        }
+
+        CollectAPILogger.logRequest(
+            method: "DELETE",
+            url: url,
+            headers: CollectAPILogger.redactedHTTPHeaders(request.allHTTPHeaderFields),
+            body: nil
+        )
+
+        let (data, response): (Data, URLResponse)
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch {
+            CollectAPILogger.logHTTPTransportFailure(method: "DELETE", url: url, error: error)
+            throw error
+        }
+
+        let http = response as? HTTPURLResponse
+        let status = http?.statusCode ?? -1
+
+        CollectAPILogger.logHTTPResponse(method: "DELETE", url: url, statusCode: status, body: data)
+
+        guard (200 ..< 300).contains(status) else {
+            throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
+        }
+    }
+
+    /// POST `collection/upload/` — фото в уже существующую коллекцию: `image` + `item` (id коллекции), как в legacy `addToExistedCollection`.
+    func postAddPhotoToCollection(collectionId: Int, imageJPEGData: Data) async throws -> Data {
+        let itemData = Data("\(collectionId)".utf8)
+        return try await postMultipart(
+            path: "collection/upload/",
+            parts: [
+                MultipartPart(name: "image", filename: "photo.jpg", mimeType: "image/jpeg", data: imageJPEGData),
+                MultipartPart(name: "item", filename: nil, mimeType: nil, data: itemData),
+            ],
+            partsDescription:
+                "fields=[image(photo.jpg \(imageJPEGData.count) bytes), item(utf8 \(itemData.count) bytes) id=\(collectionId)]"
+        )
+    }
+
+    // MARK: - Multipart POST
+
+    private struct MultipartPart {
+        let name: String
+        let filename: String?
+        let mimeType: String?
+        let data: Data
+    }
+
+    private func postMultipart(path: String, parts: [MultipartPart], partsDescription: String) async throws -> Data {
+        let base = APIConfiguration.collectBaseURL
+        guard let url = URL(string: path, relativeTo: base)?.absoluteURL else {
             throw CollectAPIError.invalidURL
         }
 
         let boundary = "BugsCollect-\(UUID().uuidString.replacingOccurrences(of: "-", with: ""))"
-        let body = Self.buildMultipartBody(
-            boundary: boundary,
-            fieldName: fieldName,
-            fileName: fileName,
-            mimeType: mimeType,
-            fileData: imageJPEGData
-        )
+        let body = Self.buildMultipartBody(boundary: boundary, parts: parts)
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -85,41 +167,54 @@ final class CollectAPIClient {
             request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
         }
 
+        CollectAPILogger.logMultipartRequest(
+            method: "POST",
+            url: url,
+            headers: request.allHTTPHeaderFields,
+            partsDescription: partsDescription
+        )
+
         let (data, response): (Data, URLResponse)
         do {
             (data, response) = try await session.data(for: request)
         } catch {
+            CollectAPILogger.logHTTPTransportFailure(method: "POST", url: url, error: error)
             throw error
         }
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
 
-        guard let code = http?.statusCode, (200 ..< 300).contains(code) else {
+        CollectAPILogger.logHTTPResponse(method: "POST", url: url, statusCode: status, body: data)
+
+        guard (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
         }
         return data
     }
 
-    private static func buildMultipartBody(
-        boundary: String,
-        fieldName: String,
-        fileName: String,
-        mimeType: String,
-        fileData: Data
-    ) -> Data {
+    private static func buildMultipartBody(boundary: String, parts: [MultipartPart]) -> Data {
         var d = Data()
         let crlf = Data("\r\n".utf8)
-        d.append(Data("--\(boundary)\r\n".utf8))
-        d.append(
-            Data(
-                "Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n"
-                    .utf8
-            )
-        )
-        d.append(Data("Content-Type: \(mimeType)\r\n\r\n".utf8))
-        d.append(fileData)
-        d.append(crlf)
+        for part in parts {
+            d.append(Data("--\(boundary)\r\n".utf8))
+            if let filename = part.filename {
+                d.append(
+                    Data(
+                        "Content-Disposition: form-data; name=\"\(part.name)\"; filename=\"\(filename)\"\r\n"
+                            .utf8
+                    )
+                )
+            } else {
+                d.append(Data("Content-Disposition: form-data; name=\"\(part.name)\"\r\n".utf8))
+            }
+            if let mime = part.mimeType {
+                d.append(Data("Content-Type: \(mime)\r\n".utf8))
+            }
+            d.append(crlf)
+            d.append(part.data)
+            d.append(crlf)
+        }
         d.append(Data("--\(boundary)--\r\n".utf8))
         return d
     }

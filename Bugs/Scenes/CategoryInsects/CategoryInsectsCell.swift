@@ -117,6 +117,11 @@ final class CategoryInsectsCell: UICollectionViewCell {
     func configure(with viewModel: CategoryInsects.InsectCellViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
-        RemoteImageLoader.load(into: coverImageView, url: viewModel.imageURL)
+        if let url = viewModel.imageURL {
+            RemoteImageLoader.load(into: coverImageView, url: url)
+        } else {
+            RemoteImageLoader.cancelLoad(for: coverImageView)
+            coverImageView.image = UIImage(named: viewModel.imageAssetName)
+        }
     }
 }

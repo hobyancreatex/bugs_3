@@ -36,6 +36,8 @@ enum CollectInsectDetailMapper {
         let bitePhotoURLs: [URL]
         let isPoisonous: Bool
         let widespread: Bool?
+        /// `user_collection.id` с бэкенда; `nil` — коллекции по этому виду ещё нет (первый сценарий — create).
+        let userCollectionId: Int?
     }
 
     static func map(_ dict: [String: Any]) -> Mapped? {
@@ -77,6 +79,7 @@ enum CollectInsectDetailMapper {
         let bitePhotoURLs = bitePhotoURLs(from: dict)
         let isPoisonous = dict["is_poisonous"] as? Bool ?? false
         let widespread = dict["widespread"] as? Bool
+        let userCollectionId = userCollectionId(from: dict)
 
         return Mapped(
             title: title,
@@ -89,8 +92,18 @@ enum CollectInsectDetailMapper {
             biteDescription: biteDescription,
             bitePhotoURLs: bitePhotoURLs,
             isPoisonous: isPoisonous,
-            widespread: widespread
+            widespread: widespread,
+            userCollectionId: userCollectionId
         )
+    }
+
+    private static func userCollectionId(from dict: [String: Any]) -> Int? {
+        guard let uc = dict["user_collection"] as? [String: Any] else { return nil }
+        if let id = uc["id"] as? Int { return id }
+        if let id = uc["id"] as? Int64 { return Int(id) }
+        if let n = uc["id"] as? NSNumber { return n.intValue }
+        if let s = uc["id"] as? String { return Int(s) }
+        return nil
     }
 
     private static func bitePhotoURLs(from dict: [String: Any]) -> [URL] {

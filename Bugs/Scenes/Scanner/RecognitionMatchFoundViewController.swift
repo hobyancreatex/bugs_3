@@ -11,6 +11,7 @@ final class RecognitionMatchFoundViewController: UIViewController {
 
     private let userPhoto: UIImage
     private let candidates: [RecognitionClassificationCandidate]
+    private let classificationSourceJPEG: Data?
 
     private let closeButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -77,9 +78,15 @@ final class RecognitionMatchFoundViewController: UIViewController {
     /// - Parameters:
     ///   - userPhoto: Кадр пользователя (как на экране загрузки).
     ///   - candidates: До четырёх кандидатов для сетки и пейджера (URL с API или ассеты-заглушки).
-    init(userPhoto: UIImage, candidates: [RecognitionClassificationCandidate]) {
+    ///   - classificationSourceJPEG: JPEG, отправленный в `classification/`; для добавления в коллекцию без нового выбора фото.
+    init(
+        userPhoto: UIImage,
+        candidates: [RecognitionClassificationCandidate],
+        classificationSourceJPEG: Data? = nil
+    ) {
         self.userPhoto = userPhoto
         self.candidates = candidates
+        self.classificationSourceJPEG = classificationSourceJPEG
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -92,7 +99,11 @@ final class RecognitionMatchFoundViewController: UIViewController {
         if ordered.isEmpty {
             ordered = ["home_popular_insect"]
         }
-        self.init(userPhoto: userPhoto, candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(ordered))
+        self.init(
+            userPhoto: userPhoto,
+            candidates: RecognitionClassificationCandidate.fromLegacyAssetNames(ordered),
+            classificationSourceJPEG: nil
+        )
     }
 
     required init?(coder: NSCoder) {
@@ -227,7 +238,10 @@ final class RecognitionMatchFoundViewController: UIViewController {
     }
 
     private func openRecognitionResult() {
-        let pager = RecognitionResultsPagerViewController(candidates: candidates)
+        let pager = RecognitionResultsPagerViewController(
+            candidates: candidates,
+            classificationSourceJPEG: classificationSourceJPEG
+        )
         navigationController?.pushViewController(pager, animated: true)
     }
 

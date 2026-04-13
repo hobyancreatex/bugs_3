@@ -22,6 +22,8 @@ extension UIColor {
     static let appReadMore = UIColor(red: 58 / 255, green: 161 / 255, blue: 118 / 255, alpha: 1)
     /// Правый цвет градиента кнопки «В коллекцию».
     static let appCollectionCtaGradientEnd = UIColor(red: 97 / 255, green: 175 / 255, blue: 48 / 255, alpha: 1)
+    /// Кнопка «Удалить из коллекции» (#FF4246).
+    static let appCollectionDelete = UIColor(red: 255 / 255, green: 66 / 255, blue: 70 / 255, alpha: 1)
     /// Чередующийся фон строки «характеристики» (вторая строка — прозрачная).
     static let appCharacteristicsRowAlternate = UIColor(red: 243 / 255, green: 245 / 255, blue: 232 / 255, alpha: 1)
     static let appCharacteristicTitle = UIColor(red: 155 / 255, green: 152 / 255, blue: 148 / 255, alpha: 1)

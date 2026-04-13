@@ -10,9 +10,6 @@ enum CollectAPILogger {
     nonisolated static func log(_ message: String) {
         let line = "[BugsCollectAPI] \(message)"
         NSLog("%@", line)
-        // Дубль в stdout: видно в панели Debug даже при странных настройках логов.
-        fputs(line + "\n", stdout)
-        fflush(stdout)
     }
 
     nonisolated static func logRequest(method: String, url: URL, headers: [String: String]?, body: Data?) {
@@ -24,6 +21,31 @@ enum CollectAPILogger {
             parts.append("body: \(s)")
         }
         log(parts.joined(separator: " | "))
+    }
+
+    /// Лог POST с multipart без вывода бинарника: только имена полей и размер файла.
+    nonisolated static func logMultipartRequest(method: String, url: URL, headers: [String: String]?, partsDescription: String) {
+        var parts = ["REQUEST \(method) \(url.absoluteString)"]
+        if let headers, !headers.isEmpty {
+            parts.append("headers: \(redactedHTTPHeaders(headers) ?? [:])")
+        }
+        parts.append("multipart: \(partsDescription)")
+        log(parts.joined(separator: " | "))
+    }
+
+    nonisolated static func logHTTPResponse(method: String, url: URL, statusCode: Int, body: Data, maxBodyLen: Int = 12_000) {
+        let preview = responseBodyPreview(body, maxLen: maxBodyLen)
+        log("RESPONSE \(method) \(url.absoluteString) status=\(statusCode) bytes=\(body.count) body: \(preview)")
+    }
+
+    nonisolated static func logHTTPTransportFailure(method: String, url: URL, error: Error) {
+        log("RESPONSE \(method) \(url.absoluteString) transport error: \(error.localizedDescription)")
+    }
+
+    /// Ответ auth JSON: значения токенов в логе заменены.
+    nonisolated static func logAuthHTTPResponse(url: URL, statusCode: Int, body: Data) {
+        let preview = redactTokensInJSONForLog(body, maxLen: 2_000)
+        log("RESPONSE POST \(url.absoluteString) status=\(statusCode) bytes=\(body.count) body: \(preview)")
     }
 
     /// Для логов: не светим токен в `Authorization`.
@@ -43,17 +65,6 @@ enum CollectAPILogger {
         log("auth \(operation) failed: \(error.localizedDescription)")
     }
 
-    // MARK: - Article detail
-
-    nonisolated static func logArticleDetailSuccess(articleId: String, data: Data) {
-        let body = responseBodyPreview(data, maxLen: 12_000)
-        log("article detail RESPONSE id=\(articleId) bytes=\(data.count) body: \(body)")
-    }
-
-    nonisolated static func logArticleDetailFailure(articleId: String, error: Error) {
-        log("article detail FAILED id=\(articleId) error: \(error.localizedDescription)")
-    }
-
     nonisolated private static func responseBodyPreview(_ data: Data, maxLen: Int) -> String {
         if data.isEmpty { return "<empty>" }
         if let s = String(data: data, encoding: .utf8) {
@@ -61,5 +72,35 @@ enum CollectAPILogger {
             return String(s.prefix(maxLen)) + " …(\(s.count - maxLen) chars truncated)"
         }
         return "<\(data.count) bytes, non-UTF8>"
+    }
+
+    nonisolated private static func redactTokensInJSONForLog(_ data: Data, maxLen: Int) -> String {
+        guard let root = try? JSONSerialization.jsonObject(with: data) else {
+            return responseBodyPreview(data, maxLen: maxLen)
+        }
+        let redacted = redactSensitiveJSONValues(root)
+        guard let out = try? JSONSerialization.data(withJSONObject: redacted, options: [.sortedKeys]) else {
+            return responseBodyPreview(data, maxLen: maxLen)
+        }
+        return responseBodyPreview(out, maxLen: maxLen)
+    }
+
+    private nonisolated static func redactSensitiveJSONValues(_ value: Any) -> Any {
+        let tokenKeys: Set<String> = ["token", "auth_token", "key", "access", "refresh"]
+        if var dict = value as? [String: Any] {
+            var out: [String: Any] = [:]
+            for (k, v) in dict {
+                if tokenKeys.contains(k) {
+                    out[k] = "<redacted>"
+                } else {
+                    out[k] = redactSensitiveJSONValues(v)
+                }
+            }
+            return out
+        }
+        if let arr = value as? [Any] {
+            return arr.map { redactSensitiveJSONValues($0) }
+        }
+        return value
     }
 }

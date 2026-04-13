@@ -87,6 +87,16 @@ final class ProfileViewController: UIViewController {
 
     private var lastCollectionWidthForLayout: CGFloat = 0
 
+    private var collectionFetchTask: Task<Void, Never>?
+
+    private let collectionLoadingIndicator: UIActivityIndicatorView = {
+        let v = UIActivityIndicatorView(style: .large)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.hidesWhenStopped = true
+        v.color = .appTextSecondary
+        return v
+    }()
+
     private var settingsButtonTrailingToPremiumConstraint: NSLayoutConstraint!
     private var settingsButtonTrailingToNavConstraint: NSLayoutConstraint!
 
@@ -95,7 +105,6 @@ final class ProfileViewController: UIViewController {
         view.backgroundColor = .appBackground
         titleLabel.text = L10n.string("profile.title")
         achievementsPlaceholder.text = L10n.string("profile.achievements.placeholder")
-        loadMockCollection()
         collectionEmptyStateView.configure(
             title: L10n.string("profile.collection.empty.title"),
             subtitle: L10n.string("profile.collection.empty.subtitle"),
@@ -118,6 +127,7 @@ final class ProfileViewController: UIViewController {
         applySubscriptionStatusForAppearance()
         updatePremiumNavBarChrome()
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        fetchCollectionFromAPI()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,8 +146,58 @@ final class ProfileViewController: UIViewController {
         }
     }
 
-    private func loadMockCollection() {
-        collectionRows = []
+    private func fetchCollectionFromAPI() {
+        guard segmentControl.selectedIndex == 0 else { return }
+        collectionFetchTask?.cancel()
+
+        collectionLoadingIndicator.startAnimating()
+        let hasRows = !collectionRows.isEmpty
+        if hasRows {
+            collectionView.isUserInteractionEnabled = false
+            view.bringSubviewToFront(collectionLoadingIndicator)
+        } else {
+            collectionView.isHidden = true
+            collectionEmptyStateView.isHidden = true
+        }
+
+        collectionFetchTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                let data = try await CollectAPIClient.shared.get(path: "collection/")
+                try Task.checkCancellation()
+                let parsed = try CollectCollectionListParser.profileRows(from: data)
+                try Task.checkCancellation()
+                let rows: [CategoryInsects.InsectCellViewModel] = parsed.map { item in
+                    CategoryInsects.InsectCellViewModel(
+                        insectId: item.insectReference,
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        imageAssetName: "home_popular_insect",
+                        imageURL: item.coverImageURL
+                    )
+                }
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.collectionView.isUserInteractionEnabled = true
+                    self.collectionRows = rows
+                    self.applyCollectionTabContentVisibility()
+                    self.collectionView.reloadData()
+                }
+            } catch is CancellationError {
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.collectionView.isUserInteractionEnabled = true
+                    self.applyCollectionTabContentVisibility()
+                }
+            } catch {
+                await MainActor.run {
+                    self.collectionLoadingIndicator.stopAnimating()
+                    self.collectionView.isUserInteractionEnabled = true
+                    self.applyCollectionTabContentVisibility()
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
 
     private func buildHierarchy() {
@@ -149,6 +209,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(segmentControl)
         view.addSubview(collectionView)
         view.addSubview(collectionEmptyStateView)
+        view.addSubview(collectionLoadingIndicator)
         view.addSubview(achievementsPlaceholder)
     }
 
@@ -193,6 +254,9 @@ final class ProfileViewController: UIViewController {
             collectionEmptyStateView.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
             collectionEmptyStateView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             collectionEmptyStateView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -24),
+
+            collectionLoadingIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            collectionLoadingIndicator.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
         ])
 
         settingsButtonTrailingToPremiumConstraint = settingsButton.trailingAnchor.constraint(
@@ -231,6 +295,13 @@ final class ProfileViewController: UIViewController {
             presentPaywallFullScreen()
             return
         }
+        if segmentControl.selectedIndex != 0 {
+            collectionFetchTask?.cancel()
+            collectionLoadingIndicator.stopAnimating()
+            collectionView.isUserInteractionEnabled = true
+        } else {
+            fetchCollectionFromAPI()
+        }
         applyCollectionTabContentVisibility()
     }
 
@@ -240,6 +311,16 @@ final class ProfileViewController: UIViewController {
         guard onCollection else {
             collectionView.isHidden = true
             collectionEmptyStateView.isHidden = true
+            return
+        }
+        if collectionLoadingIndicator.isAnimating {
+            if collectionRows.isEmpty {
+                collectionView.isHidden = true
+                collectionEmptyStateView.isHidden = true
+            } else {
+                collectionView.isHidden = false
+                collectionEmptyStateView.isHidden = true
+            }
             return
         }
         let empty = collectionRows.isEmpty
@@ -286,8 +367,13 @@ extension ProfileViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let asset = collectionRows[indexPath.item].imageAssetName
-        let detail = InsectDetailConfigurator.assemble(heroImageAssetName: asset, isInCollection: true)
+        let row = collectionRows[indexPath.item]
+        let detail = InsectDetailConfigurator.assemble(
+            heroImageAssetName: row.imageAssetName,
+            heroImageURL: row.imageURL,
+            insectId: row.insectId,
+            isInCollection: true
+        )
         navigationController?.pushViewController(detail, animated: true)
     }
 }

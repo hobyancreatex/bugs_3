@@ -7,6 +7,37 @@ import Foundation
 
 enum InsectDetail {
 
+    /// Добавление фото в коллекцию: два сценария API (см. legacy `createNewCollection` / `addToExistedCollection`).
+    enum AddToCollection {
+        struct Request {
+            let jpegData: Data
+        }
+
+        enum Response {
+            case success
+            case failure(messageKey: String)
+        }
+
+        enum ViewModel {
+            case success
+            case failure(message: String)
+        }
+    }
+
+    enum RemoveFromCollection {
+        struct Request {}
+
+        enum Response {
+            case success
+            case failure(messageKey: String)
+        }
+
+        enum ViewModel {
+            case success
+            case failure(message: String)
+        }
+    }
+
     /// Пара ключей локализации для строки «характеристики» (заголовок / значение).
     struct CharacteristicLocalizationPair {
         let titleKey: String
@@ -69,6 +100,10 @@ enum InsectDetail {
             let bitesSectionKey: String
             let biteDescriptionOverride: String?
             let bitePhotoURLs: [URL]
+            /// Показать CTA «В коллекцию» (есть id вида и нет записи в коллекции).
+            let isAddToCollectionAvailable: Bool
+            /// У `GET insects/{id}/` уже есть `user_collection` — показываем удаление.
+            let isInUserCollection: Bool
         }
         struct ViewModel {
             let heroImageAssetName: String
@@ -95,6 +130,8 @@ enum InsectDetail {
             let bitesFirstAidTitle: String
             let bitesBulletLines: [String]
             let bitePhotoURLs: [URL]
+            let isAddToCollectionAvailable: Bool
+            let isInUserCollection: Bool
         }
     }
 }
