@@ -109,6 +109,7 @@ final class MainTabBarController: UIViewController {
         rightStack.spacing = 0
 
         for (idx, spec) in tabAssets.enumerated() {
+            if Metrics.hiddenTabTags.contains(idx) { continue }
             let item = MainTabItemControl()
             item.configure(
                 assetName: spec.asset,
@@ -310,7 +311,9 @@ final class MainTabBarController: UIViewController {
     }
 
     private enum Metrics {
-        /// Индекс иконки «чат» в таббаре (модалка, не отдельный стек).
+        /// Вкладки с этими тегами не показываются в таббаре (1 — библиотека, 2 — чат).
+        static let hiddenTabTags: Set<Int> = [1, 2]
+        /// Индекс иконки «чат», если снова включить вторую строку табов.
         static let chatTabTag: Int = 2
         static let barTopCornerRadius: CGFloat = 32
         static let tabBarContentHeight: CGFloat = 62
