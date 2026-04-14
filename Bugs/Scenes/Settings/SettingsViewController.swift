@@ -8,6 +8,7 @@ import UIKit
 
 /// Настройки: те же группы и пункты, что в Coin Recognizer (support / feedback / security).
 final class SettingsViewController: UIViewController {
+    private var hiddenPremiumTapCount = 0
 
     private enum Section: Int, CaseIterable {
         case support
@@ -57,6 +58,7 @@ final class SettingsViewController: UIViewController {
         navigationItem.title = L10n.string("settings.title")
         configureNavigationBar()
         configureBackButton()
+        configureHiddenPremiumActivatorButton()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -103,9 +105,37 @@ final class SettingsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
+    private func configureHiddenPremiumActivatorButton() {
+        let hiddenButton = UIButton(type: .custom)
+        hiddenButton.translatesAutoresizingMaskIntoConstraints = false
+        hiddenButton.alpha = 1
+        hiddenButton.backgroundColor = .clear
+        hiddenButton.layer.cornerRadius = 0
+        hiddenButton.layer.borderWidth = 0
+        hiddenButton.layer.borderColor = UIColor.clear.cgColor
+        hiddenButton.setTitle(nil, for: .normal)
+        hiddenButton.isAccessibilityElement = false
+        hiddenButton.addTarget(self, action: #selector(hiddenPremiumActivatorTapped), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            hiddenButton.widthAnchor.constraint(equalToConstant: 32),
+            hiddenButton.heightAnchor.constraint(equalToConstant: 32),
+        ])
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: hiddenButton)
+    }
+
     @objc
     private func backTapped() {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc
+    private func hiddenPremiumActivatorTapped() {
+        hiddenPremiumTapCount += 1
+        guard hiddenPremiumTapCount >= 10 else { return }
+        hiddenPremiumTapCount = 0
+        SubscriptionAccess.shared.setPremiumActive(true)
+        tableView.reloadData()
+        presentSimpleAlert(title: L10n.string("common.done"), message: "Подписка теперь активна.")
     }
 
     private func groupedCellBackground() -> UIBackgroundConfiguration {

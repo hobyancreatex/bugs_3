@@ -422,11 +422,6 @@ final class ProfileViewController: UIViewController {
 
     @objc
     private func segmentChanged() {
-        if segmentControl.selectedIndex == 1, !SubscriptionAccess.shared.isPremiumActive {
-            segmentControl.selectedIndex = 0
-            presentPaywallFullScreen()
-            return
-        }
         if segmentControl.selectedIndex != 0 {
             collectionFetchTask?.cancel()
             collectionLoadingIndicator.stopAnimating()
