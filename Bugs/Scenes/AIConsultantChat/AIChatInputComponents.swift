@@ -8,11 +8,12 @@ import UIKit
 
 /// Кнопка отправки: картинка `chat_send` заполняет всю область 48×48 (aspect fill).
 final class ChatFullBleedSendButton: InputBarSendButton {
+    private var normalImage: UIImage?
     private let spinner: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView(style: .medium)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.hidesWhenStopped = true
-        v.color = .white
+        v.color = .appTextPrimary
         return v
     }()
 
@@ -37,15 +38,29 @@ final class ChatFullBleedSendButton: InputBarSendButton {
         imageView?.frame = bounds
     }
 
+    override func setImage(_ image: UIImage?, for state: UIControl.State) {
+        if state == .normal {
+            normalImage = image
+        }
+        super.setImage(image, for: state)
+    }
+
     func setLoading(_ loading: Bool) {
         if loading {
-            imageView?.alpha = 0
-            isEnabled = false
+            super.setImage(nil, for: .normal)
+            super.setImage(nil, for: .highlighted)
+            super.setImage(nil, for: .disabled)
+            isUserInteractionEnabled = false
+            alpha = 1
+            bringSubviewToFront(spinner)
             spinner.startAnimating()
         } else {
             spinner.stopAnimating()
-            imageView?.alpha = 1
-            isEnabled = true
+            super.setImage(normalImage, for: .normal)
+            super.setImage(normalImage, for: .highlighted)
+            super.setImage(normalImage, for: .disabled)
+            isUserInteractionEnabled = true
+            alpha = 1
         }
     }
 }
