@@ -183,11 +183,16 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        restoreInteractivePopGestureIfNeeded()
+        if presentsAsModalFromTabBar {
+            disableInteractivePopGestureIfNeeded()
+        } else {
+            restoreInteractivePopGestureIfNeeded()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        restoreInteractivePopGestureIfNeeded()
         socket.disconnect()
         if isChatActuallyLeavingHierarchy {
             socketSettleIdleWaitTask?.cancel()

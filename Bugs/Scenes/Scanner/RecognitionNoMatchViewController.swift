@@ -108,6 +108,16 @@ final class RecognitionNoMatchViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        disableInteractivePopGestureIfNeeded()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     @objc
     private func closeTapped() {
         navigationController?.dismiss(animated: true) ?? dismiss(animated: true)

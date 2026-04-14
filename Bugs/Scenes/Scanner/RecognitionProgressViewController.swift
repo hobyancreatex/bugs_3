@@ -122,6 +122,7 @@ final class RecognitionProgressViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        disableInteractivePopGestureIfNeeded()
         loadingAnimationView.play()
         startClassificationIfNeeded()
     }
@@ -131,6 +132,11 @@ final class RecognitionProgressViewController: UIViewController {
         loadingAnimationView.pause()
         classificationTask?.cancel()
         classificationTask = nil
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        restoreInteractivePopGestureIfNeeded()
     }
 
     private func startClassificationIfNeeded() {

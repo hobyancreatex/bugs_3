@@ -236,6 +236,16 @@ final class RecognitionMatchFoundViewController: UIViewController {
         updateSubscriptionGatedUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        disableInteractivePopGestureIfNeeded()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     private func updateSubscriptionGatedUI() {
         let locked = !SubscriptionAccess.shared.isPremiumActive
         candidatesGrid.showsPremiumGate = locked

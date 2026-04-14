@@ -39,15 +39,9 @@ final class RecognitionResultsPagerViewController: UIViewController {
     private let backButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.setImage(UIImage(named: "library_nav_back"), for: .normal)
+        b.setImage(UIImage(named: "scanner_close"), for: .normal)
         b.imageView?.contentMode = .scaleAspectFit
         return b
-    }()
-
-    private lazy var popToRootEdgePan: UIScreenEdgePanGestureRecognizer = {
-        let g = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handlePopToRootEdgePan(_:)))
-        g.edges = .left
-        return g
     }()
 
     /// - Parameters:
@@ -80,7 +74,6 @@ final class RecognitionResultsPagerViewController: UIViewController {
 
         scrollView.delegate = self
         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
-        view.addGestureRecognizer(popToRootEdgePan)
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -172,8 +165,7 @@ final class RecognitionResultsPagerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        restoreInteractivePopGestureIfNeeded()
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        disableInteractivePopGestureIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -218,16 +210,7 @@ final class RecognitionResultsPagerViewController: UIViewController {
 
     @objc
     private func backTapped() {
-        navigationController?.popToRootViewController(animated: true)
-    }
-
-    @objc
-    private func handlePopToRootEdgePan(_ gesture: UIScreenEdgePanGestureRecognizer) {
-        guard gesture.state == .ended else { return }
-        let translationX = gesture.translation(in: view).x
-        let velocityX = gesture.velocity(in: view).x
-        guard translationX > 40 || velocityX > 300 else { return }
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.dismiss(animated: true) ?? dismiss(animated: true)
     }
 }
 

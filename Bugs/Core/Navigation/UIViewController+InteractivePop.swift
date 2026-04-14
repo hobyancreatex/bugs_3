@@ -12,4 +12,9 @@ extension UIViewController {
         nav.interactivePopGestureRecognizer?.delegate = nil
         nav.interactivePopGestureRecognizer?.isEnabled = nav.viewControllers.count > 1
     }
+
+    /// Отключает системный swipe-back (например, на экранах с кнопкой «закрыть»).
+    func disableInteractivePopGestureIfNeeded() {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
 }
