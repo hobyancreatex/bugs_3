@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>UIDesignRequiresCompatibility</key>
-    <true/>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>We use this to measure ad performance and improve subscriptions, including refund-related flows.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Take photos to identify insects.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Choose a photo to identify insects.</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -29,5 +19,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
