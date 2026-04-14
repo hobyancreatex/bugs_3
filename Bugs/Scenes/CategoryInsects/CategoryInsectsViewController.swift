@@ -98,6 +98,11 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         applySubscriptionStatusForAppearance()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     private func configureNavigationBar() {
         if let nav = navigationController?.navigationBar {
             AppNavigationBarAppearance.apply(to: nav)

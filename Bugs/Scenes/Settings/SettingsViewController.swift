@@ -78,6 +78,11 @@ final class SettingsViewController: UIViewController {
         tableView.reloadData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     private func securityRows() -> [SecurityRow] {
         var rows: [SecurityRow] = [.privacy, .terms, .deleteAccount]
         if SubscriptionAccess.shared.isPremiumActive {

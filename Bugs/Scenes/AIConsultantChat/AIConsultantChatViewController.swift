@@ -181,6 +181,11 @@ final class AIConsultantChatViewController: MessagesViewController {
         beginSocketSettleGate()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         socket.disconnect()

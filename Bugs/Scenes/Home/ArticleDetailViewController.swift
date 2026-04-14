@@ -317,6 +317,11 @@ final class ArticleDetailViewController: UIViewController {
         applySubscriptionStatusForAppearance()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreInteractivePopGestureIfNeeded()
+    }
+
     @objc
     private func backTapped() {
         navigationController?.popViewController(animated: true)

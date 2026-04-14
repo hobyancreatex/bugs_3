@@ -20,7 +20,8 @@ final class RecognitionResultsPagerViewController: UIViewController {
         s.isPagingEnabled = true
         s.showsHorizontalScrollIndicator = false
         s.showsVerticalScrollIndicator = false
-        s.bounces = true
+        s.bounces = false
+        s.alwaysBounceHorizontal = false
         s.contentInsetAdjustmentBehavior = .never
         return s
     }()
@@ -41,6 +42,12 @@ final class RecognitionResultsPagerViewController: UIViewController {
         b.setImage(UIImage(named: "library_nav_back"), for: .normal)
         b.imageView?.contentMode = .scaleAspectFit
         return b
+    }()
+
+    private lazy var popToRootEdgePan: UIScreenEdgePanGestureRecognizer = {
+        let g = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handlePopToRootEdgePan(_:)))
+        g.edges = .left
+        return g
     }()
 
     /// - Parameters:
@@ -73,6 +80,7 @@ final class RecognitionResultsPagerViewController: UIViewController {
 
         scrollView.delegate = self
         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        view.addGestureRecognizer(popToRootEdgePan)
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -162,6 +170,17 @@ final class RecognitionResultsPagerViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restoreInteractivePopGestureIfNeeded()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         syncPageIndicatorWithScroll(animated: false)
@@ -199,6 +218,15 @@ final class RecognitionResultsPagerViewController: UIViewController {
 
     @objc
     private func backTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+
+    @objc
+    private func handlePopToRootEdgePan(_ gesture: UIScreenEdgePanGestureRecognizer) {
+        guard gesture.state == .ended else { return }
+        let translationX = gesture.translation(in: view).x
+        let velocityX = gesture.velocity(in: view).x
+        guard translationX > 40 || velocityX > 300 else { return }
         navigationController?.popToRootViewController(animated: true)
     }
 }
