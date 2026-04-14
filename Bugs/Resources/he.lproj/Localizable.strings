@@ -5,12 +5,12 @@
 
 /* Onboarding */
 "onboarding.intro.title" = "היי! אני המדריך שלך לעולם החרקים 🐞";
-"onboarding.intro.subtitle" = "In this app, you can:";
+"onboarding.intro.subtitle" = "באפליקציה הזו אפשר:";
 "onboarding.intro.benefit.identify" = "זיהוי חרקים בשניות";
 "onboarding.intro.benefit.collection" = "שמור אותם באוסף שלך";
 "onboarding.intro.benefit.achievements" = "להרוויח הישגים";
 "onboarding.intro.benefit.ai" = "צ'אט עם עוזר AI";
-"onboarding.intro.benefit.articles" = "Read helpful articles";
+"onboarding.intro.benefit.articles" = "לקרוא מאמרים מועילים";
 "onboarding.button.next" = "הבא";
 "onboarding.button.start" = "התחל";
 
@@ -21,7 +21,7 @@
 "home.ai_banner.button" = "שאל שאלה";
 
 /* AI chat */
-"ai_chat.title" = "AI consultant";
+"ai_chat.title" = "יועץ AI";
 "ai_chat.input.placeholder" = "תשאל אותי משהו…";
 "ai_chat.stub.ai" = "אני יודע הכל על חרקים, אתה יכול להתייעץ איתי.";
 "ai_chat.stub.user" = "ספר לי על הדבורים";
@@ -77,7 +77,7 @@
 "paywall.headline" = "פתח את עולם החרקים המלא";
 "paywall.benefit.scans" = "סריקות ללא הגבלה";
 "paywall.benefit.collection" = "גישה מלאה לאיסוף";
-"paywall.benefit.ai" = "AI assistant without limits";
+"paywall.benefit.ai" = "עוזר AI ללא הגבלה";
 "paywall.benefit.achievements" = "הישגים בלעדיים";
 "paywall.product.prefix" = "אז 3 ימים בחינם";
 "paywall.product.suffix" = "שבוע";

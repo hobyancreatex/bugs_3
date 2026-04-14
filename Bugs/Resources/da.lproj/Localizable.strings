@@ -55,7 +55,7 @@
 "profile.achievement.identify_more" = "Identificer %lld mere %@";
 "tab.home.accessibility" = "Hjem";
 "tab.library.accessibility" = "Bibliotek";
-"tab.chat.accessibility" = "AI chat";
+"tab.chat.accessibility" = "AI-chat";
 "tab.profile.accessibility" = "Profil";
 "tab.scan.accessibility" = "Scan insekt";
 
@@ -232,7 +232,7 @@
 "settings.row.refund_consent" = "Samtykke til tilbagebetaling";
 "settings.row.reset_consent" = "Nulstil samtykke";
 "settings.support.email" = "support@bugs.app";
-"settings.support.mail_subject" = "Bugs app support";
+"settings.support.mail_subject" = "Support til Bugs-appen";
 "settings.support.mail_body" = "Hej";
 "settings.support.mail_unavailable_title" = "Kontakt os på e-mail";
 "settings.restore.message" = "Gendanner dit abonnement fra App Store for dette Apple-id.";

@@ -55,7 +55,7 @@
 "profile.achievement.identify_more" = "Tunnista %lld lisää %@";
 "tab.home.accessibility" = "Kotiin";
 "tab.library.accessibility" = "Kirjasto";
-"tab.chat.accessibility" = "AI chat";
+"tab.chat.accessibility" = "AI-chat";
 "tab.profile.accessibility" = "Profiili";
 "tab.scan.accessibility" = "Skannaa hyönteinen";
 
@@ -115,7 +115,7 @@
 "insect.hym.1.subtitle" = "Yleiset puutarhan tuholaiset";
 "insect.hym.2.title" = "European Paper Wasp";
 "insect.hym.2.subtitle" = "Näkyy usein aidoilla ja räystäillä";
-"insect.hym.3.title" = "Buff-tailed Bumblebee";
+"insect.hym.3.title" = "Kivikkokimalainen";
 "insect.hym.3.subtitle" = "Varhaisen kevään pölyttäjä";
 "insect.hym.4.title" = "Mason Bee";
 "insect.hym.4.subtitle" = "Yksinäinen onkalopesä";
@@ -137,7 +137,7 @@
 "insect.detail.widespread.api.no" = "Melko harvinaista";
 "insect.detail.also_known_prefix" = "Tunnetaan myös nimellä:";
 "insect.detail.mock.scientific_title" = "Apis mellifera";
-"insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
+"insect.detail.mock.aliases" = "Euroopan mehilainen, lannenmehilainen, hunajamehilainen";
 "insect.detail.section.description" = "Kuvaus";
 "insect.detail.read_more" = "Lue lisää";
 "insect.detail.mock.description" = "Länsimainen mehiläinen (Apis mellifera) on yksi tärkeimmistä hoidetuista pölyttäjistä maataloudessa ja luonnonvaraisissa ekosysteemeissä. Se on kotoisin Euroopasta, Länsi-Aasiasta ja Afrikasta, ja mehiläishoitajat ovat levittäneet sitä maailmanlaajuisesti hunajantuotantoa ja viljelykasvien pölytystä varten.\n\nPesäke on superorganismi: yksi hedelmällinen kuningatar munii, kun taas tuhannet naispuoliset työntekijät etsivät ruokaa, imevät toukkia, rakentavat kampaa ja puolustavat pesää. Urosdrooneja esiintyy kausiluontoisesti ja ne parittelevat muiden pesäkkeiden kuningattareiden kanssa. Työntekijät kommunikoivat suunnan ja etäisyyden runsaisiin ravinnonlähteisiin heilutustanssin avulla ja jakavat tietoa kosketuksen ja feromonien avulla.\n\nRehunhakijat vierailevat monissa kasvilajeissa siirtäen siitepölyä liikkuessaan. Tämä käyttäytyminen tukee biologista monimuotoisuutta ja ruokakasveja – hedelmätarhoista ja marjoista öljysiemeniin ja meloneihin. Mehiläishoitajat hoitavat mehiläispesiä tasapainottaakseen hunajasadon ja yhdyskuntien terveyden sekä tuholaisten, sairauksien ja ravitsemusstressin seurannan.\n\nVaikka mehiläiset ovat yleensä tottelevaisia ​​kukille, he puolustavat pesää, jos he havaitsevat uhan; niiden vihjeiden ymmärtäminen vähentää pistoja. Elinympäristön häviäminen, torjunta-aineet, taudinaiheuttajat ja ilmastonmuutokset haastavat sekä luonnonvaraiset että hoidetut populaatiot. Kukkavarojen suojeleminen ja huolellinen hoito auttavat säilyttämään nämä merkittävät hyönteiset tulevina vuodenaikoina.";
