@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Selesai";
+"common.error.title" = "Kesalahan";
+"common.error.try_later" = "Terjadi kesalahan. Silakan coba lagi nanti.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hai! Saya pemandu Anda ke dunia serangga 🐞";

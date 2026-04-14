@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "완료";
+"common.error.title" = "오류";
+"common.error.try_later" = "문제가 발생했습니다. 나중에 다시 시도하세요.";
 
 /* Onboarding */
 "onboarding.intro.title" = "안녕하세요! 나는 곤충 세계의 가이드입니다 🐞";

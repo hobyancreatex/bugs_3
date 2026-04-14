@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Kész";
+"common.error.title" = "Hiba";
+"common.error.try_later" = "Hiba történt. Kérjük, próbálja újra később.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Szia! Én vagyok a vezetőd a rovarok világába 🐞";

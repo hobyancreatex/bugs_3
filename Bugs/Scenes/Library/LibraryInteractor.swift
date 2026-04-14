@@ -12,19 +12,21 @@ protocol LibraryBusinessLogic: AnyObject {
 // Один запрос к API даже при нескольких быстрых вызовах `presentCategories`.
 private actor LibraryCategoryLoader {
     private var cached: [Library.CategoryDefinition]?
-    private var inflight: Task<[Library.CategoryDefinition], Never>?
+    private var inflight: Task<(definitions: [Library.CategoryDefinition], requestFailed: Bool), Never>?
 
     func getOrFetch(
         onStartingFetch: @Sendable () async -> Void,
-        fetch: @escaping @Sendable () async -> [Library.CategoryDefinition]
-    ) async -> [Library.CategoryDefinition] {
-        if let c = cached { return c }
+        fetch: @escaping @Sendable () async -> (definitions: [Library.CategoryDefinition], requestFailed: Bool)
+    ) async -> (definitions: [Library.CategoryDefinition], requestFailed: Bool) {
+        if let c = cached { return (c, false) }
         if let t = inflight { return await t.value }
         await onStartingFetch()
         let newTask = Task { await fetch() }
         inflight = newTask
         let result = await newTask.value
-        cached = result
+        if !result.requestFailed {
+            cached = result.definitions
+        }
         inflight = nil
         return result
     }
@@ -48,32 +50,34 @@ final class LibraryInteractor: LibraryBusinessLogic {
                             response: Library.Present.Response(
                                 definitions: [],
                                 searchQuery: query,
-                                isLoading: true
+                                isLoading: true,
+                                listRequestFailed: false
                             )
                         )
                     }
                 },
                 fetch: { await LibraryInteractor.fetchCategoriesFromAPI() }
             )
-            let filtered = Self.filter(categories: all, searchQuery: query)
+            let filtered = Self.filter(categories: all.definitions, searchQuery: query)
             await MainActor.run { [weak self] in
                 guard let self else { return }
                 self.presenter?.presentCategories(
                     response: Library.Present.Response(
                         definitions: filtered,
                         searchQuery: query,
-                        isLoading: false
+                        isLoading: false,
+                        listRequestFailed: all.requestFailed
                     )
                 )
             }
         }
     }
 
-    private static func fetchCategoriesFromAPI() async -> [Library.CategoryDefinition] {
+    private static func fetchCategoriesFromAPI() async -> (definitions: [Library.CategoryDefinition], requestFailed: Bool) {
         do {
             let data = try await CollectAPIClient.shared.get(path: "insects/categories/")
             let rows = try CollectHomeListPayload.objectRows(from: data)
-            return rows.compactMap { row in
+            let defs = rows.compactMap { row -> Library.CategoryDefinition? in
                 guard let item = CollectHomeDTOMapper.category(row) else { return nil }
                 return Library.CategoryDefinition(
                     displayTitle: item.displayTitle,
@@ -82,8 +86,9 @@ final class LibraryInteractor: LibraryBusinessLogic {
                     imageURL: item.imageURL
                 )
             }
+            return (defs, false)
         } catch {
-            return []
+            return ([], true)
         }
     }
 

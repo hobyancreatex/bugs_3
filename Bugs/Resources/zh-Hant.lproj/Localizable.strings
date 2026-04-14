@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "完成";
+"common.error.title" = "錯誤";
+"common.error.try_later" = "發生錯誤，請稍後再試。";
 
 /* Onboarding */
 "onboarding.intro.title" = "嗨！我是你昆蟲世界的嚮導🐞";

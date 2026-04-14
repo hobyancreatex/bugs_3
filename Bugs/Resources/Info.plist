@@ -8,6 +8,8 @@
 	<string>Take photos to identify insects.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Choose a photo to identify insects.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

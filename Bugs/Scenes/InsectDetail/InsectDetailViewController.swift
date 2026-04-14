@@ -610,6 +610,10 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     @objc
     private func addToCollectionTapped() {
         guard isAddToCollectionAvailableFromAPI, !isInCollection else { return }
+        guard SubscriptionAccess.shared.isPremiumActive else {
+            presentPaywallFullScreen()
+            return
+        }
         guard presentedViewController == nil else { return }
         guard !isPresentingAddToCollectionFlow else { return }
 
@@ -752,9 +756,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             isAddToCollectionAvailableFromAPI = false
             applyCollectionChrome()
             presentAddToCollectionSuccessOverlay()
-        case .failure(let message):
+        case .failure(let title, let message):
             isPresentingAddToCollectionFlow = false
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(
                 UIAlertAction(
                     title: L10n.string("insect.detail.add_to_collection.alert.ok"),
@@ -775,8 +779,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
                 isAddToCollectionAvailableFromAPI = true
             }
             applyCollectionChrome()
-        case .failure(let message):
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        case .failure(let title, let message):
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(
                 UIAlertAction(
                     title: L10n.string("insect.detail.add_to_collection.alert.ok"),

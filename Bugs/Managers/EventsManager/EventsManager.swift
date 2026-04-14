@@ -1,5 +1,4 @@
 import Foundation
-import StoreKit
 
 enum SubscriptionPurchaseSource {
     case onboarding
@@ -32,12 +31,12 @@ final class EventsManager {
         #endif
     }
 
-    /// After a successful StoreKit 2 subscription purchase (Firebase + AppsFlyer + chkmob receipt).
+    /// After a successful subscription purchase (Firebase + AppsFlyer + chkmob receipt).
     @MainActor
-    func recordSubscriptionPurchase(product: Product, source: SubscriptionPurchaseSource) {
+    func recordSubscriptionPurchase(product: SubscriptionProduct, source: SubscriptionPurchaseSource) {
         UserAcquisitionManager.shared.logPurchase(of: product)
         logEvent(.subscription_done_all)
-        appsFlyer.logPurchase(product: product)
+        appsFlyer.logPurchase(productId: product.id)
 
         switch source {
         case .onboarding:

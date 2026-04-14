@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Γινώμενος";
+"common.error.title" = "Σφάλμα";
+"common.error.try_later" = "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Γεια! Είμαι ο οδηγός σας στον κόσμο των εντόμων 🐞";

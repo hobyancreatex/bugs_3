@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Valmis";
+"common.error.title" = "Virhe";
+"common.error.try_later" = "Jotain meni pieleen. Yritä myöhemmin uudelleen.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hei! Olen oppaasi hyönteismaailmaan 🐞";

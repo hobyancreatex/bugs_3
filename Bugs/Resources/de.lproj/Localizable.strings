@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Fertig";
+"common.error.title" = "Fehler";
+"common.error.try_later" = "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hallo! Ich bin Ihr Führer durch die Insektenwelt 🐞";

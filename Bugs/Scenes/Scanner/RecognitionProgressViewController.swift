@@ -71,7 +71,7 @@ final class RecognitionProgressViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
+        overrideUserInterfaceStyle = .light
         view.backgroundColor = .black
 
         imageView.image = backgroundImage

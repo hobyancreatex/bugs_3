@@ -22,6 +22,10 @@ final class PaywallScreenView: UIView {
     private var playerLayer: AVPlayerLayer?
     private var videoFadeLayer: CAGradientLayer?
     private var endObserver: NSObjectProtocol?
+    private var foregroundObserver: NSObjectProtocol?
+    private var backgroundObserver: NSObjectProtocol?
+    /// After natural end we stay on the last frame; resume must not restart playback.
+    private var videoPlaybackFinished = false
     private var didKickoffPriceLoad = false
     private var didRevealPaywallPreviewCard = false
 
@@ -137,7 +141,7 @@ final class PaywallScreenView: UIView {
 
         closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         primaryButton.addTarget(self, action: #selector(primaryTapped), for: .touchUpInside)
-        primaryButton.isPulseAnimationEnabled = !embeddedInOnboarding
+        primaryButton.isPulseAnimationEnabled = true
 
         addSubview(videoContainer)
         addSubview(previewCard)
@@ -224,6 +228,12 @@ final class PaywallScreenView: UIView {
     deinit {
         if let endObserver {
             NotificationCenter.default.removeObserver(endObserver)
+        }
+        if let foregroundObserver {
+            NotificationCenter.default.removeObserver(foregroundObserver)
+        }
+        if let backgroundObserver {
+            NotificationCenter.default.removeObserver(backgroundObserver)
         }
         player?.pause()
     }
@@ -343,7 +353,7 @@ final class PaywallScreenView: UIView {
         guard let url = Self.paywallVideoURL() else { return }
         let item = AVPlayerItem(url: url)
         let p = AVPlayer(playerItem: item)
-        p.actionAtItemEnd = .pause
+        p.actionAtItemEnd = .none
         player = p
 
         let layer = AVPlayerLayer(player: p)
@@ -365,12 +375,49 @@ final class PaywallScreenView: UIView {
             forName: .AVPlayerItemDidPlayToEndTime,
             object: item,
             queue: .main
-        ) { [weak self, weak p] _ in
+        ) { [weak self, weak p, weak item] _ in
+            guard let self, let p, let item else { return }
+            self.videoPlaybackFinished = true
+            Self.seekToApproxLastFrame(player: p, item: item)
+            self.revealPaywallPreviewCardIfNeeded()
+        }
+
+        foregroundObserver = NotificationCenter.default.addObserver(
+            forName: UIApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self, weak p, weak item] _ in
+            guard let self, let p, let item else { return }
+            if self.videoPlaybackFinished {
+                Self.seekToApproxLastFrame(player: p, item: item)
+            } else {
+                p.play()
+            }
+        }
+        backgroundObserver = NotificationCenter.default.addObserver(
+            forName: UIApplication.willResignActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak p] _ in
             p?.pause()
-            self?.revealPaywallPreviewCardIfNeeded()
         }
 
         p.play()
+    }
+
+    /// Hold last decoded frame (no loop). Slightly before `duration` for reliable decoding.
+    private static func seekToApproxLastFrame(player: AVPlayer, item: AVPlayerItem) {
+        let d = item.duration
+        guard d.isNumeric && !d.seconds.isNaN && d.seconds > 0 else {
+            player.pause()
+            return
+        }
+        let step = CMTime(value: 1, timescale: max(d.timescale, 600))
+        let t = CMTimeSubtract(d, step)
+        let target = t.seconds > 0 ? t : .zero
+        player.seek(to: target, toleranceBefore: .zero, toleranceAfter: .zero) { _ in
+            player.pause()
+        }
     }
 
     private func revealPaywallPreviewCardIfNeeded() {

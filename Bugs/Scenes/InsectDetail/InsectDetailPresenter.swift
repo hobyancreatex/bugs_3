@@ -85,7 +85,10 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
         case .success:
             viewModel = .success
         case .failure(let key):
-            viewModel = .failure(message: L10n.string(key))
+            viewModel = .failure(
+                title: Self.networkErrorAlertTitle(forMessageKey: key),
+                message: L10n.string(key)
+            )
         }
         viewController?.displayAddToCollectionResult(viewModel)
     }
@@ -96,8 +99,15 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
         case .success:
             viewModel = .success
         case .failure(let key):
-            viewModel = .failure(message: L10n.string(key))
+            viewModel = .failure(
+                title: Self.networkErrorAlertTitle(forMessageKey: key),
+                message: L10n.string(key)
+            )
         }
         viewController?.displayRemoveFromCollectionResult(viewModel)
+    }
+
+    private static func networkErrorAlertTitle(forMessageKey key: String) -> String? {
+        key == "common.error.try_later" ? L10n.string("common.error.title") : nil
     }
 }

@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Xong";
+"common.error.title" = "Lỗi";
+"common.error.try_later" = "Đã xảy ra sự cố. Vui lòng thử lại sau.";
 
 /* Onboarding */
 "onboarding.intro.title" = "CHÀO! Tôi là người dẫn đường cho bạn đến với thế giới côn trùng 🐞";

@@ -3,7 +3,6 @@
 //  Bugs
 //
 
-import StoreKit
 import UIKit
 
 /// Полноэкранный пейвол (модально). Покупка и restore через `SubscriptionManager`.
@@ -50,6 +49,10 @@ final class PaywallViewController: UIViewController {
 
     @MainActor
     private func performPurchase() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
         contentView.setPurchaseInProgress(true)
         showCenterLoadingOverlay()
 
@@ -71,19 +74,19 @@ final class PaywallViewController: UIViewController {
         } catch SubscriptionManagerError.userCancelled {
             hideCenterLoadingOverlay()
             contentView.setPurchaseInProgress(false)
-        } catch SubscriptionManagerError.pending {
-            hideCenterLoadingOverlay()
-            contentView.setPurchaseInProgress(false)
-            presentAlert(titleKey: "subscription.pending.title", messageKey: "subscription.pending.message")
         } catch {
             hideCenterLoadingOverlay()
             contentView.setPurchaseInProgress(false)
-            presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.purchase_failed")
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
         }
     }
 
     @MainActor
     private func performRestore() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
         contentView.setPurchaseInProgress(true)
         showCenterLoadingOverlay()
         defer {
@@ -99,7 +102,7 @@ final class PaywallViewController: UIViewController {
                 presentAlert(titleKey: "subscription.restore.title", messageKey: "subscription.restore.nothing")
             }
         } catch {
-            presentAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.restore_failed")
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
         }
     }
 

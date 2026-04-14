@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Скрытая авторизация устройства: регистрация по UUID или логин для обновления токена.
 actor AuthBootstrapper {
@@ -41,7 +42,9 @@ actor AuthBootstrapper {
                 try DeviceAuthKeychain.saveToken(token)
                 CollectAPIAuthState.setToken(token)
             } catch {
-                // Итог авторизации уже залогирован в CollectAuthService.
+                await MainActor.run {
+                    UserFacingRequestErrorAlert.presentTryAgainLater()
+                }
             }
             return
         }
@@ -60,7 +63,9 @@ actor AuthBootstrapper {
             try DeviceAuthKeychain.setDeviceRegistered(true)
             CollectAPIAuthState.setToken(token)
         } catch {
-            // Итог авторизации уже залогирован в CollectAuthService.
+            await MainActor.run {
+                UserFacingRequestErrorAlert.presentTryAgainLater()
+            }
         }
     }
 }

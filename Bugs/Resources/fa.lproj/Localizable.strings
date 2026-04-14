@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "انجام شد";
+"common.error.title" = "خطا";
+"common.error.try_later" = "مشکلی پیش آمد. لطفاً بعداً دوباره امتحان کنید.";
 
 /* Onboarding */
 "onboarding.intro.title" = "سلام! من راهنمای شما به دنیای حشرات هستم🐞";

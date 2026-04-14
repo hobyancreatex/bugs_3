@@ -13,6 +13,8 @@ enum Home {
             let categories: [CategoryItemResponse]
             let popularInsects: [PopularInsectItemResponse]
             let articles: [ArticleItemResponse]
+            /// Any of the parallel home requests failed (network or bad status).
+            let hadNetworkError: Bool
         }
         struct ViewModel {
             let title: String

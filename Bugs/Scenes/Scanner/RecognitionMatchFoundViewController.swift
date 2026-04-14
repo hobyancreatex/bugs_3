@@ -67,6 +67,13 @@ final class RecognitionMatchFoundViewController: UIViewController {
     }()
 
     private let candidatesGrid = RecognitionMatchCandidatesGridView()
+    private let variantsLoadingIndicator: UIActivityIndicatorView = {
+        let v = UIActivityIndicatorView(style: .large)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.hidesWhenStopped = true
+        v.color = .appReadMore
+        return v
+    }()
 
     private let seeResultButton: GradientRoundedCTAControl = {
         let b = GradientRoundedCTAControl()
@@ -145,6 +152,7 @@ final class RecognitionMatchFoundViewController: UIViewController {
 
         candidatesGrid.translatesAutoresizingMaskIntoConstraints = false
         gridContainer.addSubview(candidatesGrid)
+        gridContainer.addSubview(variantsLoadingIndicator)
 
         view.addSubview(closeButton)
         view.addSubview(userThumbnailView)
@@ -187,6 +195,8 @@ final class RecognitionMatchFoundViewController: UIViewController {
             candidatesGrid.leadingAnchor.constraint(equalTo: gridContainer.leadingAnchor),
             candidatesGrid.trailingAnchor.constraint(equalTo: gridContainer.trailingAnchor),
             candidatesGrid.bottomAnchor.constraint(equalTo: gridContainer.bottomAnchor),
+            variantsLoadingIndicator.centerXAnchor.constraint(equalTo: gridContainer.centerXAnchor),
+            variantsLoadingIndicator.centerYAnchor.constraint(equalTo: gridContainer.centerYAnchor),
 
             seeResultButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 46),
             seeResultButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -46),
@@ -203,11 +213,19 @@ final class RecognitionMatchFoundViewController: UIViewController {
         }
 
         updateSubscriptionGatedUI()
+        candidatesGrid.alpha = 0
+        variantsLoadingIndicator.startAnimating()
 
         Task { [weak self] in
             guard let self else { return }
             let images = await Self.gridThumbnails(for: self.candidates)
-            await MainActor.run { self.candidatesGrid.images = images }
+            await MainActor.run {
+                self.candidatesGrid.images = images
+                self.variantsLoadingIndicator.stopAnimating()
+                UIView.animate(withDuration: 0.2) {
+                    self.candidatesGrid.alpha = 1
+                }
+            }
         }
     }
 

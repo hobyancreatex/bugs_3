@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Klaar";
+"common.error.title" = "Fout";
+"common.error.try_later" = "Er is iets misgegaan. Probeer het later opnieuw.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hoi! Ik ben jouw gids in de insectenwereld 🐞";

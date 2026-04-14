@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Imekamilika";
+"common.error.title" = "Hitilafu";
+"common.error.try_later" = "Kitu kimekwenda vibaya. Jaribu tena baadaye.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Habari! Mimi ndiye mwongozo wako kwa ulimwengu wa wadudu 🐞";

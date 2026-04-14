@@ -32,6 +32,7 @@ enum CategoryInsects {
             let searchQuery: String
             let isLoading: Bool
             let isLoadingMore: Bool
+            let didFailNetwork: Bool
         }
         struct ViewModel {
             let isLoading: Bool

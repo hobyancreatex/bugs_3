@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "בוצע";
+"common.error.title" = "שגיאה";
+"common.error.try_later" = "משהו השתבש. נסה שוב מאוחר יותר.";
 
 /* Onboarding */
 "onboarding.intro.title" = "היי! אני המדריך שלך לעולם החרקים 🐞";

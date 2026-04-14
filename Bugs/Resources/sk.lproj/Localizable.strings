@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Hotovo";
+"common.error.title" = "Chyba";
+"common.error.try_later" = "Niečo sa pokazilo. Skús to znova neskôr.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Ahoj! Som váš sprievodca hmyzím svetom 🐞";

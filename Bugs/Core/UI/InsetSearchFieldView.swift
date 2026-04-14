@@ -20,6 +20,7 @@ final class InsetSearchFieldView: UIView {
         t.font = .preferredFont(forTextStyle: .body)
         t.textColor = .appTextPrimary
         t.returnKeyType = .search
+        t.clearButtonMode = .whileEditing
         t.translatesAutoresizingMaskIntoConstraints = false
         return t
     }()

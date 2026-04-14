@@ -232,6 +232,7 @@ final class ProfileViewController: UIViewController {
                     self.collectionView.isUserInteractionEnabled = true
                     self.applyCollectionTabContentVisibility()
                     self.collectionView.reloadData()
+                    UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
                 }
             }
         }
@@ -273,6 +274,7 @@ final class ProfileViewController: UIViewController {
                     self.collectionLoadingIndicator.stopAnimating()
                     self.achievementRows = []
                     self.applyCollectionTabContentVisibility()
+                    UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
                 }
             }
         }

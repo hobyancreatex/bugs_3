@@ -96,6 +96,9 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     private static let avatarHeaderHeight: CGFloat = 128
     private static let streamingAIMessageId = "ai.streaming.placeholder"
+    private static let typingMessageId = "ai.typing.placeholder"
+    private static let freeMessagesLimit = 3
+    private static let freeMessagesCountKey = "bugs.ai.free.message.count"
 
     /// Открытие с таббара модально: «Назад» закрывает экран через `dismiss`, а не `pop`.
     var presentsAsModalFromTabBar: Bool = false
@@ -108,6 +111,7 @@ final class AIConsultantChatViewController: MessagesViewController {
     private let socket = CollectChatWebSocketClient()
     private var isStreamingAI = false
     private var aiStreamBuffer = ""
+    private var typingDotsTask: Task<Void, Never>?
 
     /// Разрешаем рисовать чанки сокета: после завершения гейта открытия, после успешного POST, пока не придёт пустой delta или `applyDetail` не сбросит ленту.
     private var acceptingSocketStream = false
@@ -128,6 +132,10 @@ final class AIConsultantChatViewController: MessagesViewController {
         v.hidesWhenStopped = true
         return v
     }()
+
+    private var sendButton: ChatFullBleedSendButton? {
+        messageInputBar.sendButton as? ChatFullBleedSendButton
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,6 +243,12 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     private func stripStreamingPlaceholderIfNeeded() {
         guard let idx = messages.lastIndex(where: { $0.messageId == Self.streamingAIMessageId }) else { return }
+        messages.remove(at: idx)
+        messagesCollectionView.reloadData()
+    }
+
+    private func stripTypingPlaceholderIfNeeded() {
+        guard let idx = messages.lastIndex(where: { $0.messageId == Self.typingMessageId }) else { return }
         messages.remove(at: idx)
         messagesCollectionView.reloadData()
     }
@@ -374,12 +388,12 @@ final class AIConsultantChatViewController: MessagesViewController {
                 loadingIndicator.stopAnimating()
                 messagesCollectionView.isHidden = false
                 messageInputBar.isUserInteractionEnabled = true
-                presentSimpleAlert(message: L10n.string("ai_chat.error.bootstrap"))
+                UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
             } catch {
                 loadingIndicator.stopAnimating()
                 messagesCollectionView.isHidden = false
                 messageInputBar.isUserInteractionEnabled = true
-                presentSimpleAlert(message: L10n.string("ai_chat.error.bootstrap"))
+                UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
             }
         }
     }
@@ -500,6 +514,8 @@ final class AIConsultantChatViewController: MessagesViewController {
                 isStreamingAI = false
                 aiStreamBuffer = ""
                 acceptingSocketStream = false
+                stopTypingAnimation()
+                setSendLoadingState(false)
                 messageInputBar.isUserInteractionEnabled = true
                 Task { @MainActor [weak self] in
                     await self?.refetchChatFromServerSilently()
@@ -509,6 +525,8 @@ final class AIConsultantChatViewController: MessagesViewController {
         }
 
         if !isStreamingAI {
+            stripTypingPlaceholderIfNeeded()
+            stopTypingAnimation()
             isStreamingAI = true
             aiStreamBuffer = delta
             let msg = ChatMessage(
@@ -517,13 +535,9 @@ final class AIConsultantChatViewController: MessagesViewController {
                 sentDate: Date(),
                 kind: .text(delta)
             )
-            let newSection = messages.count
             messages.append(msg)
-            messagesCollectionView.performBatchUpdates({
-                messagesCollectionView.insertSections([newSection])
-            }, completion: { [weak self] _ in
-                self?.messagesCollectionView.scrollToLastItem(animated: true)
-            })
+            messagesCollectionView.reloadData()
+            messagesCollectionView.scrollToLastItem(animated: true)
         } else {
             aiStreamBuffer += delta
             guard let idx = messages.lastIndex(where: { $0.messageId == Self.streamingAIMessageId }) else { return }
@@ -568,12 +582,6 @@ final class AIConsultantChatViewController: MessagesViewController {
         } catch {
             // Оставляем текущую ленту; устаревшие чанки всё равно отфильтрованы поколением.
         }
-    }
-
-    private func presentSimpleAlert(message: String) {
-        let a = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        a.addAction(UIAlertAction(title: "OK", style: .default))
-        present(a, animated: true)
     }
 
     private func configureNavigationBar() {
@@ -677,6 +685,55 @@ final class AIConsultantChatViewController: MessagesViewController {
         messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         messageInputBar.padding = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
     }
+
+    private func setSendLoadingState(_ loading: Bool) {
+        sendButton?.setLoading(loading)
+    }
+
+    private func appendTypingPlaceholderAndAnimate() {
+        stopTypingAnimation()
+        stripTypingPlaceholderIfNeeded()
+        let typing = ChatMessage(sender: aiSender, messageId: Self.typingMessageId, sentDate: Date(), kind: .text("."))
+        messages.append(typing)
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: true)
+        typingDotsTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            let frames = [".", "..", "..."]
+            var idx = 0
+            while !Task.isCancelled {
+                if let msgIndex = self.messages.lastIndex(where: { $0.messageId == Self.typingMessageId }) {
+                    let prev = self.messages[msgIndex]
+                    self.messages[msgIndex] = ChatMessage(
+                        sender: prev.sender,
+                        messageId: prev.messageId,
+                        sentDate: prev.sentDate,
+                        kind: .text(frames[idx])
+                    )
+                    self.messagesCollectionView.reloadData()
+                    self.messagesCollectionView.scrollToLastItem(animated: false)
+                }
+                idx = (idx + 1) % frames.count
+                try? await Task.sleep(nanoseconds: 350_000_000)
+            }
+        }
+    }
+
+    private func stopTypingAnimation() {
+        typingDotsTask?.cancel()
+        typingDotsTask = nil
+    }
+
+    private func canSendFreeMessage() -> Bool {
+        if SubscriptionAccess.shared.isPremiumActive { return true }
+        return UserDefaults.standard.integer(forKey: Self.freeMessagesCountKey) < Self.freeMessagesLimit
+    }
+
+    private func incrementFreeMessagesCountIfNeeded() {
+        guard !SubscriptionAccess.shared.isPremiumActive else { return }
+        let current = UserDefaults.standard.integer(forKey: Self.freeMessagesCountKey)
+        UserDefaults.standard.set(current + 1, forKey: Self.freeMessagesCountKey)
+    }
 }
 
 extension AIConsultantChatViewController: MessagesDataSource {
@@ -750,6 +807,10 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let id = chatId else { return }
+        guard canSendFreeMessage() else {
+            presentPaywallFullScreen()
+            return
+        }
 
         let messageId = UUID().uuidString
         let newMessage = ChatMessage(
@@ -758,22 +819,23 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
             sentDate: Date(),
             kind: .text(trimmed)
         )
-        let newSection = messages.count
         messages.append(newMessage)
         inputBar.inputTextView.text = String()
         inputBar.invalidatePlugins()
 
-        messagesCollectionView.performBatchUpdates({
-            messagesCollectionView.insertSections([newSection])
-        }, completion: { [weak self] _ in
-            self?.messagesCollectionView.scrollToLastItem(animated: true)
-        })
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(animated: true)
 
         messageInputBar.isUserInteractionEnabled = false
+        setSendLoadingState(true)
+        appendTypingPlaceholderAndAnimate()
         acceptingSocketStream = true
         Task {
             do {
                 _ = try await CollectChatHTTPClient.shared.postJSON(path: "chats/\(id)/", body: ["text": trimmed])
+                await MainActor.run { [weak self] in
+                    self?.incrementFreeMessagesCountIfNeeded()
+                }
             } catch {
                 await MainActor.run { [weak self] in
                     guard let self else { return }
@@ -782,8 +844,11 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
                         messages.remove(at: idx)
                         messagesCollectionView.reloadData()
                     }
+                    stripTypingPlaceholderIfNeeded()
+                    stopTypingAnimation()
+                    setSendLoadingState(false)
                     messageInputBar.isUserInteractionEnabled = true
-                    presentSimpleAlert(message: L10n.string("ai_chat.error.send"))
+                    UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
                 }
             }
         }

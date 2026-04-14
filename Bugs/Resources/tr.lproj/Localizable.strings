@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Tamamlamak";
+"common.error.title" = "Hata";
+"common.error.try_later" = "Bir sorun oluştu. Lütfen daha sonra tekrar deneyin.";
 
 /* Onboarding */
 "onboarding.intro.title" = "MERHABA! Böcekler dünyasına rehberinizim 🐞";

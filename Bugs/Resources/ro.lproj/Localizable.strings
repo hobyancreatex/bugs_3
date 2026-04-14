@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Făcut";
+"common.error.title" = "Eroare";
+"common.error.try_later" = "A apărut o problemă. Încercați din nou mai târziu.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hi! Sunt ghidul tău în lumea insectelor 🐞";

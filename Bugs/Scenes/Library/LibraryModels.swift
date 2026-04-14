@@ -27,6 +27,8 @@ enum Library {
             let definitions: [CategoryDefinition]
             let searchQuery: String
             let isLoading: Bool
+            /// Categories request failed (network / bad status); list may be empty.
+            let listRequestFailed: Bool
         }
         struct ViewModel {
             let isLoading: Bool

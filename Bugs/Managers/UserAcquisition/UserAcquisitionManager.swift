@@ -1,6 +1,6 @@
 import Foundation
-import StoreKit
 import SwiftyStoreKit
+import UIKit
 
 #if canImport(AdSupport)
 import AdSupport
@@ -75,7 +75,7 @@ final class UserAcquisitionManager: NSObject {
         }
     }
 
-    func logPurchase(of product: Product) {
+    func logPurchase(of product: SubscriptionProduct) {
         guard apiKey != "YOUR_CHKMOB_API_KEY" else {
             #if DEBUG
             print("[UserAcquisition] Missing API key — logPurchase skipped")
@@ -112,7 +112,7 @@ final class UserAcquisitionManager: NSObject {
         return Array(Set(ids))
     }
 
-    private func logPurchase(info: Info, product: Product, receipt: String) {
+    private func logPurchase(info: Info, product: SubscriptionProduct, receipt: String) {
         let acquisitionSourceLabel: String = {
             switch info.acquisitionSource {
             case .facebook: return "Facebook"
@@ -130,7 +130,7 @@ final class UserAcquisitionManager: NSObject {
             #endif
         }()
 
-        let priceString = NSDecimalNumber(decimal: product.price).stringValue
+        let priceString = product.priceDecimal.stringValue
         let currencyCode = Locale.current.currency?.identifier ?? ""
 
         let iap: [String: Any] = [

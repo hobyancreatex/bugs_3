@@ -1,6 +1,5 @@
 import AppsFlyerLib
 import Foundation
-import StoreKit
 
 final class AppsFlyerEventsService: NSObject, EventServiceProtocol, AppsFlyerLibDelegate {
 
@@ -31,9 +30,9 @@ final class AppsFlyerEventsService: NSObject, EventServiceProtocol, AppsFlyerLib
         AppsFlyerLib.shared().logEvent(name, withValues: parameters)
     }
 
-    func logPurchase(product _: Product) {
+    func logPurchase(productId: String) {
         guard isConfigured else { return }
-        AppsFlyerLib.shared().logEvent(AFEventPurchase, withValues: ["eventValue": ""])
+        AppsFlyerLib.shared().logEvent(AFEventPurchase, withValues: ["product_id": productId])
     }
 
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {

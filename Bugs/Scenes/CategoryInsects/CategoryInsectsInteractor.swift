@@ -48,14 +48,29 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
                         insects: [],
                         searchQuery: query,
                         isLoading: true,
-                        isLoadingMore: false
+                        isLoadingMore: false,
+                        didFailNetwork: false
                     )
                 )
             }
 
             do {
                 try await self.runInitialListFetch(generation: generation, query: query)
+            } catch is CancellationError {
+                return
             } catch {
+                await MainActor.run { [weak self] in
+                    guard let self, generation == self.loadGeneration else { return }
+                    self.presenter?.presentInsects(
+                        response: CategoryInsects.Present.Response(
+                            insects: self.makeDefinitions(),
+                            searchQuery: query,
+                            isLoading: false,
+                            isLoadingMore: false,
+                            didFailNetwork: true
+                        )
+                    )
+                }
                 return
             }
 
@@ -67,7 +82,8 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
                         insects: definitions,
                         searchQuery: query,
                         isLoading: false,
-                        isLoadingMore: false
+                        isLoadingMore: false,
+                        didFailNetwork: false
                     )
                 )
             }
@@ -85,7 +101,7 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
             guard generation == loadGeneration else { throw CancellationError() }
             guard let pageURL = url else { break }
 
-            let (items, next) = await Self.fetchPage(url: pageURL)
+            let (items, next) = try await Self.fetchPage(url: pageURL)
             let inCategory = Self.filterByCategory(items, routingKey: categoryRoutingKey)
 
             lock.lock()
@@ -125,12 +141,37 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
                         insects: beforeDefinitions,
                         searchQuery: queryForResponse,
                         isLoading: false,
-                        isLoadingMore: true
+                        isLoadingMore: true,
+                        didFailNetwork: false
                     )
                 )
             }
 
-            let (items, next) = await Self.fetchPage(url: url)
+            let fetchResult: ([CollectCatalogInsect], URL?)
+            do {
+                fetchResult = try await Self.fetchPage(url: url)
+            } catch {
+                self.lock.lock()
+                if generation == self.loadGeneration {
+                    self.isLoadingMore = false
+                }
+                self.lock.unlock()
+                let definitions = self.makeDefinitions()
+                await MainActor.run { [weak self] in
+                    guard let self, generation == self.loadGeneration else { return }
+                    self.presenter?.presentInsects(
+                        response: CategoryInsects.Present.Response(
+                            insects: definitions,
+                            searchQuery: queryForResponse,
+                            isLoading: false,
+                            isLoadingMore: false,
+                            didFailNetwork: true
+                        )
+                    )
+                }
+                return
+            }
+            let (items, next) = fetchResult
             let inCategory = Self.filterByCategory(items, routingKey: self.categoryRoutingKey)
 
             self.lock.lock()
@@ -152,7 +193,8 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
                         insects: definitions,
                         searchQuery: queryForResponse,
                         isLoading: false,
-                        isLoadingMore: false
+                        isLoadingMore: false,
+                        didFailNetwork: false
                     )
                 )
             }
@@ -189,19 +231,15 @@ final class CategoryInsectsInteractor: CategoryInsectsBusinessLogic {
         return components.url ?? base
     }
 
-    private static func fetchPage(url: URL) async -> (items: [CollectCatalogInsect], next: URL?) {
-        do {
-            let data = try await CollectAPIClient.shared.get(url: url)
-            if let parsed = try? CollectPaginatedPayload.parseInsectsListPage(data: data) {
-                let items = parsed.rows.compactMap { CollectHomeDTOMapper.catalogInsect($0) }
-                return (items, parsed.nextURL)
-            }
-            let rows = try CollectHomeListPayload.objectRows(from: data)
-            let items = rows.compactMap { CollectHomeDTOMapper.catalogInsect($0) }
-            return (items, nil)
-        } catch {
-            return ([], nil)
+    private static func fetchPage(url: URL) async throws -> (items: [CollectCatalogInsect], next: URL?) {
+        let data = try await CollectAPIClient.shared.get(url: url)
+        if let parsed = try? CollectPaginatedPayload.parseInsectsListPage(data: data) {
+            let items = parsed.rows.compactMap { CollectHomeDTOMapper.catalogInsect($0) }
+            return (items, parsed.nextURL)
         }
+        let rows = try CollectHomeListPayload.objectRows(from: data)
+        let items = rows.compactMap { CollectHomeDTOMapper.catalogInsect($0) }
+        return (items, nil)
     }
 
     private static func filterByCategory(_ items: [CollectCatalogInsect], routingKey: String) -> [CollectCatalogInsect] {

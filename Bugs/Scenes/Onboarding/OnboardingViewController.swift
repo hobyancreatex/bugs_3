@@ -15,8 +15,11 @@ enum OnboardingFloatingCTALayout {
 
 /// Два экрана на `UICollectionView`, листание только по кнопке на первом шаге; второй — пейвол.
 final class OnboardingViewController: UIViewController {
+    private static let isOnboardingEndedKey = "isonbended"
 
     private var currentPage = 0
+    /// `scrollToItem` before layout is ready leaves `contentOffset` at 0 while `currentPage == 1` — wrong page + wrong chrome. Sync in `viewDidLayoutSubviews`.
+    private var needsScrollToPaywallAfterLayout = false
 
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let l = UICollectionViewFlowLayout()
@@ -55,7 +58,6 @@ final class OnboardingViewController: UIViewController {
         view.backgroundColor = .appBackground
 
         actionButton.addTarget(self, action: #selector(actionTapped), for: .touchUpInside)
-        updateChromeForPage()
 
         view.addSubview(collectionView)
         view.addSubview(actionButton)
@@ -76,6 +78,12 @@ final class OnboardingViewController: UIViewController {
         ])
 
         view.bringSubviewToFront(actionButton)
+        if Self.shouldStartAtPaywall() {
+            currentPage = 1
+            needsScrollToPaywallAfterLayout = true
+            Self.markOnboardingEndedIfNeeded()
+        }
+        updateChromeForPage()
     }
 
     override func viewDidLayoutSubviews() {
@@ -85,6 +93,16 @@ final class OnboardingViewController: UIViewController {
         if flowLayout.itemSize != size {
             flowLayout.itemSize = size
             flowLayout.invalidateLayout()
+        }
+        if needsScrollToPaywallAfterLayout {
+            let indexPath = IndexPath(item: 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            collectionView.layoutIfNeeded()
+            collectionView.contentOffset = CGPoint(x: size.width, y: 0)
+            if abs(collectionView.contentOffset.x - size.width) < 2 {
+                needsScrollToPaywallAfterLayout = false
+            }
+            updateChromeForPage()
         }
     }
 
@@ -105,6 +123,7 @@ final class OnboardingViewController: UIViewController {
             let indexPath = IndexPath(item: 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             updateChromeForPage()
+            Self.markOnboardingEndedIfNeeded()
         } else {
             Task { await performSubscriptionPurchase() }
         }
@@ -134,6 +153,10 @@ final class OnboardingViewController: UIViewController {
 
     @MainActor
     private func performSubscriptionPurchase() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
         actionButton.isEnabled = false
         showCenterLoadingOverlay()
         defer {
@@ -154,8 +177,6 @@ final class OnboardingViewController: UIViewController {
             }
         } catch SubscriptionManagerError.userCancelled {
             return
-        } catch SubscriptionManagerError.pending {
-            presentSubscriptionAlert(titleKey: "subscription.pending.title", messageKey: "subscription.pending.message")
         } catch {
             presentSubscriptionAlert(titleKey: "subscription.error.title", messageKey: "subscription.error.purchase_failed")
         }
@@ -163,6 +184,10 @@ final class OnboardingViewController: UIViewController {
 
     @MainActor
     private func performRestoreFromOnboarding() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
         actionButton.isEnabled = false
         showCenterLoadingOverlay()
         defer {
@@ -190,6 +215,16 @@ final class OnboardingViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: L10n.string("common.done"), style: .default))
         present(alert, animated: true)
+    }
+
+    private static func shouldStartAtPaywall() -> Bool {
+        UserDefaults.standard.bool(forKey: isOnboardingEndedKey)
+    }
+
+    private static func markOnboardingEndedIfNeeded() {
+        if !UserDefaults.standard.bool(forKey: isOnboardingEndedKey) {
+            UserDefaults.standard.set(true, forKey: isOnboardingEndedKey)
+        }
     }
 }
 

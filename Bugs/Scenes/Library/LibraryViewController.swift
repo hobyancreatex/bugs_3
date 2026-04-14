@@ -7,6 +7,7 @@ import UIKit
 
 protocol LibraryDisplayLogic: AnyObject {
     func displayCategories(viewModel: Library.Present.ViewModel)
+    func displayGenericRequestError()
 }
 
 final class LibraryViewController: UIViewController, LibraryDisplayLogic {
@@ -146,6 +147,10 @@ final class LibraryViewController: UIViewController, LibraryDisplayLogic {
         collectionView.isHidden = viewModel.showsEmptySearchState
         collectionView.reloadData()
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    func displayGenericRequestError() {
+        UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
     }
 
     override func viewDidLayoutSubviews() {

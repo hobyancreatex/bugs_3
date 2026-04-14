@@ -5,16 +5,22 @@
 
 import Foundation
 import StoreKit
+import SwiftyStoreKit
 
 enum SubscriptionManagerError: Error {
     case productNotFound
     case userCancelled
-    case pending
-    case unverifiedTransaction
-    case unknownPurchaseResult
+    case purchaseFailed
+    case restoreFailed
 }
 
-/// Подписки: загрузка продуктов, покупка, restore, статус по дате окончания в UserDefaults (как в IAPManager по смыслу).
+struct SubscriptionProduct {
+    let id: String
+    let displayPrice: String
+    let priceDecimal: NSDecimalNumber
+}
+
+/// Подписки на StoreKit1 (SwiftyStoreKit), статус храним локально в UserDefaults.
 @MainActor
 final class SubscriptionManager {
 
@@ -23,13 +29,9 @@ final class SubscriptionManager {
     private let expiryKey = "bugs.subscription.expiryDate"
     private let legacyPremiumKey = "bugs.subscription.isPremiumActive"
 
-    private var transactionListener: Task<Void, Never>?
-
     private init() {
         migrateLegacyIfNeeded()
-        transactionListener = Task { [weak self] in
-            await self?.listenForTransactionUpdates()
-        }
+        completePendingTransactionsOnLaunch()
     }
 
     // MARK: - Status (UserDefaults)
@@ -70,37 +72,78 @@ final class SubscriptionManager {
 
     // MARK: - Products
 
-    func loadSubscriptionProducts() async throws -> [Product] {
-        let ids = [PaywallConfiguration.subscriptionProductID]
-        return try await Product.products(for: ids)
+    func loadSubscriptionProducts() async throws -> [SubscriptionProduct] {
+        let ids = Set([PaywallConfiguration.subscriptionProductID])
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[SubscriptionProduct], Error>) in
+            SwiftyStoreKit.retrieveProductsInfo(ids) { result in
+                if let error = result.error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                guard let product = result.retrievedProducts.first else {
+                    continuation.resume(throwing: SubscriptionManagerError.productNotFound)
+                    return
+                }
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
+                formatter.locale = product.priceLocale
+                let price = formatter.string(from: product.price) ?? "—"
+                continuation.resume(returning: [
+                    SubscriptionProduct(id: product.productIdentifier, displayPrice: price, priceDecimal: product.price),
+                ])
+            }
+        }
     }
 
     // MARK: - Purchase & restore
 
-    func purchase(_ product: Product) async throws {
-        let result = try await product.purchase()
-        switch result {
-        case .success(let verification):
-            let transaction = try checkVerified(verification)
-            await persistExpiry(from: transaction, product: product)
-            await transaction.finish()
-        case .userCancelled:
-            throw SubscriptionManagerError.userCancelled
-        case .pending:
-            throw SubscriptionManagerError.pending
-        @unknown default:
-            throw SubscriptionManagerError.unknownPurchaseResult
+    func purchase(_ product: SubscriptionProduct) async throws {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            SwiftyStoreKit.purchaseProduct(product.id, atomically: true) { [weak self] result in
+                guard let self else {
+                    continuation.resume(throwing: SubscriptionManagerError.purchaseFailed)
+                    return
+                }
+                switch result {
+                case .success:
+                    self.grantLocalPremiumExtension(days: 7)
+                    continuation.resume(returning: ())
+                case .error(let error):
+                    if error.code == .paymentCancelled {
+                        continuation.resume(throwing: SubscriptionManagerError.userCancelled)
+                    } else {
+                        continuation.resume(throwing: SubscriptionManagerError.purchaseFailed)
+                    }
+                @unknown default:
+                    continuation.resume(throwing: SubscriptionManagerError.purchaseFailed)
+                }
+            }
         }
     }
 
     func restorePurchases() async throws {
-        try await AppStore.sync()
-        await syncExpirationsFromCurrentEntitlements()
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            SwiftyStoreKit.restorePurchases(atomically: true) { [weak self] results in
+                guard let self else {
+                    continuation.resume(throwing: SubscriptionManagerError.restoreFailed)
+                    return
+                }
+                if results.restoreFailedPurchases.isEmpty && results.restoredPurchases.isEmpty {
+                    continuation.resume(returning: ())
+                    return
+                }
+                if !results.restoredPurchases.isEmpty {
+                    self.grantLocalPremiumExtension(days: 7)
+                    continuation.resume(returning: ())
+                    return
+                }
+                continuation.resume(throwing: SubscriptionManagerError.restoreFailed)
+            }
+        }
     }
 
-    /// Синхронизация с активными entitlement (удобно при старте приложения).
     func refreshEntitlementsIntoUserDefaults() async {
-        await syncExpirationsFromCurrentEntitlements()
+        _ = checkSubscriptionStatus()
     }
 
     // MARK: - Private
@@ -113,70 +156,19 @@ final class SubscriptionManager {
         grantLocalPremiumExtension(days: 7)
     }
 
-    private func listenForTransactionUpdates() async {
-        for await result in Transaction.updates {
-            do {
-                let transaction = try checkVerified(result)
-                guard transaction.productID == PaywallConfiguration.subscriptionProductID else {
-                    await transaction.finish()
-                    continue
+    private func completePendingTransactionsOnLaunch() {
+        SwiftyStoreKit.completeTransactions(atomically: true) { [weak self] purchases in
+            guard let self else { return }
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    self.grantLocalPremiumExtension(days: 7)
+                default:
+                    break
                 }
-                await persistExpiry(from: transaction, product: nil)
-                await transaction.finish()
-            } catch {
-                continue
             }
         }
     }
 
-    private func syncExpirationsFromCurrentEntitlements() async {
-        var best: Date?
-        for await result in Transaction.currentEntitlements {
-            guard case .verified(let transaction) = result else { continue }
-            guard transaction.productID == PaywallConfiguration.subscriptionProductID else { continue }
-            if let exp = transaction.expirationDate {
-                best = max(best ?? exp, exp)
-            } else {
-                let inferred = inferredExpiry(from: transaction, product: nil)
-                best = max(best ?? inferred, inferred)
-            }
-        }
-        if let best {
-            UserDefaults.standard.set(best.timeIntervalSince1970, forKey: expiryKey)
-            NotificationCenter.default.post(name: SubscriptionAccess.premiumStatusDidChange, object: nil)
-        }
-    }
-
-    private func persistExpiry(from transaction: Transaction, product: Product?) async {
-        let end = transaction.expirationDate ?? inferredExpiry(from: transaction, product: product)
-        UserDefaults.standard.set(end.timeIntervalSince1970, forKey: expiryKey)
-        NotificationCenter.default.post(name: SubscriptionAccess.premiumStatusDidChange, object: nil)
-    }
-
-    private func inferredExpiry(from transaction: Transaction, product: Product?) -> Date {
-        if let product, let sub = product.subscription {
-            let days = calendarDaysApproximation(sub.subscriptionPeriod)
-            return transaction.purchaseDate.addingTimeInterval(Double(days) * 86400)
-        }
-        return transaction.purchaseDate.addingTimeInterval(7 * 86400)
-    }
-
-    private func calendarDaysApproximation(_ period: Product.SubscriptionPeriod) -> Int {
-        switch period.unit {
-        case .day: return period.value
-        case .week: return 7 * period.value
-        case .month: return 30 * period.value
-        case .year: return 365 * period.value
-        @unknown default: return 7
-        }
-    }
-
-    private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
-        switch result {
-        case .unverified(_, let error):
-            throw error
-        case .verified(let safe):
-            return safe
-        }
-    }
+    // StoreKit1 mode: local expiry is updated on purchase/restore.
 }

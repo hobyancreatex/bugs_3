@@ -7,6 +7,7 @@ import UIKit
 
 protocol CategoryInsectsDisplayLogic: AnyObject {
     func displayInsects(viewModel: CategoryInsects.Present.ViewModel)
+    func displayGenericRequestError()
 }
 
 final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisplayLogic {
@@ -182,6 +183,10 @@ final class CategoryInsectsViewController: UIViewController, CategoryInsectsDisp
         collectionView.isHidden = viewModel.showsEmptySearchState
         collectionView.reloadData()
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    func displayGenericRequestError() {
+        UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
     }
 
     override func viewDidLayoutSubviews() {

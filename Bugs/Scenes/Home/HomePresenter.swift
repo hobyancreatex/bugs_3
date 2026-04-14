@@ -54,5 +54,8 @@ final class HomePresenter: HomePresentationLogic {
             articles: articles
         )
         viewController?.displayLoad(viewModel: viewModel)
+        if response.hadNetworkError {
+            viewController?.displayGenericRequestError()
+        }
     }
 }

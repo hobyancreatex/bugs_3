@@ -49,5 +49,8 @@ final class LibraryPresenter: LibraryPresentationLogic {
             showsEmptySearchState: showsEmptySearchState
         )
         viewController?.displayCategories(viewModel: viewModel)
+        if response.listRequestFailed {
+            viewController?.displayGenericRequestError()
+        }
     }
 }

@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "हो गया";
+"common.error.title" = "त्रुटि";
+"common.error.try_later" = "कुछ गलत हो गया। बाद में पुनः प्रयास करें।";
 
 /* Onboarding */
 "onboarding.intro.title" = "नमस्ते! मैं कीड़ों की दुनिया के लिए आपका मार्गदर्शक हूं 🐞";

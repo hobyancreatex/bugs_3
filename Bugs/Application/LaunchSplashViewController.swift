@@ -5,6 +5,7 @@
 
 import UIKit
 import Lottie
+import AppTrackingTransparency
 
 /// Кремовый экран; Lottie 88×88 по центру.
 final class LaunchSplashViewController: UIViewController {
@@ -43,6 +44,7 @@ final class LaunchSplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animationView.play()
+        requestTrackingAuthorizationIfNeeded()
 
         launchTask?.cancel()
         launchTask = Task { @MainActor [weak self] in
@@ -66,11 +68,19 @@ final class LaunchSplashViewController: UIViewController {
     private func transitionToMain() {
         guard let window = view.window else { return }
         launchTask = nil
-        let next: UIViewController = SubscriptionManager.shared.isSubscriptionActive
-            ? MainTabBarController()
-            : OnboardingViewController()
+        let next: UIViewController
+        if SubscriptionManager.shared.isSubscriptionActive {
+            next = MainTabBarController()
+        } else {
+            next = OnboardingViewController()
+        }
         UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve) {
             window.rootViewController = next
         }
+    }
+
+    private func requestTrackingAuthorizationIfNeeded() {
+        guard #available(iOS 14, *) else { return }
+        ATTrackingManager.requestTrackingAuthorization { _ in }
     }
 }

@@ -288,10 +288,6 @@ final class MainTabBarController: UIViewController {
 
     private func presentChatModallyFromCurrentScreen() {
         guard !isAIChatModalPresented() else { return }
-        if !SubscriptionAccess.shared.isPremiumActive {
-            presenterForChatModal().presentPaywallFullScreen()
-            return
-        }
         let chat = AIConsultantChatViewController()
         chat.presentsAsModalFromTabBar = true
         let nav = UINavigationController(rootViewController: chat)

@@ -7,6 +7,7 @@ import UIKit
 
 protocol HomeDisplayLogic: AnyObject {
     func displayLoad(viewModel: Home.Load.ViewModel)
+    func displayGenericRequestError()
 }
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
@@ -247,10 +248,6 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 
     @objc
     private func aiAskTapped() {
-        if !SubscriptionAccess.shared.isPremiumActive {
-            presentPaywallFullScreen()
-            return
-        }
         navigationController?.pushViewController(AIConsultantChatViewController(), animated: true)
     }
 
@@ -438,6 +435,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         categoriesCollectionView.reloadData()
         popularCollectionView.reloadData()
         articlesCollectionView.reloadData()
+    }
+
+    func displayGenericRequestError() {
+        UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
     }
 }
 

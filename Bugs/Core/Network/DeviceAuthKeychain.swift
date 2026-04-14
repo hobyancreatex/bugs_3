@@ -65,6 +65,14 @@ enum DeviceAuthKeychain {
         try deleteItem(account: Account.chatId)
     }
 
+    static func clearAllAuthData() throws {
+        try deleteItem(account: Account.registered)
+        try deleteItem(account: Account.username)
+        try deleteItem(account: Account.password)
+        try deleteItem(account: Account.token)
+        try deleteItem(account: Account.chatId)
+    }
+
     // MARK: - Low level
 
     private static func string(for account: String) throws -> String {

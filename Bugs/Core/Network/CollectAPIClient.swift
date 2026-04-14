@@ -122,6 +122,25 @@ final class CollectAPIClient {
         }
     }
 
+    /// DELETE `auth/terminate/` — удаление аккаунта текущего устройства.
+    func terminateAccount() async throws {
+        let base = APIConfiguration.collectBaseURL
+        guard let url = URL(string: "auth/terminate/", relativeTo: base)?.absoluteURL else {
+            throw CollectAPIError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if let token = CollectAPIAuthState.token {
+            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+        }
+        let (data, response) = try await session.data(for: request)
+        let status = (response as? HTTPURLResponse)?.statusCode ?? -1
+        guard (200 ..< 300).contains(status) else {
+            throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
+        }
+    }
+
     /// POST `collection/upload/` — фото в уже существующую коллекцию: `image` + `item` (id коллекции), как в legacy `addToExistedCollection`.
     func postAddPhotoToCollection(collectionId: Int, imageJPEGData: Data) async throws -> Data {
         let itemData = Data("\(collectionId)".utf8)

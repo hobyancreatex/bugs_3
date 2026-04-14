@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol InsectDetailBusinessLogic: AnyObject {
     func loadDetail(request: InsectDetail.Load.Request)
@@ -119,6 +120,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                             isAddToCollectionAvailable: true
                         )
                     )
+                    UserFacingRequestErrorAlert.presentTryAgainLater()
                 }
             }
         }
@@ -159,7 +161,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             } catch {
                 await MainActor.run { [weak self] in
                     self?.presenter?.presentAddToCollection(
-                        response: .failure(messageKey: "insect.detail.add_to_collection.error.network")
+                        response: .failure(messageKey: "common.error.try_later")
                     )
                 }
             }
@@ -186,7 +188,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             } catch {
                 await MainActor.run { [weak self] in
                     self?.presenter?.presentRemoveFromCollection(
-                        response: .failure(messageKey: "insect.detail.remove_from_collection.error.network")
+                        response: .failure(messageKey: "common.error.try_later")
                     )
                 }
             }

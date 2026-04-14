@@ -20,7 +20,7 @@ enum InsectDetail {
 
         enum ViewModel {
             case success
-            case failure(message: String)
+            case failure(title: String?, message: String)
         }
     }
 
@@ -34,7 +34,7 @@ enum InsectDetail {
 
         enum ViewModel {
             case success
-            case failure(message: String)
+            case failure(title: String?, message: String)
         }
     }
 

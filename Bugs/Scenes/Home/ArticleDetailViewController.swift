@@ -228,7 +228,11 @@ final class ArticleDetailViewController: UIViewController {
         } catch is CancellationError {
             await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
         } catch {
-            await MainActor.run { [weak self] in self?.applyPreviewFallbackAfterFailedLoad() }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                self.applyPreviewFallbackAfterFailedLoad()
+                UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            }
         }
     }
 

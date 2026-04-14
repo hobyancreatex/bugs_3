@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Færdig";
+"common.error.title" = "Fejl";
+"common.error.try_later" = "Noget gik galt. Prøv venligst igen senere.";
 
 /* Onboarding */
 "onboarding.intro.title" = "Hej! Jeg er din guide til insektverdenen 🐞";

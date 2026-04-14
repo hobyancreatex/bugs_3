@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "Готово";
+"common.error.title" = "Помилка";
+"common.error.try_later" = "Сталася помилка. Спробуйте пізніше.";
 
 /* Onboarding */
 "onboarding.intro.title" = "привіт Я ваш гід у світ комах 🐞";

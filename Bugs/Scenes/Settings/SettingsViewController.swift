@@ -37,6 +37,7 @@ final class SettingsViewController: UIViewController {
         case privacy
         case terms
         case refundConsent
+        case deleteAccount
     }
 
     private let tableView: UITableView = {
@@ -76,7 +77,7 @@ final class SettingsViewController: UIViewController {
     }
 
     private func securityRows() -> [SecurityRow] {
-        var rows: [SecurityRow] = [.privacy, .terms]
+        var rows: [SecurityRow] = [.privacy, .terms, .deleteAccount]
         if SubscriptionAccess.shared.isPremiumActive {
             rows.append(.refundConsent)
         }
@@ -156,6 +157,10 @@ final class SettingsViewController: UIViewController {
 
     @MainActor
     private func performRestorePurchases() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
         showCenterLoadingOverlay()
         defer { hideCenterLoadingOverlay() }
 
@@ -174,8 +179,8 @@ final class SettingsViewController: UIViewController {
             }
         } catch {
             presentSimpleAlert(
-                title: L10n.string("subscription.error.title"),
-                message: L10n.string("subscription.error.restore_failed")
+                title: L10n.string("common.error.title"),
+                message: L10n.string("common.error.try_later")
             )
         }
     }
@@ -208,6 +213,38 @@ final class SettingsViewController: UIViewController {
 
     private func showRefundConsentAlert() {
         RefundConsentFlow.present(from: self) {}
+    }
+
+    private func deleteAccount() {
+        let alert = UIAlertController(
+            title: "Удалить аккаунт?",
+            message: "Это действие безвозвратно удалит аккаунт и локальные данные на этом устройстве. Продолжить?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            Task { await self?.performDeleteAccount() }
+        })
+        present(alert, animated: true)
+    }
+
+    @MainActor
+    private func performDeleteAccount() async {
+        guard NetworkReachability.shared.isConnected else {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+            return
+        }
+        showCenterLoadingOverlay()
+        defer { hideCenterLoadingOverlay() }
+        do {
+            try await CollectAPIClient.shared.terminateAccount()
+            try? DeviceAuthKeychain.clearAllAuthData()
+            CollectAPIAuthState.setToken(nil)
+            await AuthBootstrapper.shared.bootstrapIfNeeded()
+            presentSimpleAlert(title: L10n.string("common.done"), message: "Аккаунт удален.")
+        } catch {
+            UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+        }
     }
 
     private func openURLString(_ string: String) {
@@ -256,6 +293,16 @@ extension SettingsViewController: UITableViewDataSource {
                 configureCell(cell, titleKey: "settings.row.terms", symbolName: "doc.text")
             case .refundConsent:
                 configureCell(cell, titleKey: "settings.row.refund_consent", symbolName: "checkmark.shield.fill")
+            case .deleteAccount:
+                configureCell(cell, titleKey: "settings.row.terms", symbolName: "trash")
+                var content = cell.defaultContentConfiguration()
+                content.text = "Удалить аккаунт"
+                content.textProperties.color = .systemRed
+                if let img = UIImage(systemName: "trash") {
+                    content.image = img
+                    content.imageProperties.tintColor = .systemRed
+                }
+                cell.contentConfiguration = content
             }
         }
         return cell
@@ -300,6 +347,7 @@ extension SettingsViewController: UITableViewDelegate {
             case .privacy: privacyPolicy()
             case .terms: termsOfUse()
             case .refundConsent: showRefundConsentAlert()
+            case .deleteAccount: deleteAccount()
             }
         }
     }

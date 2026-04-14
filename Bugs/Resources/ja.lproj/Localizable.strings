@@ -1,5 +1,7 @@
 /* Common */
 "common.done" = "完了";
+"common.error.title" = "エラー";
+"common.error.try_later" = "問題が発生しました。しばらくしてからもう一度お試しください。";
 
 /* Onboarding */
 "onboarding.intro.title" = "こんにちは！私は昆虫の世界へのガイドです 🐞";

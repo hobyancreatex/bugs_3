@@ -45,5 +45,8 @@ final class CategoryInsectsPresenter: CategoryInsectsPresentationLogic {
                 showsEmptySearchState: showsEmptySearchState
             )
         )
+        if response.didFailNetwork {
+            viewController?.displayGenericRequestError()
+        }
     }
 }
