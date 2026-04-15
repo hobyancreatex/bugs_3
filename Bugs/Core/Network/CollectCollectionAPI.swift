@@ -5,7 +5,7 @@
 
 import Foundation
 
-/// Разбор ответов POST `/collection/` и `/collection/upload/` (id новой или существующей записи коллекции).
+/// Разбор ответов POST `/collection/` (id записи коллекции в ответе).
 enum CollectCollectionResponseParser {
 
     static func collectionId(from data: Data) -> Int? {

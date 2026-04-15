@@ -33,6 +33,26 @@ enum CollectAPILogger {
         log(parts.joined(separator: " | "))
     }
 
+    /// Тело ответа `POST collection/` (JSON pretty-print или сырой UTF-8).
+    nonisolated static func logCollectionPostResponse(url: URL, statusCode: Int, body: Data) {
+        let bodyText: String
+        if body.isEmpty {
+            bodyText = "<empty>"
+        } else if let obj = try? JSONSerialization.jsonObject(with: body),
+           let pretty = try? JSONSerialization.data(withJSONObject: obj, options: [.sortedKeys, .prettyPrinted]),
+           let s = String(data: pretty, encoding: .utf8)
+        {
+            bodyText = s
+        } else if let s = String(data: body, encoding: .utf8), !s.isEmpty {
+            bodyText = s
+        } else {
+            bodyText = "<\(body.count) bytes, not UTF-8>"
+        }
+        log(
+            "RESPONSE POST \(url.absoluteString) status=\(statusCode)\n[collection/ body]\n\(bodyText)"
+        )
+    }
+
     nonisolated static func logHTTPTransportFailure(method: String, url: URL, error: Error) {
         log("RESPONSE \(method) \(url.absoluteString) transport error: \(error.localizedDescription)")
     }

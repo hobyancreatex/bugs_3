@@ -72,10 +72,13 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             return
         }
 
+        let showLoading = request.showsLoadingOverlay
         Task { [weak self] in
             guard let self else { return }
-            await MainActor.run { [weak self] in
-                self?.presenter?.presentLoading(true)
+            if showLoading {
+                await MainActor.run { [weak self] in
+                    self?.presenter?.presentLoading(true)
+                }
             }
             do {
                 let path = "insects/\(trimmedId)/"
@@ -105,14 +108,18 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                     } else {
                         self.userCollectionId = nil
                     }
-                    self.presenter?.presentLoading(false)
+                    if showLoading {
+                        self.presenter?.presentLoading(false)
+                    }
                     self.presenter?.presentDetail(response: response)
                 }
             } catch {
                 await MainActor.run { [weak self] in
                     guard let self else { return }
                     self.userCollectionId = nil
-                    self.presenter?.presentLoading(false)
+                    if showLoading {
+                        self.presenter?.presentLoading(false)
+                    }
                     self.presenter?.presentDetail(
                         response: Self.stubResponse(
                             heroImageAssetName: self.heroImageAssetName,
@@ -121,7 +128,9 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                             isAddToCollectionAvailable: true
                         )
                     )
-                    UserFacingRequestErrorAlert.presentTryAgainLater()
+                    if showLoading {
+                        UserFacingRequestErrorAlert.presentTryAgainLater()
+                    }
                 }
             }
         }
@@ -152,20 +161,12 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         }
         Task { [weak self] in
             guard let self else { return }
-            let existingCollectionId = self.userCollectionId
             do {
-                let data: Data
-                if let existingCollectionId {
-                    data = try await CollectAPIClient.shared.postAddPhotoToCollection(
-                        collectionId: existingCollectionId,
-                        imageJPEGData: request.jpegData
-                    )
-                } else {
-                    data = try await CollectAPIClient.shared.postCreateCollection(
-                        insectReference: ref,
-                        imageJPEGData: request.jpegData
-                    )
-                }
+                // Тот же запрос, что после распознавания: POST collection/ (image + reference). Эндпоинт collection/upload/ на сервере отсутствует (404).
+                let data = try await CollectAPIClient.shared.postCreateCollection(
+                    insectReference: ref,
+                    imageJPEGData: request.jpegData
+                )
                 if let parsedId = CollectCollectionResponseParser.collectionId(from: data) {
                     await MainActor.run { [weak self] in
                         self?.userCollectionId = parsedId
@@ -231,6 +232,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         }
         let biteText = mapped.biteDescription.flatMap { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0 }
         let inCollection = mapped.userCollectionId != nil
+        // Пока есть id вида — можно добавить фото (создать коллекцию или докинуть в user_collection).
         return InsectDetail.Load.Response(
             heroImageAssetName: "home_popular_insect",
             heroImageURL: heroURL,
@@ -258,7 +260,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             biteDescriptionOverride: biteText,
             bitePhotoURLs: mapped.bitePhotoURLs,
             userCollectionPhotoURLs: mapped.userCollectionPhotoURLs,
-            isAddToCollectionAvailable: !referenceInsectId.isEmpty && !inCollection,
+            isAddToCollectionAvailable: !referenceInsectId.isEmpty,
             isInUserCollection: inCollection
         )
     }

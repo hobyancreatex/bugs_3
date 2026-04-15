@@ -141,20 +141,6 @@ final class CollectAPIClient {
         }
     }
 
-    /// POST `collection/upload/` — фото в уже существующую коллекцию: `image` + `item` (id коллекции), как в legacy `addToExistedCollection`.
-    func postAddPhotoToCollection(collectionId: Int, imageJPEGData: Data) async throws -> Data {
-        let itemData = Data("\(collectionId)".utf8)
-        return try await postMultipart(
-            path: "collection/upload/",
-            parts: [
-                MultipartPart(name: "image", filename: "photo.jpg", mimeType: "image/jpeg", data: imageJPEGData),
-                MultipartPart(name: "item", filename: nil, mimeType: nil, data: itemData),
-            ],
-            partsDescription:
-                "fields=[image(photo.jpg \(imageJPEGData.count) bytes), item(utf8 \(itemData.count) bytes) id=\(collectionId)]"
-        )
-    }
-
     // MARK: - Multipart POST
 
     private struct MultipartPart {
@@ -199,6 +185,10 @@ final class CollectAPIClient {
 
         let http = response as? HTTPURLResponse
         let status = http?.statusCode ?? -1
+
+        if path == "collection/" {
+            CollectAPILogger.logCollectionPostResponse(url: url, statusCode: status, body: data)
+        }
 
         guard (200 ..< 300).contains(status) else {
             throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)

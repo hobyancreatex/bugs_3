@@ -68,7 +68,10 @@ enum InsectDetail {
     }
 
     enum Load {
-        struct Request {}
+        struct Request {
+            /// Полноэкранный лоадер при первом открытии; `false` — тихое обновление после добавления в коллекцию и т.п.
+            var showsLoadingOverlay: Bool = true
+        }
         struct Response {
             let heroImageAssetName: String
             let heroImageURL: URL?
@@ -101,7 +104,7 @@ enum InsectDetail {
             let biteDescriptionOverride: String?
             let bitePhotoURLs: [URL]
             let userCollectionPhotoURLs: [URL]
-            /// Показать CTA «В коллекцию» (есть id вида и нет записи в коллекции).
+            /// Показать CTA «В коллекцию» (есть id вида; повторное добавление фото — через тот же экран).
             let isAddToCollectionAvailable: Bool
             /// У `GET insects/{id}/` уже есть `user_collection` — показываем удаление.
             let isInUserCollection: Bool

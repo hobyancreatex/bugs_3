@@ -5,11 +5,48 @@
 
 import UIKit
 
+/// #3AA176 — пунктир ячейки «+» и запасная иконка.
+private enum InsectDetailMyCollectionAddStyle {
+    static let stroke = UIColor(red: 58 / 255, green: 161 / 255, blue: 118 / 255, alpha: 1)
+}
+
+/// Пунктир по периметру ячейки «+»: 2 pt, штрих 5, промежуток 3 (отдельный UIView поверх центра).
+private final class InsectDetailMyCollectionDashOverlayView: UIView {
+
+    private let shape = CAShapeLayer()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = false
+        backgroundColor = .clear
+        clipsToBounds = false
+        layer.addSublayer(shape)
+        shape.fillColor = UIColor.clear.cgColor
+        shape.strokeColor = InsectDetailMyCollectionAddStyle.stroke.cgColor
+        shape.lineWidth = 2
+        shape.lineDashPattern = [5, 3] as [NSNumber]
+        shape.lineCap = .butt
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let lw = shape.lineWidth
+        let rect = bounds.insetBy(dx: lw / 2, dy: lw / 2)
+        let radius = min(24, rect.width / 2, rect.height / 2)
+        shape.frame = bounds
+        shape.path = UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
+    }
+}
+
 final class InsectDetailMyCollectionCell: UICollectionViewCell {
 
     static let reuseIdentifier = "InsectDetailMyCollectionCell"
 
-    /// Добавьте `insect_detail_my_collection_add` в Assets (PDF/PNG); пока файла нет — показываем SF Symbol.
     private static let addCenterImageAssetName = "insect_detail_my_collection_add"
 
     private let imageView: UIImageView = {
@@ -37,24 +74,17 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
         return iv
     }()
 
-    /// Как у рамки выреза на распознавании: 2 pt, штрих 12, промежуток 6, скруглённые концы.
-    private let dashLayer: CAShapeLayer = {
-        let shape = CAShapeLayer()
-        shape.fillColor = UIColor.clear.cgColor
-        shape.strokeColor = UIColor.appReadMore.cgColor
-        shape.lineWidth = 2
-        shape.lineDashPattern = [12, 6] as [NSNumber]
-        shape.lineCap = .round
-        return shape
-    }()
+    private let dashOverlay = InsectDetailMyCollectionDashOverlayView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = false
+        contentView.clipsToBounds = false
         contentView.backgroundColor = .clear
         contentView.addSubview(imageView)
         contentView.addSubview(addContainer)
-        addContainer.layer.addSublayer(dashLayer)
         addContainer.addSubview(centerAddImageView)
+        addContainer.addSubview(dashOverlay)
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -69,23 +99,18 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
 
             centerAddImageView.centerXAnchor.constraint(equalTo: addContainer.centerXAnchor),
             centerAddImageView.centerYAnchor.constraint(equalTo: addContainer.centerYAnchor),
-            centerAddImageView.widthAnchor.constraint(equalToConstant: 36),
-            centerAddImageView.heightAnchor.constraint(equalToConstant: 36),
+            centerAddImageView.widthAnchor.constraint(equalToConstant: 20),
+            centerAddImageView.heightAnchor.constraint(equalToConstant: 20),
+
+            dashOverlay.topAnchor.constraint(equalTo: addContainer.topAnchor),
+            dashOverlay.leadingAnchor.constraint(equalTo: addContainer.leadingAnchor),
+            dashOverlay.trailingAnchor.constraint(equalTo: addContainer.trailingAnchor),
+            dashOverlay.bottomAnchor.constraint(equalTo: addContainer.bottomAnchor),
         ])
     }
 
     required init?(coder: NSCoder) {
         nil
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        dashLayer.frame = addContainer.bounds
-        let inset = dashLayer.lineWidth / 2
-        let rect = addContainer.bounds.insetBy(dx: inset, dy: inset)
-        let radius: CGFloat = 24
-        let path = UIBezierPath(roundedRect: rect, cornerRadius: min(radius, rect.width / 2, rect.height / 2))
-        dashLayer.path = path.cgPath
     }
 
     func configureImage(url: URL?) {
@@ -100,15 +125,16 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
         imageView.isHidden = true
         addContainer.isHidden = false
         applyAddCenterImage()
+        dashOverlay.setNeedsLayout()
     }
 
     private func applyAddCenterImage() {
         if let img = UIImage(named: Self.addCenterImageAssetName) {
-            centerAddImageView.image = img
+            centerAddImageView.image = img.withRenderingMode(.alwaysOriginal)
             centerAddImageView.tintColor = nil
         } else {
-            centerAddImageView.image = UIImage(systemName: "plus.circle.fill")?.withRenderingMode(.alwaysTemplate)
-            centerAddImageView.tintColor = .appReadMore
+            centerAddImageView.image = UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate)
+            centerAddImageView.tintColor = InsectDetailMyCollectionAddStyle.stroke
         }
     }
 

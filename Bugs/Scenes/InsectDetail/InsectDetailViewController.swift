@@ -42,7 +42,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private var isPresentingAddToCollectionFlow = false
     private var isRemovingFromCollection = false
-    /// Есть id вида с API — можно вызывать `POST collection` / `collection/upload`.
+    /// Есть id вида с API — можно вызывать `POST collection/`.
     private var isAddToCollectionAvailableFromAPI = false
     /// Коллекция по этому виду есть (ответ `GET insects/` или только что создали).
     private var isListedInUserCollection = false
@@ -126,6 +126,19 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private let myCollectionPlaque = InsectSectionHeaderPlaqueView()
 
+    private lazy var myCollectionHeaderRow: UIStackView = {
+        let spacer = UIView()
+        spacer.translatesAutoresizingMaskIntoConstraints = false
+        spacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        spacer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        let row = UIStackView(arrangedSubviews: [myCollectionPlaque, spacer])
+        row.axis = .horizontal
+        row.alignment = .center
+        row.spacing = 0
+        row.translatesAutoresizingMaskIntoConstraints = false
+        return row
+    }()
+
     private lazy var myCollectionLayout: UICollectionViewFlowLayout = {
         let l = UICollectionViewFlowLayout()
         l.scrollDirection = .horizontal
@@ -139,6 +152,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private lazy var myCollectionCollectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: myCollectionLayout)
         cv.backgroundColor = .clear
+        cv.clipsToBounds = false
         cv.showsHorizontalScrollIndicator = false
         cv.alwaysBounceHorizontal = true
         cv.dataSource = self
@@ -149,7 +163,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     }()
 
     private lazy var myCollectionStack: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [myCollectionPlaque, myCollectionCollectionView])
+        let s = UIStackView(arrangedSubviews: [myCollectionHeaderRow, myCollectionCollectionView])
         s.axis = .vertical
         s.alignment = .fill
         s.spacing = 12
@@ -592,7 +606,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         bitesPlaque.isHidden = true
         bitesBlockHolder.isHidden = true
         bitesColumnStackTopConstraint.constant = 0
-        myCollectionPlaque.isHidden = true
+        myCollectionHeaderRow.isHidden = true
         myCollectionCollectionView.isHidden = true
         myCollectionHeightConstraint.constant = 0
     }
@@ -615,9 +629,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private func applyCollectionChrome() {
         let showRemove = isInCollection || isListedInUserCollection
-        let showAdd = isAddToCollectionAvailableFromAPI && !isListedInUserCollection && !isInCollection
         deleteFromCollectionButton.isHidden = !showRemove
-        addToCollectionControl.isHidden = !showAdd
+        addToCollectionControl.isHidden = false
         updateScrollInsetForAddToCollectionButton()
     }
 
@@ -628,11 +641,6 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     /// Скролл на весь экран; кнопка поверх. Нижний inset, чтобы последний контент можно было прокрутить выше кнопки.
     private func updateScrollInsetForAddToCollectionButton() {
-        guard !isInCollection, !addToCollectionControl.isHidden else {
-            scrollView.contentInset.bottom = 0
-            scrollView.verticalScrollIndicatorInsets.bottom = 0
-            return
-        }
         let visibleBottom = scrollView.frame.maxY
         let buttonTop = addToCollectionControl.frame.minY
         let overlap = max(0, visibleBottom - buttonTop)
@@ -825,8 +833,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         case .success:
             prefilledCollectionJPEG = nil
             isListedInUserCollection = true
-            isAddToCollectionAvailableFromAPI = false
+            isAddToCollectionAvailableFromAPI = true
             applyCollectionChrome()
+            interactor?.loadDetail(request: InsectDetail.Load.Request(showsLoadingOverlay: false))
             presentAddToCollectionSuccessOverlay()
         case .failure(let title, let message):
             isPresentingAddToCollectionFlow = false
@@ -851,6 +860,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
                 isAddToCollectionAvailableFromAPI = true
             }
             applyCollectionChrome()
+            interactor?.loadDetail(request: InsectDetail.Load.Request(showsLoadingOverlay: false))
         case .failure(let title, let message):
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(
@@ -884,7 +894,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         galleryCollectionView.isHidden = viewModel.galleryImageAssetNames.isEmpty
         galleryCollectionView.reloadData()
         let showsMyCollection = !viewModel.userCollectionPhotoURLs.isEmpty
-        myCollectionPlaque.isHidden = !showsMyCollection
+        myCollectionHeaderRow.isHidden = !showsMyCollection
         myCollectionCollectionView.isHidden = !showsMyCollection
         myCollectionHeightConstraint.constant = showsMyCollection ? 80 : 0
         myCollectionStackHeightZeroConstraint.isActive = !showsMyCollection
