@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Albină europeană, albină occidentală, albină";
 "insect.detail.section.description" = "Descriere";
 "insect.detail.read_more" = "Citeşte mai mult";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Albina de vest (Apis mellifera) este printre cei mai importanți polenizatori gestionați în agricultură și ecosistemele sălbatice. Originar din Europa, Asia de Vest și Africa, a fost răspândit în întreaga lume de către apicultori pentru producția de miere și polenizarea culturilor.\n\nO colonie este un superorganism: o singură matcă fertilă depune ouă, în timp ce mii de lucrătoare hrănesc, alăptează larvele, construiesc pieptene și apără cuibul. Dronele masculi apar sezonier și se împerechează cu matci din alte colonii. Lucrătorii comunică direcția și distanța față de sursele bogate de hrană prin dansul waggle și împărtășesc informații prin atingere și feromoni.\n\nFurătorii vizitează multe specii de plante, transferând polen pe măsură ce se deplasează. Acest comportament susține biodiversitatea și culturile alimentare - de la livezi și fructe de pădure până la semințe oleaginoase și pepeni. Apicultorii gestionează stupii pentru a echilibra recolta de miere cu sănătatea coloniei, monitorizarea dăunătorilor, bolilor și stresului nutrițional.\n\nDeși în general docile la flori, albinele își apără stupul dacă percep o amenințare; înțelegerea indiciilor lor reduce înțepăturile. Pierderea habitatelor, pesticidele, agenții patogeni și schimbările climatice provoacă atât populațiile sălbatice, cât și cele gestionate. Protejarea resurselor florale și adoptarea unui management atent ajută la susținerea acestor insecte remarcabile pentru sezoanele viitoare.";
 "insect.detail.section.characteristics" = "Caracteristici";
 "insect.detail.section.classification" = "Clasificarea științifică";

@@ -63,6 +63,7 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
                 descriptionSectionTitle: L10n.string(response.descriptionSectionKey),
                 descriptionBody: response.descriptionBodyOverride ?? L10n.string(response.descriptionBodyKey),
                 readMoreTitle: L10n.string(response.readMoreKey),
+                readLessTitle: L10n.string("insect.detail.read_less"),
                 characteristicsSectionTitle: L10n.string(response.characteristicsSectionKey),
                 characteristicRows: rows,
                 classificationSectionTitle: L10n.string(response.classificationSectionKey),

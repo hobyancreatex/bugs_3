@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "ヨーロッパミツバチ、西洋ミツバチ、ミツバチ";
 "insect.detail.section.description" = "説明";
 "insect.detail.read_more" = "続きを読む";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "西洋ミツバチ (Apis mellifera) は、農業や野生生態系において最も重要な管理された花粉媒介者の 1 つです。ヨーロッパ、西アジア、アフリカが原産で、蜂蜜の生産や作物の受粉のために養蜂家によって世界中に広まりました。\n\nコロニーは超生物です。1 羽の繁殖力のある女王バチが卵を産み、その一方で数千匹のメスの働きアリが餌を探し、幼虫の世話をし、巣を作り、巣を守ります。雄の雄蜂は季節ごとに出現し、他のコロニーの女王蜂と交尾します。労働者はワッグルダンスを通じて豊かな食料源までの方向や距離を伝え、触覚やフェロモンによって情報を共有する。\n\n採食者は多くの植物種を訪れ、移動しながら花粉を運びます。この行動は、果樹園やベリー類から油糧種子やメロンに至るまで、生物多様性と食用作物を支えています。養蜂家は蜂蜜の収穫とコロニーの健康のバランスを保つために巣箱を管理し、害虫、病気、栄養ストレスを監視します。\n\nミツバチは花に対しては通常おとなしいですが、脅威を感知すると巣を守ります。彼らの合図を理解すれば、刺されることは減ります。生息地の喪失、農薬、病原体、気候変動は、野生個体群と管理個体群の両方に課題をもたらしています。花資源を保護し、慎重に管理することで、これらの注目すべき昆虫を将来の季節に維持することができます。";
 "insect.detail.section.characteristics" = "特徴";
 "insect.detail.section.classification" = "科学的分類";

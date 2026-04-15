@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Nyuki ya Asali ya Ulaya, Nyuki ya Asali ya Magharibi, Nyuki ya Asali";
 "insect.detail.section.description" = "Maelezo";
 "insect.detail.read_more" = "Soma Zaidi";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Nyuki wa asali wa magharibi (Apis mellifera) ni miongoni mwa wachavushaji muhimu wanaosimamiwa katika kilimo na mifumo ikolojia ya porini. Asili yake ni Ulaya, magharibi mwa Asia na Afrika, imeenezwa duniani kote na wafugaji nyuki kwa ajili ya uzalishaji wa asali na uchavushaji wa mazao.\n\nMakoloni ni viumbe hai: malkia mmoja mwenye rutuba hutaga mayai, wakati maelfu ya wafanyakazi wa kike hutafuta chakula, kunyonyesha mabuu, kujenga sega, na kulinda kiota. Ndege zisizo na rubani za kiume huonekana kwa msimu na kujamiiana na malkia kutoka makoloni mengine. Wafanyikazi huwasiliana mwelekeo na umbali wa vyanzo tajiri vya chakula kupitia densi ya kutembeza na kushiriki habari kwa kugusa na pheromones.\n\nWakulima hutembelea aina nyingi za mimea, wakihamisha chavua wanaposonga. Tabia hii inasaidia bayoanuwai na mazao ya chakula-kutoka bustani na matunda kwa mbegu za mafuta na matikiti. Wafugaji nyuki husimamia mizinga ili kusawazisha uvunaji wa asali na afya ya kundi, ufuatiliaji wa wadudu, magonjwa, na mkazo wa lishe.\n\nIngawa kwa ujumla wao ni watulivu kwenye maua, nyuki wa asali hulinda mizinga yao ikiwa wanaona tishio; kuelewa dalili zao hupunguza miiba. Upotevu wa makazi, dawa za kuua wadudu, vimelea vya magonjwa, na mabadiliko ya hali ya hewa changamoto kwa wakazi wa porini na wanaosimamiwa. Kulinda rasilimali za maua na kutumia usimamizi makini husaidia kudumisha wadudu hawa wa ajabu kwa misimu ijayo.";
 "insect.detail.section.characteristics" = "Sifa";
 "insect.detail.section.classification" = "Uainishaji wa kisayansi";

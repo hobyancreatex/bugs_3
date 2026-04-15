@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Abelha Europeia, Abelha Ocidental, Abelha";
 "insect.detail.section.description" = "Descrição";
 "insect.detail.read_more" = "Leia mais";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "A abelha melífera ocidental (Apis mellifera) está entre os polinizadores manejados mais importantes na agricultura e nos ecossistemas selvagens. Nativo da Europa, Ásia Ocidental e África, foi espalhado por todo o mundo por apicultores para produção de mel e polinização de culturas.\n\nUma colônia é um superorganismo: uma única rainha fértil põe ovos, enquanto milhares de operárias se alimentam, cuidam das larvas, constroem favos e defendem o ninho. Os zangões machos aparecem sazonalmente e acasalam com rainhas de outras colônias. Os trabalhadores comunicam a direção e a distância até fontes ricas de alimentos por meio da dança do balanço e compartilham informações por toque e feromônios.\n\nAs forrageadoras visitam muitas espécies de plantas, transferindo pólen à medida que se movem. Este comportamento apoia a biodiversidade e as culturas alimentares – desde pomares e bagas até sementes oleaginosas e melões. Os apicultores gerenciam as colmeias para equilibrar a colheita de mel com a saúde das colônias, monitorando pragas, doenças e estresse nutricional.\n\nEmbora geralmente dóceis com as flores, as abelhas defendem sua colméia caso percebam uma ameaça; compreender suas dicas reduz as picadas. A perda de habitat, os pesticidas, os agentes patogénicos e as alterações climáticas desafiam tanto as populações selvagens como as geridas. A proteção dos recursos florais e a adoção de um manejo cuidadoso ajudam a sustentar esses insetos notáveis ​​nas estações futuras.";
 "insect.detail.section.characteristics" = "Características";
 "insect.detail.section.classification" = "Classificação científica";

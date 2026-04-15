@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europæisk honningbi, vestlig honningbi, honningbi";
 "insect.detail.section.description" = "Beskrivelse";
 "insect.detail.read_more" = "Læs mere";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Den vestlige honningbi (Apis mellifera) er blandt de vigtigste forvaltede bestøvere i landbruget og vilde økosystemer. Den er hjemmehørende i Europa, det vestlige Asien og Afrika og er blevet spredt over hele verden af ​​biavlere til honningproduktion og afgrødebestøvning.\n\nEn koloni er en superorganisme: en enkelt frugtbar dronning lægger æg, mens tusindvis af kvindelige arbejdere fouragerer, plejer larver, bygger kam og forsvarer reden. Handroner optræder sæsonmæssigt og parrer sig med dronninger fra andre kolonier. Arbejdere kommunikerer retningen og afstanden til rige fødekilder gennem logrende dans og deler information ved berøring og feromoner.\n\nForagere besøger mange plantearter og overfører pollen, mens de bevæger sig. Denne adfærd understøtter biodiversitet og fødevareafgrøder – fra frugtplantager og bær til oliefrø og meloner. Biavlere klarer bistader for at balancere honninghøst med kolonisundhed, overvågning for skadedyr, sygdomme og ernæringsmæssig stress.\n\nSelvom honningbier generelt er føjelige til blomster, forsvarer honningbier deres bikube, hvis de opfatter en trussel; at forstå deres signaler reducerer stik. Tab af levesteder, pesticider, patogener og klimaændringer udfordrer både vilde og forvaltede populationer. Beskyttelse af blomsterressourcer og omhyggelig forvaltning hjælper med at opretholde disse bemærkelsesværdige insekter til fremtidige sæsoner.";
 "insect.detail.section.characteristics" = "Karakteristika";
 "insect.detail.section.classification" = "Videnskabelig klassifikation";

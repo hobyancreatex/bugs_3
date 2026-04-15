@@ -8,14 +8,35 @@ import UIKit
 enum InsectDetailDescriptionComposer {
 
     static let readMoreURL = URL(string: "insect-detail://read-more")!
+    static let readLessURL = URL(string: "insect-detail://read-less")!
 
     /// До 8 полных строк + девятая с «… Read More»; короткий текст без ссылки.
     private static let collapsedMaxLines: CGFloat = 9
+
+    /// Текст длиннее «свернутого» превью — нужны Read More / Read Less.
+    static func isTextLongEnoughToCollapse(fullText: String, width: CGFloat) -> Bool {
+        guard width > 0, !fullText.isEmpty else { return false }
+        let bodyFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.paragraphSpacing = 0
+        paragraph.lineSpacing = 0
+        let bodyAttrs: [NSAttributedString.Key: Any] = [
+            .font: bodyFont,
+            .foregroundColor: UIColor.appDescriptionBody,
+            .paragraphStyle: paragraph
+        ]
+        let fullAttr = NSAttributedString(string: fullText, attributes: bodyAttrs)
+        let maxHeight = bodyFont.lineHeight * collapsedMaxLines + 4
+        return height(of: fullAttr, width: width) > maxHeight
+    }
 
     static func expandedAttributed(fullText: String) -> NSAttributedString {
         let bodyFont = UIFont.systemFont(ofSize: 16, weight: .regular)
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = .byWordWrapping
+        paragraph.paragraphSpacing = 0
+        paragraph.lineSpacing = 0
         let attrs: [NSAttributedString.Key: Any] = [
             .font: bodyFont,
             .foregroundColor: UIColor.appDescriptionBody,
@@ -24,11 +45,42 @@ enum InsectDetailDescriptionComposer {
         return NSAttributedString(string: fullText, attributes: attrs)
     }
 
+    /// Полный текст + ссылка «Read Less» сразу под текстом (без лишних пустых строк в конце описания).
+    static func expandedAttributedWithReadLess(fullText: String, readLessTitle: String) -> NSAttributedString {
+        let trimmedBody = fullText.replacingOccurrences(
+            of: "\\s+$",
+            with: "",
+            options: .regularExpression
+        )
+        let base = NSMutableAttributedString(attributedString: expandedAttributed(fullText: trimmedBody))
+        let readLessFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.paragraphSpacing = 0
+        paragraph.lineSpacing = 0
+        let bodyAttrs: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16, weight: .regular),
+            .foregroundColor: UIColor.appDescriptionBody,
+            .paragraphStyle: paragraph
+        ]
+        let readLessAttrs: [NSAttributedString.Key: Any] = [
+            .font: readLessFont,
+            .foregroundColor: UIColor.appReadMore,
+            .link: readLessURL
+        ]
+        // Один перевод строки между абзацем и ссылкой — без «дыры» на несколько строк.
+        base.append(NSAttributedString(string: "\n", attributes: bodyAttrs))
+        base.append(NSAttributedString(string: readLessTitle, attributes: readLessAttrs))
+        return base
+    }
+
     static func collapsedAttributed(fullText: String, width: CGFloat, readMoreTitle: String) -> NSAttributedString {
         let bodyFont = UIFont.systemFont(ofSize: 16, weight: .regular)
         let readMoreFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = .byWordWrapping
+        paragraph.paragraphSpacing = 0
+        paragraph.lineSpacing = 0
         let bodyAttrs: [NSAttributedString.Key: Any] = [
             .font: bodyFont,
             .foregroundColor: UIColor.appDescriptionBody,

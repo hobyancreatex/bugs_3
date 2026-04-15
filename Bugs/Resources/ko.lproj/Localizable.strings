@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "유럽 꿀벌, 서양 꿀벌, 꿀벌";
 "insect.detail.section.description" = "설명";
 "insect.detail.read_more" = "자세히 알아보기";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "서부꿀벌(Apis mellifera)은 농업과 야생 생태계에서 가장 중요한 관리 수분매개자 중 하나입니다. 유럽, 서아시아, 아프리카가 원산지이며, 벌꿀 생산과 작물 수분을 위해 양봉가에 의해 전 세계로 퍼졌습니다.\n\n군집은 초유기체입니다. 번식력이 있는 여왕 한 마리가 알을 낳고, 수천 명의 암컷 일개미가 먹이를 찾고, 애벌레를 돌보고, 빗을 만들고, 둥지를 방어합니다. 수컷 수벌은 계절에 따라 나타나며 다른 식민지의 여왕벌과 짝짓기를 합니다. 일꾼들은 와글댄스를 통해 풍부한 식량원에 대한 방향과 거리를 전달하고 접촉과 페로몬을 통해 정보를 공유합니다.\n\n채집자는 많은 식물 종을 방문하여 이동하면서 꽃가루를 옮깁니다. 이러한 행동은 과수원과 열매부터 유지 종자와 멜론에 이르기까지 생물 다양성과 식량 작물을 지원합니다. 양봉가는 벌통을 관리하여 벌집 건강과 벌꿀 수확의 균형을 맞추고 해충, 질병 ​​및 영양 스트레스를 모니터링합니다.\n\n일반적으로 꽃에는 온순하지만, 꿀벌은 위협을 감지하면 벌집을 보호합니다. 그들의 단서를 이해하면 찌르는 소리가 줄어 듭니다. 서식지 손실, 살충제, 병원균 및 기후 변화는 야생 개체군과 관리되는 개체군 모두에게 문제가 됩니다. 꽃 자원을 보호하고 신중한 관리를 채택하면 이 놀라운 곤충이 미래의 계절을 위해 유지되는 데 도움이 됩니다.";
 "insect.detail.section.characteristics" = "특성";
 "insect.detail.section.classification" = "과학적 분류";

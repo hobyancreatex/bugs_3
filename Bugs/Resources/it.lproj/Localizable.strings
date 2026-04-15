@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Ape mellifera europea, ape mellifera occidentale, ape mellifera";
 "insect.detail.section.description" = "Descrizione";
 "insect.detail.read_more" = "Leggi di più";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "L’ape mellifera occidentale (Apis mellifera) è tra i più importanti impollinatori gestiti in agricoltura e negli ecosistemi selvatici. Originario dell'Europa, dell'Asia occidentale e dell'Africa, è stato diffuso in tutto il mondo dagli apicoltori per la produzione di miele e l'impollinazione delle colture.\n\nUna colonia è un superorganismo: un’unica regina fertile depone le uova, mentre migliaia di lavoratrici si nutrono, allattano le larve, costruiscono favi e difendono il nido. I droni maschi compaiono stagionalmente e si accoppiano con regine di altre colonie. I lavoratori comunicano la direzione e la distanza verso ricche fonti di cibo attraverso la danza dell'agitazione e condividono informazioni tramite il tocco e i feromoni.\n\nI raccoglitori visitano molte specie di piante, trasferendo il polline mentre si muovono. Questo comportamento sostiene la biodiversità e le colture alimentari, dai frutteti e i frutti di bosco ai semi oleosi e ai meloni. Gli apicoltori gestiscono gli alveari per bilanciare la raccolta del miele con la salute delle colonie, monitorando parassiti, malattie e stress nutrizionale.\n\nSebbene generalmente docili con i fiori, le api mellifere difendono il loro alveare se percepiscono una minaccia; comprendere i loro segnali riduce le punture. La perdita di habitat, i pesticidi, gli agenti patogeni e i cambiamenti climatici mettono a dura prova sia le popolazioni selvatiche che quelle gestite. La protezione delle risorse floreali e l'adozione di un'attenta gestione aiutano a sostenere questi straordinari insetti per le stagioni future.";
 "insect.detail.section.characteristics" = "Caratteristiche";
 "insect.detail.section.classification" = "Classificazione scientifica";

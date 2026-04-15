@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europeiskt honungsbi, västra honungsbi, honungsbi";
 "insect.detail.section.description" = "Beskrivning";
 "insect.detail.read_more" = "Läs mer";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Det västra honungsbiet (Apis mellifera) är bland de viktigaste hanterade pollinatörerna i jordbruket och vilda ekosystem. Den kommer från Europa, västra Asien och Afrika och har spridits över hela världen av biodlare för honungsproduktion och pollinering av grödor.\n\nEn koloni är en superorganism: en enda fertil drottning lägger ägg, medan tusentals kvinnliga arbetare söker föda, sköter larver, bygger kam och försvarar boet. Manliga drönare dyker upp säsongsvis och parar sig med drottningar från andra kolonier. Arbetare kommunicerar riktningen och avståndet till rika matkällor genom viftande dans och delar information genom beröring och feromoner.\n\nForagerare besöker många växtarter och överför pollen när de rör sig. Detta beteende stödjer biologisk mångfald och matgrödor – från fruktträdgårdar och bär till oljeväxter och meloner. Biodlare hanterar bikupor för att balansera honungsskörd med kolonihälsa, övervakning av skadedjur, sjukdomar och näringsstress.\n\nÄven om honungsbin i allmänhet är fogliga för blommor, försvarar hon sin bikupa om de uppfattar ett hot; att förstå deras ledtrådar minskar sting. Förlust av livsmiljöer, bekämpningsmedel, patogener och klimatförändringar utmanar både vilda och förvaltade populationer. Att skydda blomresurser och anta noggrann förvaltning hjälper till att upprätthålla dessa anmärkningsvärda insekter för framtida säsonger.";
 "insect.detail.section.characteristics" = "Egenskaper";
 "insect.detail.section.classification" = "Vetenskaplig klassificering";

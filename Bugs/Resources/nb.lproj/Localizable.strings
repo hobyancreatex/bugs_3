@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europeisk honningbi, vestlig honningbi, honningbi";
 "insect.detail.section.description" = "Beskrivelse";
 "insect.detail.read_more" = "Les mer";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Den vestlige honningbien (Apis mellifera) er blant de viktigste forvaltede pollinatorene i jordbruk og ville økosystemer. Den er hjemmehørende i Europa, Vest-Asia og Afrika, og har blitt spredt over hele verden av birøktere for honningproduksjon og avlingspollinering.\n\nEn koloni er en superorganisme: en enkelt fruktbar dronning legger egg, mens tusenvis av kvinnelige arbeidere søker, pleier larver, bygger kam og forsvarer reiret. Hanndroner dukker opp sesongmessig og parer seg med dronninger fra andre kolonier. Arbeidere kommuniserer retningen og avstanden til rike matkilder gjennom waggle-dansen og deler informasjon ved berøring og feromoner.\n\nForagere besøker mange plantearter og overfører pollen mens de beveger seg. Denne oppførselen støtter biologisk mangfold og matvekster – fra frukthager og bær til oljefrø og meloner. Birøktere klarer bikuber for å balansere honninghøst med kolonihelse, overvåking for skadedyr, sykdommer og ernæringsmessig stress.\n\nSelv om de vanligvis er føyelige til blomster, forsvarer honningbier bikuben deres hvis de oppfatter en trussel; å forstå signalene deres reduserer stikk. Tap av habitat, plantevernmidler, patogener og klimaendringer utfordrer både ville og forvaltede populasjoner. Beskyttelse av blomsterressurser og forsiktig forvaltning hjelper til med å opprettholde disse bemerkelsesverdige insektene for fremtidige sesonger.";
 "insect.detail.section.characteristics" = "Kjennetegn";
 "insect.detail.section.classification" = "Vitenskapelig klassifisering";

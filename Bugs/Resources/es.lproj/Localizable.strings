@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Abeja Europea, Abeja Occidental, Abeja";
 "insect.detail.section.description" = "Descripción";
 "insect.detail.read_more" = "Leer más";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "La abeja melífera occidental (Apis mellifera) se encuentra entre los polinizadores gestionados más importantes en la agricultura y los ecosistemas silvestres. Originaria de Europa, Asia occidental y África, los apicultores la han extendido por todo el mundo para la producción de miel y la polinización de cultivos.\n\nUna colonia es un superorganismo: una única reina fértil pone huevos, mientras miles de obreras buscan alimento, cuidan las larvas, construyen panales y defienden el nido. Los zánganos macho aparecen estacionalmente y se aparean con reinas de otras colonias. Los trabajadores comunican la dirección y la distancia a las fuentes de alimentos ricos a través de la danza del meneo y comparten información mediante el tacto y las feromonas.\n\nLos recolectores visitan muchas especies de plantas y transfieren polen a medida que se mueven. Este comportamiento respalda la biodiversidad y los cultivos alimentarios, desde huertos y bayas hasta semillas oleaginosas y melones. Los apicultores manejan las colmenas para equilibrar la cosecha de miel con la salud de la colonia, monitoreando plagas, enfermedades y estrés nutricional.\n\nAunque generalmente son dóciles con las flores, las abejas melíferas defienden su colmena si perciben una amenaza; comprender sus señales reduce las picaduras. La pérdida de hábitat, los pesticidas, los patógenos y los cambios climáticos desafían tanto a las poblaciones silvestres como a las gestionadas. Proteger los recursos florales y adoptar una gestión cuidadosa ayuda a sustentar a estos notables insectos para temporadas futuras.";
 "insect.detail.section.characteristics" = "Características";
 "insect.detail.section.classification" = "clasificación científica";

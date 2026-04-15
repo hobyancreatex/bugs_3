@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europäische Honigbiene, Westliche Honigbiene, Honigbiene";
 "insect.detail.section.description" = "Beschreibung";
 "insect.detail.read_more" = "Lesen Sie mehr";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Die Westliche Honigbiene (Apis mellifera) gehört zu den wichtigsten kontrollierten Bestäubern in der Landwirtschaft und in wilden Ökosystemen. Sie ist in Europa, Westasien und Afrika beheimatet und wurde von Imkern weltweit zur Honigproduktion und zur Bestäubung von Nutzpflanzen verbreitet.\n\nEine Kolonie ist ein Superorganismus: Eine einzelne fruchtbare Königin legt Eier, während Tausende weibliche Arbeiterinnen nach Futter suchen, Larven pflegen, Waben bauen und das Nest verteidigen. Männliche Drohnen erscheinen saisonal und paaren sich mit Königinnen aus anderen Kolonien. Arbeiter teilen durch den Schwänzeltanz die Richtung und Entfernung zu reichhaltigen Nahrungsquellen mit und tauschen Informationen durch Berührung und Pheromone aus.\n\nSammler besuchen viele Pflanzenarten und übertragen dabei Pollen. Dieses Verhalten fördert die Artenvielfalt und Nahrungspflanzen – von Obstgärten und Beeren bis hin zu Ölsaaten und Melonen. Imker verwalten Bienenstöcke, um die Honigernte mit der Gesundheit des Volkes in Einklang zu bringen, und überwachen sie auf Schädlinge, Krankheiten und Ernährungsstress.\n\nObwohl Honigbienen im Allgemeinen Blumen gegenüber fügsam sind, verteidigen sie ihren Bienenstock, wenn sie eine Bedrohung verspüren. Das Verstehen ihrer Hinweise reduziert Stiche. Lebensraumverlust, Pestizide, Krankheitserreger und Klimaveränderungen stellen sowohl wild lebende als auch bewirtschaftete Populationen vor Herausforderungen. Der Schutz der Blumenressourcen und eine sorgfältige Bewirtschaftung tragen dazu bei, diese bemerkenswerten Insekten für zukünftige Saisons zu erhalten.";
 "insect.detail.section.characteristics" = "Eigenschaften";
 "insect.detail.section.classification" = "Wissenschaftliche Klassifizierung";

@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Avrupa Bal Arısı, Batı Bal Arısı, Bal Arısı";
 "insect.detail.section.description" = "Tanım";
 "insect.detail.read_more" = "Devamını oku";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Batı bal arısı (Apis mellifera), tarımda ve yabani ekosistemlerde yönetilen en önemli tozlaştırıcılar arasındadır. Anavatanı Avrupa, Batı Asya ve Afrika'dır ve arıcılar tarafından bal üretimi ve mahsulün tozlaşması amacıyla dünya çapında yayılmıştır.\n\nKoloni bir süper organizmadır: Tek bir verimli kraliçe yumurta bırakır, binlerce kadın işçi ise yiyecek arar, larvaları besler, tarak yapar ve yuvayı savunur. Erkek erkek arılar mevsimsel olarak ortaya çıkar ve diğer kolonilerden kraliçelerle çiftleşir. İşçiler, sallanma dansı yoluyla zengin besin kaynaklarının yönünü ve mesafesini iletiyor ve dokunarak ve feromonlarla bilgi paylaşıyorlar.\n\nToplayıcılar birçok bitki türünü ziyaret ederek hareket ettikçe polen aktarırlar. Bu davranış, meyve bahçeleri ve meyvelerden yağlı tohumlara ve kavunlara kadar biyolojik çeşitliliği ve gıda ürünlerini destekler. Arıcılar, bal hasadını koloni sağlığıyla dengelemek, zararlıları, hastalıkları ve beslenme stresini izlemek için kovanları yönetir.\n\nBal arıları genellikle çiçekler konusunda uysal olsalar da bir tehdit algıladıklarında kovanlarını savunurlar; ipuçlarını anlamak sokmaları azaltır. Habitat kaybı, pestisitler, patojenler ve iklim değişiklikleri hem yabani hem de yönetilen popülasyonlara meydan okuyor. Çiçek kaynaklarının korunması ve dikkatli yönetimin benimsenmesi, bu olağanüstü böceklerin gelecek sezonlarda korunmasına yardımcı olur.";
 "insect.detail.section.characteristics" = "Özellikler";
 "insect.detail.section.classification" = "Bilimsel sınıflandırma";

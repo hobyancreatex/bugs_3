@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europese honingbij, westerse honingbij, honingbij";
 "insect.detail.section.description" = "Beschrijving";
 "insect.detail.read_more" = "Lees meer";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "De westerse honingbij (Apis mellifera) is een van de belangrijkste beheerde bestuivers in de landbouw en wilde ecosystemen. Inheems in Europa, West-Azië en Afrika, is het door imkers wereldwijd verspreid voor de honingproductie en bestuiving van gewassen.\n\nEen kolonie is een superorganisme: een enkele vruchtbare koningin legt eieren, terwijl duizenden vrouwelijke werksters foerageren, larven verzorgen, raat bouwen en het nest verdedigen. Mannelijke drones verschijnen seizoensgebonden en paren met koninginnen uit andere kolonies. Werknemers communiceren de richting en afstand tot rijke voedselbronnen via de kwispeldans en delen informatie via aanraking en feromonen.\n\nFoeragers bezoeken veel plantensoorten en brengen stuifmeel over terwijl ze bewegen. Dit gedrag ondersteunt de biodiversiteit en voedselgewassen – van boomgaarden en bessen tot oliehoudende zaden en meloenen. Imkers beheren de bijenkorven om de honingoogst in evenwicht te brengen met de gezondheid van de kolonies, waarbij ze toezicht houden op plagen, ziekten en voedingsstress.\n\nHoewel honingbijen over het algemeen volgzaam zijn op het gebied van bloemen, verdedigen ze hun bijenkorf als ze een bedreiging waarnemen; het begrijpen van hun signalen vermindert steken. Habitatverlies, pesticiden, ziekteverwekkers en klimaatveranderingen vormen een uitdaging voor zowel wilde als beheerde populaties. Het beschermen van bloemenbronnen en het toepassen van zorgvuldig beheer helpt deze opmerkelijke insecten voor toekomstige seizoenen in stand te houden.";
 "insect.detail.section.characteristics" = "Kenmerken";
 "insect.detail.section.classification" = "Wetenschappelijke classificatie";

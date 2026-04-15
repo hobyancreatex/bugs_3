@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "欧洲蜜蜂、西方蜜蜂、蜜蜂";
 "insect.detail.section.description" = "描述";
 "insect.detail.read_more" = "了解更多";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "西方蜜蜂 (Apis mellifera) 是农业和野生生态系统中最重要的受管理授粉媒介之一。它原产于欧洲、西亚和非洲，已被养蜂人传播到世界各地，用于蜂蜜生产和农作物授粉。\n\n蜂群是一个超级有机体：一只能育的蜂王产卵，而数以千计的雌性工蜂则觅食、哺育幼虫、筑巢并保卫巢穴。雄性雄蜂会季节性出现，并与其他蜂群的蜂王交配。工蚁通过摇摆舞传达丰富食物来源的方向和距离，并通过触摸和信息素分享信息。\n\n觅食者会拜访许多植物物种，并在它们移动时传播花粉。这种行为支持生物多样性和粮食作物——从果园和浆果到油籽和瓜类。养蜂人管理蜂箱，以平衡蜂蜜收获与蜂群健康，监测害虫、疾病和营养压力。\n\n虽然蜜蜂通常对花朵很温顺，但如果它们察觉到威胁，它们就会保卫自己的蜂巢。了解它们的暗示可以减少刺痛。栖息地丧失、杀虫剂、病原体和气候变化给野生和管理种群带来挑战。保护花卉资源并采取精心管理有助于在未来的季节里维持这些非凡的昆虫。";
 "insect.detail.section.characteristics" = "特点";
 "insect.detail.section.classification" = "科学分类";

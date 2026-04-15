@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Evropská včela medonosná, včela západní, včela medonosná";
 "insect.detail.section.description" = "Popis";
 "insect.detail.read_more" = "Přečtěte si více";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Včela medonosná (Apis mellifera) patří mezi nejdůležitější řízené opylovače v zemědělství a divokých ekosystémech. Pochází z Evropy, západní Asie a Afriky a včelaři jej rozšířili do celého světa pro produkci medu a opylování plodin.\n\nKolonie je superorganismus: jediná plodná královna klade vajíčka, zatímco tisíce dělnic shánějí potravu, kojí larvy, staví hřebeny a brání hnízdo. Samci trubců se objevují sezónně a páří se s královnami z jiných kolonií. Pracovníci sdělují směr a vzdálenost k bohatým zdrojům potravy prostřednictvím kývavého tance a sdílejí informace dotykem a feromony.\n\nSběrači navštěvují mnoho druhů rostlin a při svém pohybu přenášejí pyl. Toto chování podporuje biologickou rozmanitost a potravinářské plodiny – od sadů a bobulí až po olejnatá semena a melouny. Včelaři spravují úly tak, aby vyvážili sklizeň medu se zdravím včelstva, sledováním škůdců, nemocí a nutričním stresem.\n\nAčkoli jsou včely na květiny obecně poslušné, brání svůj úl, pokud zaznamenají hrozbu; porozumění jejich podnětům snižuje bodnutí. Ztráta biotopů, pesticidy, patogeny a klimatické změny jsou výzvou pro volně žijící i řízené populace. Ochrana květinových zdrojů a přijetí pečlivého řízení pomáhá udržet tento pozoruhodný hmyz pro budoucí období.";
 "insect.detail.section.characteristics" = "Charakteristika";
 "insect.detail.section.classification" = "Vědecká klasifikace";

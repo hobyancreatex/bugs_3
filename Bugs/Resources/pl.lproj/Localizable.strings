@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Europejska pszczoła miodna, pszczoła zachodnia, pszczoła miodna";
 "insect.detail.section.description" = "Opis";
 "insect.detail.read_more" = "Przeczytaj więcej";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Pszczoła miodna zachodnia (Apis mellifera) jest jednym z najważniejszych zapylaczy zarządzanych w rolnictwie i dzikich ekosystemach. Pochodzi z Europy, zachodniej Azji i Afryki, został rozprzestrzeniony na całym świecie przez pszczelarzy w celu produkcji miodu i zapylania roślin.\n\nKolonia to superorganizm: pojedyncza płodna królowa składa jaja, podczas gdy tysiące robotnic żeruje, karmi larwy, buduje grzebień i broni gniazda. Samce trutni pojawiają się sezonowo i kojarzą się z królowymi z innych kolonii. Pracownicy komunikują kierunek i odległość do bogatych źródeł pożywienia za pomocą machania i przekazują informacje za pomocą dotyku i feromonów.\n\nZbieracze odwiedzają wiele gatunków roślin, przenosząc pyłek podczas ruchu. Takie zachowanie wspiera różnorodność biologiczną i uprawy spożywcze — od sadów i jagód po nasiona oleiste i melony. Pszczelarze zarządzają ulami, aby zrównoważyć zbiory miodu ze zdrowiem rodziny, monitorując szkodniki, choroby i stres żywieniowy.\n\nChociaż pszczoły miodne są generalnie łagodne w stosunku do kwiatów, bronią swojego ula, jeśli zauważą zagrożenie; zrozumienie ich wskazówek zmniejsza użądlenia. Utrata siedlisk, pestycydy, patogeny i zmiany klimatyczne stanowią wyzwanie zarówno dla populacji dzikich, jak i zarządzanych. Ochrona zasobów kwiatowych i ostrożne zarządzanie pomaga utrzymać te niezwykłe owady w przyszłych porach roku.";
 "insect.detail.section.characteristics" = "Charakterystyka";
 "insect.detail.section.classification" = "Klasyfikacja naukowa";

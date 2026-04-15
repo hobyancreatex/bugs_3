@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Lebah Madu Eropa, Lebah Madu Barat, Lebah Madu";
 "insect.detail.section.description" = "Keterangan";
 "insect.detail.read_more" = "Baca selengkapnya";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Lebah madu barat (Apis mellifera) merupakan salah satu penyerbuk terkelola yang paling penting dalam pertanian dan ekosistem liar. Berasal dari Eropa, Asia Barat, dan Afrika, tanaman ini telah disebarkan ke seluruh dunia oleh peternak lebah untuk produksi madu dan penyerbukan tanaman.\n\nSebuah koloni adalah sebuah superorganisme: seekor ratu subur bertelur, sementara ribuan pekerja betina mencari makan, merawat larva, membuat sisir, dan mempertahankan sarang. Drone jantan muncul secara musiman dan kawin dengan ratu dari koloni lain. Para pekerja mengkomunikasikan arah dan jarak ke sumber makanan yang kaya melalui waggle dance dan berbagi informasi melalui sentuhan dan feromon.\n\nPenjelajah mengunjungi banyak spesies tumbuhan, memindahkan serbuk sari saat mereka bergerak. Perilaku ini mendukung keanekaragaman hayati dan tanaman pangan—mulai dari kebun buah-buahan dan buah beri hingga biji minyak dan melon. Peternak lebah mengelola sarangnya untuk menyeimbangkan panen madu dengan kesehatan koloni, memantau hama, penyakit, dan tekanan nutrisi.\n\nMeski umumnya jinak pada bunga, lebah madu mempertahankan sarangnya jika merasa ada ancaman; memahami isyarat mereka mengurangi sengatan. Hilangnya habitat, pestisida, patogen, dan perubahan iklim menjadi tantangan bagi populasi liar dan populasi yang dikelola. Melindungi sumber daya bunga dan menerapkan pengelolaan yang hati-hati membantu melestarikan serangga luar biasa ini untuk musim-musim mendatang.";
 "insect.detail.section.characteristics" = "Karakteristik";
 "insect.detail.section.classification" = "Klasifikasi ilmiah";

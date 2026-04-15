@@ -3,6 +3,7 @@
 //  Bugs
 //
 
+import AVFoundation
 import UIKit
 
 protocol InsectDetailDisplayLogic: AnyObject {
@@ -257,8 +258,35 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private var descriptionHeightConstraint: NSLayoutConstraint!
     private var descriptionBodyText = ""
     private var descriptionReadMoreTitle = ""
+    private var descriptionReadLessTitle = ""
     private var isDescriptionExpanded = false
     private var lastDescriptionLayoutWidth: CGFloat = 0
+    /// Заголовок по центру верхней полосы при прокрутке (научное имя).
+    private var navigationScrollTitle = ""
+    /// Показана ли полоса с фоном и заголовком (гистерезис на границе скролла).
+    private var scrollNavigationBarTitleVisible = false
+
+    private let scrollTitleChromeBackgroundView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .appBackground
+        v.alpha = 0
+        v.isUserInteractionEnabled = false
+        return v
+    }()
+
+    private let scrollNavTitleLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = .systemFont(ofSize: 16, weight: .semibold)
+        l.textColor = .appTextPrimary
+        l.textAlignment = .center
+        l.numberOfLines = 1
+        l.lineBreakMode = .byTruncatingTail
+        l.alpha = 0
+        l.isUserInteractionEnabled = false
+        return l
+    }()
 
     private let characteristicsPlaque = InsectSectionHeaderPlaqueView()
 
@@ -335,6 +363,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         addToCollectionControl.setTitle(addTitle, for: .normal)
         addToCollectionControl.accessibilityLabel = addTitle
         buildLayout()
+        scrollView.delegate = self
         refreshHeroPageIndicator()
         heroImageView.isUserInteractionEnabled = true
         heroImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heroImageTapped)))
@@ -350,8 +379,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        applySubscriptionStatusForAppearance()
+        syncScrollTitleChromeVisibility(animated: animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -401,6 +431,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             }
         }
         updateScrollInsetForAddToCollectionButton()
+        syncScrollTitleChromeVisibility(animated: false)
     }
 
     private func refreshHeroPageIndicator() {
@@ -424,6 +455,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func buildLayout() {
         view.addSubview(scrollView)
         view.addSubview(contentLoadingOverlay)
+        view.addSubview(scrollTitleChromeBackgroundView)
+        view.addSubview(scrollNavTitleLabel)
         scrollView.addSubview(contentView)
         contentView.addSubview(heroImageView)
         contentView.addSubview(galleryCollectionView)
@@ -570,13 +603,27 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             deleteFromCollectionButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             deleteFromCollectionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
+            scrollTitleChromeBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollTitleChromeBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollTitleChromeBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollTitleChromeBackgroundView.bottomAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 8),
+
+            scrollNavTitleLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+            scrollNavTitleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: backButton.trailingAnchor, constant: 8),
+            scrollNavTitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: deleteFromCollectionButton.leadingAnchor, constant: -8),
+
             addToCollectionControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 46),
             addToCollectionControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -46),
             addToCollectionControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             addToCollectionControl.heightAnchor.constraint(equalToConstant: 56)
         ])
+        let scrollTitleCenterX = scrollNavTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        scrollTitleCenterX.priority = UILayoutPriority(999)
+        scrollTitleCenterX.isActive = true
 
         view.bringSubviewToFront(contentLoadingOverlay)
+        view.bringSubviewToFront(scrollTitleChromeBackgroundView)
+        view.bringSubviewToFront(scrollNavTitleLabel)
         if !suppressesBackButton {
             view.bringSubviewToFront(backButton)
         }
@@ -716,7 +763,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
                     title: L10n.string("insect.detail.add_to_collection.source.camera"),
                     style: .default
                 ) { [weak self] _ in
-                    self?.presentImagePickerForCollection(sourceType: .camera)
+                    self?.presentCameraPickerForCollectionIfAllowed()
                 }
             )
         }
@@ -743,12 +790,94 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         present(sheet, animated: true)
     }
 
+    private func presentCameraPickerForCollectionIfAllowed() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            presentImagePickerForCollection(sourceType: .camera)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+                DispatchQueue.main.async {
+                    guard let self else { return }
+                    if granted {
+                        self.presentImagePickerForCollection(sourceType: .camera)
+                    } else {
+                        self.presentCameraAccessDeniedAlert()
+                    }
+                }
+            }
+        case .denied, .restricted:
+            presentCameraAccessDeniedAlert()
+        @unknown default:
+            presentCameraAccessDeniedAlert()
+        }
+    }
+
+    private func presentCameraAccessDeniedAlert() {
+        let alert = UIAlertController(
+            title: L10n.string("insect.detail.camera.access_denied.title"),
+            message: L10n.string("insect.detail.camera.access_denied.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: L10n.string("insect.detail.camera.access_denied.cancel"),
+                style: .cancel
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: L10n.string("insect.detail.camera.access_denied.settings"),
+                style: .default
+            ) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        )
+        present(alert, animated: true)
+    }
+
     private func presentImagePickerForCollection(sourceType: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = sourceType
         picker.modalPresentationStyle = .fullScreen
         present(picker, animated: true)
+    }
+
+    private func syncScrollTitleChromeVisibility(animated: Bool) {
+        guard !navigationScrollTitle.isEmpty, titleLabel.bounds.height > 0 else {
+            if scrollNavigationBarTitleVisible {
+                scrollNavigationBarTitleVisible = false
+                applyScrollTitleChromeVisible(false, animated: animated)
+            }
+            return
+        }
+        let anchor = max(0, titleLabel.frame.maxY - view.safeAreaInsets.top - 16)
+        let hysteresis: CGFloat = 12
+        let targetShow: Bool
+        if scrollNavigationBarTitleVisible {
+            targetShow = scrollView.contentOffset.y > anchor - hysteresis
+        } else {
+            targetShow = scrollView.contentOffset.y > anchor + hysteresis
+        }
+        guard targetShow != scrollNavigationBarTitleVisible else { return }
+        scrollNavigationBarTitleVisible = targetShow
+        applyScrollTitleChromeVisible(targetShow, animated: animated)
+    }
+
+    private func applyScrollTitleChromeVisible(_ visible: Bool, animated: Bool) {
+        scrollNavTitleLabel.text = navigationScrollTitle
+        let updates = {
+            self.scrollTitleChromeBackgroundView.alpha = visible ? 1 : 0
+            self.scrollNavTitleLabel.alpha = visible ? 1 : 0
+        }
+        if animated {
+            UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut, .beginFromCurrentState], animations: updates)
+        } else {
+            updates()
+        }
     }
 
     private func installAddToCollectionLoadingDim() {
@@ -827,6 +956,13 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         guard active else {
             contentLoadingOverlay.setActive(false)
             scrollView.isHidden = false
+            view.bringSubviewToFront(scrollTitleChromeBackgroundView)
+            view.bringSubviewToFront(scrollNavTitleLabel)
+            if !suppressesBackButton {
+                view.bringSubviewToFront(backButton)
+            }
+            view.bringSubviewToFront(deleteFromCollectionButton)
+            view.bringSubviewToFront(addToCollectionControl)
             return
         }
         contentLoadingOverlay.setActive(true, dimmedBackground: !hidesScroll)
@@ -927,6 +1063,10 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         applyAliases(prefix: viewModel.alsoKnownPrefix, names: viewModel.alsoKnownNames)
         descriptionBodyText = viewModel.descriptionBody
         descriptionReadMoreTitle = viewModel.readMoreTitle
+        descriptionReadLessTitle = viewModel.readLessTitle
+        navigationScrollTitle = viewModel.scientificTitle
+        scrollNavigationBarTitleVisible = false
+        applyScrollTitleChromeVisible(false, animated: false)
         isDescriptionExpanded = false
         lastDescriptionLayoutWidth = 0
         descriptionPlaque.setTitle(viewModel.descriptionSectionTitle)
@@ -990,7 +1130,14 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func applyDescriptionLayout(width: CGFloat) {
         guard width > 0 else { return }
         if isDescriptionExpanded {
-            descriptionTextView.attributedText = InsectDetailDescriptionComposer.expandedAttributed(fullText: descriptionBodyText)
+            if InsectDetailDescriptionComposer.isTextLongEnoughToCollapse(fullText: descriptionBodyText, width: width) {
+                descriptionTextView.attributedText = InsectDetailDescriptionComposer.expandedAttributedWithReadLess(
+                    fullText: descriptionBodyText,
+                    readLessTitle: descriptionReadLessTitle
+                )
+            } else {
+                descriptionTextView.attributedText = InsectDetailDescriptionComposer.expandedAttributed(fullText: descriptionBodyText)
+            }
         } else {
             descriptionTextView.attributedText = InsectDetailDescriptionComposer.collapsedAttributed(
                 fullText: descriptionBodyText,
@@ -998,8 +1145,21 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
                 readMoreTitle: descriptionReadMoreTitle
             )
         }
-        let size = descriptionTextView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
-        descriptionHeightConstraint.constant = max(1, ceil(size.height))
+        // `UITextView.sizeThatFits` часто даёт лишнюю высоту снизу; высота по `boundingRect` совпадает с версткой текста.
+        let attr = descriptionTextView.attributedText
+        let textHeight: CGFloat
+        if let attr, attr.length > 0 {
+            textHeight = ceil(
+                attr.boundingRect(
+                    with: CGSize(width: width, height: .greatestFiniteMagnitude),
+                    options: [.usesLineFragmentOrigin, .usesFontLeading],
+                    context: nil
+                ).height
+            )
+        } else {
+            textHeight = 1
+        }
+        descriptionHeightConstraint.constant = max(1, textHeight)
     }
 
     private func applyLeftHazardStatus(_ status: InsectDetail.LeftHazardStatus, text: String) {
@@ -1201,6 +1361,14 @@ extension InsectDetailViewController: UITableViewDataSource {
 
 extension InsectDetailViewController: UITableViewDelegate {}
 
+extension InsectDetailViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView === self.scrollView else { return }
+        syncScrollTitleChromeVisibility(animated: false)
+    }
+}
+
 extension InsectDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -1232,10 +1400,18 @@ extension InsectDetailViewController: UITextViewDelegate {
         in characterRange: NSRange,
         interaction: UITextItemInteraction
     ) -> Bool {
-        guard URL == InsectDetailDescriptionComposer.readMoreURL else { return true }
-        isDescriptionExpanded = true
-        let w = lastDescriptionLayoutWidth > 0 ? lastDescriptionLayoutWidth : textView.bounds.width
-        applyDescriptionLayout(width: w)
-        return false
+        if URL == InsectDetailDescriptionComposer.readMoreURL {
+            isDescriptionExpanded = true
+            let w = lastDescriptionLayoutWidth > 0 ? lastDescriptionLayoutWidth : textView.bounds.width
+            applyDescriptionLayout(width: w)
+            return false
+        }
+        if URL == InsectDetailDescriptionComposer.readLessURL {
+            isDescriptionExpanded = false
+            let w = lastDescriptionLayoutWidth > 0 ? lastDescriptionLayoutWidth : textView.bounds.width
+            applyDescriptionLayout(width: w)
+            return false
+        }
+        return true
     }
 }

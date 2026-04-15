@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Lebah Madu Eropah, Lebah Madu Barat, Lebah Madu";
 "insect.detail.section.description" = "Penerangan";
 "insect.detail.read_more" = "Baca Lagi";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Lebah madu barat (Apis mellifera) adalah antara pendebunga terurus yang paling penting dalam pertanian dan ekosistem liar. Berasal dari Eropah, Asia barat dan Afrika, ia telah disebarkan ke seluruh dunia oleh penternak lebah untuk pengeluaran madu dan pendebungaan tanaman.\n\nKoloni ialah superorganisma: ratu tunggal yang subur bertelur, manakala beribu-ribu pekerja wanita mencari makan, merawat larva, membina sikat, dan mempertahankan sarang. Drone jantan muncul secara bermusim dan mengawan dengan ratu dari koloni lain. Pekerja menyampaikan arah dan jarak ke sumber makanan yang kaya melalui tarian goyang dan berkongsi maklumat melalui sentuhan dan feromon.\n\nPencari makan melawat banyak spesies tumbuhan, memindahkan debunga semasa mereka bergerak. Tingkah laku ini menyokong kepelbagaian biologi dan tanaman makanan—daripada dusun dan buah beri kepada biji minyak dan tembikai. Penternak lebah menguruskan sarang untuk mengimbangi penuaian madu dengan kesihatan koloni, memantau perosak, penyakit dan tekanan pemakanan.\n\nWalaupun secara amnya jinak pada bunga, lebah madu mempertahankan sarang mereka jika mereka merasakan ancaman; memahami isyarat mereka mengurangkan sengatan. Kehilangan habitat, racun perosak, patogen dan perubahan iklim mencabar kedua-dua populasi liar dan terurus. Melindungi sumber bunga dan mengamalkan pengurusan yang teliti membantu mengekalkan serangga yang luar biasa ini untuk musim akan datang.";
 "insect.detail.section.characteristics" = "Ciri-ciri";
 "insect.detail.section.classification" = "Klasifikasi saintifik";

@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Európska včela medonosná, včela západná, včela medonosná";
 "insect.detail.section.description" = "Popis";
 "insect.detail.read_more" = "Prečítajte si viac";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Včela medonosná (Apis mellifera) patrí medzi najvýznamnejších riadených opeľovačov v poľnohospodárstve a vo voľne žijúcich ekosystémoch. Pochádza z Európy, západnej Ázie a Afriky a včelári ho rozšírili do celého sveta na produkciu medu a opeľovanie plodín.\n\nKolónia je superorganizmus: jedna plodná kráľovná kladie vajíčka, zatiaľ čo tisíce robotníc zháňajú potravu, dojčia larvy, stavajú plásty a bránia hniezdo. Samce trúdov sa objavujú sezónne a pária sa s kráľovnami z iných kolónií. Pracovníci komunikujú smer a vzdialenosť k bohatým zdrojom potravy prostredníctvom kývavého tanca a zdieľajú informácie dotykom a feromónmi.\n\nLovci navštevujú mnohé druhy rastlín a pri pohybe prenášajú peľ. Toto správanie podporuje biodiverzitu a potravinárske plodiny – od sadov a bobúľ až po olejnaté semená a melóny. Včelári riadia úle tak, aby vyvážili zber medu so zdravím kolónií, monitorovaním škodcov, chorôb a nutričným stresom.\n\nHoci sú vo všeobecnosti poslušné na kvety, včely medonosné bránia svoj úľ, ak vnímajú hrozbu; porozumenie ich podnetom znižuje bodnutie. Strata biotopov, pesticídy, patogény a klimatické zmeny sú výzvou pre voľne žijúce aj riadené populácie. Ochrana kvetinových zdrojov a starostlivé riadenie pomáha udržať tento pozoruhodný hmyz pre budúce sezóny.";
 "insect.detail.section.characteristics" = "Charakteristika";
 "insect.detail.section.classification" = "Vedecká klasifikácia";

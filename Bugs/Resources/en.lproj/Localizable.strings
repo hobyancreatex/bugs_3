@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "European Honey Bee, Western Honey Bee, Honey Bee";
 "insect.detail.section.description" = "Description";
 "insect.detail.read_more" = "Read More";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "The western honey bee (Apis mellifera) is among the most important managed pollinators in agriculture and wild ecosystems. Native to Europe, western Asia, and Africa, it has been spread worldwide by beekeepers for honey production and crop pollination.\n\nA colony is a superorganism: a single fertile queen lays eggs, while thousands of female workers forage, nurse larvae, build comb, and defend the nest. Male drones appear seasonally and mate with queens from other colonies. Workers communicate the direction and distance to rich food sources through the waggle dance and share information by touch and pheromones.\n\nForagers visit many plant species, transferring pollen as they move. This behavior supports biodiversity and food crops—from orchards and berries to oilseeds and melons. Beekeepers manage hives to balance honey harvest with colony health, monitoring for pests, diseases, and nutritional stress.\n\nAlthough generally docile on flowers, honey bees defend their hive if they perceive a threat; understanding their cues reduces stings. Habitat loss, pesticides, pathogens, and climate shifts challenge both wild and managed populations. Protecting floral resources and adopting careful management helps sustain these remarkable insects for future seasons.";
 "insect.detail.section.characteristics" = "Characteristics";
 "insect.detail.section.classification" = "Scientific classification";

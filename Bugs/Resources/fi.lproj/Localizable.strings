@@ -140,6 +140,11 @@
 "insect.detail.mock.aliases" = "Euroopan mehilainen, lannenmehilainen, hunajamehilainen";
 "insect.detail.section.description" = "Kuvaus";
 "insect.detail.read_more" = "Lue lisää";
+"insect.detail.read_less" = "Read Less";
+"insect.detail.camera.access_denied.title" = "Camera access denied";
+"insect.detail.camera.access_denied.message" = "Allow camera access in Settings to take a photo for your collection.";
+"insect.detail.camera.access_denied.settings" = "Settings";
+"insect.detail.camera.access_denied.cancel" = "Cancel";
 "insect.detail.mock.description" = "Länsimainen mehiläinen (Apis mellifera) on yksi tärkeimmistä hoidetuista pölyttäjistä maataloudessa ja luonnonvaraisissa ekosysteemeissä. Se on kotoisin Euroopasta, Länsi-Aasiasta ja Afrikasta, ja mehiläishoitajat ovat levittäneet sitä maailmanlaajuisesti hunajantuotantoa ja viljelykasvien pölytystä varten.\n\nPesäke on superorganismi: yksi hedelmällinen kuningatar munii, kun taas tuhannet naispuoliset työntekijät etsivät ruokaa, imevät toukkia, rakentavat kampaa ja puolustavat pesää. Urosdrooneja esiintyy kausiluontoisesti ja ne parittelevat muiden pesäkkeiden kuningattareiden kanssa. Työntekijät kommunikoivat suunnan ja etäisyyden runsaisiin ravinnonlähteisiin heilutustanssin avulla ja jakavat tietoa kosketuksen ja feromonien avulla.\n\nRehunhakijat vierailevat monissa kasvilajeissa siirtäen siitepölyä liikkuessaan. Tämä käyttäytyminen tukee biologista monimuotoisuutta ja ruokakasveja – hedelmätarhoista ja marjoista öljysiemeniin ja meloneihin. Mehiläishoitajat hoitavat mehiläispesiä tasapainottaakseen hunajasadon ja yhdyskuntien terveyden sekä tuholaisten, sairauksien ja ravitsemusstressin seurannan.\n\nVaikka mehiläiset ovat yleensä tottelevaisia ​​kukille, he puolustavat pesää, jos he havaitsevat uhan; niiden vihjeiden ymmärtäminen vähentää pistoja. Elinympäristön häviäminen, torjunta-aineet, taudinaiheuttajat ja ilmastonmuutokset haastavat sekä luonnonvaraiset että hoidetut populaatiot. Kukkavarojen suojeleminen ja huolellinen hoito auttavat säilyttämään nämä merkittävät hyönteiset tulevina vuodenaikoina.";
 "insect.detail.section.characteristics" = "Ominaisuudet";
 "insect.detail.section.classification" = "Tieteellinen luokitus";

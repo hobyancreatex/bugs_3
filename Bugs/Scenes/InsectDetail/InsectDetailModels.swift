@@ -131,6 +131,7 @@ enum InsectDetail {
             let descriptionSectionTitle: String
             let descriptionBody: String
             let readMoreTitle: String
+            let readLessTitle: String
             let characteristicsSectionTitle: String
             let characteristicRows: [(title: String, value: String)]
             let classificationSectionTitle: String
