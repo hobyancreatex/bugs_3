@@ -136,6 +136,11 @@ final class AIConsultantChatViewController: MessagesViewController {
     private var sendButton: ChatFullBleedSendButton? {
         messageInputBar.sendButton as? ChatFullBleedSendButton
     }
+    private lazy var dismissKeyboardTapGesture: UITapGestureRecognizer = {
+        let g = UITapGestureRecognizer(target: self, action: #selector(handleBackgroundTapToDismissKeyboard))
+        g.cancelsTouchesInView = false
+        return g
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -641,6 +646,7 @@ final class AIConsultantChatViewController: MessagesViewController {
 
     private func configureMessageCollectionView() {
         messagesCollectionView.backgroundColor = .clear
+        messagesCollectionView.addGestureRecognizer(dismissKeyboardTapGesture)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -673,6 +679,7 @@ final class AIConsultantChatViewController: MessagesViewController {
         // Симметричные вертикальные отступы (без правки inset из layoutSubviews — это давало цикл раскладки / падение).
         let insetY: CGFloat = 11
         tv.textContainerInset = UIEdgeInsets(top: insetY, left: 14, bottom: insetY, right: 14)
+        tv.textContainer.lineFragmentPadding = 0
         tv.placeholder = L10n.string("ai_chat.input.placeholder")
         tv.placeholderTextColor = .placeholderText
         tv.tintColor = AIChatPalette.outgoingBubble
@@ -743,6 +750,11 @@ final class AIConsultantChatViewController: MessagesViewController {
         guard !SubscriptionAccess.shared.isPremiumActive else { return }
         let current = UserDefaults.standard.integer(forKey: Self.freeMessagesCountKey)
         UserDefaults.standard.set(current + 1, forKey: Self.freeMessagesCountKey)
+    }
+
+    @objc
+    private func handleBackgroundTapToDismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
