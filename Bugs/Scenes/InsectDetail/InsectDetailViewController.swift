@@ -51,12 +51,18 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private var galleryAssetNames: [String] = []
     private var galleryImageURLs: [URL?] = []
+    private var userCollectionPhotoURLs: [URL] = []
     private var heroAssetName: String = ""
     private var heroImageURL: URL?
 
     private let contentLoadingOverlay = ContentLoadingOverlayView()
 
     private var galleryCollectionHeightConstraint: NSLayoutConstraint!
+    private var myCollectionHeightConstraint: NSLayoutConstraint!
+    private var descriptionPlaqueTopToAliasesConstraint: NSLayoutConstraint!
+    private var descriptionPlaqueTopToMyCollectionStackConstraint: NSLayoutConstraint!
+    private var myCollectionStackTopConstraint: NSLayoutConstraint!
+    private var myCollectionStackHeightZeroConstraint: NSLayoutConstraint!
 
     private let deleteFromCollectionButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -116,6 +122,39 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(InsectDetailGalleryCell.self, forCellWithReuseIdentifier: InsectDetailGalleryCell.reuseIdentifier)
         return cv
+    }()
+
+    private let myCollectionPlaque = InsectSectionHeaderPlaqueView()
+
+    private lazy var myCollectionLayout: UICollectionViewFlowLayout = {
+        let l = UICollectionViewFlowLayout()
+        l.scrollDirection = .horizontal
+        l.itemSize = CGSize(width: 80, height: 80)
+        l.minimumLineSpacing = 7
+        l.minimumInteritemSpacing = 0
+        l.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return l
+    }()
+
+    private lazy var myCollectionCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: myCollectionLayout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        cv.alwaysBounceHorizontal = true
+        cv.dataSource = self
+        cv.delegate = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(InsectDetailMyCollectionCell.self, forCellWithReuseIdentifier: InsectDetailMyCollectionCell.reuseIdentifier)
+        return cv
+    }()
+
+    private lazy var myCollectionStack: UIStackView = {
+        let s = UIStackView(arrangedSubviews: [myCollectionPlaque, myCollectionCollectionView])
+        s.axis = .vertical
+        s.alignment = .fill
+        s.spacing = 12
+        s.translatesAutoresizingMaskIntoConstraints = false
+        return s
     }()
 
     private let backButton: UIButton = {
@@ -376,6 +415,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         contentView.addSubview(titleLabel)
         contentView.addSubview(statusRowStack)
         contentView.addSubview(aliasesLabel)
+        contentView.addSubview(myCollectionStack)
         contentView.addSubview(descriptionPlaque)
         contentView.addSubview(descriptionTextView)
         contentView.addSubview(characteristicsPlaque)
@@ -451,7 +491,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
             aliasesLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             aliasesLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
 
-            descriptionPlaque.topAnchor.constraint(equalTo: aliasesLabel.bottomAnchor, constant: 20),
+            myCollectionStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            myCollectionStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
             descriptionPlaque.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 
             descriptionTextView.topAnchor.constraint(equalTo: descriptionPlaque.bottomAnchor, constant: 12),
@@ -484,6 +526,28 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
         galleryCollectionHeightConstraint = galleryCollectionView.heightAnchor.constraint(equalToConstant: 128)
         galleryCollectionHeightConstraint.isActive = true
+        myCollectionHeightConstraint = myCollectionCollectionView.heightAnchor.constraint(equalToConstant: 80)
+        myCollectionHeightConstraint.isActive = true
+
+        descriptionPlaqueTopToAliasesConstraint = descriptionPlaque.topAnchor.constraint(
+            equalTo: aliasesLabel.bottomAnchor,
+            constant: 20
+        )
+        descriptionPlaqueTopToMyCollectionStackConstraint = descriptionPlaque.topAnchor.constraint(
+            equalTo: myCollectionStack.bottomAnchor,
+            constant: 20
+        )
+        myCollectionStackTopConstraint = myCollectionStack.topAnchor.constraint(
+            equalTo: aliasesLabel.bottomAnchor,
+            constant: 0
+        )
+        myCollectionStackHeightZeroConstraint = myCollectionStack.heightAnchor.constraint(equalToConstant: 0)
+        NSLayoutConstraint.activate([
+            descriptionPlaqueTopToAliasesConstraint,
+            myCollectionStackTopConstraint,
+            myCollectionStackHeightZeroConstraint,
+        ])
+        descriptionPlaqueTopToMyCollectionStackConstraint.isActive = false
 
         NSLayoutConstraint.activate([
             deleteFromCollectionButton.widthAnchor.constraint(equalToConstant: 32),
@@ -528,6 +592,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         bitesPlaque.isHidden = true
         bitesBlockHolder.isHidden = true
         bitesColumnStackTopConstraint.constant = 0
+        myCollectionPlaque.isHidden = true
+        myCollectionCollectionView.isHidden = true
+        myCollectionHeightConstraint.constant = 0
     }
 
     private static func statusIconView(named: String) -> UIImageView {
@@ -614,7 +681,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     @objc
     private func addToCollectionTapped() {
-        guard isAddToCollectionAvailableFromAPI, !isInCollection else { return }
+        guard isAddToCollectionAvailableFromAPI || isListedInUserCollection || isInCollection else { return }
         guard SubscriptionAccess.shared.isPremiumActive else {
             presentPaywallFullScreen()
             return
@@ -811,10 +878,23 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         )
         galleryAssetNames = viewModel.galleryImageAssetNames
         galleryImageURLs = viewModel.galleryImageURLs
+        userCollectionPhotoURLs = viewModel.userCollectionPhotoURLs
         let gh: CGFloat = viewModel.galleryImageAssetNames.isEmpty ? 0 : 128
         galleryCollectionHeightConstraint.constant = gh
         galleryCollectionView.isHidden = viewModel.galleryImageAssetNames.isEmpty
         galleryCollectionView.reloadData()
+        let showsMyCollection = !viewModel.userCollectionPhotoURLs.isEmpty
+        myCollectionPlaque.isHidden = !showsMyCollection
+        myCollectionCollectionView.isHidden = !showsMyCollection
+        myCollectionHeightConstraint.constant = showsMyCollection ? 80 : 0
+        myCollectionStackHeightZeroConstraint.isActive = !showsMyCollection
+        myCollectionStackTopConstraint.constant = showsMyCollection ? 20 : 0
+        descriptionPlaqueTopToAliasesConstraint.isActive = !showsMyCollection
+        descriptionPlaqueTopToMyCollectionStackConstraint.isActive = showsMyCollection
+        if showsMyCollection {
+            myCollectionPlaque.setTitle(L10n.string("profile.segment.collection"))
+            myCollectionCollectionView.reloadData()
+        }
         titleLabel.text = viewModel.scientificTitle
         applyLeftHazardStatus(viewModel.leftHazardStatus, text: viewModel.leftStatusText)
         widespreadLabel.text = viewModel.widespreadStatusText
@@ -986,10 +1066,30 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 extension InsectDetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        galleryAssetNames.count
+        if collectionView === galleryCollectionView {
+            return galleryAssetNames.count
+        }
+        if collectionView === myCollectionCollectionView {
+            return userCollectionPhotoURLs.count + 1
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView === myCollectionCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: InsectDetailMyCollectionCell.reuseIdentifier,
+                for: indexPath
+            ) as? InsectDetailMyCollectionCell else {
+                return UICollectionViewCell()
+            }
+            if indexPath.item < userCollectionPhotoURLs.count {
+                cell.configureImage(url: userCollectionPhotoURLs[indexPath.item])
+            } else {
+                cell.configureAddAction()
+            }
+            return cell
+        }
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: InsectDetailGalleryCell.reuseIdentifier,
             for: indexPath
@@ -1005,11 +1105,28 @@ extension InsectDetailViewController: UICollectionViewDataSource {
 extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView === myCollectionCollectionView {
+            if indexPath.item == userCollectionPhotoURLs.count {
+                addToCollectionTapped()
+            }
+            return
+        }
         guard collectionView === galleryCollectionView else { return }
         guard indexPath.item < galleryAssetNames.count else { return }
         let url = indexPath.item < galleryImageURLs.count ? galleryImageURLs[indexPath.item] : nil
         let name = galleryAssetNames[indexPath.item]
         presentImageGallery(initialURL: url, initialAssetName: name)
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        if collectionView === myCollectionCollectionView {
+            return CGSize(width: 80, height: 80)
+        }
+        return CGSize(width: 128, height: 128)
     }
 }
 

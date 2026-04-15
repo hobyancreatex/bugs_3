@@ -73,6 +73,7 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
                 bitesFirstAidTitle: showsBites ? L10n.string("insect.detail.bites.first_aid") : "",
                 bitesBulletLines: biteBullets,
                 bitePhotoURLs: bitePhotos,
+                userCollectionPhotoURLs: response.userCollectionPhotoURLs,
                 isAddToCollectionAvailable: response.isAddToCollectionAvailable,
                 isInUserCollection: response.isInUserCollection
             )

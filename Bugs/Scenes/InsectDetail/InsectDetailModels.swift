@@ -100,6 +100,7 @@ enum InsectDetail {
             let bitesSectionKey: String
             let biteDescriptionOverride: String?
             let bitePhotoURLs: [URL]
+            let userCollectionPhotoURLs: [URL]
             /// Показать CTA «В коллекцию» (есть id вида и нет записи в коллекции).
             let isAddToCollectionAvailable: Bool
             /// У `GET insects/{id}/` уже есть `user_collection` — показываем удаление.
@@ -130,6 +131,7 @@ enum InsectDetail {
             let bitesFirstAidTitle: String
             let bitesBulletLines: [String]
             let bitePhotoURLs: [URL]
+            let userCollectionPhotoURLs: [URL]
             let isAddToCollectionAvailable: Bool
             let isInUserCollection: Bool
         }

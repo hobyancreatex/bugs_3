@@ -80,6 +80,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             do {
                 let path = "insects/\(trimmedId)/"
                 let data = try await CollectAPIClient.shared.get(path: path)
+                Self.logInsectDetailResponse(insectId: trimmedId, data: data)
                 let root = try CollectInsectDetailPayload.rootObject(from: data)
                 let mapped = CollectInsectDetailMapper.map(root)
                 let response: InsectDetail.Load.Response
@@ -123,6 +124,21 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                     UserFacingRequestErrorAlert.presentTryAgainLater()
                 }
             }
+        }
+    }
+
+    /// Полный JSON ответа `GET insects/{id}/` в консоль — для разбора полей (например, фото из коллекции пользователя).
+    private static func logInsectDetailResponse(insectId: String, data: Data) {
+        let tag = "[Insect detail] GET insects/\(insectId)/ response:"
+        if let obj = try? JSONSerialization.jsonObject(with: data),
+           let pretty = try? JSONSerialization.data(withJSONObject: obj, options: [.sortedKeys, .prettyPrinted]),
+           let s = String(data: pretty, encoding: .utf8)
+        {
+            print("\(tag)\n\(s)")
+        } else if let s = String(data: data, encoding: .utf8) {
+            print("\(tag)\n\(s)")
+        } else {
+            print("\(tag) <\(data.count) bytes, not UTF-8>")
         }
     }
 
@@ -241,6 +257,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: biteText,
             bitePhotoURLs: mapped.bitePhotoURLs,
+            userCollectionPhotoURLs: mapped.userCollectionPhotoURLs,
             isAddToCollectionAvailable: !referenceInsectId.isEmpty && !inCollection,
             isInUserCollection: inCollection
         )
@@ -284,6 +301,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: nil,
             bitePhotoURLs: [],
+            userCollectionPhotoURLs: [],
             isAddToCollectionAvailable: isAddToCollectionAvailable,
             isInUserCollection: isInUserCollection
         )

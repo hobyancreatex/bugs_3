@@ -38,6 +38,8 @@ enum CollectInsectDetailMapper {
         let widespread: Bool?
         /// `user_collection.id` с бэкенда; `nil` — коллекции по этому виду ещё нет (первый сценарий — create).
         let userCollectionId: Int?
+        /// Фото пользователя из `user_collection.user_photos[]`.
+        let userCollectionPhotoURLs: [URL]
     }
 
     static func map(_ dict: [String: Any]) -> Mapped? {
@@ -80,6 +82,7 @@ enum CollectInsectDetailMapper {
         let isPoisonous = dict["is_poisonous"] as? Bool ?? false
         let widespread = dict["widespread"] as? Bool
         let userCollectionId = userCollectionId(from: dict)
+        let userCollectionPhotoURLs = userCollectionPhotoURLs(from: dict)
 
         return Mapped(
             title: title,
@@ -93,7 +96,8 @@ enum CollectInsectDetailMapper {
             bitePhotoURLs: bitePhotoURLs,
             isPoisonous: isPoisonous,
             widespread: widespread,
-            userCollectionId: userCollectionId
+            userCollectionId: userCollectionId,
+            userCollectionPhotoURLs: userCollectionPhotoURLs
         )
     }
 
@@ -104,6 +108,27 @@ enum CollectInsectDetailMapper {
         if let n = uc["id"] as? NSNumber { return n.intValue }
         if let s = uc["id"] as? String { return Int(s) }
         return nil
+    }
+
+    private static func userCollectionPhotoURLs(from dict: [String: Any]) -> [URL] {
+        guard let uc = dict["user_collection"] as? [String: Any],
+              let arr = uc["user_photos"] as? [Any]
+        else { return [] }
+        var out: [URL] = []
+        var seen = Set<String>()
+        for item in arr {
+            guard let row = item as? [String: Any] else { continue }
+            guard let u = CollectHomeListPayload.pickURL(
+                row,
+                keys: ["image", "url", "image_url", "src", "thumbnail", "thumbnail_url", "photo"]
+            ) else {
+                continue
+            }
+            let key = u.absoluteString
+            guard seen.insert(key).inserted else { continue }
+            out.append(u)
+        }
+        return out
     }
 
     private static func bitePhotoURLs(from dict: [String: Any]) -> [URL] {
