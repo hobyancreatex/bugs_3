@@ -24,6 +24,7 @@ final class ScannerViewController: UIViewController {
 
     private let dimOverlay = ScannerMaskedDimOverlayView()
     private let dashBorder = ScannerCutoutDashBorderView()
+    private let noAccessBackgroundBlur = ScannerStyleFullBlurOverlayView()
 
     private let infoButton: UIButton = {
         let b = UIButton(type: .custom)
@@ -61,6 +62,44 @@ final class ScannerViewController: UIViewController {
     /// Вспышка только в момент съёмки (не фонарик).
     private var isFlashOnForCapture = false
     private weak var galleryLoaderHost: UIView?
+    private var isSessionConfigured = false
+    private var shouldRunSessionWhenReady = false
+
+    private let noAccessContainer: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.isHidden = true
+        return v
+    }()
+
+    private let noAccessTitleLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .white
+        l.font = .systemFont(ofSize: 24, weight: .bold)
+        l.textAlignment = .center
+        l.numberOfLines = 0
+        l.text = "Camera access needed"
+        return l
+    }()
+
+    private let noAccessSubtitleLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = UIColor.white.withAlphaComponent(0.85)
+        l.font = .systemFont(ofSize: 16, weight: .regular)
+        l.textAlignment = .center
+        l.numberOfLines = 0
+        l.text = "Allow camera access so you can take photos and identify bugs instantly"
+        return l
+    }()
+
+    private let openSettingsButton: GradientRoundedCTAControl = {
+        let b = GradientRoundedCTAControl()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setTitle("Open Settings", for: .normal)
+        return b
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,18 +108,21 @@ final class ScannerViewController: UIViewController {
 
         dimOverlay.bottomReservedHeight = bottomReservedForLayout
         dashBorder.bottomReservedHeight = bottomReservedForLayout
-        dimOverlay.onTapDimmedArea = { [weak self] in
-            self?.dismiss(animated: true)
-        }
+        dimOverlay.onTapDimmedArea = nil
 
         view.addSubview(previewBox)
         view.addSubview(dimOverlay)
         view.addSubview(dashBorder)
+        view.addSubview(noAccessBackgroundBlur)
         view.addSubview(infoButton)
         view.addSubview(closeButton)
         view.addSubview(galleryButton)
         view.addSubview(shutterButton)
         view.addSubview(flashButton)
+        view.addSubview(noAccessContainer)
+        noAccessContainer.addSubview(noAccessTitleLabel)
+        noAccessContainer.addSubview(noAccessSubtitleLabel)
+        noAccessContainer.addSubview(openSettingsButton)
 
         NSLayoutConstraint.activate([
             previewBox.topAnchor.constraint(equalTo: view.topAnchor),
@@ -97,6 +139,11 @@ final class ScannerViewController: UIViewController {
             dashBorder.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             dashBorder.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             dashBorder.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            noAccessBackgroundBlur.topAnchor.constraint(equalTo: view.topAnchor),
+            noAccessBackgroundBlur.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            noAccessBackgroundBlur.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            noAccessBackgroundBlur.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -122,6 +169,24 @@ final class ScannerViewController: UIViewController {
             flashButton.leadingAnchor.constraint(equalTo: shutterButton.trailingAnchor, constant: 40),
             flashButton.widthAnchor.constraint(equalToConstant: 56),
             flashButton.heightAnchor.constraint(equalToConstant: 56),
+
+            noAccessContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            noAccessContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            noAccessContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+
+            noAccessTitleLabel.topAnchor.constraint(equalTo: noAccessContainer.topAnchor),
+            noAccessTitleLabel.leadingAnchor.constraint(equalTo: noAccessContainer.leadingAnchor),
+            noAccessTitleLabel.trailingAnchor.constraint(equalTo: noAccessContainer.trailingAnchor),
+
+            noAccessSubtitleLabel.topAnchor.constraint(equalTo: noAccessTitleLabel.bottomAnchor, constant: 12),
+            noAccessSubtitleLabel.leadingAnchor.constraint(equalTo: noAccessContainer.leadingAnchor),
+            noAccessSubtitleLabel.trailingAnchor.constraint(equalTo: noAccessContainer.trailingAnchor),
+
+            openSettingsButton.topAnchor.constraint(equalTo: noAccessSubtitleLabel.bottomAnchor, constant: 20),
+            openSettingsButton.leadingAnchor.constraint(equalTo: noAccessContainer.leadingAnchor, constant: 22),
+            openSettingsButton.trailingAnchor.constraint(equalTo: noAccessContainer.trailingAnchor, constant: -22),
+            openSettingsButton.heightAnchor.constraint(equalToConstant: 52),
+            openSettingsButton.bottomAnchor.constraint(equalTo: noAccessContainer.bottomAnchor),
         ])
 
         previewLayer.videoGravity = .resizeAspectFill
@@ -134,6 +199,8 @@ final class ScannerViewController: UIViewController {
         galleryButton.addTarget(self, action: #selector(galleryTapped), for: .touchUpInside)
         shutterButton.addTarget(self, action: #selector(shutterTapped), for: .touchUpInside)
         flashButton.addTarget(self, action: #selector(flashTapped), for: .touchUpInside)
+        openSettingsButton.addTarget(self, action: #selector(openSettingsTapped), for: .touchUpInside)
+        noAccessBackgroundBlur.isHidden = true
 
         sessionQueue.async { [weak self] in
             self?.configureSession()
@@ -149,9 +216,9 @@ final class ScannerViewController: UIViewController {
         super.viewWillAppear(animated)
         applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        sessionQueue.async { [weak self] in
-            self?.session.startRunning()
-        }
+        shouldRunSessionWhenReady = true
+        updateCameraAccessUI()
+        startSessionIfNeeded()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -167,23 +234,31 @@ final class ScannerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideGalleryLoader()
+        shouldRunSessionWhenReady = false
         sessionQueue.async { [weak self] in
-            self?.session.stopRunning()
+            guard let self else { return }
+            if self.session.isRunning {
+                self.session.stopRunning()
+            }
         }
     }
 
     private func configureSession() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
         case .authorized:
             break
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-                if granted {
-                    self?.sessionQueue.async { self?.configureSession() }
+                self?.sessionQueue.async {
+                    self?.configureSession()
                 }
             }
             return
         default:
+            DispatchQueue.main.async { [weak self] in
+                self?.updateCameraAccessUI()
+            }
             return
         }
 
@@ -214,11 +289,36 @@ final class ScannerViewController: UIViewController {
         session.addOutput(output)
         photoOutput = output
         session.commitConfiguration()
+        isSessionConfigured = true
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.previewLayer.session = self.session
+            self.updateCameraAccessUI()
+            self.startSessionIfNeeded()
         }
+    }
+
+    private func startSessionIfNeeded() {
+        guard shouldRunSessionWhenReady else { return }
+        guard AVCaptureDevice.authorizationStatus(for: .video) == .authorized else { return }
+        sessionQueue.async { [weak self] in
+            guard let self else { return }
+            guard self.isSessionConfigured else { return }
+            if !self.session.isRunning {
+                self.session.startRunning()
+            }
+        }
+    }
+
+    private func updateCameraAccessUI() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        let isDenied = status == .denied || status == .restricted
+        // До явного отказа (`notDetermined`) сохраняем обычный UI камеры.
+        noAccessContainer.isHidden = !isDenied
+        noAccessBackgroundBlur.isHidden = !isDenied
+        dimOverlay.isHidden = isDenied
+        dashBorder.isHidden = isDenied
     }
 
     private func configureButtonImages() {
@@ -317,6 +417,11 @@ final class ScannerViewController: UIViewController {
 
     @objc
     private func shutterTapped() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        if status == .denied || status == .restricted {
+            openSettingsTapped()
+            return
+        }
         guard let out = photoOutput else { return }
         let wantFlash = isFlashOnForCapture
         sessionQueue.async { [weak self] in
@@ -335,6 +440,12 @@ final class ScannerViewController: UIViewController {
     private func flashTapped() {
         isFlashOnForCapture.toggle()
         updateFlashButtonImage()
+    }
+
+    @objc
+    private func openSettingsTapped() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 }
 
