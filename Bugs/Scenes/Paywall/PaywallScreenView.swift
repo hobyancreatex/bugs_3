@@ -109,9 +109,10 @@ final class PaywallScreenView: UIView {
         s.axis = .horizontal
         s.alignment = .center
         s.spacing = 28
-        s.distribution = .equalSpacing
+        s.distribution = .fill
         return s
     }()
+    private var footerButtons: [UIButton] = []
 
     private let primaryHeightConstraint: NSLayoutConstraint
     /// В ячейке `safeAreaLayoutGuide` без инсетов — крестик и низ футера через `window` / VC.
@@ -189,8 +190,10 @@ final class PaywallScreenView: UIView {
             primaryHeightConstraint,
 
             footerStack.topAnchor.constraint(equalTo: primaryButton.bottomAnchor, constant: 16),
-            footerStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            footerStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            footerStack.centerXAnchor.constraint(equalTo: centerXAnchor),
+            footerStack.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 4),
+            footerStack.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -4),
+            footerStack.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -8),
             footerBottomMaxConstraint,
             cancelInfoLabel.bottomAnchor.constraint(equalTo: primaryButton.topAnchor, constant: -16),
 
@@ -264,6 +267,7 @@ final class PaywallScreenView: UIView {
         applyManualOnboardingSafeAreaInsets()
         playerLayer?.frame = videoContainer.bounds
         videoFadeLayer?.frame = videoContainer.bounds
+        updateFooterButtonsLineModeIfNeeded()
     }
 
     private func applyManualOnboardingSafeAreaInsets() {
@@ -334,6 +338,10 @@ final class PaywallScreenView: UIView {
         footerStack.addArrangedSubview(terms)
         footerStack.addArrangedSubview(privacy)
         footerStack.addArrangedSubview(restore)
+        footerButtons = [terms, privacy, restore]
+        // На узких экранах все три кнопки сжимаются равномерно.
+        terms.widthAnchor.constraint(equalTo: privacy.widthAnchor).isActive = true
+        privacy.widthAnchor.constraint(equalTo: restore.widthAnchor).isActive = true
     }
 
     private func makeFooterButton(titleKey: String) -> UIButton {
@@ -341,12 +349,59 @@ final class PaywallScreenView: UIView {
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setTitle(L10n.string(titleKey), for: .normal)
         b.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
-        b.titleLabel?.numberOfLines = 0
-        b.titleLabel?.lineBreakMode = .byWordWrapping
+        b.titleLabel?.numberOfLines = 2
         b.titleLabel?.textAlignment = .center
+        b.titleLabel?.adjustsFontSizeToFitWidth = false
+        b.titleLabel?.minimumScaleFactor = 0.75
+        b.titleLabel?.lineBreakMode = .byWordWrapping
         b.setTitleColor(.appTextSecondary, for: .normal)
-        b.contentEdgeInsets = UIEdgeInsets(top: 4, left: 2, bottom: 4, right: 2)
+        b.contentEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+        b.setContentCompressionResistancePriority(.required, for: .horizontal)
+        b.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return b
+    }
+
+    /// Если подписи футера помещаются в одну строку, не переносим их; иначе включаем 2 строки.
+    private func updateFooterButtonsLineModeIfNeeded() {
+        guard footerButtons.count == 3 else { return }
+        let availableWidth = max(0, bounds.width - 8)
+        guard availableWidth > 0 else { return }
+
+        let font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        let horizontalSpacing = footerStack.spacing * CGFloat(footerButtons.count - 1)
+        let perButtonWidth = (availableWidth - horizontalSpacing) / CGFloat(footerButtons.count)
+        guard perButtonWidth > 0 else { return }
+        let fitsSingleLine = footerButtons.allSatisfy { button in
+            let title = button.title(for: .normal) ?? ""
+            let size = (title as NSString).size(withAttributes: [.font: font])
+            return ceil(size.width) <= perButtonWidth
+        }
+        let targetLines = fitsSingleLine ? 1 : 2
+
+        for button in footerButtons {
+            let title = button.title(for: .normal) ?? ""
+            let longestWordWidth = title
+                .split(whereSeparator: \.isWhitespace)
+                .map { word -> CGFloat in
+                    let size = (String(word) as NSString).size(withAttributes: [.font: font])
+                    return ceil(size.width)
+                }
+                .max() ?? 0
+            // Если слово не влезает целиком, не ломаем по символам — уменьшаем шрифт.
+            let needsFontShrink = longestWordWidth > perButtonWidth
+
+            if needsFontShrink {
+                // Для multi-line UIKit не умеет корректно ужимать шрифт,
+                // поэтому переводим кнопку в одну строку и включаем fit width.
+                button.titleLabel?.numberOfLines = 1
+                button.titleLabel?.lineBreakMode = .byClipping
+                button.titleLabel?.adjustsFontSizeToFitWidth = true
+            } else {
+                button.titleLabel?.numberOfLines = targetLines
+                button.titleLabel?.lineBreakMode = fitsSingleLine ? .byClipping : .byWordWrapping
+                button.titleLabel?.adjustsFontSizeToFitWidth = false
+            }
+        }
     }
 
     private func setupVideo() {

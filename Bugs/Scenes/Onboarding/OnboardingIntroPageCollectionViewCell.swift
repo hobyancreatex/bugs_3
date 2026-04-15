@@ -16,7 +16,9 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.image = UIImage(named: "bug_happy")
-        iv.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        // Сжимается по вертикали, чтобы заголовок, подзаголовок и плашки держали свою геометрию.
+        iv.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        iv.setContentCompressionResistancePriority(UILayoutPriority(1), for: .vertical)
         return iv
     }()
 
@@ -27,6 +29,7 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
         l.textColor = .appTextPrimary
         l.textAlignment = .center
         l.numberOfLines = 0
+        l.setContentCompressionResistancePriority(.required, for: .vertical)
         return l
     }()
 
@@ -37,6 +40,7 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
         l.textColor = .appTextPrimary
         l.textAlignment = .center
         l.numberOfLines = 0
+        l.setContentCompressionResistancePriority(.required, for: .vertical)
         return l
     }()
 
@@ -46,6 +50,7 @@ final class OnboardingIntroPageCollectionViewCell: UICollectionViewCell {
         s.axis = .vertical
         s.alignment = .fill
         s.spacing = 12
+        s.setContentCompressionResistancePriority(.required, for: .vertical)
         return s
     }()
 

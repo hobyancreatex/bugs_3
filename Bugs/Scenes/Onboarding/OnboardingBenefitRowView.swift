@@ -8,9 +8,8 @@ import UIKit
 /// Строка бенефита: фон #BAAE47 @ 6 %, скругление 24, текст + галочка как на экране совпадения.
 final class OnboardingBenefitRowView: UIView {
 
-    private static let labelTopInsetRegular: CGFloat = 22.5
-    private static let labelTopInsetCompactScreen: CGFloat = 4
-    private static let compactScreenHeightThreshold: CGFloat = 700
+    /// Фиксированные вертикальные отступы: высота ряда одинаковая для всех плашек; длинный текст поджимается по ширине.
+    private static let labelVerticalInset: CGFloat = 16
 
     private var titleLabelTopConstraint: NSLayoutConstraint!
     /// Высота ряда = высота лейбла + отступ сверху + такой же снизу (без `titleLabel.bottom`).
@@ -21,7 +20,11 @@ final class OnboardingBenefitRowView: UIView {
         l.translatesAutoresizingMaskIntoConstraints = false
         l.font = .systemFont(ofSize: 16, weight: .regular)
         l.textColor = .appTextPrimary
-        l.numberOfLines = 0
+        l.numberOfLines = 1
+        l.adjustsFontSizeToFitWidth = true
+        l.minimumScaleFactor = 0.72
+        l.baselineAdjustment = .alignCenters
+        l.lineBreakMode = .byTruncatingTail
         return l
     }()
 
@@ -38,12 +41,15 @@ final class OnboardingBenefitRowView: UIView {
         backgroundColor = .appInsectListCellTint
         layer.cornerRadius = 24
         clipsToBounds = true
+        // В вертикальном UIStackView не даем ряду растягиваться: лишнее место должна забирать hero-картинка.
+        setContentHuggingPriority(.required, for: .vertical)
+        setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.text = text
 
         addSubview(titleLabel)
         addSubview(checkView)
 
-        let topInset = Self.labelTopInsetRegular
+        let topInset = Self.labelVerticalInset
         titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: topInset)
         rowHeightExtraConstraint = heightAnchor.constraint(
             equalTo: titleLabel.heightAnchor,
@@ -62,19 +68,6 @@ final class OnboardingBenefitRowView: UIView {
 
             rowHeightExtraConstraint,
         ])
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let h = window?.windowScene?.screen.bounds.height ?? UIScreen.main.bounds.height
-        let topInset = h < Self.compactScreenHeightThreshold ? Self.labelTopInsetCompactScreen : Self.labelTopInsetRegular
-        if titleLabelTopConstraint.constant != topInset {
-            titleLabelTopConstraint.constant = topInset
-        }
-        let rowExtra = topInset * 2
-        if rowHeightExtraConstraint.constant != rowExtra {
-            rowHeightExtraConstraint.constant = rowExtra
-        }
     }
 
     required init?(coder: NSCoder) {
