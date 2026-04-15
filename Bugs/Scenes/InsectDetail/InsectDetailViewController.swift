@@ -6,7 +6,8 @@
 import UIKit
 
 protocol InsectDetailDisplayLogic: AnyObject {
-    func displayLoading(_ active: Bool)
+    /// `hidesScroll` — только при `active == true`: скрыть контент (первое открытие) или показать лоадер поверх карточки (обновление).
+    func displayLoading(_ active: Bool, hidesScroll: Bool)
     func displayDetail(viewModel: InsectDetail.Load.ViewModel)
     func displayAddToCollectionResult(_ viewModel: InsectDetail.AddToCollection.ViewModel)
     func displayRemoveFromCollectionResult(_ viewModel: InsectDetail.RemoveFromCollection.ViewModel)
@@ -51,7 +52,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     private var galleryAssetNames: [String] = []
     private var galleryImageURLs: [URL?] = []
-    private var userCollectionPhotoURLs: [URL] = []
+    private var userCollectionPhotos: [InsectDetail.UserCollectionPhoto] = []
     private var heroAssetName: String = ""
     private var heroImageURL: URL?
 
@@ -489,10 +490,10 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
             titleLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 20),
 
-            contentLoadingOverlay.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentLoadingOverlay.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentLoadingOverlay.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentLoadingOverlay.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentLoadingOverlay.topAnchor.constraint(equalTo: view.topAnchor),
+            contentLoadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentLoadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentLoadingOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
@@ -630,7 +631,8 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func applyCollectionChrome() {
         let showRemove = isInCollection || isListedInUserCollection
         deleteFromCollectionButton.isHidden = !showRemove
-        addToCollectionControl.isHidden = false
+        /// Нижний градиент только пока вида ещё нет в коллекции; после добавления — добавление через «+» в секции «Моя коллекция».
+        addToCollectionControl.isHidden = isListedInUserCollection
         updateScrollInsetForAddToCollectionButton()
     }
 
@@ -641,10 +643,15 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     /// Скролл на весь экран; кнопка поверх. Нижний inset, чтобы последний контент можно было прокрутить выше кнопки.
     private func updateScrollInsetForAddToCollectionButton() {
+        let breathingRoom: CGFloat = 20
+        guard !addToCollectionControl.isHidden else {
+            scrollView.contentInset.bottom = breathingRoom
+            scrollView.verticalScrollIndicatorInsets.bottom = breathingRoom
+            return
+        }
         let visibleBottom = scrollView.frame.maxY
         let buttonTop = addToCollectionControl.frame.minY
         let overlap = max(0, visibleBottom - buttonTop)
-        let breathingRoom: CGFloat = 20
         let inset = overlap + breathingRoom
         scrollView.contentInset.bottom = inset
         scrollView.verticalScrollIndicatorInsets.bottom = inset
@@ -822,9 +829,20 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         })
     }
 
-    func displayLoading(_ active: Bool) {
-        contentLoadingOverlay.setActive(active)
-        scrollView.isHidden = active
+    func displayLoading(_ active: Bool, hidesScroll: Bool) {
+        guard active else {
+            contentLoadingOverlay.setActive(false)
+            scrollView.isHidden = false
+            return
+        }
+        contentLoadingOverlay.setActive(true, dimmedBackground: !hidesScroll)
+        scrollView.isHidden = hidesScroll
+        view.bringSubviewToFront(contentLoadingOverlay)
+        if !suppressesBackButton {
+            view.bringSubviewToFront(backButton)
+        }
+        view.bringSubviewToFront(deleteFromCollectionButton)
+        view.bringSubviewToFront(addToCollectionControl)
     }
 
     func displayAddToCollectionResult(_ viewModel: InsectDetail.AddToCollection.ViewModel) {
@@ -874,9 +892,12 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     }
 
     func displayDetail(viewModel: InsectDetail.Load.ViewModel) {
-        contentLoadingOverlay.setActive(false)
+        contentLoadingOverlay.setActive(false, dimmedBackground: false)
         scrollView.isHidden = false
         isListedInUserCollection = viewModel.isInUserCollection
+        if viewModel.isDetailPayloadFromServer, !viewModel.isInUserCollection {
+            isInCollection = false
+        }
         isAddToCollectionAvailableFromAPI = viewModel.isAddToCollectionAvailable
         applyCollectionChrome()
         heroAssetName = viewModel.heroImageAssetName
@@ -888,12 +909,12 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         )
         galleryAssetNames = viewModel.galleryImageAssetNames
         galleryImageURLs = viewModel.galleryImageURLs
-        userCollectionPhotoURLs = viewModel.userCollectionPhotoURLs
+        userCollectionPhotos = viewModel.userCollectionPhotos
         let gh: CGFloat = viewModel.galleryImageAssetNames.isEmpty ? 0 : 128
         galleryCollectionHeightConstraint.constant = gh
         galleryCollectionView.isHidden = viewModel.galleryImageAssetNames.isEmpty
         galleryCollectionView.reloadData()
-        let showsMyCollection = !viewModel.userCollectionPhotoURLs.isEmpty
+        let showsMyCollection = !viewModel.userCollectionPhotos.isEmpty
         myCollectionHeaderRow.isHidden = !showsMyCollection
         myCollectionCollectionView.isHidden = !showsMyCollection
         myCollectionHeightConstraint.constant = showsMyCollection ? 80 : 0
@@ -1080,7 +1101,7 @@ extension InsectDetailViewController: UICollectionViewDataSource {
             return galleryAssetNames.count
         }
         if collectionView === myCollectionCollectionView {
-            return userCollectionPhotoURLs.count + 1
+            return userCollectionPhotos.count + 1
         }
         return 0
     }
@@ -1093,8 +1114,8 @@ extension InsectDetailViewController: UICollectionViewDataSource {
             ) as? InsectDetailMyCollectionCell else {
                 return UICollectionViewCell()
             }
-            if indexPath.item < userCollectionPhotoURLs.count {
-                cell.configureImage(url: userCollectionPhotoURLs[indexPath.item])
+            if indexPath.item < userCollectionPhotos.count {
+                cell.configureImage(url: userCollectionPhotos[indexPath.item].url)
             } else {
                 cell.configureAddAction()
             }
@@ -1116,7 +1137,17 @@ extension InsectDetailViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView === myCollectionCollectionView {
-            if indexPath.item == userCollectionPhotoURLs.count {
+            if indexPath.item < userCollectionPhotos.count {
+                let vc = UserCollectionPhotoGalleryViewController(
+                    photos: userCollectionPhotos,
+                    initialIndex: indexPath.item
+                ) { [weak self] in
+                    self?.interactor?.loadDetail(request: InsectDetail.Load.Request(showsLoadingOverlay: false))
+                }
+                present(vc, animated: true)
+                return
+            }
+            if indexPath.item == userCollectionPhotos.count {
                 addToCollectionTapped()
             }
             return

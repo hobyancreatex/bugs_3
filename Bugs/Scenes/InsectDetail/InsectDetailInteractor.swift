@@ -72,13 +72,11 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             return
         }
 
-        let showLoading = request.showsLoadingOverlay
+        let hidesScrollWhileLoading = request.showsLoadingOverlay
         Task { [weak self] in
             guard let self else { return }
-            if showLoading {
-                await MainActor.run { [weak self] in
-                    self?.presenter?.presentLoading(true)
-                }
+            await MainActor.run { [weak self] in
+                self?.presenter?.presentLoading(true, hidesScroll: hidesScrollWhileLoading)
             }
             do {
                 let path = "insects/\(trimmedId)/"
@@ -108,18 +106,14 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                     } else {
                         self.userCollectionId = nil
                     }
-                    if showLoading {
-                        self.presenter?.presentLoading(false)
-                    }
+                    self.presenter?.presentLoading(false, hidesScroll: true)
                     self.presenter?.presentDetail(response: response)
                 }
             } catch {
                 await MainActor.run { [weak self] in
                     guard let self else { return }
                     self.userCollectionId = nil
-                    if showLoading {
-                        self.presenter?.presentLoading(false)
-                    }
+                    self.presenter?.presentLoading(false, hidesScroll: true)
                     self.presenter?.presentDetail(
                         response: Self.stubResponse(
                             heroImageAssetName: self.heroImageAssetName,
@@ -128,7 +122,7 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
                             isAddToCollectionAvailable: true
                         )
                     )
-                    if showLoading {
+                    if hidesScrollWhileLoading {
                         UserFacingRequestErrorAlert.presentTryAgainLater()
                     }
                 }
@@ -259,9 +253,10 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: biteText,
             bitePhotoURLs: mapped.bitePhotoURLs,
-            userCollectionPhotoURLs: mapped.userCollectionPhotoURLs,
+            userCollectionPhotos: mapped.userCollectionPhotos,
             isAddToCollectionAvailable: !referenceInsectId.isEmpty,
-            isInUserCollection: inCollection
+            isInUserCollection: inCollection,
+            isDetailPayloadFromServer: true
         )
     }
 
@@ -303,9 +298,10 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             bitesSectionKey: "insect.detail.section.bites",
             biteDescriptionOverride: nil,
             bitePhotoURLs: [],
-            userCollectionPhotoURLs: [],
+            userCollectionPhotos: [],
             isAddToCollectionAvailable: isAddToCollectionAvailable,
-            isInUserCollection: isInUserCollection
+            isInUserCollection: isInUserCollection,
+            isDetailPayloadFromServer: false
         )
     }
 

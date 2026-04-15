@@ -1,26 +1,21 @@
 //
-//  InsectImageGalleryViewController.swift
+//  UserCollectionPhotoGalleryViewController.swift
 //  Bugs
 //
 
 import UIKit
 
-/// Полноэкранный просмотр фото насекомого: свайп, миниатюры, счётчик «текущая/всего».
-final class InsectImageGalleryViewController: UIViewController {
+/// Полноэкранный просмотр фото из «Моей коллекции» с удалением текущего кадра.
+final class UserCollectionPhotoGalleryViewController: UIViewController {
 
-    private enum Source {
-        case remote([URL])
-        case assets([String])
-    }
-
-    private let source: Source
+    private var photos: [InsectDetail.UserCollectionPhoto]
     private let initialIndex: Int
+    private let onDismiss: () -> Void
 
     private var didApplyInitialScroll = false
     private var currentPage: Int = 0
-
-    /// Только для режима `.assets` — без повторного `UIImage(named:)` при свайпе.
-    private var imageCache: [String: UIImage] = [:]
+    private var isDeleting = false
+    private var deleteLoadingOverlay: UIView?
 
     private let mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -76,6 +71,15 @@ final class InsectImageGalleryViewController: UIViewController {
         return l
     }()
 
+    private let deleteButton: UIButton = {
+        let b = UIButton(type: .custom)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(.insectDetailDeleteFromCollection(), for: .normal)
+        b.tintColor = .appCollectionDelete
+        b.accessibilityLabel = L10n.string("insect.detail.remove_from_collection.accessibility")
+        return b
+    }()
+
     private let closeButton: UIButton = {
         let b = UIButton(type: .custom)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -83,26 +87,22 @@ final class InsectImageGalleryViewController: UIViewController {
         return b
     }()
 
-    private var itemCount: Int {
-        switch source {
-        case .remote(let urls): return urls.count
-        case .assets(let names): return names.count
-        }
+    private var itemCount: Int { photos.count }
+
+    private func clampedPageIndex(_ raw: Int) -> Int {
+        let n = itemCount
+        guard n > 0 else { return 0 }
+        return min(max(0, raw), n - 1)
     }
 
-    /// Реальные URL с бэка (порядок: герой, затем галерея, без дублей).
-    init(imageURLs: [URL], initialIndex: Int = 0) {
-        self.source = .remote(imageURLs)
-        let maxIdx = max(0, imageURLs.count - 1)
-        self.initialIndex = min(max(0, initialIndex), maxIdx)
-        super.init(nibName: nil, bundle: nil)
-        modalPresentationStyle = .fullScreen
-    }
-
-    /// Заглушка без сети (mock / список ассетов).
-    init(imageAssetNames: [String], initialIndex: Int = 0) {
-        self.source = .assets(imageAssetNames)
-        let maxIdx = max(0, imageAssetNames.count - 1)
+    init(
+        photos: [InsectDetail.UserCollectionPhoto],
+        initialIndex: Int = 0,
+        onDismiss: @escaping () -> Void
+    ) {
+        self.photos = photos
+        self.onDismiss = onDismiss
+        let maxIdx = max(0, photos.count - 1)
         self.initialIndex = min(max(0, initialIndex), maxIdx)
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
@@ -118,27 +118,31 @@ final class InsectImageGalleryViewController: UIViewController {
         view.backgroundColor = .appBackground
 
         currentPage = initialIndex
-        if case .assets(let names) = source {
-            for name in names where imageCache[name] == nil {
-                imageCache[name] = UIImage(named: name)
-            }
-        }
 
         closeButton.setImage(Self.lightCloseImage(), for: .normal)
         closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
 
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         thumbCollectionView.dataSource = self
         thumbCollectionView.delegate = self
+        thumbCollectionView.allowsSelection = true
+        thumbCollectionView.allowsMultipleSelection = false
 
         counterPill.addSubview(counterLabel)
         view.addSubview(mainCollectionView)
         view.addSubview(counterPill)
         view.addSubview(thumbCollectionView)
+        view.addSubview(deleteButton)
         view.addSubview(closeButton)
 
         NSLayoutConstraint.activate([
+            deleteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            deleteButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            deleteButton.widthAnchor.constraint(equalToConstant: 32),
+            deleteButton.heightAnchor.constraint(equalToConstant: 32),
+
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             closeButton.widthAnchor.constraint(equalToConstant: 32),
@@ -166,6 +170,19 @@ final class InsectImageGalleryViewController: UIViewController {
 
         updateCounterLabel(page: currentPage)
         thumbCollectionView.reloadData()
+
+        deleteButton.layer.zPosition = 20_000
+        closeButton.layer.zPosition = 20_000
+        counterPill.layer.zPosition = 15_000
+        thumbCollectionView.layer.zPosition = 15_000
+        mainCollectionView.layer.zPosition = 0
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if isBeingDismissed {
+            onDismiss()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -182,15 +199,117 @@ final class InsectImageGalleryViewController: UIViewController {
         didApplyInitialScroll = true
         let idx = min(initialIndex, itemCount - 1)
         mainCollectionView.scrollToItem(at: IndexPath(item: idx, section: 0), at: .centeredHorizontally, animated: false)
-        currentPage = idx
-        updateCounterLabel(page: idx)
-        thumbCollectionView.reloadData()
-        scrollThumbToVisible(animated: false)
+        alignMainScrollToPageAndRefreshThumbs(idx)
     }
 
     @objc
     private func closeTapped() {
         dismiss(animated: true)
+    }
+
+    @objc
+    private func deleteTapped() {
+        guard !isDeleting, currentPage >= 0, currentPage < photos.count else { return }
+        let indexToDelete = currentPage
+        let photoId = photos[indexToDelete].id
+        isDeleting = true
+        installDeleteLoadingOverlay()
+        Task { [weak self] in
+            do {
+                try await CollectAPIClient.shared.deleteCollectionPhoto(id: photoId)
+                await MainActor.run { [weak self] in
+                    guard let self else { return }
+                    self.removeDeleteLoadingOverlay()
+                    self.applyDeleteSuccess(at: indexToDelete)
+                    self.bringChromeToFront()
+                }
+            } catch {
+                await MainActor.run { [weak self] in
+                    guard let self else { return }
+                    self.removeDeleteLoadingOverlay()
+                    self.isDeleting = false
+                    self.bringChromeToFront()
+                    UserFacingRequestErrorAlert.presentTryAgainLater()
+                }
+            }
+        }
+    }
+
+    private func installDeleteLoadingOverlay() {
+        removeDeleteLoadingOverlay()
+        let dim = UIView()
+        dim.translatesAutoresizingMaskIntoConstraints = false
+        dim.backgroundColor = UIColor.black.withAlphaComponent(0.35)
+        dim.isUserInteractionEnabled = true
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .white
+        spinner.startAnimating()
+        dim.addSubview(spinner)
+        view.addSubview(dim)
+        NSLayoutConstraint.activate([
+            dim.topAnchor.constraint(equalTo: view.topAnchor),
+            dim.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dim.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dim.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            spinner.centerXAnchor.constraint(equalTo: dim.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: dim.centerYAnchor),
+        ])
+        dim.layer.zPosition = 25_000
+        view.bringSubviewToFront(dim)
+        deleteLoadingOverlay = dim
+        closeButton.isEnabled = false
+        deleteButton.isEnabled = false
+    }
+
+    private func removeDeleteLoadingOverlay() {
+        deleteLoadingOverlay?.removeFromSuperview()
+        deleteLoadingOverlay = nil
+        deleteButton.isEnabled = true
+        closeButton.isEnabled = true
+    }
+
+    /// После `reloadData`/`layout` основная коллекция может перехватывать тапы; уводим её назад и поднимаем хром.
+    private func bringChromeToFront() {
+        view.sendSubviewToBack(mainCollectionView)
+        view.bringSubviewToFront(counterPill)
+        view.bringSubviewToFront(thumbCollectionView)
+        view.bringSubviewToFront(deleteButton)
+        view.bringSubviewToFront(closeButton)
+    }
+
+    private func applyDeleteSuccess(at index: Int) {
+        guard index >= 0, index < photos.count else {
+            isDeleting = false
+            deleteButton.isEnabled = true
+            closeButton.isEnabled = true
+            bringChromeToFront()
+            return
+        }
+        photos.remove(at: index)
+        if photos.isEmpty {
+            isDeleting = false
+            dismiss(animated: true)
+            return
+        }
+        let newCount = photos.count
+        var nextPage = index
+        if nextPage >= newCount {
+            nextPage = newCount - 1
+        }
+        mainCollectionView.reloadData()
+        thumbCollectionView.reloadData()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        if let flow = mainCollectionView.collectionViewLayout as? UICollectionViewFlowLayout,
+           mainCollectionView.bounds.width > 0, mainCollectionView.bounds.height > 0 {
+            flow.itemSize = mainCollectionView.bounds.size
+            flow.invalidateLayout()
+        }
+        mainCollectionView.layoutIfNeeded()
+        mainCollectionView.scrollToItem(at: IndexPath(item: nextPage, section: 0), at: .centeredHorizontally, animated: false)
+        alignMainScrollToPageAndRefreshThumbs(nextPage)
+        isDeleting = false
     }
 
     private func updateCounterLabel(page: Int) {
@@ -208,6 +327,7 @@ final class InsectImageGalleryViewController: UIViewController {
         mainCollectionView.scrollToItem(at: IndexPath(item: p, section: 0), at: .centeredHorizontally, animated: animated)
         updateThumbnailSelection(from: previous, to: p)
         scrollThumbToVisible(animated: animated)
+        thumbCollectionView.selectItem(at: IndexPath(item: p, section: 0), animated: false, scrollPosition: .centeredHorizontally)
     }
 
     private func updateThumbnailSelection(from oldIndex: Int, to newIndex: Int) {
@@ -232,8 +352,28 @@ final class InsectImageGalleryViewController: UIViewController {
 
     private func pageFromMainScroll() -> Int {
         let w = mainCollectionView.bounds.width
-        guard w > 1 else { return 0 }
-        return Int(round(mainCollectionView.contentOffset.x / w))
+        guard w > 1 else { return clampedPageIndex(0) }
+        let raw = Int(round(mainCollectionView.contentOffset.x / w))
+        return clampedPageIndex(raw)
+    }
+
+    /// После `reloadData` offset иногда остаётся от старого числа страниц — выравниваем и миниатюру «выбранной».
+    private func alignMainScrollToPageAndRefreshThumbs(_ page: Int) {
+        let p = clampedPageIndex(page)
+        currentPage = p
+        let w = mainCollectionView.bounds.width
+        guard w > 1, itemCount > 0 else {
+            thumbCollectionView.reloadData()
+            return
+        }
+        mainCollectionView.layoutIfNeeded()
+        mainCollectionView.contentOffset = CGPoint(x: CGFloat(p) * w, y: mainCollectionView.contentOffset.y)
+        updateCounterLabel(page: p)
+        thumbCollectionView.reloadData()
+        thumbCollectionView.layoutIfNeeded()
+        let ip = IndexPath(item: p, section: 0)
+        thumbCollectionView.selectItem(at: ip, animated: false, scrollPosition: .centeredHorizontally)
+        scrollThumbToVisible(animated: false)
     }
 
     private func scrollThumbToVisible(animated: Bool) {
@@ -278,7 +418,7 @@ final class InsectImageGalleryViewController: UIViewController {
     }
 }
 
-extension InsectImageGalleryViewController: UICollectionViewDataSource {
+extension UserCollectionPhotoGalleryViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemCount
@@ -292,12 +432,7 @@ extension InsectImageGalleryViewController: UICollectionViewDataSource {
             ) as? InsectImageGalleryPageCell else {
                 return UICollectionViewCell()
             }
-            switch source {
-            case .remote(let urls):
-                cell.configureRemote(url: urls[indexPath.item])
-            case .assets(let names):
-                cell.configureLocal(image: imageCache[names[indexPath.item]])
-            }
+            cell.configureRemote(url: photos[indexPath.item].url)
             return cell
         }
         guard let cell = collectionView.dequeueReusableCell(
@@ -306,17 +441,12 @@ extension InsectImageGalleryViewController: UICollectionViewDataSource {
         ) as? InsectImageGalleryThumbnailCell else {
             return UICollectionViewCell()
         }
-        switch source {
-        case .remote(let urls):
-            cell.configureRemote(url: urls[indexPath.item], selected: indexPath.item == currentPage)
-        case .assets(let names):
-            cell.configureLocal(image: imageCache[names[indexPath.item]], selected: indexPath.item == currentPage)
-        }
+        cell.configureRemote(url: photos[indexPath.item].url, selected: indexPath.item == currentPage)
         return cell
     }
 }
 
-extension InsectImageGalleryViewController: UICollectionViewDelegateFlowLayout {
+extension UserCollectionPhotoGalleryViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -330,7 +460,7 @@ extension InsectImageGalleryViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension InsectImageGalleryViewController: UICollectionViewDelegate {
+extension UserCollectionPhotoGalleryViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView === thumbCollectionView else { return }
@@ -346,6 +476,7 @@ extension InsectImageGalleryViewController: UICollectionViewDelegate {
             updateCounterLabel(page: p)
             updateThumbnailSelection(from: previous, to: p)
             scrollThumbToVisible(animated: true)
+            thumbCollectionView.selectItem(at: IndexPath(item: p, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         }
     }
 
@@ -357,5 +488,6 @@ extension InsectImageGalleryViewController: UICollectionViewDelegate {
         currentPage = p
         updateCounterLabel(page: p)
         updateThumbnailSelection(from: previous, to: p)
+        thumbCollectionView.selectItem(at: IndexPath(item: p, section: 0), animated: false, scrollPosition: .centeredHorizontally)
     }
 }

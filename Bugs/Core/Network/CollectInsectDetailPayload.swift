@@ -38,8 +38,8 @@ enum CollectInsectDetailMapper {
         let widespread: Bool?
         /// `user_collection.id` с бэкенда; `nil` — коллекции по этому виду ещё нет (первый сценарий — create).
         let userCollectionId: Int?
-        /// Фото пользователя из `user_collection.user_photos[]`.
-        let userCollectionPhotoURLs: [URL]
+        /// Фото пользователя из `user_collection.user_photos[]` (id + URL).
+        let userCollectionPhotos: [InsectDetail.UserCollectionPhoto]
     }
 
     static func map(_ dict: [String: Any]) -> Mapped? {
@@ -82,7 +82,7 @@ enum CollectInsectDetailMapper {
         let isPoisonous = dict["is_poisonous"] as? Bool ?? false
         let widespread = dict["widespread"] as? Bool
         let userCollectionId = userCollectionId(from: dict)
-        let userCollectionPhotoURLs = userCollectionPhotoURLs(from: dict)
+        let userCollectionPhotos = userCollectionPhotos(from: dict)
 
         return Mapped(
             title: title,
@@ -97,7 +97,7 @@ enum CollectInsectDetailMapper {
             isPoisonous: isPoisonous,
             widespread: widespread,
             userCollectionId: userCollectionId,
-            userCollectionPhotoURLs: userCollectionPhotoURLs
+            userCollectionPhotos: userCollectionPhotos
         )
     }
 
@@ -110,14 +110,15 @@ enum CollectInsectDetailMapper {
         return nil
     }
 
-    private static func userCollectionPhotoURLs(from dict: [String: Any]) -> [URL] {
+    private static func userCollectionPhotos(from dict: [String: Any]) -> [InsectDetail.UserCollectionPhoto] {
         guard let uc = dict["user_collection"] as? [String: Any],
               let arr = uc["user_photos"] as? [Any]
         else { return [] }
-        var out: [URL] = []
+        var out: [InsectDetail.UserCollectionPhoto] = []
         var seen = Set<String>()
         for item in arr {
             guard let row = item as? [String: Any] else { continue }
+            guard let id = pickInt(row["id"]) else { continue }
             guard let u = CollectHomeListPayload.pickURL(
                 row,
                 keys: ["image", "url", "image_url", "src", "thumbnail", "thumbnail_url", "photo"]
@@ -126,9 +127,24 @@ enum CollectInsectDetailMapper {
             }
             let key = u.absoluteString
             guard seen.insert(key).inserted else { continue }
-            out.append(u)
+            out.append(InsectDetail.UserCollectionPhoto(id: id, url: u))
         }
         return out
+    }
+
+    private static func pickInt(_ any: Any?) -> Int? {
+        switch any {
+        case let i as Int:
+            return i
+        case let i64 as Int64:
+            return Int(i64)
+        case let n as NSNumber:
+            return n.intValue
+        case let s as String:
+            return Int(s)
+        default:
+            return nil
+        }
     }
 
     private static func bitePhotoURLs(from dict: [String: Any]) -> [URL] {

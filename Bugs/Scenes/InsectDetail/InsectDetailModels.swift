@@ -67,6 +67,12 @@ enum InsectDetail {
         }
     }
 
+    /// Фото из `user_collection.user_photos[]` (id нужен для `DELETE collection/photo/{id}/`).
+    struct UserCollectionPhoto: Equatable {
+        let id: Int
+        let url: URL
+    }
+
     enum Load {
         struct Request {
             /// Полноэкранный лоадер при первом открытии; `false` — тихое обновление после добавления в коллекцию и т.п.
@@ -103,11 +109,13 @@ enum InsectDetail {
             let bitesSectionKey: String
             let biteDescriptionOverride: String?
             let bitePhotoURLs: [URL]
-            let userCollectionPhotoURLs: [URL]
+            let userCollectionPhotos: [UserCollectionPhoto]
             /// Показать CTA «В коллекцию» (есть id вида; повторное добавление фото — через тот же экран).
             let isAddToCollectionAvailable: Bool
             /// У `GET insects/{id}/` уже есть `user_collection` — показываем удаление.
             let isInUserCollection: Bool
+            /// Успешный разбор ответа `GET insects/{id}/` (не заглушка при ошибке сети).
+            let isDetailPayloadFromServer: Bool
         }
         struct ViewModel {
             let heroImageAssetName: String
@@ -134,9 +142,10 @@ enum InsectDetail {
             let bitesFirstAidTitle: String
             let bitesBulletLines: [String]
             let bitePhotoURLs: [URL]
-            let userCollectionPhotoURLs: [URL]
+            let userCollectionPhotos: [UserCollectionPhoto]
             let isAddToCollectionAvailable: Bool
             let isInUserCollection: Bool
+            let isDetailPayloadFromServer: Bool
         }
     }
 }

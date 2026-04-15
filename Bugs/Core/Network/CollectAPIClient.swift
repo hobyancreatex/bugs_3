@@ -122,6 +122,42 @@ final class CollectAPIClient {
         }
     }
 
+    /// DELETE `collection/photo/{id}/` — удалить одно фото из коллекции пользователя.
+    func deleteCollectionPhoto(id: Int) async throws {
+        let base = APIConfiguration.collectBaseURL
+        guard let url = URL(string: "collection/photo/\(id)/", relativeTo: base)?.absoluteURL else {
+            throw CollectAPIError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if let token = CollectAPIAuthState.token {
+            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+        }
+
+        CollectAPILogger.logRequest(
+            method: "DELETE",
+            url: url,
+            headers: CollectAPILogger.redactedHTTPHeaders(request.allHTTPHeaderFields),
+            body: nil
+        )
+
+        let (data, response): (Data, URLResponse)
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch {
+            CollectAPILogger.logHTTPTransportFailure(method: "DELETE", url: url, error: error)
+            throw error
+        }
+
+        let http = response as? HTTPURLResponse
+        let status = http?.statusCode ?? -1
+
+        guard (200 ..< 300).contains(status) else {
+            throw CollectAPIError.badStatus(status, data.isEmpty ? nil : data)
+        }
+    }
+
     /// DELETE `auth/terminate/` — удаление аккаунта текущего устройства.
     func terminateAccount() async throws {
         let base = APIConfiguration.collectBaseURL

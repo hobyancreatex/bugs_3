@@ -31,8 +31,14 @@ final class ContentLoadingOverlayView: UIView {
         nil
     }
 
-    func setActive(_ active: Bool) {
+    /// - Parameter dimmedBackground: при `true` — полупрозрачная подложка поверх контента (тихое обновление).
+    func setActive(_ active: Bool, dimmedBackground: Bool = false) {
         isHidden = !active
+        if active && dimmedBackground {
+            backgroundColor = UIColor.black.withAlphaComponent(0.22)
+        } else {
+            backgroundColor = .clear
+        }
         if active {
             indicator.startAnimating()
         } else {

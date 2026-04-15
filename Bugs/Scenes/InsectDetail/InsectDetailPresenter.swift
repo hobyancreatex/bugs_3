@@ -6,7 +6,7 @@
 import Foundation
 
 protocol InsectDetailPresentationLogic: AnyObject {
-    func presentLoading(_ active: Bool)
+    func presentLoading(_ active: Bool, hidesScroll: Bool)
     func presentDetail(response: InsectDetail.Load.Response)
     func presentAddToCollection(response: InsectDetail.AddToCollection.Response)
     func presentRemoveFromCollection(response: InsectDetail.RemoveFromCollection.Response)
@@ -16,8 +16,8 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
 
     weak var viewController: InsectDetailDisplayLogic?
 
-    func presentLoading(_ active: Bool) {
-        viewController?.displayLoading(active)
+    func presentLoading(_ active: Bool, hidesScroll: Bool) {
+        viewController?.displayLoading(active, hidesScroll: hidesScroll)
     }
 
     func presentDetail(response: InsectDetail.Load.Response) {
@@ -73,9 +73,10 @@ final class InsectDetailPresenter: InsectDetailPresentationLogic {
                 bitesFirstAidTitle: showsBites ? L10n.string("insect.detail.bites.first_aid") : "",
                 bitesBulletLines: biteBullets,
                 bitePhotoURLs: bitePhotos,
-                userCollectionPhotoURLs: response.userCollectionPhotoURLs,
+                userCollectionPhotos: response.userCollectionPhotos,
                 isAddToCollectionAvailable: response.isAddToCollectionAvailable,
-                isInUserCollection: response.isInUserCollection
+                isInUserCollection: response.isInUserCollection,
+                isDetailPayloadFromServer: response.isDetailPayloadFromServer
             )
         )
     }

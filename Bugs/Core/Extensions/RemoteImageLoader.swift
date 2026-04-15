@@ -8,17 +8,23 @@ import UIKit
 
 enum RemoteImageLoader {
     /// Только сеть/кэш: до успешной загрузки — индикатор и пустой `imageView`, без ассетов-заглушек.
+    /// - Parameters:
+    ///   - useBuiltinIndicator: встроенный индикатор Kingfisher в углу `imageView` (для ячейки «Моя коллекция» обычно `false`, см. свой оверлей).
+    ///   - onSettled: вызывается после успеха или ошибки (и сразу при `url == nil`).
     static func load(
         into imageView: UIImageView,
         url: URL?,
         animatedTransition: Bool = true,
-        applyGrayscale: Bool = false
+        applyGrayscale: Bool = false,
+        useBuiltinIndicator: Bool = true,
+        onSettled: (() -> Void)? = nil
     ) {
         imageView.kf.cancelDownloadTask()
-        imageView.kf.indicatorType = .activity
+        imageView.kf.indicatorType = useBuiltinIndicator ? .activity : .none
 
         guard let url else {
             imageView.image = nil
+            onSettled?()
             return
         }
 
@@ -39,6 +45,7 @@ enum RemoteImageLoader {
             case .failure:
                 imageView.image = nil
             }
+            onSettled?()
         }
     }
 

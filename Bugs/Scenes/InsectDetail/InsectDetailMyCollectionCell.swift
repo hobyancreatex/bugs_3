@@ -76,12 +76,30 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
 
     private let dashOverlay = InsectDetailMyCollectionDashOverlayView()
 
+    private let photoLoadingHost: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = UIColor.appBackground.withAlphaComponent(0.92)
+        v.isHidden = true
+        v.isUserInteractionEnabled = false
+        return v
+    }()
+
+    private let photoLoadingSpinner: UIActivityIndicatorView = {
+        let s = UIActivityIndicatorView(style: .medium)
+        s.translatesAutoresizingMaskIntoConstraints = false
+        s.hidesWhenStopped = true
+        return s
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = false
         contentView.clipsToBounds = false
         contentView.backgroundColor = .clear
         contentView.addSubview(imageView)
+        contentView.addSubview(photoLoadingHost)
+        photoLoadingHost.addSubview(photoLoadingSpinner)
         contentView.addSubview(addContainer)
         addContainer.addSubview(centerAddImageView)
         addContainer.addSubview(dashOverlay)
@@ -91,6 +109,13 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            photoLoadingHost.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoLoadingHost.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            photoLoadingHost.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            photoLoadingHost.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            photoLoadingSpinner.centerXAnchor.constraint(equalTo: photoLoadingHost.centerXAnchor),
+            photoLoadingSpinner.centerYAnchor.constraint(equalTo: photoLoadingHost.centerYAnchor),
 
             addContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
             addContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -116,11 +141,24 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
     func configureImage(url: URL?) {
         addContainer.isHidden = true
         imageView.isHidden = false
-        RemoteImageLoader.load(into: imageView, url: url)
+        photoLoadingHost.isHidden = false
+        photoLoadingSpinner.startAnimating()
+        RemoteImageLoader.load(
+            into: imageView,
+            url: url,
+            animatedTransition: true,
+            applyGrayscale: false,
+            useBuiltinIndicator: false
+        ) { [weak self] in
+            self?.photoLoadingSpinner.stopAnimating()
+            self?.photoLoadingHost.isHidden = true
+        }
     }
 
     func configureAddAction() {
         RemoteImageLoader.cancelLoad(for: imageView)
+        photoLoadingSpinner.stopAnimating()
+        photoLoadingHost.isHidden = true
         imageView.image = nil
         imageView.isHidden = true
         addContainer.isHidden = false
@@ -141,6 +179,8 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         RemoteImageLoader.cancelLoad(for: imageView)
+        photoLoadingSpinner.stopAnimating()
+        photoLoadingHost.isHidden = true
         imageView.image = nil
         imageView.isHidden = false
         addContainer.isHidden = true
