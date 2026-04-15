@@ -41,6 +41,10 @@ private final class InsectDetailMyCollectionDashOverlayView: UIView {
         shape.frame = bounds
         shape.path = UIBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
     }
+
+    override var isHidden: Bool {
+        didSet { shape.isHidden = isHidden }
+    }
 }
 
 final class InsectDetailMyCollectionCell: UICollectionViewCell {
@@ -48,6 +52,8 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
     static let reuseIdentifier = "InsectDetailMyCollectionCell"
 
     private static let addCenterImageAssetName = "insect_detail_my_collection_add"
+    /// Фон слота под фото (не пунктир «+»): после reuse и до прихода картинки.
+    private static let photoSlotPlaceholderColor = UIColor(red: 232 / 255, green: 232 / 255, blue: 236 / 255, alpha: 1)
 
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -94,8 +100,8 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        clipsToBounds = false
-        contentView.clipsToBounds = false
+        clipsToBounds = true
+        contentView.clipsToBounds = true
         contentView.backgroundColor = .clear
         contentView.addSubview(imageView)
         contentView.addSubview(photoLoadingHost)
@@ -139,10 +145,13 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
     }
 
     func configureImage(url: URL?) {
-        addContainer.isHidden = true
+        hideAddSlotCompletely()
         imageView.isHidden = false
+        imageView.backgroundColor = Self.photoSlotPlaceholderColor
         photoLoadingHost.isHidden = false
         photoLoadingSpinner.startAnimating()
+        contentView.bringSubviewToFront(imageView)
+        contentView.bringSubviewToFront(photoLoadingHost)
         RemoteImageLoader.load(
             into: imageView,
             url: url,
@@ -152,6 +161,7 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
         ) { [weak self] in
             self?.photoLoadingSpinner.stopAnimating()
             self?.photoLoadingHost.isHidden = true
+            self?.imageView.backgroundColor = .clear
         }
     }
 
@@ -160,10 +170,25 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
         photoLoadingSpinner.stopAnimating()
         photoLoadingHost.isHidden = true
         imageView.image = nil
+        imageView.backgroundColor = .clear
         imageView.isHidden = true
+        centerAddImageView.isHidden = false
+        dashOverlay.isHidden = false
         addContainer.isHidden = false
+        addContainer.alpha = 1
+        contentView.bringSubviewToFront(addContainer)
         applyAddCenterImage()
         dashOverlay.setNeedsLayout()
+    }
+
+    /// Слот «+» (пунктир + иконка) полностью выключен — при загрузке фото не должно просвечивать под превью.
+    private func hideAddSlotCompletely() {
+        centerAddImageView.image = nil
+        centerAddImageView.isHidden = true
+        dashOverlay.isHidden = true
+        addContainer.isHidden = true
+        addContainer.alpha = 0
+        contentView.sendSubviewToBack(addContainer)
     }
 
     private func applyAddCenterImage() {
@@ -181,8 +206,9 @@ final class InsectDetailMyCollectionCell: UICollectionViewCell {
         RemoteImageLoader.cancelLoad(for: imageView)
         photoLoadingSpinner.stopAnimating()
         photoLoadingHost.isHidden = true
+        hideAddSlotCompletely()
         imageView.image = nil
         imageView.isHidden = false
-        addContainer.isHidden = true
+        imageView.backgroundColor = Self.photoSlotPlaceholderColor
     }
 }

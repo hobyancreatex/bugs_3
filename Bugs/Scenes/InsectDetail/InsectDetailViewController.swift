@@ -631,8 +631,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
     private func applyCollectionChrome() {
         let showRemove = isInCollection || isListedInUserCollection
         deleteFromCollectionButton.isHidden = !showRemove
-        /// Нижний градиент только пока вида ещё нет в коллекции; после добавления — добавление через «+» в секции «Моя коллекция».
-        addToCollectionControl.isHidden = isListedInUserCollection
+        addToCollectionControl.isHidden = false
         updateScrollInsetForAddToCollectionButton()
     }
 
@@ -643,15 +642,10 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
 
     /// Скролл на весь экран; кнопка поверх. Нижний inset, чтобы последний контент можно было прокрутить выше кнопки.
     private func updateScrollInsetForAddToCollectionButton() {
-        let breathingRoom: CGFloat = 20
-        guard !addToCollectionControl.isHidden else {
-            scrollView.contentInset.bottom = breathingRoom
-            scrollView.verticalScrollIndicatorInsets.bottom = breathingRoom
-            return
-        }
         let visibleBottom = scrollView.frame.maxY
         let buttonTop = addToCollectionControl.frame.minY
         let overlap = max(0, visibleBottom - buttonTop)
+        let breathingRoom: CGFloat = 20
         let inset = overlap + breathingRoom
         scrollView.contentInset.bottom = inset
         scrollView.verticalScrollIndicatorInsets.bottom = inset
@@ -924,8 +918,9 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         descriptionPlaqueTopToMyCollectionStackConstraint.isActive = showsMyCollection
         if showsMyCollection {
             myCollectionPlaque.setTitle(L10n.string("profile.segment.collection"))
-            myCollectionCollectionView.reloadData()
         }
+        /// Всегда сбрасываем ячейки: иначе после добавления фото остаётся старый item count / reuse «+» рядом с новым слотом.
+        myCollectionCollectionView.reloadData()
         titleLabel.text = viewModel.scientificTitle
         applyLeftHazardStatus(viewModel.leftHazardStatus, text: viewModel.leftStatusText)
         widespreadLabel.text = viewModel.widespreadStatusText
@@ -1101,6 +1096,7 @@ extension InsectDetailViewController: UICollectionViewDataSource {
             return galleryAssetNames.count
         }
         if collectionView === myCollectionCollectionView {
+            guard !userCollectionPhotos.isEmpty else { return 0 }
             return userCollectionPhotos.count + 1
         }
         return 0
