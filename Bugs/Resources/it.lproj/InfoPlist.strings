@@ -1,3 +1,3 @@
-"NSCameraUsageDescription" = "Allow camera access so you can take photos and identify bugs instantly";
-"NSPhotoLibraryUsageDescription" = "Choose a photo to identify insects.";
-"NSUserTrackingUsageDescription" = "We use this to measure ad performance and improve subscriptions, including refund-related flows.";
+"NSCameraUsageDescription" = "L’accesso alla fotocamera serve per fotografare gli insetti da identificare e aggiungere alla raccolta.";
+"NSPhotoLibraryUsageDescription" = "Scegli una foto per identificare un insetto.";
+"NSUserTrackingUsageDescription" = "Usiamo l’identificatore per misurare l’efficacia della pubblicità e migliorare l’abbonamento.";

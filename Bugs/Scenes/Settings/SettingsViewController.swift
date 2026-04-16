@@ -140,7 +140,10 @@ final class SettingsViewController: UIViewController {
         hiddenPremiumTapCount = 0
         SubscriptionAccess.shared.setPremiumActive(true)
         tableView.reloadData()
-        presentSimpleAlert(title: L10n.string("common.done"), message: "Подписка теперь активна.")
+        presentSimpleAlert(
+            title: L10n.string("common.done"),
+            message: L10n.string("settings.debug.premium_activated")
+        )
     }
 
     private func groupedCellBackground() -> UIBackgroundConfiguration {
@@ -161,6 +164,21 @@ final class SettingsViewController: UIViewController {
         }
         cell.contentConfiguration = content
         cell.accessoryType = .disclosureIndicator
+        cell.backgroundConfiguration = groupedCellBackground()
+    }
+
+    private func configureDestructiveCell(_ cell: UITableViewCell, titleKey: String, symbolName: String) {
+        var content = cell.defaultContentConfiguration()
+        content.text = L10n.string(titleKey)
+        content.textProperties.font = .systemFont(ofSize: 16, weight: .regular)
+        content.textProperties.color = .systemRed
+        if let img = UIImage(systemName: symbolName) {
+            content.image = img
+            content.imageProperties.tintColor = .systemRed
+            content.imageProperties.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+        }
+        cell.contentConfiguration = content
+        cell.accessoryType = .none
         cell.backgroundConfiguration = groupedCellBackground()
     }
 
@@ -252,12 +270,12 @@ final class SettingsViewController: UIViewController {
 
     private func deleteAccount() {
         let alert = UIAlertController(
-            title: "Удалить аккаунт?",
-            message: "Это действие безвозвратно удалит аккаунт и локальные данные на этом устройстве. Продолжить?",
+            title: L10n.string("settings.delete_account.confirm.title"),
+            message: L10n.string("settings.delete_account.confirm.message"),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L10n.string("settings.delete_account.confirm.cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: L10n.string("settings.delete_account.confirm.delete"), style: .destructive) { [weak self] _ in
             Task { await self?.performDeleteAccount() }
         })
         present(alert, animated: true)
@@ -276,7 +294,10 @@ final class SettingsViewController: UIViewController {
             try? DeviceAuthKeychain.clearAllAuthData()
             CollectAPIAuthState.setToken(nil)
             await AuthBootstrapper.shared.bootstrapIfNeeded()
-            presentSimpleAlert(title: L10n.string("common.done"), message: "Аккаунт удален.")
+            presentSimpleAlert(
+                title: L10n.string("common.done"),
+                message: L10n.string("settings.delete_account.done")
+            )
         } catch {
             UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
         }
@@ -329,15 +350,7 @@ extension SettingsViewController: UITableViewDataSource {
             case .refundConsent:
                 configureCell(cell, titleKey: "settings.row.refund_consent", symbolName: "checkmark.shield.fill")
             case .deleteAccount:
-                configureCell(cell, titleKey: "settings.row.terms", symbolName: "trash")
-                var content = cell.defaultContentConfiguration()
-                content.text = "Удалить аккаунт"
-                content.textProperties.color = .systemRed
-                if let img = UIImage(systemName: "trash") {
-                    content.image = img
-                    content.imageProperties.tintColor = .systemRed
-                }
-                cell.contentConfiguration = content
+                configureDestructiveCell(cell, titleKey: "settings.row.delete_account", symbolName: "trash")
             }
         }
         return cell

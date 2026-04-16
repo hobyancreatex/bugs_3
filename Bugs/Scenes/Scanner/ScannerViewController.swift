@@ -64,12 +64,23 @@ final class ScannerViewController: UIViewController {
     private weak var galleryLoaderHost: UIView?
     private var isSessionConfigured = false
     private var shouldRunSessionWhenReady = false
+    private var noAccessIllustrationHeightConstraint: NSLayoutConstraint!
 
     private let noAccessContainer: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.isHidden = true
         return v
+    }()
+
+    private let noAccessIllustrationView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFit
+        let img = UIImage(named: "camera_access")
+        iv.image = img
+        iv.isHidden = (img == nil)
+        return iv
     }()
 
     private let noAccessTitleLabel: UILabel = {
@@ -79,7 +90,6 @@ final class ScannerViewController: UIViewController {
         l.font = .systemFont(ofSize: 24, weight: .bold)
         l.textAlignment = .center
         l.numberOfLines = 0
-        l.text = "Camera access needed"
         return l
     }()
 
@@ -90,14 +100,12 @@ final class ScannerViewController: UIViewController {
         l.font = .systemFont(ofSize: 16, weight: .regular)
         l.textAlignment = .center
         l.numberOfLines = 0
-        l.text = "Allow camera access so you can take photos and identify bugs instantly"
         return l
     }()
 
     private let openSettingsButton: GradientRoundedCTAControl = {
         let b = GradientRoundedCTAControl()
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.setTitle("Open Settings", for: .normal)
         return b
     }()
 
@@ -120,6 +128,7 @@ final class ScannerViewController: UIViewController {
         view.addSubview(shutterButton)
         view.addSubview(flashButton)
         view.addSubview(noAccessContainer)
+        noAccessContainer.addSubview(noAccessIllustrationView)
         noAccessContainer.addSubview(noAccessTitleLabel)
         noAccessContainer.addSubview(noAccessSubtitleLabel)
         noAccessContainer.addSubview(openSettingsButton)
@@ -174,7 +183,11 @@ final class ScannerViewController: UIViewController {
             noAccessContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             noAccessContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
 
-            noAccessTitleLabel.topAnchor.constraint(equalTo: noAccessContainer.topAnchor),
+            noAccessIllustrationView.topAnchor.constraint(equalTo: noAccessContainer.topAnchor),
+            noAccessIllustrationView.centerXAnchor.constraint(equalTo: noAccessContainer.centerXAnchor),
+            noAccessIllustrationView.widthAnchor.constraint(lessThanOrEqualTo: noAccessContainer.widthAnchor),
+
+            noAccessTitleLabel.topAnchor.constraint(equalTo: noAccessIllustrationView.bottomAnchor, constant: 16),
             noAccessTitleLabel.leadingAnchor.constraint(equalTo: noAccessContainer.leadingAnchor),
             noAccessTitleLabel.trailingAnchor.constraint(equalTo: noAccessContainer.trailingAnchor),
 
@@ -188,6 +201,10 @@ final class ScannerViewController: UIViewController {
             openSettingsButton.heightAnchor.constraint(equalToConstant: 52),
             openSettingsButton.bottomAnchor.constraint(equalTo: noAccessContainer.bottomAnchor),
         ])
+        noAccessIllustrationHeightConstraint = noAccessIllustrationView.heightAnchor.constraint(
+            equalToConstant: noAccessIllustrationView.isHidden ? 0 : 140
+        )
+        noAccessIllustrationHeightConstraint.isActive = true
 
         previewLayer.videoGravity = .resizeAspectFill
         previewBox.layer.addSublayer(previewLayer)
@@ -201,6 +218,7 @@ final class ScannerViewController: UIViewController {
         flashButton.addTarget(self, action: #selector(flashTapped), for: .touchUpInside)
         openSettingsButton.addTarget(self, action: #selector(openSettingsTapped), for: .touchUpInside)
         noAccessBackgroundBlur.isHidden = true
+        applyNoAccessLocalizedStrings()
 
         sessionQueue.async { [weak self] in
             self?.configureSession()
@@ -217,6 +235,7 @@ final class ScannerViewController: UIViewController {
         applySubscriptionStatusForAppearance()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         shouldRunSessionWhenReady = true
+        applyNoAccessLocalizedStrings()
         updateCameraAccessUI()
         startSessionIfNeeded()
     }
@@ -319,6 +338,12 @@ final class ScannerViewController: UIViewController {
         noAccessBackgroundBlur.isHidden = !isDenied
         dimOverlay.isHidden = isDenied
         dashBorder.isHidden = isDenied
+    }
+
+    private func applyNoAccessLocalizedStrings() {
+        noAccessTitleLabel.text = L10n.string("scanner.camera.no_access.title")
+        noAccessSubtitleLabel.text = L10n.string("scanner.camera.no_access.message")
+        openSettingsButton.setTitle(L10n.string("scanner.camera.open_settings"), for: .normal)
     }
 
     private func configureButtonImages() {

@@ -107,8 +107,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         let l = UILabel()
         l.font = .systemFont(ofSize: 16, weight: .semibold)
         l.textColor = .appTextPrimary
-        l.numberOfLines = 0
+        l.numberOfLines = 2
+        l.lineBreakMode = .byWordWrapping
+        l.textAlignment = .natural
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.setContentCompressionResistancePriority(.required, for: .vertical)
         return l
     }()
 
@@ -226,6 +229,14 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewWillDisappear(animated)
         if isMovingFromParent || isBeingDismissed { return }
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let w = aiBannerTitleLabel.bounds.width
+        if w > 0, abs(w - aiBannerTitleLabel.preferredMaxLayoutWidth) > 0.5 {
+            aiBannerTitleLabel.preferredMaxLayoutWidth = w
+        }
     }
 
     private func configureHomeSearchField() {
@@ -349,7 +360,6 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
             aiBannerContainer.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: 20),
             aiBannerContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 16),
             aiBannerContainer.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor, constant: -16),
-            aiBannerContainer.heightAnchor.constraint(equalToConstant: 126),
 
             popularSectionContainer.topAnchor.constraint(equalTo: aiBannerContainer.bottomAnchor, constant: 20),
             popularSectionContainer.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
@@ -391,12 +401,12 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 
             aiBannerTitleLabel.topAnchor.constraint(equalTo: aiBannerContainer.topAnchor, constant: 20),
             aiBannerTitleLabel.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor, constant: 20),
-            aiBannerTitleLabel.trailingAnchor.constraint(equalTo: aiBannerContainer.trailingAnchor, constant: -20),
+            aiBannerTitleLabel.widthAnchor.constraint(equalTo: aiBannerContainer.widthAnchor, multiplier: 0.7),
 
             aiAskButton.leadingAnchor.constraint(equalTo: aiBannerContainer.leadingAnchor, constant: 20),
             aiAskButton.bottomAnchor.constraint(equalTo: aiBannerContainer.bottomAnchor, constant: -20),
             aiAskButton.heightAnchor.constraint(equalToConstant: 50),
-            aiAskButton.topAnchor.constraint(greaterThanOrEqualTo: aiBannerTitleLabel.bottomAnchor, constant: 12)
+            aiAskButton.topAnchor.constraint(equalTo: aiBannerTitleLabel.bottomAnchor, constant: 12)
         ])
 
         settingsButtonTrailingToPremiumConstraint = settingsButton.trailingAnchor.constraint(

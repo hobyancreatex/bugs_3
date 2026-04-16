@@ -214,8 +214,8 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         let heroURL = mapped.heroImageURL ?? fallbackHeroURL
         let galleryURLs = mapped.galleryImageURLs
         let galleryNames = Array(repeating: "home_popular_insect", count: galleryURLs.count)
-        let charResolved = mapped.characteristics.isEmpty ? nil : mapped.characteristics
-        let classResolved = mapped.classification.isEmpty ? nil : mapped.classification
+        let charResolved = Self.localizedLabeledRows(mapped.characteristics)
+        let classResolved = Self.localizedLabeledRows(mapped.classification)
         let stubChar = stubCharacteristicRows()
         let stubClass = stubClassificationRows()
         let hazard: InsectDetail.LeftHazardStatus = mapped.isPoisonous ? .poisonous : .harmless
@@ -304,6 +304,65 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
             isDetailPayloadFromServer: false
         )
     }
+
+    /// Подписи строк с API часто на английском — подставляем `L10n`, неизвестные ключи оставляем как есть.
+    private static func localizedLabeledRows(_ rows: [(String, String)]) -> [(String, String)]? {
+        guard !rows.isEmpty else { return nil }
+        return rows.map { title, value in
+            (localizedAPIFieldTitle(title), value)
+        }
+    }
+
+    private static func localizedAPIFieldTitle(_ raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return raw }
+        let norm = trimmed.lowercased()
+        let slug = norm.replacingOccurrences(of: " ", with: "_")
+        if let key = apiFieldTitleToL10nKey[norm] ?? apiFieldTitleToL10nKey[slug] {
+            return L10n.string(key)
+        }
+        return trimmed
+    }
+
+    private static let apiFieldTitleToL10nKey: [String: String] = [
+        "genus": "insect.detail.api.genus",
+        "family": "insect.detail.api.family",
+        "order": "insect.detail.api.order",
+        "class": "insect.detail.api.taxonomy_class",
+        "phylum": "insect.detail.api.phylum",
+        "kingdom": "insect.detail.api.kingdom",
+        "domain": "insect.detail.api.domain",
+        "color": "insect.detail.api.color",
+        "colour": "insect.detail.api.color",
+        "colors": "insect.detail.api.color",
+        "length": "insect.detail.api.length",
+        "size": "insect.detail.api.size",
+        "adult_size": "insect.detail.api.adult_size",
+        "habitat": "insect.detail.api.habitat",
+        "habitats": "insect.detail.api.habitat",
+        "wingspan": "insect.detail.api.wingspan",
+        "diet": "insect.detail.api.diet",
+        "weight": "insect.detail.api.weight",
+        "lifespan": "insect.detail.api.lifespan",
+        "behavior": "insect.detail.api.behavior",
+        "behaviour": "insect.detail.api.behavior",
+        "range": "insect.detail.api.range",
+        "region": "insect.detail.api.region",
+        "distribution": "insect.detail.api.distribution",
+        "host_plants": "insect.detail.api.host_plants",
+        "hosts": "insect.detail.api.host_plants",
+        "host": "insect.detail.api.host_plants",
+        "population": "insect.detail.api.population",
+        "forms": "insect.detail.api.forms",
+        "activity": "insect.detail.api.activity",
+        "season": "insect.detail.api.season",
+        "flight_period": "insect.detail.api.flight_period",
+        "venom": "insect.detail.api.venom",
+        "speed": "insect.detail.api.speed",
+        "depth": "insect.detail.api.depth",
+        "width": "insect.detail.api.width",
+        "height": "insect.detail.api.height",
+    ]
 
     private static func stubCharacteristicRows() -> [InsectDetail.CharacteristicLocalizationPair] {
         [
