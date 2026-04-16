@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Κοντά";
 "profile.achievement.unlock_heading" = "Για να ξεκλειδώσετε αυτό το επίτευγμα";
 "profile.achievement.completed_heading" = "Συγχαρητήρια!";
-"profile.achievement.completed_body" = "Προστέθηκε στη συλλογή σας";
+"profile.achievement.completed_body" = "Το επίτευγμα ξεκλειδώθηκε";
 "profile.achievement.identify_more" = "Προσδιορίστε %lld περισσότερα %@";
 "tab.home.accessibility" = "Σπίτι";
 "tab.library.accessibility" = "Βιβλιοθήκη";

@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Zavrieť";
 "profile.achievement.unlock_heading" = "Ak chcete odomknúť tento úspech";
 "profile.achievement.completed_heading" = "Gratulujem!";
-"profile.achievement.completed_body" = "Pridané do vašej zbierky";
+"profile.achievement.completed_body" = "Úspech odomknutý";
 "profile.achievement.identify_more" = "Identifikujte %lld ďalších %@";
 "tab.home.accessibility" = "Domov";
 "tab.library.accessibility" = "Knižnica";

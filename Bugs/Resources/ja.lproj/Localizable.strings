@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "閉じる";
 "profile.achievement.unlock_heading" = "この実績を解除するには";
 "profile.achievement.completed_heading" = "おめでとうございます！";
-"profile.achievement.completed_body" = "あなたのコレクションに追加されました";
+"profile.achievement.completed_body" = "実績を解除しました";
 "profile.achievement.identify_more" = "%lld をさらに %@ 特定する";
 "tab.home.accessibility" = "ホーム";
 "tab.library.accessibility" = "図書館";

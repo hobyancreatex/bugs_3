@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Закрыть";
 "profile.achievement.unlock_heading" = "Чтобы открыть это достижение";
 "profile.achievement.completed_heading" = "Поздравляем!";
-"profile.achievement.completed_body" = "Добавлено в вашу коллекцию";
+"profile.achievement.completed_body" = "Достижение разблокировано";
 "profile.achievement.identify_more" = "Определите ещё %lld %@";
 "tab.home.accessibility" = "Главная";
 "tab.library.accessibility" = "Библиотека";

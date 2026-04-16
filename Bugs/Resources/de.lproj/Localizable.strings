@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Schließen";
 "profile.achievement.unlock_heading" = "Um diesen Erfolg freizuschalten";
 "profile.achievement.completed_heading" = "Herzlichen Glückwunsch!";
-"profile.achievement.completed_body" = "Zu Ihrer Sammlung hinzugefügt";
+"profile.achievement.completed_body" = "Erfolg freigeschaltet";
 "profile.achievement.identify_more" = "Identifizieren Sie %lld weitere %@";
 "tab.home.accessibility" = "Zuhause";
 "tab.library.accessibility" = "Bibliothek";

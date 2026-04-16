@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Lukk";
 "profile.achievement.unlock_heading" = "For å låse opp denne prestasjonen";
 "profile.achievement.completed_heading" = "Gratulerer!";
-"profile.achievement.completed_body" = "Lagt til i samlingen din";
+"profile.achievement.completed_body" = "Prestasjon låst opp";
 "profile.achievement.identify_more" = "Identifiser %lld mer %@";
 "tab.home.accessibility" = "Hjem";
 "tab.library.accessibility" = "Bibliotek";

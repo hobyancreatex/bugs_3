@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Закрити";
 "profile.achievement.unlock_heading" = "Щоб розблокувати це досягнення";
 "profile.achievement.completed_heading" = "Щиро вітаю!";
-"profile.achievement.completed_body" = "Додано до вашої колекції";
+"profile.achievement.completed_body" = "Досягнення розблоковано";
 "profile.achievement.identify_more" = "Визначте ще %lld %@";
 "tab.home.accessibility" = "додому";
 "tab.library.accessibility" = "Бібліотека";

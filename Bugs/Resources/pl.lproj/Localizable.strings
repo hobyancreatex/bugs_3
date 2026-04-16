@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Zamknąć";
 "profile.achievement.unlock_heading" = "Aby odblokować to osiągnięcie";
 "profile.achievement.completed_heading" = "Gratulacje!";
-"profile.achievement.completed_body" = "Dodano do Twojej kolekcji";
+"profile.achievement.completed_body" = "Osiągnięcie odblokowane";
 "profile.achievement.identify_more" = "Zidentyfikuj %lld więcej %@";
 "tab.home.accessibility" = "Dom";
 "tab.library.accessibility" = "Biblioteka";

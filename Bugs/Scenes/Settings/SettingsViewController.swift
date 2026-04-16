@@ -9,6 +9,8 @@ import UIKit
 /// Настройки: те же группы и пункты, что в Coin Recognizer (support / feedback / security).
 final class SettingsViewController: UIViewController {
     private var hiddenPremiumTapCount = 0
+    private var bannerPriceText: String?
+    private var hasLoadedBannerPrice = false
 
     private enum Section: Int, CaseIterable {
         case support
@@ -51,6 +53,64 @@ final class SettingsViewController: UIViewController {
         return t
     }()
 
+    private lazy var subscriptionBannerView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.layer.cornerRadius = 24
+        v.clipsToBounds = true
+        v.isUserInteractionEnabled = true
+        return v
+    }()
+
+    private let subscriptionBannerGradientLayer: CAGradientLayer = {
+        let g = CAGradientLayer()
+        g.colors = [
+            UIColor.appReadMore.cgColor,
+            UIColor.appCollectionCtaGradientEnd.cgColor,
+        ]
+        g.startPoint = CGPoint(x: 0, y: 0.5)
+        g.endPoint = CGPoint(x: 1, y: 0.5)
+        return g
+    }()
+
+    private let subscriptionBannerTitleLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = .systemFont(ofSize: 16, weight: .bold)
+        l.textColor = .white
+        l.numberOfLines = 2
+        l.lineBreakMode = .byWordWrapping
+        l.textAlignment = .center
+        l.text = L10n.string("paywall.headline")
+        return l
+    }()
+
+    private let subscriptionBannerOfferLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = .systemFont(ofSize: 13, weight: .medium)
+        l.textColor = UIColor.white.withAlphaComponent(0.92)
+        l.numberOfLines = 1
+        l.textAlignment = .center
+        return l
+    }()
+
+    private let subscriptionBannerButton: UIButton = {
+        let b = UIButton(type: .system)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.backgroundColor = .white
+        b.layer.cornerRadius = 24
+        b.setTitleColor(.appTextPrimary, for: .normal)
+        b.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        b.setTitle(L10n.string("paywall.button.next"), for: .normal)
+        b.contentEdgeInsets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        return b
+    }()
+
+    private var tableTopToSafeConstraint: NSLayoutConstraint!
+    private var tableTopToBannerConstraint: NSLayoutConstraint!
+    private var subscriptionBannerHeightConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
@@ -62,20 +122,38 @@ final class SettingsViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        view.addSubview(subscriptionBannerView)
         view.addSubview(tableView)
         let safe = view.safeAreaLayoutGuide
+        subscriptionBannerHeightConstraint = subscriptionBannerView.heightAnchor.constraint(equalToConstant: 146)
+        tableTopToSafeConstraint = tableView.topAnchor.constraint(equalTo: safe.topAnchor)
+        tableTopToBannerConstraint = tableView.topAnchor.constraint(equalTo: subscriptionBannerView.bottomAnchor, constant: 8)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safe.topAnchor),
+            subscriptionBannerView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 10),
+            subscriptionBannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            subscriptionBannerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -48),
+            subscriptionBannerHeightConstraint,
+
+            tableTopToSafeConstraint,
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        configureSubscriptionBannerHeader()
+        refreshSubscriptionBannerHeader()
+        Task { await loadBannerPriceIfNeeded() }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applySubscriptionStatusForAppearance()
+        refreshSubscriptionBannerHeader()
         tableView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        subscriptionBannerGradientLayer.frame = subscriptionBannerView.bounds
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -144,6 +222,79 @@ final class SettingsViewController: UIViewController {
             title: L10n.string("common.done"),
             message: L10n.string("settings.debug.premium_activated")
         )
+        refreshSubscriptionBannerHeader()
+    }
+
+    private func configureSubscriptionBannerHeader() {
+        subscriptionBannerView.layer.insertSublayer(subscriptionBannerGradientLayer, at: 0)
+        subscriptionBannerView.addSubview(subscriptionBannerTitleLabel)
+        subscriptionBannerView.addSubview(subscriptionBannerOfferLabel)
+        subscriptionBannerView.addSubview(subscriptionBannerButton)
+
+        let bannerTap = UITapGestureRecognizer(target: self, action: #selector(subscriptionBannerTapped))
+        subscriptionBannerView.addGestureRecognizer(bannerTap)
+        subscriptionBannerButton.addTarget(self, action: #selector(subscriptionBannerTapped), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            subscriptionBannerTitleLabel.topAnchor.constraint(equalTo: subscriptionBannerView.topAnchor, constant: 14),
+            subscriptionBannerTitleLabel.leadingAnchor.constraint(equalTo: subscriptionBannerView.leadingAnchor, constant: 16),
+            subscriptionBannerTitleLabel.trailingAnchor.constraint(equalTo: subscriptionBannerView.trailingAnchor, constant: -16),
+
+            subscriptionBannerOfferLabel.topAnchor.constraint(equalTo: subscriptionBannerTitleLabel.bottomAnchor, constant: 6),
+            subscriptionBannerOfferLabel.leadingAnchor.constraint(equalTo: subscriptionBannerView.leadingAnchor, constant: 16),
+            subscriptionBannerOfferLabel.trailingAnchor.constraint(equalTo: subscriptionBannerView.trailingAnchor, constant: -16),
+
+            subscriptionBannerButton.leadingAnchor.constraint(equalTo: subscriptionBannerView.leadingAnchor, constant: 16),
+            subscriptionBannerButton.trailingAnchor.constraint(equalTo: subscriptionBannerView.trailingAnchor, constant: -16),
+            subscriptionBannerButton.bottomAnchor.constraint(equalTo: subscriptionBannerView.bottomAnchor, constant: -12),
+            subscriptionBannerButton.heightAnchor.constraint(equalToConstant: 50),
+            subscriptionBannerButton.topAnchor.constraint(greaterThanOrEqualTo: subscriptionBannerOfferLabel.bottomAnchor, constant: 10),
+        ])
+        updateSubscriptionBannerOfferLabel()
+    }
+
+    private func refreshSubscriptionBannerHeader() {
+        let showBanner = !SubscriptionAccess.shared.isPremiumActive
+        subscriptionBannerView.isHidden = !showBanner
+        subscriptionBannerHeightConstraint.constant = showBanner ? 146 : 0
+        tableTopToBannerConstraint.isActive = showBanner
+        tableTopToSafeConstraint.isActive = !showBanner
+        view.layoutIfNeeded()
+    }
+
+    @MainActor
+    private func loadBannerPriceIfNeeded() async {
+        guard !hasLoadedBannerPrice else { return }
+        hasLoadedBannerPrice = true
+        do {
+            let products = try await SubscriptionManager.shared.loadSubscriptionProducts()
+            bannerPriceText = products.first?.displayPrice
+        } catch {
+            bannerPriceText = nil
+        }
+        updateSubscriptionBannerOfferLabel()
+    }
+
+    private func updateSubscriptionBannerOfferLabel() {
+        let prefix = L10n.string("paywall.product.prefix")
+        let price = bannerPriceText ?? "—"
+        let suffix = L10n.string("paywall.product.suffix")
+        subscriptionBannerOfferLabel.text = joinOfferParts(prefix: prefix, price: price, suffix: suffix)
+    }
+
+    private func joinOfferParts(prefix: String, price: String, suffix: String) -> String {
+        let ws = CharacterSet.whitespacesAndNewlines
+        let left = prefix.trimmingCharacters(in: ws)
+        let right = suffix.trimmingCharacters(in: ws)
+        guard !left.isEmpty || !right.isEmpty else { return price }
+        if left.isEmpty { return "\(price) \(right)" }
+        if right.isEmpty { return "\(left) \(price)" }
+        return "\(left) \(price) \(right)"
+    }
+
+    @objc
+    private func subscriptionBannerTapped() {
+        presentPaywallFullScreen()
     }
 
     private func groupedCellBackground() -> UIBackgroundConfiguration {

@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Stäng";
 "profile.achievement.unlock_heading" = "För att låsa upp denna prestation";
 "profile.achievement.completed_heading" = "Grattis!";
-"profile.achievement.completed_body" = "Lades till i din samling";
+"profile.achievement.completed_body" = "Prestation upplåst";
 "profile.achievement.identify_more" = "Identifiera %lld mer %@";
 "tab.home.accessibility" = "Hem";
 "tab.library.accessibility" = "Bibliotek";

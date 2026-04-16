@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Luk";
 "profile.achievement.unlock_heading" = "For at låse op for denne præstation";
 "profile.achievement.completed_heading" = "Tillykke!";
-"profile.achievement.completed_body" = "Tilføjet til din samling";
+"profile.achievement.completed_body" = "Præstation låst op";
 "profile.achievement.identify_more" = "Identificer %lld mere %@";
 "tab.home.accessibility" = "Hjem";
 "tab.library.accessibility" = "Bibliotek";

@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Kapalı";
 "profile.achievement.unlock_heading" = "Bu başarının kilidini açmak için";
 "profile.achievement.completed_heading" = "Tebrikler!";
-"profile.achievement.completed_body" = "Koleksiyonunuza eklendi";
+"profile.achievement.completed_body" = "Başarım açıldı";
 "profile.achievement.identify_more" = "%lld daha fazla %@ tanımlayın";
 "tab.home.accessibility" = "Ev";
 "tab.library.accessibility" = "Kütüphane";

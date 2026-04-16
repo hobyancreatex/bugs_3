@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Funga";
 "profile.achievement.unlock_heading" = "Ili kufungua mafanikio haya";
 "profile.achievement.completed_heading" = "Hongera!";
-"profile.achievement.completed_body" = "Imeongezwa kwenye mkusanyiko wako";
+"profile.achievement.completed_body" = "Mafanikio yamefunguliwa";
 "profile.achievement.identify_more" = "Tambua %lld zaidi %@";
 "tab.home.accessibility" = "Nyumbani";
 "tab.library.accessibility" = "Maktaba";

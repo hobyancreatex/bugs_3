@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Bezárás";
 "profile.achievement.unlock_heading" = "A jutalom feloldásához";
 "profile.achievement.completed_heading" = "Gratulálunk!";
-"profile.achievement.completed_body" = "Hozzáadva a gyűjteményéhez";
+"profile.achievement.completed_body" = "Eredmény feloldva";
 "profile.achievement.identify_more" = "Azonosítson %lld további %@";
 "tab.home.accessibility" = "Otthon";
 "tab.library.accessibility" = "Könyvtár";

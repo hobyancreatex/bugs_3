@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "סגור";
 "profile.achievement.unlock_heading" = "כדי לפתוח את ההישג הזה";
 "profile.achievement.completed_heading" = "מזל טוב!";
-"profile.achievement.completed_body" = "נוסף לאוסף שלך";
+"profile.achievement.completed_body" = "ההישג נפתח";
 "profile.achievement.identify_more" = "זהה %lld עוד %@";
 "tab.home.accessibility" = "בית";
 "tab.library.accessibility" = "ספריה";

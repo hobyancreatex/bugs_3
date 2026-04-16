@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "إغلاق";
 "profile.achievement.unlock_heading" = "لفتح هذا الإنجاز";
 "profile.achievement.completed_heading" = "تهانينا!";
-"profile.achievement.completed_body" = "تمت إضافتها إلى مجموعتك";
+"profile.achievement.completed_body" = "تم فتح الإنجاز";
 "profile.achievement.identify_more" = "حدد %lld المزيد %@";
 "tab.home.accessibility" = "الصفحة الرئيسية";
 "tab.library.accessibility" = "مكتبة";

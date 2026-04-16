@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Sulje";
 "profile.achievement.unlock_heading" = "Voit avata tämän saavutuksen";
 "profile.achievement.completed_heading" = "Onnittelut!";
-"profile.achievement.completed_body" = "Lisätty kokoelmaasi";
+"profile.achievement.completed_body" = "Saavutus avattu";
 "profile.achievement.identify_more" = "Tunnista %lld lisää %@";
 "tab.home.accessibility" = "Kotiin";
 "tab.library.accessibility" = "Kirjasto";

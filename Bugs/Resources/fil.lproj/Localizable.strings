@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Isara";
 "profile.achievement.unlock_heading" = "Upang i-unlock ang tagumpay na ito";
 "profile.achievement.completed_heading" = "Binabati kita!";
-"profile.achievement.completed_body" = "Idinagdag sa iyong koleksyon";
+"profile.achievement.completed_body" = "Na-unlock ang achievement";
 "profile.achievement.identify_more" = "Kilalanin ang %lld higit pa %@";
 "tab.home.accessibility" = "Bahay";
 "tab.library.accessibility" = "Aklatan";

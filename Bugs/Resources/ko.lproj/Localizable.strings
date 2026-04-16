@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "닫기";
 "profile.achievement.unlock_heading" = "이 업적을 잠금 해제하려면";
 "profile.achievement.completed_heading" = "축하합니다!";
-"profile.achievement.completed_body" = "컬렉션에 추가됨";
+"profile.achievement.completed_body" = "업적이 잠금 해제되었습니다";
 "profile.achievement.identify_more" = "%lld 더보기 %@ 식별";
 "tab.home.accessibility" = "홈";
 "tab.library.accessibility" = "도서관";

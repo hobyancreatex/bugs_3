@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "ปิด";
 "profile.achievement.unlock_heading" = "เพื่อปลดล็อคความสำเร็จนี้";
 "profile.achievement.completed_heading" = "ยินดีด้วย!";
-"profile.achievement.completed_body" = "เพิ่มไปยังคอลเลกชันของคุณแล้ว";
+"profile.achievement.completed_body" = "ปลดล็อกความสำเร็จแล้ว";
 "profile.achievement.identify_more" = "ระบุ %lld เพิ่มเติม %@";
 "tab.home.accessibility" = "บ้าน";
 "tab.library.accessibility" = "ห้องสมุด";

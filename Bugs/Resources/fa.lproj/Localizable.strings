@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "بستن";
 "profile.achievement.unlock_heading" = "برای باز کردن این دستاورد";
 "profile.achievement.completed_heading" = "تبریک می گویم!";
-"profile.achievement.completed_body" = "به مجموعه شما اضافه شد";
+"profile.achievement.completed_body" = "دستاورد باز شد";
 "profile.achievement.identify_more" = "شناسایی %lld بیشتر %@";
 "tab.home.accessibility" = "صفحه اصلی";
 "tab.library.accessibility" = "کتابخانه";

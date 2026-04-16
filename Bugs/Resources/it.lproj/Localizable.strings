@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Chiudi";
 "profile.achievement.unlock_heading" = "Per sbloccare questo obiettivo";
 "profile.achievement.completed_heading" = "Congratulazioni!";
-"profile.achievement.completed_body" = "Aggiunto alla tua raccolta";
+"profile.achievement.completed_body" = "Obiettivo sbloccato";
 "profile.achievement.identify_more" = "Identifica %lld più %@";
 "tab.home.accessibility" = "Casa";
 "tab.library.accessibility" = "Biblioteca";

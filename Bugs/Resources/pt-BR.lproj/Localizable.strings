@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Fechar";
 "profile.achievement.unlock_heading" = "Para desbloquear esta conquista";
 "profile.achievement.completed_heading" = "Parabéns!";
-"profile.achievement.completed_body" = "Adicionado à sua coleção";
+"profile.achievement.completed_body" = "Conquista desbloqueada";
 "profile.achievement.identify_more" = "Identifique %lld mais %@";
 "tab.home.accessibility" = "Página inicial";
 "tab.library.accessibility" = "Biblioteca";

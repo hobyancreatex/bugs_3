@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Đóng";
 "profile.achievement.unlock_heading" = "Để mở khóa thành tích này";
 "profile.achievement.completed_heading" = "Chúc mừng!";
-"profile.achievement.completed_body" = "Đã thêm vào bộ sưu tập của bạn";
+"profile.achievement.completed_body" = "Đã mở khóa thành tựu";
 "profile.achievement.identify_more" = "Xác định %lld thêm %@";
 "tab.home.accessibility" = "Trang chủ";
 "tab.library.accessibility" = "Thư viện";

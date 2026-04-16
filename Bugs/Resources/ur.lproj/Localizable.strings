@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "بند";
 "profile.achievement.unlock_heading" = "اس کامیابی کو غیر مقفل کرنے کے لیے";
 "profile.achievement.completed_heading" = "مبارک ہو!";
-"profile.achievement.completed_body" = "آپ کے مجموعہ میں شامل کیا گیا۔";
+"profile.achievement.completed_body" = "کامیابی ان لاک ہو گئی";
 "profile.achievement.identify_more" = "%lld مزید %@ کی شناخت کریں";
 "tab.home.accessibility" = "گھر";
 "tab.library.accessibility" = "لائبریری";

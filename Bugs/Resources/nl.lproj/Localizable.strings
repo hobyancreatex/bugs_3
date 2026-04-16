@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Dichtbij";
 "profile.achievement.unlock_heading" = "Om deze prestatie te ontgrendelen";
 "profile.achievement.completed_heading" = "Gefeliciteerd!";
-"profile.achievement.completed_body" = "Toegevoegd aan je collectie";
+"profile.achievement.completed_body" = "Prestatie ontgrendeld";
 "profile.achievement.identify_more" = "Identificeer %lld meer %@";
 "tab.home.accessibility" = "Thuis";
 "tab.library.accessibility" = "Bibliotheek";

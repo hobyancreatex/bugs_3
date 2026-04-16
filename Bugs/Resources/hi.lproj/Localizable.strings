@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "बंद करें";
 "profile.achievement.unlock_heading" = "इस उपलब्धि को अनलॉक करने के लिए";
 "profile.achievement.completed_heading" = "बधाई हो!";
-"profile.achievement.completed_body" = "आपके संग्रह में जोड़ा गया";
+"profile.achievement.completed_body" = "उपलब्धि अनलॉक हो गई";
 "profile.achievement.identify_more" = "%lld और %@ को पहचानें";
 "tab.home.accessibility" = "घर";
 "tab.library.accessibility" = "पुस्तकालय";

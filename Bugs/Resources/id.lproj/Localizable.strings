@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Menutup";
 "profile.achievement.unlock_heading" = "Untuk membuka pencapaian ini";
 "profile.achievement.completed_heading" = "Selamat!";
-"profile.achievement.completed_body" = "Ditambahkan ke koleksi Anda";
+"profile.achievement.completed_body" = "Pencapaian terbuka";
 "profile.achievement.identify_more" = "Identifikasi %lld lebih lanjut %@";
 "tab.home.accessibility" = "Rumah";
 "tab.library.accessibility" = "Perpustakaan";

@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "বন্ধ";
 "profile.achievement.unlock_heading" = "এই অর্জন আনলক করতে";
 "profile.achievement.completed_heading" = "অভিনন্দন!";
-"profile.achievement.completed_body" = "আপনার সংগ্রহে যোগ করা হয়েছে";
+"profile.achievement.completed_body" = "অর্জন আনলক হয়েছে";
 "profile.achievement.identify_more" = "%lld আরো %@ সনাক্ত করুন";
 "tab.home.accessibility" = "বাড়ি";
 "tab.library.accessibility" = "লাইব্রেরি";

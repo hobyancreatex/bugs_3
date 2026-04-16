@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Aproape";
 "profile.achievement.unlock_heading" = "Pentru a debloca această realizare";
 "profile.achievement.completed_heading" = "Felicitări!";
-"profile.achievement.completed_body" = "Adăugat la colecția dvs";
+"profile.achievement.completed_body" = "Realizare deblocată";
 "profile.achievement.identify_more" = "Identificați %lld mai multe %@";
 "tab.home.accessibility" = "Acasă";
 "tab.library.accessibility" = "Bibliotecă";

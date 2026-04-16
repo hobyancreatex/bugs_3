@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Cerrar";
 "profile.achievement.unlock_heading" = "Para desbloquear este logro";
 "profile.achievement.completed_heading" = "¡Felicitaciones!";
-"profile.achievement.completed_body" = "Añadido a tu colección";
+"profile.achievement.completed_body" = "Logro desbloqueado";
 "profile.achievement.identify_more" = "Identificar %lld más %@";
 "tab.home.accessibility" = "Inicio";
 "tab.library.accessibility" = "Biblioteca";

@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "Close";
 "profile.achievement.unlock_heading" = "To unlock this achievement";
 "profile.achievement.completed_heading" = "Congratulations!";
-"profile.achievement.completed_body" = "Added to your collection";
+"profile.achievement.completed_body" = "Achievement unlocked";
 "profile.achievement.identify_more" = "Identify %lld more %@";
 "tab.home.accessibility" = "Home";
 "tab.library.accessibility" = "Library";

@@ -232,7 +232,10 @@ final class ProfileViewController: UIViewController {
                     self.collectionView.isUserInteractionEnabled = true
                     self.applyCollectionTabContentVisibility()
                     self.collectionView.reloadData()
-                    UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+                    // If user already switched to Achievements, do not surface Collection loading errors.
+                    if self.segmentControl.selectedIndex == 0 {
+                        UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+                    }
                 }
             }
         }

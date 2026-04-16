@@ -51,7 +51,7 @@
 "profile.achievement.close.accessibility" = "关闭";
 "profile.achievement.unlock_heading" = "解锁此成就";
 "profile.achievement.completed_heading" = "恭喜！";
-"profile.achievement.completed_body" = "添加到您的收藏";
+"profile.achievement.completed_body" = "成就已解锁";
 "profile.achievement.identify_more" = "识别%lld更多%@";
 "tab.home.accessibility" = "首页";
 "tab.library.accessibility" = "图书馆";
