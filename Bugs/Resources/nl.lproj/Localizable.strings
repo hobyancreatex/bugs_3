@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Waardplanten";
 "insect.detail.api.population" = "Populatie";
 "insect.detail.api.forms" = "Vormen";
+"insect.detail.api.incubation" = "Incubatie";
 "insect.detail.api.activity" = "Activiteit";
 "insect.detail.api.season" = "Seizoen";
 "insect.detail.api.flight_period" = "Vliegperiode";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Succes!";
 "insect.detail.add_to_collection.success.subtitle" = "Het insect is succesvol toegevoegd aan je collectie";
 "insect.detail.remove_from_collection.accessibility" = "Verwijderen uit collectie";
+"insect.detail.collection_photo.delete.confirm.title" = "Deze foto verwijderen?";
+"insect.detail.collection_photo.delete.confirm.message" = "Deze foto wordt permanent uit je collectie verwijderd.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Verwijderen";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Annuleren";
 "insect.detail.class.genus.title" = "Geslacht";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familie";

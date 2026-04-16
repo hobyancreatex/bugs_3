@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Värdväxter";
 "insect.detail.api.population" = "Population";
 "insect.detail.api.forms" = "Former";
+"insect.detail.api.incubation" = "Inkubation";
 "insect.detail.api.activity" = "Aktivitet";
 "insect.detail.api.season" = "Säsong";
 "insect.detail.api.flight_period" = "Flygperiod";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Framgång!";
 "insect.detail.add_to_collection.success.subtitle" = "Insekten har lagts till i din samling";
 "insect.detail.remove_from_collection.accessibility" = "Ta bort från samlingen";
+"insect.detail.collection_photo.delete.confirm.title" = "Ta bort detta foto?";
+"insect.detail.collection_photo.delete.confirm.message" = "Detta foto tas bort permanent från din samling.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Ta bort";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Avbryt";
 "insect.detail.class.genus.title" = "Genus";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familj";

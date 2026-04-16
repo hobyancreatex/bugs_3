@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Wirtspflanzen";
 "insect.detail.api.population" = "Population";
 "insect.detail.api.forms" = "Formen";
+"insect.detail.api.incubation" = "Inkubation";
 "insect.detail.api.activity" = "Aktivität";
 "insect.detail.api.season" = "Jahreszeit";
 "insect.detail.api.flight_period" = "Flugzeit";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Erfolg!";
 "insect.detail.add_to_collection.success.subtitle" = "Das Insekt wurde erfolgreich zu Ihrer Sammlung hinzugefügt";
 "insect.detail.remove_from_collection.accessibility" = "Aus der Sammlung entfernen";
+"insect.detail.collection_photo.delete.confirm.title" = "Dieses Foto löschen?";
+"insect.detail.collection_photo.delete.confirm.message" = "Dieses Foto wird dauerhaft aus Ihrer Sammlung entfernt.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Löschen";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Abbrechen";
 "insect.detail.class.genus.title" = "Gattung";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familie";

@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Рослини-хазяї";
 "insect.detail.api.population" = "Популяція";
 "insect.detail.api.forms" = "Форми";
+"insect.detail.api.incubation" = "Інкубація";
 "insect.detail.api.activity" = "Активність";
 "insect.detail.api.season" = "Сезон";
 "insect.detail.api.flight_period" = "Період польоту";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Успіх!";
 "insect.detail.add_to_collection.success.subtitle" = "Комаху успішно додано до вашої колекції";
 "insect.detail.remove_from_collection.accessibility" = "Видалити з колекції";
+"insect.detail.collection_photo.delete.confirm.title" = "Видалити це фото?";
+"insect.detail.collection_photo.delete.confirm.message" = "Фото буде назавжди видалено з вашої колекції.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Видалити";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Скасувати";
 "insect.detail.class.genus.title" = "Рід";
 "insect.detail.class.genus.value" = "Апіс";
 "insect.detail.class.family.title" = "Сім'я";

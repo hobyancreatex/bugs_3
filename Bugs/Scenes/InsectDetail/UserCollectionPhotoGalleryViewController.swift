@@ -210,6 +210,20 @@ final class UserCollectionPhotoGalleryViewController: UIViewController {
     @objc
     private func deleteTapped() {
         guard !isDeleting, currentPage >= 0, currentPage < photos.count else { return }
+        let alert = UIAlertController(
+            title: L10n.string("insect.detail.collection_photo.delete.confirm.title"),
+            message: L10n.string("insect.detail.collection_photo.delete.confirm.message"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: L10n.string("insect.detail.collection_photo.delete.confirm.cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: L10n.string("insect.detail.collection_photo.delete.confirm.delete"), style: .destructive) { [weak self] _ in
+            self?.performDeleteCurrentPhoto()
+        })
+        present(alert, animated: true)
+    }
+
+    private func performDeleteCurrentPhoto() {
+        guard !isDeleting, currentPage >= 0, currentPage < photos.count else { return }
         let indexToDelete = currentPage
         let photoId = photos[indexToDelete].id
         isDeleting = true

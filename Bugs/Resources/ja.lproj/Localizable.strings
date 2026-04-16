@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "宿主植物";
 "insect.detail.api.population" = "個体数";
 "insect.detail.api.forms" = "形態";
+"insect.detail.api.incubation" = "孵化期間";
 "insect.detail.api.activity" = "活動";
 "insect.detail.api.season" = "季節";
 "insect.detail.api.flight_period" = "飛翔期";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "成功!";
 "insect.detail.add_to_collection.success.subtitle" = "昆虫がコレクションに追加されました";
 "insect.detail.remove_from_collection.accessibility" = "コレクションから削除";
+"insect.detail.collection_photo.delete.confirm.title" = "この写真を削除しますか？";
+"insect.detail.collection_photo.delete.confirm.message" = "この写真はコレクションから完全に削除されます。";
+"insect.detail.collection_photo.delete.confirm.delete" = "削除";
+"insect.detail.collection_photo.delete.confirm.cancel" = "キャンセル";
 "insect.detail.class.genus.title" = "属";
 "insect.detail.class.genus.value" = "アピス";
 "insect.detail.class.family.title" = "家族";

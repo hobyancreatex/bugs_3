@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "मेज़बान पौधे";
 "insect.detail.api.population" = "जनसंख्या";
 "insect.detail.api.forms" = "रूप";
+"insect.detail.api.incubation" = "ऊष्मायन";
 "insect.detail.api.activity" = "गतिविधि";
 "insect.detail.api.season" = "मौसम";
 "insect.detail.api.flight_period" = "उड़ान अवधि";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "सफलता!";
 "insect.detail.add_to_collection.success.subtitle" = "कीट को आपके संग्रह में सफलतापूर्वक जोड़ दिया गया है";
 "insect.detail.remove_from_collection.accessibility" = "संग्रह से हटाएँ";
+"insect.detail.collection_photo.delete.confirm.title" = "यह फ़ोटो हटाएँ?";
+"insect.detail.collection_photo.delete.confirm.message" = "यह फ़ोटो आपके संग्रह से स्थायी रूप से हटा दी जाएगी।";
+"insect.detail.collection_photo.delete.confirm.delete" = "हटाएँ";
+"insect.detail.collection_photo.delete.confirm.cancel" = "रद्द करें";
 "insect.detail.class.genus.title" = "जाति";
 "insect.detail.class.genus.value" = "एपिस";
 "insect.detail.class.family.title" = "परिवार";

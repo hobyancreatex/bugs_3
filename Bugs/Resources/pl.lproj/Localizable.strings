@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Rośliny żywicielskie";
 "insect.detail.api.population" = "Populacja";
 "insect.detail.api.forms" = "Formy";
+"insect.detail.api.incubation" = "Inkubacja";
 "insect.detail.api.activity" = "Aktywność";
 "insect.detail.api.season" = "Pora roku";
 "insect.detail.api.flight_period" = "Okres lotów";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Sukces!";
 "insect.detail.add_to_collection.success.subtitle" = "Owad został pomyślnie dodany do Twojej kolekcji";
 "insect.detail.remove_from_collection.accessibility" = "Usuń z kolekcji";
+"insect.detail.collection_photo.delete.confirm.title" = "Usunąć to zdjęcie?";
+"insect.detail.collection_photo.delete.confirm.message" = "To zdjęcie zostanie trwale usunięte z Twojej kolekcji.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Usuń";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Anuluj";
 "insect.detail.class.genus.title" = "Rodzaj";
 "insect.detail.class.genus.value" = "Pszczoła";
 "insect.detail.class.family.title" = "Rodzina";

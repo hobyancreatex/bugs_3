@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Živné rostliny";
 "insect.detail.api.population" = "Populace";
 "insect.detail.api.forms" = "Formy";
+"insect.detail.api.incubation" = "Inkubace";
 "insect.detail.api.activity" = "Aktivita";
 "insect.detail.api.season" = "Sezóna";
 "insect.detail.api.flight_period" = "Období letu";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Úspěch!";
 "insect.detail.add_to_collection.success.subtitle" = "Hmyz byl úspěšně přidán do vaší sbírky";
 "insect.detail.remove_from_collection.accessibility" = "Odebrat ze sbírky";
+"insect.detail.collection_photo.delete.confirm.title" = "Smazat tuto fotografii?";
+"insect.detail.collection_photo.delete.confirm.message" = "Tato fotografie bude trvale odstraněna z vaší sbírky.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Smazat";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Zrušit";
 "insect.detail.class.genus.title" = "Rod";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Rodina";

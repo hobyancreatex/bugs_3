@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Isäntäkasvit";
 "insect.detail.api.population" = "Populaatio";
 "insect.detail.api.forms" = "Muodot";
+"insect.detail.api.incubation" = "Inkubation";
 "insect.detail.api.activity" = "Aktiivisuus";
 "insect.detail.api.season" = "Vuodenaika";
 "insect.detail.api.flight_period" = "Lentoaika";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Menestystä!";
 "insect.detail.add_to_collection.success.subtitle" = "Hyönteinen on lisätty kokoelmaasi";
 "insect.detail.remove_from_collection.accessibility" = "Poista kokoelmasta";
+"insect.detail.collection_photo.delete.confirm.title" = "Poistetaanko tämä valokuva?";
+"insect.detail.collection_photo.delete.confirm.message" = "Tämä valokuva poistetaan pysyvästi kokoelmastasi.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Poista";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Peruuta";
 "insect.detail.class.genus.title" = "Suku";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Perhe";

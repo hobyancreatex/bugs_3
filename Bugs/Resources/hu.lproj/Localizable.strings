@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Gazdanövények";
 "insect.detail.api.population" = "Populáció";
 "insect.detail.api.forms" = "Formák";
+"insect.detail.api.incubation" = "Inkubáció";
 "insect.detail.api.activity" = "Aktivitás";
 "insect.detail.api.season" = "Évszak";
 "insect.detail.api.flight_period" = "Repülési időszak";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Sikert!";
 "insect.detail.add_to_collection.success.subtitle" = "A rovar sikeresen bekerült a gyűjteményébe";
 "insect.detail.remove_from_collection.accessibility" = "Eltávolítás a gyűjteményből";
+"insect.detail.collection_photo.delete.confirm.title" = "Törli ezt a fényképet?";
+"insect.detail.collection_photo.delete.confirm.message" = "Ez a fénykép véglegesen eltávolításra kerül a gyűjteményéből.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Törlés";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Mégse";
 "insect.detail.class.genus.title" = "nemzetség";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Család";

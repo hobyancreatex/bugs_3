@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Tumbuhan inang";
 "insect.detail.api.population" = "Populasi";
 "insect.detail.api.forms" = "Bentuk";
+"insect.detail.api.incubation" = "Inkubasi";
 "insect.detail.api.activity" = "Aktivitas";
 "insect.detail.api.season" = "Musim";
 "insect.detail.api.flight_period" = "Periode terbang";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Kesuksesan!";
 "insect.detail.add_to_collection.success.subtitle" = "Serangga telah berhasil ditambahkan ke koleksi Anda";
 "insect.detail.remove_from_collection.accessibility" = "Hapus dari koleksi";
+"insect.detail.collection_photo.delete.confirm.title" = "Hapus foto ini?";
+"insect.detail.collection_photo.delete.confirm.message" = "Foto ini akan dihapus permanen dari koleksi Anda.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Hapus";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Batal";
 "insect.detail.class.genus.title" = "Marga";
 "insect.detail.class.genus.value" = "Lebah";
 "insect.detail.class.family.title" = "Keluarga";

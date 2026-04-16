@@ -277,7 +277,10 @@ final class ProfileViewController: UIViewController {
                     self.collectionLoadingIndicator.stopAnimating()
                     self.achievementRows = []
                     self.applyCollectionTabContentVisibility()
-                    UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+                    // If user already switched to Collection, do not surface Achievements loading errors.
+                    if self.segmentControl.selectedIndex == 1 {
+                        UserFacingRequestErrorAlert.presentTryAgainLater(from: self)
+                    }
                 }
             }
         }

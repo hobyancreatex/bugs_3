@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Halamang-host";
 "insect.detail.api.population" = "Populasyon";
 "insect.detail.api.forms" = "Mga anyo";
+"insect.detail.api.incubation" = "Inkubasyon";
 "insect.detail.api.activity" = "Aktibidad";
 "insect.detail.api.season" = "Panahon";
 "insect.detail.api.flight_period" = "Panahon ng lipad";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Tagumpay!";
 "insect.detail.add_to_collection.success.subtitle" = "Ang insekto ay matagumpay na naidagdag sa iyong koleksyon";
 "insect.detail.remove_from_collection.accessibility" = "Alisin sa koleksyon";
+"insect.detail.collection_photo.delete.confirm.title" = "Tanggalin ang larawang ito?";
+"insect.detail.collection_photo.delete.confirm.message" = "Permanenteng aalisin ang larawang ito sa iyong koleksyon.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Tanggalin";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Kanselahin";
 "insect.detail.class.genus.title" = "Genus";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Pamilya";

@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "میزبان پودے";
 "insect.detail.api.population" = "آبادی";
 "insect.detail.api.forms" = "اشکال";
+"insect.detail.api.incubation" = "انکیوبیشن";
 "insect.detail.api.activity" = "سرگرمی";
 "insect.detail.api.season" = "موسم";
 "insect.detail.api.flight_period" = "اڑن کا دور";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "کامیابی!";
 "insect.detail.add_to_collection.success.subtitle" = "کیڑے کو کامیابی کے ساتھ آپ کے مجموعہ میں شامل کیا گیا ہے۔";
 "insect.detail.remove_from_collection.accessibility" = "مجموعہ سے ہٹا دیں۔";
+"insect.detail.collection_photo.delete.confirm.title" = "یہ تصویر حذف کریں؟";
+"insect.detail.collection_photo.delete.confirm.message" = "یہ تصویر آپ کے مجموعہ سے مستقل طور پر ہٹا دی جائے گی۔";
+"insect.detail.collection_photo.delete.confirm.delete" = "حذف کریں";
+"insect.detail.collection_photo.delete.confirm.cancel" = "منسوخ";
 "insect.detail.class.genus.title" = "جینس";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "خاندان";

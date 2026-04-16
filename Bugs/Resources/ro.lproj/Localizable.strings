@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Plante gazdă";
 "insect.detail.api.population" = "Populație";
 "insect.detail.api.forms" = "Forme";
+"insect.detail.api.incubation" = "Incubație";
 "insect.detail.api.activity" = "Activitate";
 "insect.detail.api.season" = "Sezon";
 "insect.detail.api.flight_period" = "Perioada de zbor";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Succes!";
 "insect.detail.add_to_collection.success.subtitle" = "Insecta a fost adăugată cu succes la colecția dvs";
 "insect.detail.remove_from_collection.accessibility" = "Scoateți din colecție";
+"insect.detail.collection_photo.delete.confirm.title" = "Ștergi această fotografie?";
+"insect.detail.collection_photo.delete.confirm.message" = "Această fotografie va fi eliminată definitiv din colecția ta.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Șterge";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Anulează";
 "insect.detail.class.genus.title" = "Gen";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familial";

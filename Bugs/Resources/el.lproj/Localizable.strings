@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Φιλοξενούμενα φυτά";
 "insect.detail.api.population" = "Πληθυσμός";
 "insect.detail.api.forms" = "Μορφές";
+"insect.detail.api.incubation" = "Επώαση";
 "insect.detail.api.activity" = "Δραστηριότητα";
 "insect.detail.api.season" = "Εποχή";
 "insect.detail.api.flight_period" = "Περίοδος πτήσης";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Επιτυχία!";
 "insect.detail.add_to_collection.success.subtitle" = "Το έντομο προστέθηκε με επιτυχία στη συλλογή σας";
 "insect.detail.remove_from_collection.accessibility" = "Αφαίρεση από τη συλλογή";
+"insect.detail.collection_photo.delete.confirm.title" = "Διαγραφή αυτής της φωτογραφίας;";
+"insect.detail.collection_photo.delete.confirm.message" = "Αυτή η φωτογραφία θα αφαιρεθεί οριστικά από τη συλλογή σας.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Διαγραφή";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Ακύρωση";
 "insect.detail.class.genus.title" = "Γένος";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Οικογένεια";

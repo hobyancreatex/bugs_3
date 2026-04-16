@@ -354,6 +354,18 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         "host": "insect.detail.api.host_plants",
         "population": "insect.detail.api.population",
         "forms": "insect.detail.api.forms",
+        "form": "insect.detail.api.forms",
+        "life_forms": "insect.detail.api.forms",
+        "life_form": "insect.detail.api.forms",
+        "life forms": "insect.detail.api.forms",
+        "life form": "insect.detail.api.forms",
+        "existence_forms": "insect.detail.api.forms",
+        "existence_form": "insect.detail.api.forms",
+        "existence forms": "insect.detail.api.forms",
+        "existence form": "insect.detail.api.forms",
+        "incubation": "insect.detail.api.incubation",
+        "incubation_period": "insect.detail.api.incubation",
+        "incubation period": "insect.detail.api.incubation",
         "activity": "insect.detail.api.activity",
         "season": "insect.detail.api.season",
         "flight_period": "insect.detail.api.flight_period",
@@ -362,6 +374,8 @@ final class InsectDetailInteractor: InsectDetailBusinessLogic {
         "depth": "insect.detail.api.depth",
         "width": "insect.detail.api.width",
         "height": "insect.detail.api.height",
+        "food": "insect.detail.api.diet",
+        "feeding": "insect.detail.api.diet",
     ]
 
     private static func stubCharacteristicRows() -> [InsectDetail.CharacteristicLocalizationPair] {

@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "พืชโฮสต์";
 "insect.detail.api.population" = "ประชากร";
 "insect.detail.api.forms" = "รูปแบบ";
+"insect.detail.api.incubation" = "ระยะฟักตัว";
 "insect.detail.api.activity" = "กิจกรรม";
 "insect.detail.api.season" = "ฤดูกาล";
 "insect.detail.api.flight_period" = "ช่วงบิน";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "ความสำเร็จ!";
 "insect.detail.add_to_collection.success.subtitle" = "เพิ่มแมลงในคอลเลกชันของคุณเรียบร้อยแล้ว";
 "insect.detail.remove_from_collection.accessibility" = "ลบออกจากคอลเลกชัน";
+"insect.detail.collection_photo.delete.confirm.title" = "ลบรูปนี้หรือไม่?";
+"insect.detail.collection_photo.delete.confirm.message" = "รูปนี้จะถูกลบออกจากคอลเลกชันของคุณอย่างถาวร";
+"insect.detail.collection_photo.delete.confirm.delete" = "ลบ";
+"insect.detail.collection_photo.delete.confirm.cancel" = "ยกเลิก";
 "insect.detail.class.genus.title" = "ประเภท";
 "insect.detail.class.genus.value" = "เอปิส";
 "insect.detail.class.family.title" = "ตระกูล";

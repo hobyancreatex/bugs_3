@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "گیاهان میزبان";
 "insect.detail.api.population" = "جمعیت";
 "insect.detail.api.forms" = "شکل‌ها";
+"insect.detail.api.incubation" = "انکوباسیون";
 "insect.detail.api.activity" = "فعالیت";
 "insect.detail.api.season" = "فصل";
 "insect.detail.api.flight_period" = "دوره پرواز";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "موفقیت!";
 "insect.detail.add_to_collection.success.subtitle" = "حشره با موفقیت به مجموعه شما اضافه شد";
 "insect.detail.remove_from_collection.accessibility" = "حذف از مجموعه";
+"insect.detail.collection_photo.delete.confirm.title" = "این عکس حذف شود؟";
+"insect.detail.collection_photo.delete.confirm.message" = "این عکس برای همیشه از مجموعه شما حذف می‌شود.";
+"insect.detail.collection_photo.delete.confirm.delete" = "حذف";
+"insect.detail.collection_photo.delete.confirm.cancel" = "لغو";
 "insect.detail.class.genus.title" = "جنس";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "خانواده";

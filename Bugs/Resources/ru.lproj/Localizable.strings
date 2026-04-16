@@ -168,6 +168,7 @@
 "insect.detail.api.host_plants" = "Кормовые растения";
 "insect.detail.api.population" = "Численность";
 "insect.detail.api.forms" = "Формы";
+"insect.detail.api.incubation" = "Инкубация";
 "insect.detail.api.activity" = "Активность";
 "insect.detail.api.season" = "Сезон";
 "insect.detail.api.flight_period" = "Период полёта";
@@ -202,6 +203,10 @@
 "insect.detail.add_to_collection.success.title" = "Готово!";
 "insect.detail.add_to_collection.success.subtitle" = "Насекомое успешно добавлено в коллекцию";
 "insect.detail.remove_from_collection.accessibility" = "Убрать из коллекции";
+"insect.detail.collection_photo.delete.confirm.title" = "Удалить это фото?";
+"insect.detail.collection_photo.delete.confirm.message" = "Фото будет безвозвратно удалено из вашей коллекции.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Удалить";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Отмена";
 "insect.detail.class.genus.title" = "Род";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Семейство";

@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Konuk bitkiler";
 "insect.detail.api.population" = "Popülasyon";
 "insect.detail.api.forms" = "Biçimler";
+"insect.detail.api.incubation" = "Kuluçka";
 "insect.detail.api.activity" = "Aktivite";
 "insect.detail.api.season" = "Mevsim";
 "insect.detail.api.flight_period" = "Uçuş dönemi";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Başarı!";
 "insect.detail.add_to_collection.success.subtitle" = "Böcek koleksiyonunuza başarıyla eklendi";
 "insect.detail.remove_from_collection.accessibility" = "Koleksiyondan kaldır";
+"insect.detail.collection_photo.delete.confirm.title" = "Bu fotoğraf silinsin mi?";
+"insect.detail.collection_photo.delete.confirm.message" = "Bu fotoğraf koleksiyonunuzdan kalıcı olarak kaldırılacak.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Sil";
+"insect.detail.collection_photo.delete.confirm.cancel" = "İptal";
 "insect.detail.class.genus.title" = "Cins";
 "insect.detail.class.genus.value" = "Apis'ler";
 "insect.detail.class.family.title" = "Aile";

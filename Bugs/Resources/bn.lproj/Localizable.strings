@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "আতিথেয় উদ্ভিদ";
 "insect.detail.api.population" = "জনসংখ্যা";
 "insect.detail.api.forms" = "রূপ";
+"insect.detail.api.incubation" = "ইনকিউবেশন";
 "insect.detail.api.activity" = "কার্যকলাপ";
 "insect.detail.api.season" = "মৌসুম";
 "insect.detail.api.flight_period" = "উড়ার সময়কাল";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "সফলতার !";
 "insect.detail.add_to_collection.success.subtitle" = "পোকাটি সফলভাবে আপনার সংগ্রহে যোগ করা হয়েছে";
 "insect.detail.remove_from_collection.accessibility" = "সংগ্রহ থেকে সরান";
+"insect.detail.collection_photo.delete.confirm.title" = "এই ছবিটি মুছবেন?";
+"insect.detail.collection_photo.delete.confirm.message" = "এই ছবিটি আপনার সংগ্রহ থেকে স্থায়ীভাবে সরানো হবে।";
+"insect.detail.collection_photo.delete.confirm.delete" = "মুছুন";
+"insect.detail.collection_photo.delete.confirm.cancel" = "বাতিল";
 "insect.detail.class.genus.title" = "জেনাস";
 "insect.detail.class.genus.value" = "এপিস";
 "insect.detail.class.family.title" = "পরিবার";

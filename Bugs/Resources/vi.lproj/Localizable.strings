@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Cây chủ";
 "insect.detail.api.population" = "Quần thể";
 "insect.detail.api.forms" = "Dạng thái";
+"insect.detail.api.incubation" = "Ấp nở";
 "insect.detail.api.activity" = "Hoạt động";
 "insect.detail.api.season" = "Mùa";
 "insect.detail.api.flight_period" = "Thời kỳ bay";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Thành công!";
 "insect.detail.add_to_collection.success.subtitle" = "Côn trùng đã được thêm thành công vào bộ sưu tập của bạn";
 "insect.detail.remove_from_collection.accessibility" = "Xóa khỏi bộ sưu tập";
+"insect.detail.collection_photo.delete.confirm.title" = "Xóa ảnh này?";
+"insect.detail.collection_photo.delete.confirm.message" = "Ảnh này sẽ bị xóa vĩnh viễn khỏi bộ sưu tập của bạn.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Xóa";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Hủy";
 "insect.detail.class.genus.title" = "Chi";
 "insect.detail.class.genus.value" = "API";
 "insect.detail.class.family.title" = "Gia đình";

@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Mimea wenyeji";
 "insect.detail.api.population" = "Idadi ya watu";
 "insect.detail.api.forms" = "Maumbo";
+"insect.detail.api.incubation" = "Uatamiaji";
 "insect.detail.api.activity" = "Shughuli";
 "insect.detail.api.season" = "Msimu";
 "insect.detail.api.flight_period" = "Kipindi cha kuruka";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Mafanikio!";
 "insect.detail.add_to_collection.success.subtitle" = "Mdudu amefanikiwa kuongezwa kwenye mkusanyiko wako";
 "insect.detail.remove_from_collection.accessibility" = "Ondoa kwenye mkusanyiko";
+"insect.detail.collection_photo.delete.confirm.title" = "Futa picha hii?";
+"insect.detail.collection_photo.delete.confirm.message" = "Picha hii itaondolewa kabisa kwenye mkusanyiko wako.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Futa";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Ghairi";
 "insect.detail.class.genus.title" = "Jenasi";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familia";

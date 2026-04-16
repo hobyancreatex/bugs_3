@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "نباتات مضيفة";
 "insect.detail.api.population" = "عدد السكان";
 "insect.detail.api.forms" = "أشكال";
+"insect.detail.api.incubation" = "حضانة";
 "insect.detail.api.activity" = "نشاط";
 "insect.detail.api.season" = "موسم";
 "insect.detail.api.flight_period" = "فترة الطيران";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "النجاح!";
 "insect.detail.add_to_collection.success.subtitle" = "تمت إضافة الحشرة بنجاح إلى مجموعتك";
 "insect.detail.remove_from_collection.accessibility" = "إزالة من المجموعة";
+"insect.detail.collection_photo.delete.confirm.title" = "حذف هذه الصورة؟";
+"insect.detail.collection_photo.delete.confirm.message" = "سيتم حذف هذه الصورة نهائيًا من مجموعتك.";
+"insect.detail.collection_photo.delete.confirm.delete" = "حذف";
+"insect.detail.collection_photo.delete.confirm.cancel" = "إلغاء";
 "insect.detail.class.genus.title" = "جنس";
 "insect.detail.class.genus.value" = "أبيس";
 "insect.detail.class.family.title" = "العائلة";

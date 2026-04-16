@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "Værtsplanter";
 "insect.detail.api.population" = "Population";
 "insect.detail.api.forms" = "Former";
+"insect.detail.api.incubation" = "Inkubation";
 "insect.detail.api.activity" = "Aktivitet";
 "insect.detail.api.season" = "Sæson";
 "insect.detail.api.flight_period" = "Flyveperiode";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "Succes!";
 "insect.detail.add_to_collection.success.subtitle" = "Insektet er blevet føjet til din samling";
 "insect.detail.remove_from_collection.accessibility" = "Fjern fra samling";
+"insect.detail.collection_photo.delete.confirm.title" = "Slet dette foto?";
+"insect.detail.collection_photo.delete.confirm.message" = "Dette foto fjernes permanent fra din samling.";
+"insect.detail.collection_photo.delete.confirm.delete" = "Slet";
+"insect.detail.collection_photo.delete.confirm.cancel" = "Annuller";
 "insect.detail.class.genus.title" = "Slægt";
 "insect.detail.class.genus.value" = "Apis";
 "insect.detail.class.family.title" = "Familie";

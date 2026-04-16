@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "숙주 식물";
 "insect.detail.api.population" = "개체 수";
 "insect.detail.api.forms" = "형태";
+"insect.detail.api.incubation" = "부화 기간";
 "insect.detail.api.activity" = "활동";
 "insect.detail.api.season" = "계절";
 "insect.detail.api.flight_period" = "비행 기간";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "성공!";
 "insect.detail.add_to_collection.success.subtitle" = "곤충이 컬렉션에 성공적으로 추가되었습니다.";
 "insect.detail.remove_from_collection.accessibility" = "컬렉션에서 제거";
+"insect.detail.collection_photo.delete.confirm.title" = "이 사진을 삭제할까요?";
+"insect.detail.collection_photo.delete.confirm.message" = "이 사진이 컬렉션에서 영구적으로 삭제됩니다.";
+"insect.detail.collection_photo.delete.confirm.delete" = "삭제";
+"insect.detail.collection_photo.delete.confirm.cancel" = "취소";
 "insect.detail.class.genus.title" = "속";
 "insect.detail.class.genus.value" = "아피스";
 "insect.detail.class.family.title" = "가족";

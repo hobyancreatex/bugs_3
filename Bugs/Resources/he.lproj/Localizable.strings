@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "צמחי מאכל";
 "insect.detail.api.population" = "אוכלוסייה";
 "insect.detail.api.forms" = "צורות";
+"insect.detail.api.incubation" = "דגירה";
 "insect.detail.api.activity" = "פעילות";
 "insect.detail.api.season" = "עונה";
 "insect.detail.api.flight_period" = "תקופת תעופה";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "הצלחה!";
 "insect.detail.add_to_collection.success.subtitle" = "החרק נוסף בהצלחה לאוסף שלך";
 "insect.detail.remove_from_collection.accessibility" = "הסר מהאוסף";
+"insect.detail.collection_photo.delete.confirm.title" = "למחוק את התמונה?";
+"insect.detail.collection_photo.delete.confirm.message" = "התמונה תוסר לצמיתות מהאוסף שלך.";
+"insect.detail.collection_photo.delete.confirm.delete" = "מחק";
+"insect.detail.collection_photo.delete.confirm.cancel" = "ביטול";
 "insect.detail.class.genus.title" = "סוג";
 "insect.detail.class.genus.value" = "אפיס";
 "insect.detail.class.family.title" = "משפחה";

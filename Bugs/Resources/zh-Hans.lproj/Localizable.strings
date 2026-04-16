@@ -169,6 +169,7 @@
 "insect.detail.api.host_plants" = "寄主植物";
 "insect.detail.api.population" = "种群";
 "insect.detail.api.forms" = "形态";
+"insect.detail.api.incubation" = "孵化期";
 "insect.detail.api.activity" = "活动";
 "insect.detail.api.season" = "季节";
 "insect.detail.api.flight_period" = "飞行期";
@@ -203,6 +204,10 @@
 "insect.detail.add_to_collection.success.title" = "成功了！";
 "insect.detail.add_to_collection.success.subtitle" = "该昆虫已成功添加到您的收藏中";
 "insect.detail.remove_from_collection.accessibility" = "从集合中删除";
+"insect.detail.collection_photo.delete.confirm.title" = "删除这张照片？";
+"insect.detail.collection_photo.delete.confirm.message" = "该照片将从您的收藏中永久删除。";
+"insect.detail.collection_photo.delete.confirm.delete" = "删除";
+"insect.detail.collection_photo.delete.confirm.cancel" = "取消";
 "insect.detail.class.genus.title" = "属";
 "insect.detail.class.genus.value" = "蜜蜂";
 "insect.detail.class.family.title" = "家庭";
