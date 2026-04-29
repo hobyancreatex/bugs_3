@@ -1,7 +1,8 @@
 import Foundation
 
 enum SubscriptionPurchaseSource {
-    case onboarding
+    case onboardingFirstPass
+    case onboardingRepeat
     case inAppPaywall
 }
 
@@ -39,32 +40,45 @@ final class EventsManager {
         appsFlyer.logPurchase(productId: product.id)
 
         switch source {
-        case .onboarding:
-            logEvent(.subscription_done_purchased_onboarding)
+        case .onboardingFirstPass:
+            logEvent(.onboarding_subscription_done)
+        case .onboardingRepeat:
+            logEvent(.subscription_done_new_open_app)
         case .inAppPaywall:
-            logEvent(.subscription_done_inapp_all)
+            logEvent(.subscription_done_purchased_inapp)
         }
 
-        let productId = product.id
-        if productId.contains("week") {
+        let productId = product.id.lowercased()
+        if productId.contains("week") || productId.contains("7day") || productId.contains("7_day") {
             logEvent(.paywall_subscribe_week)
-        } else if productId.contains("3month") {
-            logEvent(.subscription_done_3month)
-            logEvent(.subscription_done_three_month)
-        } else if productId.contains("1year") {
-            logEvent(.subscription_done_1year)
-            logEvent(.subscription_done_year)
+        } else if productId.contains("3month")
+            || productId.contains("quarter")
+            || productId.contains("3_month")
+            || productId.contains("threemonth") {
+            logEvent(.paywall_subscribe_threemonths)
+        } else if productId.contains("1year")
+            || productId.contains("year")
+            || productId.contains("annual") {
+            logEvent(.paywall_subscribe_year)
         }
     }
 
     enum Event: String, CaseIterable {
+        case splash_show
+        case view_onboarding_1
+        case view_onboarding_2
+        case view_onboarding_subscription
+        case launch_paywall_view
+        case paywall_inapp_displayed
+        case main_screen_view
+
         case subscription_done_all
-        case subscription_done_purchased_onboarding
-        case subscription_done_inapp_all
+        case onboarding_subscription_done
+        case subscription_done_new_open_app
+        case subscription_done_purchased_inapp
+
         case paywall_subscribe_week
-        case subscription_done_3month
-        case subscription_done_three_month
-        case subscription_done_1year
-        case subscription_done_year
+        case paywall_subscribe_threemonths
+        case paywall_subscribe_year
     }
 }

@@ -43,6 +43,7 @@ final class LaunchSplashViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        EventsManager.shared.logEvent(.splash_show)
         animationView.play()
         requestTrackingAuthorizationIfNeeded()
 

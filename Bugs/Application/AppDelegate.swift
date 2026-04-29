@@ -33,6 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppsFlyerLib.shared().registerUninstall(deviceToken)
     }
 
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        #if DEBUG
+        print("[Push] APNs registration failed:", error.localizedDescription)
+        #endif
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        AppsFlyerLib.shared().start()
+    }
+
 
 }
 

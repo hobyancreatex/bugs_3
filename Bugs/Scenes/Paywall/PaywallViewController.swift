@@ -9,6 +9,7 @@ import UIKit
 final class PaywallViewController: UIViewController {
 
     private let contentView = PaywallScreenView(embeddedInOnboarding: false)
+    private var didLogInAppPaywallShown = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,13 @@ final class PaywallViewController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !didLogInAppPaywallShown else { return }
+        didLogInAppPaywallShown = true
+        EventsManager.shared.logEvent(.paywall_inapp_displayed)
     }
 
     private func openExternalURL(key: String) {

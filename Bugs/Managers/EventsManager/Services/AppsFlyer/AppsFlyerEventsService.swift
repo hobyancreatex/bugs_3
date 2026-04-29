@@ -23,6 +23,11 @@ final class AppsFlyerEventsService: NSObject, EventServiceProtocol, AppsFlyerLib
         af.appleAppID = appId
         af.waitForATTUserAuthorization(timeoutInterval: 60)
         af.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let uid = AppsFlyerLib.shared().getAppsFlyerUID()
+            guard !uid.isEmpty else { return }
+            UserAcquisitionManager.shared.conversionInfo.appsFlyerId = uid
+        }
     }
 
     func logEvent(name: String, parameters: [String: Any]?) {

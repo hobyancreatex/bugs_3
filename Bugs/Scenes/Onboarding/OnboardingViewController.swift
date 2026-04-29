@@ -18,6 +18,9 @@ final class OnboardingViewController: UIViewController {
     private static let isOnboardingEndedKey = "isonbended"
 
     private var currentPage = 0
+    private var isRepeatOnboardingSession = false
+    private var loggedOnboardingSteps = Set<Int>()
+    private var didLogOnboardingPaywallShown = false
     /// `scrollToItem` before layout is ready leaves `contentOffset` at 0 while `currentPage == 1` — wrong page + wrong chrome. Sync in `viewDidLayoutSubviews`.
     private var needsScrollToPaywallAfterLayout = false
 
@@ -78,12 +81,14 @@ final class OnboardingViewController: UIViewController {
         ])
 
         view.bringSubviewToFront(actionButton)
-        if Self.shouldStartAtPaywall() {
+        isRepeatOnboardingSession = Self.shouldStartAtPaywall()
+        if isRepeatOnboardingSession {
             currentPage = 1
             needsScrollToPaywallAfterLayout = true
             Self.markOnboardingEndedIfNeeded()
         }
         updateChromeForPage()
+        logOnboardingStepIfNeeded(currentPage)
     }
 
     override func viewDidLayoutSubviews() {
@@ -112,6 +117,7 @@ final class OnboardingViewController: UIViewController {
             actionButton.setTitle(L10n.string("onboarding.button.next"), for: .normal)
         } else {
             actionButton.setTitle(L10n.string("paywall.button.next"), for: .normal)
+            logOnboardingPaywallShownIfNeeded()
         }
         actionButton.isPulseAnimationEnabled = (currentPage == 1)
     }
@@ -123,6 +129,7 @@ final class OnboardingViewController: UIViewController {
             let indexPath = IndexPath(item: 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             updateChromeForPage()
+            logOnboardingStepIfNeeded(currentPage)
             Self.markOnboardingEndedIfNeeded()
         } else {
             Task { await performSubscriptionPurchase() }
@@ -171,7 +178,8 @@ final class OnboardingViewController: UIViewController {
                 return
             }
             try await SubscriptionManager.shared.purchase(product)
-            EventsManager.shared.recordSubscriptionPurchase(product: product, source: .onboarding)
+            let purchaseSource: SubscriptionPurchaseSource = isRepeatOnboardingSession ? .onboardingRepeat : .onboardingFirstPass
+            EventsManager.shared.recordSubscriptionPurchase(product: product, source: purchaseSource)
             RefundConsentFlow.present(from: self) { [weak self] in
                 self?.completeOnboardingAndGoMain()
             }
@@ -225,6 +233,25 @@ final class OnboardingViewController: UIViewController {
         if !UserDefaults.standard.bool(forKey: isOnboardingEndedKey) {
             UserDefaults.standard.set(true, forKey: isOnboardingEndedKey)
         }
+    }
+
+    private func logOnboardingStepIfNeeded(_ page: Int) {
+        guard loggedOnboardingSteps.insert(page).inserted else { return }
+        switch page {
+        case 0:
+            EventsManager.shared.logEvent(.view_onboarding_1)
+        case 1:
+            EventsManager.shared.logEvent(.view_onboarding_2)
+        default:
+            break
+        }
+    }
+
+    private func logOnboardingPaywallShownIfNeeded() {
+        guard !didLogOnboardingPaywallShown else { return }
+        didLogOnboardingPaywallShown = true
+        let event: EventsManager.Event = isRepeatOnboardingSession ? .launch_paywall_view : .view_onboarding_subscription
+        EventsManager.shared.logEvent(event)
     }
 }
 
