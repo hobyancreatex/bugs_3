@@ -61,7 +61,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "week.com",
+          "productID" : "1week.com.insect.routemaster",
           "recurringSubscriptionPeriod" : "P1W",
           "referenceName" : "Week",
           "subscriptionGroupID" : "04617A7C",

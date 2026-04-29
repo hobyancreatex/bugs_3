@@ -219,6 +219,7 @@
 				DEVELOPMENT_TEAM = 3ZVTHYFAJY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bugs/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bug Identifier";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera access so you can take photos and identify bugs instantly";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Choose a photo to identify insects.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use this to measure ad performance and improve subscriptions, including refund-related flows.";
@@ -259,6 +260,7 @@
 				DEVELOPMENT_TEAM = 3ZVTHYFAJY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bugs/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bug Identifier";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera access so you can take photos and identify bugs instantly";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Choose a photo to identify insects.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use this to measure ad performance and improve subscriptions, including refund-related flows.";

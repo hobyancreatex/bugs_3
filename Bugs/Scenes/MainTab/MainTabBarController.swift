@@ -4,9 +4,11 @@
 //
 
 import UIKit
+import UserNotifications
 
 /// Корневой контейнер: четыре вкладки и плавающая центральная кнопка (камера).
 final class MainTabBarController: UIViewController {
+    private static var didRequestPushPermissionThisSession = false
 
     private let childContainer: UIView = {
         let v = UIView()
@@ -63,6 +65,11 @@ final class MainTabBarController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applySubscriptionStatusForAppearance()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestPushPermissionIfNeeded()
     }
 
     override func viewSafeAreaInsetsDidChange() {
@@ -294,6 +301,31 @@ final class MainTabBarController: UIViewController {
         AppNavigationBarAppearance.apply(to: nav.navigationBar)
         nav.modalPresentationStyle = .fullScreen
         presenterForChatModal().present(nav, animated: true)
+    }
+
+    private func requestPushPermissionIfNeeded() {
+        guard !Self.didRequestPushPermissionThisSession else { return }
+        Self.didRequestPushPermissionThisSession = true
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+                    guard granted else { return }
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            case .authorized, .provisional, .ephemeral:
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            case .denied:
+                break
+            @unknown default:
+                break
+            }
+        }
     }
 
     @objc

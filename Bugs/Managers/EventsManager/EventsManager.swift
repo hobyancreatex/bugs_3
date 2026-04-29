@@ -31,7 +31,7 @@ final class EventsManager {
         #endif
     }
 
-    /// After a successful subscription purchase (Firebase + AppsFlyer + chkmob receipt).
+    /// After a successful subscription purchase (Firebase + AppsFlyer + User Acquisition receipt).
     @MainActor
     func recordSubscriptionPurchase(product: SubscriptionProduct, source: SubscriptionPurchaseSource) {
         UserAcquisitionManager.shared.logPurchase(of: product)

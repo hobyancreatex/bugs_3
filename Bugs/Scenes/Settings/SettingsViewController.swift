@@ -336,7 +336,7 @@ final class SettingsViewController: UIViewController {
     // MARK: - Actions (как в CoinRecognizer / SettingsPresenter)
 
     private func contactUs() {
-        let email = L10n.string("settings.support.email")
+        let email = AppConfig.Support.email
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -396,11 +396,11 @@ final class SettingsViewController: UIViewController {
     }
 
     private func rateApp() {
-        openURLString(L10n.string("settings.link.app_store"))
+        openURLString(AppConfig.Marketing.appStoreWriteReviewURL)
     }
 
     private func shareApp() {
-        let urlString = L10n.string("settings.link.share")
+        let urlString = AppConfig.Marketing.shareAppURL
         guard let url = URL(string: urlString) else { return }
         let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         vc.popoverPresentationController?.sourceView = view

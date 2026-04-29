@@ -2,10 +2,6 @@ import Foundation
 import SwiftyStoreKit
 import UIKit
 
-#if canImport(AdSupport)
-import AdSupport
-#endif
-
 /// Sends subscription receipts and refund consent to the acquisition backend (DarkLocator-style).
 final class UserAcquisitionManager: NSObject {
 
@@ -41,7 +37,7 @@ final class UserAcquisitionManager: NSObject {
     }
 
     func refundConsent(consented: Bool, completion: ((Bool) -> Void)?) {
-        guard apiKey != "YOUR_CHKMOB_API_KEY" else {
+        guard AppConfig.Secrets.hasUserAcquisitionAPIKey else {
             #if DEBUG
             print("[UserAcquisition] Missing API key — refundConsent skipped")
             #endif
@@ -49,7 +45,7 @@ final class UserAcquisitionManager: NSObject {
             return
         }
         let secret = AppConfig.Secrets.appStoreSharedSecret
-        guard !secret.isEmpty, secret != "YOUR_APP_STORE_SHARED_SECRET" else {
+        guard AppConfig.Secrets.hasAppStoreSharedSecret else {
             #if DEBUG
             print("[UserAcquisition] Missing App Store shared secret — refundConsent skipped")
             #endif
@@ -76,7 +72,7 @@ final class UserAcquisitionManager: NSObject {
     }
 
     func logPurchase(of product: SubscriptionProduct) {
-        guard apiKey != "YOUR_CHKMOB_API_KEY" else {
+        guard AppConfig.Secrets.hasUserAcquisitionAPIKey else {
             #if DEBUG
             print("[UserAcquisition] Missing API key — logPurchase skipped")
             #endif
@@ -122,13 +118,8 @@ final class UserAcquisitionManager: NSObject {
             }
         }()
 
-        let idfa: String = {
-            #if canImport(AdSupport)
-            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-            #else
-            return ""
-            #endif
-        }()
+        // IDFA intentionally omitted (no AdSupport); attribution comes from AppsFlyer / UA payload.
+        let idfa = ""
 
         let priceString = product.priceDecimal.stringValue
         let currencyCode = Locale.current.currency?.identifier ?? ""

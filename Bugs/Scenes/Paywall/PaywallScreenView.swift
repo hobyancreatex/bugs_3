@@ -506,8 +506,10 @@ final class PaywallScreenView: UIView {
     }
 
     private func updateProductLabel(priceText: String?) {
-        let prefix = L10n.string("paywall.product.prefix")
-        let suffix = L10n.string("paywall.product.suffix")
+        let ws = CharacterSet.whitespacesAndNewlines
+        let prefix = L10n.string("paywall.product.prefix").trimmingCharacters(in: ws)
+        let suffix = L10n.string("paywall.product.suffix").trimmingCharacters(in: ws)
+        let mid = priceText ?? "—"
         let bodyAttrs: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14, weight: .regular),
             .foregroundColor: UIColor.appPaywallProductBody,
@@ -516,10 +518,16 @@ final class PaywallScreenView: UIView {
             .font: UIFont.systemFont(ofSize: 14, weight: .regular),
             .foregroundColor: UIColor.appPaywallPriceHighlight,
         ]
-        let m = NSMutableAttributedString(string: prefix, attributes: bodyAttrs)
-        let mid = priceText ?? "—"
+        let m = NSMutableAttributedString()
+        if !prefix.isEmpty {
+            m.append(NSAttributedString(string: prefix, attributes: bodyAttrs))
+            m.append(NSAttributedString(string: " ", attributes: bodyAttrs))
+        }
         m.append(NSAttributedString(string: mid, attributes: priceAttrs))
-        m.append(NSAttributedString(string: suffix, attributes: bodyAttrs))
+        if !suffix.isEmpty {
+            m.append(NSAttributedString(string: " ", attributes: bodyAttrs))
+            m.append(NSAttributedString(string: suffix, attributes: bodyAttrs))
+        }
         productLabel.attributedText = m
     }
 

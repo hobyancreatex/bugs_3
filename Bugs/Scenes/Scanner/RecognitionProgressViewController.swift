@@ -181,6 +181,7 @@ final class RecognitionProgressViewController: UIViewController {
                 classificationSourceJPEG: sourceJPEG
             )
             nav.pushViewController(pager, animated: true)
+            AppStoreReviewSessionPrompt.scheduleAfterSuccessfulCoreFlow()
             return
         }
         let match = RecognitionMatchFoundViewController(
@@ -189,6 +190,7 @@ final class RecognitionProgressViewController: UIViewController {
             classificationSourceJPEG: sourceJPEG
         )
         nav.pushViewController(match, animated: true)
+        AppStoreReviewSessionPrompt.scheduleAfterSuccessfulCoreFlow()
     }
 
     private func navigateAfterFailure() {

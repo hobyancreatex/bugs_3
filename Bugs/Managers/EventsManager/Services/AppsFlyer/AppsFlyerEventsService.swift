@@ -6,9 +6,9 @@ final class AppsFlyerEventsService: NSObject, EventServiceProtocol, AppsFlyerLib
     private let isConfigured: Bool
 
     override init() {
+        let ok = AppConfig.AppsFlyer.isConfigured
         let key = AppConfig.AppsFlyer.devKey
         let appId = AppConfig.AppsFlyer.appleAppID
-        let ok = key != "YOUR_APPSFLYER_DEV_KEY" && appId != "YOUR_APP_STORE_NUMERIC_ID"
         self.isConfigured = ok
         super.init()
         guard ok else {
