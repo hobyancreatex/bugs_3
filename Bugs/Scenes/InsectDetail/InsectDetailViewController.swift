@@ -744,6 +744,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         }
         guard presentedViewController == nil else { return }
         guard !isPresentingAddToCollectionFlow else { return }
+        EventsManager.shared.logEvent(.core_add_to_collection_started)
 
         if let jpeg = prefilledCollectionJPEG, !jpeg.isEmpty {
             isPresentingAddToCollectionFlow = true
@@ -979,6 +980,7 @@ final class InsectDetailViewController: UIViewController, InsectDetailDisplayLog
         removeAddToCollectionLoading()
         switch viewModel {
         case .success:
+            EventsManager.shared.logEvent(.core_add_to_collection_success)
             prefilledCollectionJPEG = nil
             isListedInUserCollection = true
             isAddToCollectionAvailableFromAPI = true

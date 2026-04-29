@@ -833,6 +833,7 @@ extension AIConsultantChatViewController: InputBarAccessoryViewDelegate {
             presentPaywallFullScreen()
             return
         }
+        EventsManager.shared.logEvent(.core_ai_chat_message_sent)
 
         let messageId = UUID().uuidString
         let newMessage = ChatMessage(

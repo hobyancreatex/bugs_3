@@ -408,11 +408,11 @@ final class SettingsViewController: UIViewController {
     }
 
     private func privacyPolicy() {
-        openURLString(L10n.string("settings.link.privacy"))
+        openURLString(AppConfig.Marketing.privacyPolicyURL)
     }
 
     private func termsOfUse() {
-        openURLString(L10n.string("settings.link.terms"))
+        openURLString(AppConfig.Marketing.termsOfUseURL)
     }
 
     private func showRefundConsentAlert() {

@@ -24,10 +24,10 @@ final class PaywallViewController: UIViewController {
             Task { await self?.performPurchase() }
         }
         contentView.onTermsTap = { [weak self] in
-            self?.openExternalURL(key: "settings.link.terms")
+            self?.openExternalURL(AppConfig.Marketing.termsOfUseURL)
         }
         contentView.onPrivacyTap = { [weak self] in
-            self?.openExternalURL(key: "settings.link.privacy")
+            self?.openExternalURL(AppConfig.Marketing.privacyPolicyURL)
         }
         contentView.onRestoreTap = { [weak self] in
             Task { await self?.performRestore() }
@@ -49,9 +49,8 @@ final class PaywallViewController: UIViewController {
         EventsManager.shared.logEvent(.paywall_inapp_displayed)
     }
 
-    private func openExternalURL(key: String) {
-        let s = L10n.string(key)
-        guard let url = URL(string: s) else { return }
+    private func openExternalURL(_ string: String) {
+        guard let url = URL(string: string) else { return }
         UIApplication.shared.open(url)
     }
 

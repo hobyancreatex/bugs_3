@@ -152,9 +152,8 @@ final class OnboardingViewController: UIViewController {
         }
     }
 
-    fileprivate static func openExternalURL(key: String) {
-        let s = L10n.string(key)
-        guard let url = URL(string: s) else { return }
+    fileprivate static func openExternalURL(_ string: String) {
+        guard let url = URL(string: string) else { return }
         UIApplication.shared.open(url)
     }
 
@@ -276,8 +275,8 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         ) as! OnboardingPaywallCollectionViewCell
         cell.configure(
             onClose: { [weak self] in self?.completeOnboardingSkipPaywall() },
-            onTerms: { OnboardingViewController.openExternalURL(key: "settings.link.terms") },
-            onPrivacy: { OnboardingViewController.openExternalURL(key: "settings.link.privacy") },
+            onTerms: { OnboardingViewController.openExternalURL(AppConfig.Marketing.termsOfUseURL) },
+            onPrivacy: { OnboardingViewController.openExternalURL(AppConfig.Marketing.privacyPolicyURL) },
             onRestore: { [weak self] in Task { await self?.performRestoreFromOnboarding() } }
         )
         return cell

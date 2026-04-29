@@ -80,5 +80,13 @@ final class EventsManager {
         case paywall_subscribe_week
         case paywall_subscribe_threemonths
         case paywall_subscribe_year
+
+        case core_scan_started
+        case core_scan_recognition_success
+        case core_scan_recognition_failure
+        case core_scan_result_opened
+        case core_add_to_collection_started
+        case core_add_to_collection_success
+        case core_ai_chat_message_sent
     }
 }

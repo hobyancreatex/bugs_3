@@ -266,6 +266,7 @@ final class RecognitionMatchFoundViewController: UIViewController {
     }
 
     private func openRecognitionResult() {
+        EventsManager.shared.logEvent(.core_scan_result_opened)
         let pager = RecognitionResultsPagerViewController(
             candidates: candidates,
             classificationSourceJPEG: classificationSourceJPEG

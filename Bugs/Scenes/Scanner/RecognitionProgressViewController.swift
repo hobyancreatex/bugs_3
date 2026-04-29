@@ -142,6 +142,7 @@ final class RecognitionProgressViewController: UIViewController {
     private func startClassificationIfNeeded() {
         guard !didStartClassification else { return }
         didStartClassification = true
+        EventsManager.shared.logEvent(.core_scan_started)
 
         classificationTask = Task { [weak self] in
             guard let self else { return }
@@ -173,6 +174,7 @@ final class RecognitionProgressViewController: UIViewController {
             navigateAfterFailure()
             return
         }
+        EventsManager.shared.logEvent(.core_scan_recognition_success)
         guard let nav = navigationController, nav.topViewController === self else { return }
         _ = SubscriptionManager.shared.checkSubscriptionStatus()
         if SubscriptionAccess.shared.isPremiumActive {
@@ -194,6 +196,7 @@ final class RecognitionProgressViewController: UIViewController {
     }
 
     private func navigateAfterFailure() {
+        EventsManager.shared.logEvent(.core_scan_recognition_failure)
         guard let nav = navigationController, nav.topViewController === self else { return }
         nav.pushViewController(RecognitionNoMatchViewController(), animated: true)
     }

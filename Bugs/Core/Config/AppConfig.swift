@@ -17,6 +17,8 @@ enum AppConfig {
         static let appStoreNumericID = "6764270946"
         /// Opens the App Store page with the review sheet when supported.
         static let appStoreWriteReviewURL = "https://apps.apple.com/app/id6764270946?action=write-review"
+        static let termsOfUseURL = "https://bugs-identifier.com/terms.html"
+        static let privacyPolicyURL = "https://bugs-identifier.com/privacy.html"
         static var shareAppURL: String { appStoreProductURL }
     }
 
